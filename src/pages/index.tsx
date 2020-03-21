@@ -1,5 +1,13 @@
-
+import Router from 'next/router';
+import { startAuthRoutine } from '../api/authorization';
 
 export default function Index() {
-    return <>Hello World</>;
+    if(process.browser) {
+        if(localStorage.getItem('jwt')) {
+            Router.push('/dashboard');
+        } else {
+            startAuthRoutine();
+        }
+    }
+    return <>Loading</>;
 }
