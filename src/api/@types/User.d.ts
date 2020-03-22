@@ -7,4 +7,5 @@ export interface User {
     avatarWEBP: string;
     avatarJP2: string;
     profileUrl: string;
+    gsiAuth: string;
 }
