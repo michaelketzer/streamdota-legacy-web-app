@@ -1,4 +1,4 @@
-import { ReactElement, ObjectHTMLAttributes } from "react";
+import { ReactElement } from "react";
 
 type Accessor = 'userAvatar';
 
