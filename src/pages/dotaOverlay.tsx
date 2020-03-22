@@ -1,10 +1,10 @@
 import { ReactElement } from "react";
 import PageFrame from "../components/PageFrame";
 
-export default function Dashboard(): ReactElement {
+export default function DotaOverlay(): ReactElement {
     return <PageFrame title={'Dashboard'}>
         <h1>
-            Welcome to Griefco.de.
+            Dota Overlay
         </h1>
     </PageFrame>
 }
