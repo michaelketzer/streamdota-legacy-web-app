@@ -1,7 +1,7 @@
 import { ReactElement, ReactNode } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
-import classNames from 'classNames';
+import classNames from 'classnames';
 
 interface MenuItem {
     icon: ReactNode;
