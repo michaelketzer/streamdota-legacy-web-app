@@ -1,5 +1,5 @@
 import { ReactElement } from "react";
-import { fetchCurrentUser } from "../api/authorization";
+import { fetchCurrentUser } from "../api/user";
 import { User } from "../api/@types/User";
 import { useAbortFetch } from "../hooks/abortFetch";
 import Picture from "./Picture";
