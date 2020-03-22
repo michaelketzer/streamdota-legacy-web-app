@@ -1,8 +1,8 @@
-import Router, { withRouter } from 'next/router';
+import Router from 'next/router';
 import { completeAuthRoutine } from '../api/authorization';
 
 async function handleAuthRoutine(code: string): Promise<void> {
-    const success = completeAuthRoutine(code);
+    const success = await completeAuthRoutine(code);
 
     Router.push(success ? '/dashboard' : '/');
 }
