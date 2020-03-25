@@ -2,8 +2,8 @@ import { ReactElement } from "react";
 import PageFrame from "../components/PageFrame";
 import dynamic from "next/dynamic";
 
-const FetchingConfiguration = dynamic(
-    () => import('../components/pages/dotaOverlay/FetchingConfiguration'),
+const Configuration = dynamic(
+    () => import('../components/pages/dotaOverlay/Configuration'),
     { ssr: false }
 );
 
@@ -11,6 +11,6 @@ const FetchingConfiguration = dynamic(
 export default function DotaOverlay(): ReactElement {
 
     return <PageFrame title={'Dashboard'}>
-        <FetchingConfiguration />
+        <Configuration />
     </PageFrame>
 }
