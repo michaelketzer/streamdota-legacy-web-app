@@ -18,10 +18,10 @@
     ],
     "build": {
       "env": {
-          "API_URL": "@staging-url"
+          "API_URL": "@streamdota-staging-url"
       }
     },
     "env": {
-        "API_URL": "@staging-url"
+        "API_URL": "@streamdota-staging-url"
     }
   }
