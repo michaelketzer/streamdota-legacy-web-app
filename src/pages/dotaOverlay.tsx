@@ -10,7 +10,7 @@ const Configuration = dynamic(
 
 export default function DotaOverlay(): ReactElement {
 
-    return <PageFrame title={'Dashboard'}>
+    return <PageFrame title={'Dota 2 Overlay'}>
         <Configuration />
     </PageFrame>
 }

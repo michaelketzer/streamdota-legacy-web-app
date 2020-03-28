@@ -11,7 +11,7 @@ const TopBar = dynamic(
 export default function PageFrame({children, title}): ReactElement {
     return <>
         <Head>
-            <title>Griefco.de {title && ` - ${title}`}</title>
+            <title>streamdota.de {title && ` - ${title}`}</title>
             <meta charSet="UTF-8" />
             <meta name="google" content="notranslate" />
             <meta httpEquiv="Content-Language" content="de" />
@@ -89,6 +89,10 @@ export default function PageFrame({children, title}): ReactElement {
                 margin: 0;
                 box-sizing: border-box;
                 font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+            }
+
+            body {
+                color: #3B4044;
             }
         `}</style>
     </>;

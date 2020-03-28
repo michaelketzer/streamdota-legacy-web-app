@@ -1,40 +1,31 @@
-import { ReactElement, useMemo } from "react";
+import { ReactElement, useMemo, useState } from "react";
 import { useAbortFetch } from "../../../hooks/abortFetch";
 import { User } from "../../../api/@types/User";
 import { fetchCurrentUser, fetchSteamConnections } from "../../../api/user";
 import { SteamConnection } from "../../../api/@types/SteamConnection";
 import Loader from "../../Loader";
 import Configure from "./Configure";
-import { downloadGsiConfig } from "../../../api/request";
+import SetupGsi from "./SetupGsi";
+
+export enum OverlayMethods {
+    dotaGsi,
+    steam
+}
 
 export default function Configuration(): ReactElement {
     const user = useAbortFetch<User>(fetchCurrentUser);
     const steamConnections = useAbortFetch<SteamConnection[]>(fetchSteamConnections);
-
     const loading = useMemo(() => !user && !steamConnections, [user, steamConnections]);
+    const [method, setMethod] = useState<OverlayMethods>(OverlayMethods.dotaGsi);
 
     if(loading) {
         return <Loader />;
     }
 
-    const onLoadGsi = async () => {
-        await downloadGsiConfig();
-    };
-
     return <>
-        <Configure />
-
-        <div  style={{margin: '20px 0'}}/>
-
-        <div>
-            Download and place file in your steam folder under the directory: <b>steamapps\common\dota 2 beta\game\dota\cfg\gamestate_integration\</b>
-
-            <div>A restart of dota is required!</div>
-        </div>
-        <p className={'downloadArea'}>
-            <a className={'download'} onClick={onLoadGsi}>Generate dota-gsi config</a>
-        </p>
-
+        <Configure method={method} setMethod={setMethod}/>
+        {method === OverlayMethods.dotaGsi && <SetupGsi gsiAuth={user.gsiAuth} />}
+        {method === OverlayMethods.steam && <h4>Diese Methode gibt es noch nicht</h4>}
         <style jsx>{`
             .downloadArea {
                 padding: 20px 0;
