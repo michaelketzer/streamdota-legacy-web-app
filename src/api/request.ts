@@ -27,3 +27,17 @@ export async function get<T>(url: string, type: Type = 'json', init?: RequestIni
         console.log('%c Failed requesting ressource' + '%c :: ' + url + ' - ', 'color: #A00', 'color: #000', error);
     }
 }
+
+export async function downloadGsiConfig(): Promise<void> {
+    const response = await fetch(process.env.API_URL + '/dota-gsi/generateConfig', {headers: getDefaultHeader()});
+    console.log(response.headers.entries(), response.headers.get('Content-Disposition'))
+    const filename = response.headers.get('Content-Disposition').split('filename=')[1];
+    const blob = await response.blob();
+    const url = window.URL.createObjectURL(blob);
+    var a = document.createElement('a');
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();    
+    a.remove();
+}
