@@ -1,4 +1,5 @@
 import fetch from 'isomorphic-unfetch';
+import { startAuthRoutine } from './authorization';
 
 type Type = 'text' | 'json';
 
@@ -20,6 +21,9 @@ export async function get<T>(url: string, type: Type = 'json', init?: RequestIni
             const data = type === 'json' ? await response.json() : await response.text();
             console.log('%c Received ressource' + '%c :: %c' + response.status + '%c' + time + 'ms' + '%c :: ' + url, 'color: #0A0', 'color: #000', 'background-color:#0A0;color:#FFF;font-weight:bold;padding:2px 5px;border-radius:2px;', 'margin-left:5px;background-color:#555;color:#FFF;font-weight:bold;padding:2px 5px;border-radius:2px;', 'color: #000');
             return data;
+        } else if (response.status === 401) {
+            console.log('%c Unauthorized' + '%c :: %c' + response.status + '%c' + time + 'ms'  + '%c :: ' + url, 'color: #A00', 'color: #000', 'background-color:#A00;color:#FFF;font-weight:bold;padding:2px 5px;border-radius:2px;', 'margin-left:5px;background-color:#555;color:#FFF;font-weight:bold;padding:2px 5px;border-radius:2px;', 'color: #000');
+            startAuthRoutine();
         } else {
             console.log('%c Failed request' + '%c :: %c' + response.status + '%c' + time + 'ms'  + '%c :: ' + url, 'color: #A00', 'color: #000', 'background-color:#A00;color:#FFF;font-weight:bold;padding:2px 5px;border-radius:2px;', 'margin-left:5px;background-color:#555;color:#FFF;font-weight:bold;padding:2px 5px;border-radius:2px;', 'color: #000');
         }
