@@ -9,4 +9,6 @@ export const ContextProvider = ({reducer, initialState, children, url}) =>(
         {children}
     </WebsocketContext.Provider>
 );
+export default ContextProvider;
+
 export const useStateValue = (): [State, Dispatch<{}>] => useContext(WebsocketContext) as  [State, Dispatch<{}>];
