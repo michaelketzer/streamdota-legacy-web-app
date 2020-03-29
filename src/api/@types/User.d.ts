@@ -9,3 +9,8 @@ export interface User {
     profileUrl: string;
     gsiAuth: string;
 }
+
+export interface DotaStats {
+    date: number;
+    won: boolean;
+}

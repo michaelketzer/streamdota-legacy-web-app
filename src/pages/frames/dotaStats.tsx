@@ -1,6 +1,5 @@
 import { ReactElement } from "react";
 import { initialState, reducer } from "../../components/context/websocket/state";
-import DotaStats from "../../components/pages/frames/dotaStats/DotaStats";
 import dynamic from "next/dynamic";
 
 const ContextProvider = dynamic(
@@ -8,9 +7,14 @@ const ContextProvider = dynamic(
     { ssr: false }
 );
 
+const DotaStats = dynamic(
+    () => import('../../components/pages/frames/dotaStats/DotaStats'),
+    { ssr: false }
+);
+
 function DotaOverlay({auth}: {auth: string}): ReactElement {
     return <ContextProvider initialState={initialState} reducer={reducer} url={'wss://api.streamdota.de/dota-gsi/live/' + auth}>
-        <DotaStats />
+        <DotaStats frameKey={auth} />
     </ContextProvider>;
 }
 
