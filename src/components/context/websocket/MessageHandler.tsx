@@ -19,6 +19,7 @@ export default function MessageHandler({url}: {url: string}): ReactElement {
 
 export function useMessageListener(): Message | null {
     const [{messages}] = useStateValue();
+    console.log(messages);
     const [msg, setMsg] = useState<Message | null>(messages.length > 0 ? messages.slice(-1)[0] : null);
 
     useEffect(() => {
