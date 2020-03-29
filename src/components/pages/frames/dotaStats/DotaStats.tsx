@@ -6,6 +6,6 @@ export default function DotaStats(): ReactElement {
     const message = useMessageListener();
 
     return <>
-        {message}
+        listening...
     </>;
 }
