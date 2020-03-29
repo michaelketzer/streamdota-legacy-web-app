@@ -9,7 +9,7 @@ export default function SetupGsi({gsiAuth}: {gsiAuth: string}): ReactElement {
     
     if(hasSetup) {
         return <div className={'gsiSetup'}>
-            <h4>Dota-GSI ist bereits aufgesetz. Funktioniert irgendwas nicht? Dann versuch die folgenden Steps noch mal:</h4>
+            <h4>Dota-GSI ist bereits aufgesetzt. Funktioniert irgendwas nicht? Dann versuch die folgenden Steps noch mal:</h4>
             <div className={'listEntry'}>
                 <div><b>1.</b> Erstelle dir eine neue Konfigurations Datei:</div>
                 <div className={'download'} onClick={onLoadGsi}>Neue Dota-GSI konfiguration erstellen</div>
