@@ -24,7 +24,7 @@ export default function Configuration(): ReactElement {
 
     return <>
         <Configure method={method} setMethod={setMethod}/>
-        {method === OverlayMethods.dotaGsi && <SetupGsi gsiAuth={user.gsiAuth} />}
+        {method === OverlayMethods.dotaGsi && <SetupGsi gsiAuth={user && user.gsiAuth} />}
         {method === OverlayMethods.steam && <h4>Diese Methode gibt es noch nicht</h4>}
         <style jsx>{`
             .downloadArea {

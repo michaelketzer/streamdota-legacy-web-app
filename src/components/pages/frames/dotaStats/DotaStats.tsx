@@ -4,7 +4,7 @@ import { useMessageListener } from "../../../context/websocket/MessageHandler";
 
 export default function DotaStats(): ReactElement {
     const message = useMessageListener();
-
+    console.log(message);
     return <>
         listening...
     </>;
