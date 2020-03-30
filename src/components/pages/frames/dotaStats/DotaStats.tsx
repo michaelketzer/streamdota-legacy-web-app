@@ -13,13 +13,16 @@ export default function DotaStats({frameKey}: {frameKey: string}): ReactElement 
 
     useEffect(() => {
         if(status) {
+            let localWins = 0, localLost = 0;
             status.forEach(({won}) => {
                 if(won) {
-                    setWins(wins + 1);
+                    localWins++;
                 } else {
-                    setLost(lost + 1);
+                    localLost++;
                 }
-            })
+            });
+            setWins(localWins + wins);
+            setLost(localLost + lost);
         }
     }, [status]);
 
