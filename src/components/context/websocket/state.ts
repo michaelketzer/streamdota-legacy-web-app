@@ -2,18 +2,22 @@ enum ACTIONS {
     NEW_MESSAGE = 'NEW_MESSAGE',
 }
 
-enum MessageType {
+export enum MessageType {
     gamestate = 'gamestate',
     winner = 'winner',
 }
 
-export interface Message<T = MessageType.gamestate, V = string> {
-    type: T;
-    value: V;
+export interface GameStateMessage {
+    type: MessageType.gamestate;
+    value: string;  
+};
+
+export interface WinnerMessage {
+    type: MessageType.winner;
+    value: boolean;
 }
 
-export type GameStateMessage = Message<MessageType.gamestate>;
-export type WinnerMessage = Message<MessageType.winner, boolean>;
+export type Message =  GameStateMessage | WinnerMessage;
 
 interface NewMessageAction {
     type: typeof ACTIONS.NEW_MESSAGE;
