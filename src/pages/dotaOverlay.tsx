@@ -7,9 +7,16 @@ const Configuration = dynamic(
     { ssr: false }
 );
 
+const OverlaySetup = dynamic(
+    () => import('../components/pages/dotaOverlay/OverlaySetup'),
+    { ssr: false }
+);
+
 export default function DotaOverlay(): ReactElement {
 
     return <PageFrame title={'Dota 2 Overlay'}>
         <Configuration />
+        <div style={{margin: '50px 0'}} />
+        <OverlaySetup />
     </PageFrame>
 }
