@@ -1,5 +1,6 @@
 import { ReactElement, useMemo } from "react";
 import { Font } from "../../../../api/@types/Font";
+import GoogleFontLoader from 'react-google-font-loader';
 
 interface Props {
     rawFonts: Font[];
@@ -33,11 +34,15 @@ const subsetMap = {
 
 export default function FontVariantSelection({rawFonts, font, variant, setVariant}: Props): ReactElement {
     const {subSets} = useMemo<{subSets: string[]}>(() => (font && rawFonts && rawFonts.find((f) => f.family === font)) || {subSets: []}, [font, rawFonts]);
+    const sorted = subSets.sort();
 
     return <div className={'gridSubSets'}>
-        {subSets.map((s) => <label key={s} className={'checkbox'}>
+        {font && font.length && <GoogleFontLoader fonts={[{font, weights: subSets}]}/>}
+        {sorted.map((s) => <label key={s} className={'checkbox'}>
             <input type={'radio'} value={s} name={'variant'} checked={s === variant} onClick={() => setVariant(s)}/>
-            <div>{subsetMap[s]}</div>
+            {/**
+             //@ts-ignore */}
+            <div style={{fontFamily: font, fontWeight: s.substring(0, 3), fontStyle: s.includes('italic') ? 'italic' : 'initial'}}>{subsetMap[s]}</div>
         </label>)}
 
         <style jsx>{`
