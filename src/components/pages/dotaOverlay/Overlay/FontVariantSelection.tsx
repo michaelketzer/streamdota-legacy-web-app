@@ -1,6 +1,6 @@
 import { ReactElement, useMemo } from "react";
 import { Font } from "../../../../api/@types/Font";
-import GoogleFontLoader from 'react-google-font-loader';
+import { Radio } from "antd";
 
 interface Props {
     rawFonts: Font[];
@@ -37,26 +37,20 @@ export default function FontVariantSelection({rawFonts, font, variant, setVarian
     const sorted = subSets.sort();
 
     return <div className={'gridSubSets'}>
-        {font && font.length && <GoogleFontLoader fonts={[{font, weights: subSets}]}/>}
-        {sorted.map((s) => <label key={s} className={'checkbox'}>
-            <input type={'radio'} value={s} name={'variant'} checked={s === variant} onClick={() => setVariant(s)}/>
-            {/**
-             //@ts-ignore */}
-            <div style={{fontFamily: font, fontWeight: s.substring(0, 3), fontStyle: s.includes('italic') ? 'italic' : 'initial'}}>{subsetMap[s]}</div>
-        </label>)}
+        <div><b>Schriftvariante</b></div>
+        <Radio.Group onChange={(e) => setVariant(e.target.value)} value={variant}>
+            {sorted.map((s) =>  <Radio key={s} value={s}>
+                {/**
+                 //@ts-ignore */}
+                <span style={{fontFamily: font, fontWeight: s.substring(0, 3), fontStyle: s.includes('italic') ? 'italic' : 'initial'}}>{subsetMap[s]}</span>
+            </Radio>)}
+        </Radio.Group>
+
+        {sorted.length === 0 && <>Die aktuelle Schrift hat keine Varianten</>}
 
         <style jsx>{`
             .gridSubSets {
-                display: grid;
-                grid-template-columns: repeat(auto-fill, minmax(200px, .33fr));
-                grid-gap: 10px;
                 padding: 20px 0;
-            }    
-
-            .checkbox {
-                display: grid;
-                grid-template-columns: 20px 1fr;
-                align-items: center;
             }
         `}</style>
     </div>;
