@@ -6,6 +6,9 @@ import { SteamConnection } from "../../../api/@types/SteamConnection";
 import Loader from "../../Loader";
 import Configure from "./Configure";
 import SetupGsi from "./SetupGsi";
+import ContextProvider from "../../context/websocket/context";
+import { initialState, reducer } from "../../context/websocket/state";
+import Logs from "./Logs";
 
 export enum OverlayMethods {
     dotaGsi,
@@ -24,7 +27,12 @@ export default function Configuration(): ReactElement {
 
     return <>
         <Configure method={method} setMethod={setMethod}/>
-        {method === OverlayMethods.dotaGsi && <SetupGsi gsiAuth={user && user.gsiAuth} />}
+        {method === OverlayMethods.dotaGsi && <>
+            <SetupGsi gsiAuth={user && user.gsiAuth} />
+            <ContextProvider initialState={initialState} reducer={reducer} url={'wss://api.streamdota.de/dota-gsi/live/' + user.frameApiKey}>
+                <Logs />
+            </ContextProvider>
+        </>}
         {method === OverlayMethods.steam && <h4>Diese Methode gibt es noch nicht</h4>}
         <style jsx>{`
             .downloadArea {
