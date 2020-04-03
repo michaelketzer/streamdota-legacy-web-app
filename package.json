@@ -15,6 +15,7 @@
     "react": "^16.13.1",
     "react-color": "^2.18.0",
     "react-dom": "^16.13.1",
+    "react-draggable": "^4.2.0",
     "react-google-font-loader": "^1.1.0",
     "react-websocket": "^2.1.0"
   },

@@ -1,6 +1,14 @@
-import { ReactElement, useMemo } from "react";
+import { ReactElement, useMemo, CSSProperties } from "react";
 import { Font } from "../../../../api/@types/Font";
 import { Radio } from "antd";
+
+export function getVariant(variant: string): CSSProperties {
+    return {
+        //@ts-ignore
+        fontWeight: variant.substring(0, 3), 
+        fontStyle: variant.includes('italic') ? 'italic' : 'initial'
+    };
+}
 
 interface Props {
     rawFonts: Font[];
@@ -40,9 +48,7 @@ export default function FontVariantSelection({rawFonts, font, variant, setVarian
         <div><b>Schriftvariante</b></div>
         <Radio.Group onChange={(e) => setVariant(e.target.value)} value={variant}>
             {sorted.map((s) =>  <Radio key={s} value={s}>
-                {/**
-                 //@ts-ignore */}
-                <span style={{fontFamily: font, fontWeight: s.substring(0, 3), fontStyle: s.includes('italic') ? 'italic' : 'initial'}}>{subsetMap[s]}</span>
+                <span style={{fontFamily: font, ...getVariant(s)}}>{subsetMap[s]}</span>
             </Radio>)}
         </Radio.Group>
 

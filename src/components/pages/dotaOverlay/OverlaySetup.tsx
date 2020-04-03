@@ -1,13 +1,14 @@
-import { ReactElement, useMemo, useState, useEffect } from "react";
+import React, { ReactElement, useMemo, useState, useEffect, useCallback } from "react";
 import FontSelector from "./Overlay/FontSelector";
 import { useAbortFetch } from "../../../hooks/abortFetch";
 import { fetchFonts } from "../../../api/googleFont";
 import { Font } from "../../../api/@types/Font";
 import FontVariantSelection from "./Overlay/FontVariantSelection";
 import GoogleFontLoader from 'react-google-font-loader';
-import React from "react";
 import FontSize from "./Overlay/FontSize";
 import Color from "./Overlay/Color";
+import Position from './Overlay/Position';
+import Background from "./Overlay/Background";
 
 function FontLoader({font, rawFonts}:{font: string; rawFonts: Font[]}  ): ReactElement | null {
     const fontConfig = useMemo(() => {
@@ -30,40 +31,81 @@ function FontLoader({font, rawFonts}:{font: string; rawFonts: Font[]}  ): ReactE
 
 const FontLoaderFc = React.memo(FontLoader);
 
+export interface OverlayConfig {
+    font: string;
+    fontSize: number;
+    variant: string;
+    winColor: string;
+    dividerColor: string;
+    lossColor: string;
+
+    winX: number;
+    winY: number;
+
+    lossX: number;
+    lossY: number;
+
+    dividerX: number;
+    dividerY: number;
+
+    showBackground: boolean;
+    backgroundAlign: 'left' | 'right' | 'center';
+}
+
+const defaultState: OverlayConfig = {
+    font: 'Arial',
+    fontSize: 50,
+    variant: '400',
+    winColor: '#0F0',
+    dividerColor: '#D8D6D6',
+    lossColor: '#F00',
+
+    winX: 35,
+    winY: 5,
+
+    dividerX: 80,
+    dividerY: 1,
+
+    lossX: 107,
+    lossY: 5,
+
+    showBackground: true,
+    backgroundAlign: 'right',
+}
+
 export default function OverlaySetup(): ReactElement {
     const rawFonts = useAbortFetch<Font[]>(fetchFonts);
-    const [font, setFont] = useState('Arial');
-    const [fontSize, setFontSize] = useState(50);
-    const [variant, setVariant] = useState('400');
+    const [cfg, setCfg] = useState<OverlayConfig>(defaultState);
 
-    const [winColor, setWinColor] = useState('#0F0');
-    const [dividerColor, setDivierColor] = useState('#444');
-    const [lossColor, setLossColor] = useState('#F00');
+    const patch = useCallback((newCfg: Partial<OverlayConfig>) => setCfg({...cfg, ...newCfg}), [cfg]);
 
     useEffect(() => {
-        if(rawFonts && font) {
-            const {subSets} = rawFonts.find((f) => f.family === font);
-            setVariant(subSets.includes('regular') ? 'regular' : (subSets.includes('400') ? '400' : subSets[0]));
+        if(rawFonts && cfg.font) {
+            const {subSets} = rawFonts.find((f) => f.family === cfg.font);
+            const variant = subSets.includes('regular') ? 'regular' : (subSets.includes('400') ? '400' : subSets[0]);
+            patch({variant});
         }
-    }, [font]);
+    }, [cfg.font]);
 
     return <>
         <h1>Overlay setup</h1>
-        <FontLoaderFc font={font} rawFonts={rawFonts} />
+        <FontLoaderFc font={cfg.font} rawFonts={rawFonts} />
 
         <div className={'setup'}>
             <div className={'col'}>
-                <FontSelector rawFonts={rawFonts} selected={font} setSelected={(font) => setFont(font)}/>
-                <FontVariantSelection rawFonts={rawFonts} font={font} variant={variant} setVariant={setVariant} />
-                <FontSize fontSize={fontSize} setFontSize={setFontSize} />
+                <FontSelector rawFonts={rawFonts} selected={cfg.font} setSelected={(font) => patch({font})}/>
+                <FontVariantSelection rawFonts={rawFonts} font={cfg.font} variant={cfg.variant} setVariant={(variant) => patch({variant})} />
+                <FontSize fontSize={cfg.fontSize} setFontSize={(fontSize) => patch({fontSize})} />
                 <br />
                 <br />
-                <Color value={winColor} setValue={setWinColor} label={'Farbe Gewonnen'} />
-                <Color value={lossColor} setValue={setLossColor} label={'Farbe Verloren'} />
-                <Color value={dividerColor} setValue={setDivierColor} label={'Farbe Trenner ":"'} />
+                <Color value={cfg.winColor} setValue={(winColor) => patch({winColor})} label={'Farbe Gewonnen'} />
+                <Color value={cfg.lossColor} setValue={(lossColor) => patch({lossColor})} label={'Farbe Verloren'} />
+                <Color value={cfg.dividerColor} setValue={(dividerColor) => patch({dividerColor})} label={'Farbe Trenner'} />
             </div>
 
             <div className={'col'}>
+                <Background cfg={cfg} patch={patch} />
+                <Position cfg={cfg} patch={patch} />
 
             </div>
         </div>
