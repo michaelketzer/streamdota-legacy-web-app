@@ -75,11 +75,7 @@ export default function PageFrame({children, title}): ReactElement {
             
             .pageContent {
                 background-color: #FFF;
-                min-height: 100%;
                 padding: 40px;
-            }
-
-            @media only screen and (max-width: 425px) {
             }
         `}</style>
 

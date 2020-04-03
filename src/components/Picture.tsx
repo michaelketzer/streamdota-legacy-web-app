@@ -33,9 +33,9 @@ export default function Picture({entitiy, accessor, alt}: Props): ReactElement {
         const jp2Source = entitiy[locator[accessor].jp2];
     
         return <picture>
-            <source type="image/webp" srcSet={getImageUrl(fallbackSource)}/>
-            <source type="image/jp2" srcSet={getImageUrl(webpSource)}/>
-            <img className={'image'} src={getImageUrl(jp2Source)} alt={alt} />
+            <source type="image/webp" srcSet={getImageUrl(webpSource)}/>
+            <source type="image/jp2" srcSet={getImageUrl(jp2Source)}/>
+            <img className={'image'} src={getImageUrl(fallbackSource)} alt={alt} />
 
             <style jsx>{`
                 .image {
