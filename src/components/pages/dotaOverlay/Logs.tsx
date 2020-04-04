@@ -14,6 +14,7 @@ export default function Logs(): ReactElement {
             .container {
                 padding: 20px;
             }
+            
             .logsContainer {
                 background: #000;
                 color: #FFF;
@@ -21,7 +22,8 @@ export default function Logs(): ReactElement {
                 min-height: 200px;
                 border-radius: 8px;
                 overflow-y: scroll;
-            }   
+            }
+
             .msg {
                 font-family: monospace;
             } 

@@ -1,29 +1,9 @@
 import { ReactElement, useEffect, useState } from "react";
 import Draggable from "./Draggable";
-import { OverlayConfig } from "../OverlaySetup";
 import { Alert } from "antd";
+import { DotaOverlay } from "../../../../api/@types/DotaOverlay";
 
-export default function Position({cfg, patch}: {cfg: OverlayConfig; patch: (v: Partial<OverlayConfig>) => void}): ReactElement {
-    const [right, setRight] = useState(cfg.backgroundAlign === 'right');
-    useEffect(() => {
-        const isRight = cfg.backgroundAlign === 'right';
-        if(isRight !== right) {
-            if(cfg.backgroundAlign === 'right') {
-                patch({
-                    winX: cfg.winX + 20,
-                    dividerX: cfg.dividerX + 20,
-                    lossX: cfg.lossX + 20,
-                });
-            } else {
-                patch({
-                    winX: cfg.winX - 20,
-                    dividerX: cfg.dividerX - 20,
-                    lossX: cfg.lossX - 20,
-                });
-            }
-            setRight(isRight);
-        }
-    }, [cfg.backgroundAlign]);
+export default function Position({cfg, patch}: {cfg: DotaOverlay; patch: (v: Partial<DotaOverlay>) => void}): ReactElement {
 
     return <>
         <div><b>Position</b></div>

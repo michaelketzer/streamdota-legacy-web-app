@@ -1,4 +1,4 @@
-import { ReactElement, useState } from "react";
+import { ReactElement, useState, useEffect } from "react";
 import { SketchPicker } from 'react-color';
 import { Popover } from "antd";
 
@@ -10,6 +10,10 @@ interface Props {
 
 export default function Color({value, setValue, label}: Props): ReactElement {
     const [update, setUpdate] = useState(value);
+
+    useEffect(() => {
+        setUpdate(value);
+    }, [value]);
 
     return <div className={'color'}>
         <div className={'label'}><b>{label}</b></div>

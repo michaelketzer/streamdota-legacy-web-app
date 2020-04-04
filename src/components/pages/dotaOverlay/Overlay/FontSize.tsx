@@ -9,6 +9,6 @@ interface Props {
 export default function FontSize({fontSize, setFontSize}: Props): ReactElement {
     return <>
         <div><b>Schriftgröße</b></div>
-        <InputNumber min={10} max={100} defaultValue={fontSize} onChange={setFontSize} />
+        <InputNumber min={10} max={100} value={fontSize} onChange={setFontSize} />
     </>;
 }

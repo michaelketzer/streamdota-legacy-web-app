@@ -31,7 +31,7 @@ export default function FontSelector({rawFonts, selected, setSelected}: Props): 
             options={fonts} 
             loading={fonts === null} 
             clearIcon 
-            defaultValue={selected} 
+            value={selected} 
             onChange={(value) => setSelected(value)}
             onSearch={setSearch}
         />

@@ -9,6 +9,8 @@ import FontSize from "./Overlay/FontSize";
 import Color from "./Overlay/Color";
 import Position from './Overlay/Position';
 import Background from "./Overlay/Background";
+import { DotaOverlay } from "../../../api/@types/DotaOverlay";
+import { fetchOverlay, patchOverlay } from "../../../api/overlay";
 
 function FontLoader({font, rawFonts}:{font: string; rawFonts: Font[]}  ): ReactElement | null {
     const fontConfig = useMemo(() => {
@@ -31,28 +33,7 @@ function FontLoader({font, rawFonts}:{font: string; rawFonts: Font[]}  ): ReactE
 
 const FontLoaderFc = React.memo(FontLoader);
 
-export interface OverlayConfig {
-    font: string;
-    fontSize: number;
-    variant: string;
-    winColor: string;
-    dividerColor: string;
-    lossColor: string;
-
-    winX: number;
-    winY: number;
-
-    lossX: number;
-    lossY: number;
-
-    dividerX: number;
-    dividerY: number;
-
-    showBackground: boolean;
-    backgroundAlign: 'left' | 'right' | 'center';
-}
-
-const defaultState: OverlayConfig = {
+const defaultState: DotaOverlay = {
     font: 'Arial',
     fontSize: 50,
     variant: '400',
@@ -75,17 +56,18 @@ const defaultState: OverlayConfig = {
 
 export default function OverlaySetup(): ReactElement {
     const rawFonts = useAbortFetch<Font[]>(fetchFonts);
-    const [cfg, setCfg] = useState<OverlayConfig>(defaultState);
-
-    const patch = useCallback((newCfg: Partial<OverlayConfig>) => setCfg({...cfg, ...newCfg}), [cfg]);
+    const userCfg = useAbortFetch<DotaOverlay>(fetchOverlay);
+    const [cfg, setCfg] = useState<DotaOverlay>(defaultState);
 
     useEffect(() => {
-        if(rawFonts && cfg.font) {
-            const {subSets} = rawFonts.find((f) => f.family === cfg.font);
-            const variant = subSets.includes('regular') ? 'regular' : (subSets.includes('400') ? '400' : subSets[0]);
-            patch({variant});
-        }
-    }, [cfg.font]);
+        userCfg && setCfg(userCfg)
+    }, [userCfg]);
+
+    const patch = (newCfg: Partial<DotaOverlay>) => {
+        const config = {...cfg, ...newCfg};
+        setCfg(config);
+        patchOverlay(config);
+    };
 
     return <>
         <h1>Overlay setup</h1>
@@ -106,7 +88,6 @@ export default function OverlaySetup(): ReactElement {
             <div className={'col'}>
                 <Background cfg={cfg} patch={patch} />
                 <Position cfg={cfg} patch={patch} />
-
             </div>
         </div>
 
