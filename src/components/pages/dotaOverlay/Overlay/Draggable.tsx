@@ -1,10 +1,10 @@
 import { ReactElement, ReactNode } from "react";
 import ReactDraggable from 'react-draggable';
-import { OverlayConfig } from "../OverlaySetup";
 import { getVariant } from "./FontVariantSelection";
+import { DotaOverlay } from "../../../../api/@types/DotaOverlay";
 
 interface Props {
-    cfg: OverlayConfig;
+    cfg: DotaOverlay;
     color: string;
     children: ReactNode;
     x: number;
