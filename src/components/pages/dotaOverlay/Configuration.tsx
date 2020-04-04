@@ -27,7 +27,7 @@ export default function Configuration(): ReactElement {
 
     return <>
         <Configure method={method} setMethod={setMethod}/>
-        {method === OverlayMethods.dotaGsi && <>
+        {method === OverlayMethods.dotaGsi && user && <>
             <SetupGsi gsiAuth={user && user.gsiAuth} />
             <ContextProvider initialState={initialState} reducer={reducer} url={'wss://api.streamdota.de/dota-gsi/logs/' + user.frameApiKey}>
                 <Logs />
