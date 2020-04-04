@@ -10,9 +10,10 @@ interface Props {
     x: number;
     y: number;
     patch: (x, y) => void;
+    height: string;
 }
 
-export default function Draggable({cfg, color, children, x, y, patch}: Props): ReactElement {
+export default function Draggable({cfg, color, children, x, y, patch, height}: Props): ReactElement {
     return <ReactDraggable bounds={'parent'} scale={2} position={{x, y}} onStop={(_e, data) => patch(data.x, data.y)}>
         <div style={{
             border: '1px dashed #666',
@@ -23,7 +24,7 @@ export default function Draggable({cfg, color, children, x, y, patch}: Props): R
             left: 0,
             cursor: 'move',
             fontSize: cfg.fontSize + 'px',
-            lineHeight: cfg.fontSize + 'px',
+            lineHeight: height,
             fontFamily: cfg.font,
             ...getVariant(cfg.variant),
         }}>{children}</div>
