@@ -14,7 +14,7 @@ import { fetchOverlay, patchOverlay } from "../../../api/overlay";
 
 function FontLoader({font, rawFonts}:{font: string; rawFonts: Font[]}  ): ReactElement | null {
     const fontConfig = useMemo(() => {
-        if(font &&  font !== 'Arial') {
+        if(rawFonts && font &&  font !== 'Arial') {
             const data = rawFonts.find(({family}) => family === font);
             return {
                 font: data.family,
