@@ -3,6 +3,7 @@ import { useMessageListener } from "../../../context/websocket/MessageHandler";
 import { useAbortFetch } from "../../../../hooks/abortFetch";
 import { fetchStats } from "../../../../api/user";
 import { MessageType } from "../../../context/websocket/state";
+import Overlay from "./Overlay";
 
 
 export default function DotaStats({frameKey}: {frameKey: string}): ReactElement {
@@ -36,7 +37,5 @@ export default function DotaStats({frameKey}: {frameKey: string}): ReactElement 
         }
     }, [message])
 
-    return <>
-        {wins} - {lost} 
-    </>;
+    return <Overlay wins={wins} loss={lost} auth={frameKey} />;
 }
