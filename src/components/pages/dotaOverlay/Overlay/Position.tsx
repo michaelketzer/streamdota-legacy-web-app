@@ -21,7 +21,6 @@ export default function Position({cfg, patch}: {cfg: DotaOverlay; patch: (v: Par
                 border: 1px solid #F0F;
                 width: 60px;
                 width: 160px;
-                overflow: hidden;
                 transform: scale(2);
                 transform-origin-y: 0;
                 margin: 20px auto 0 auto;
