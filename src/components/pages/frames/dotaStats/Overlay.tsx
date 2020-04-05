@@ -74,6 +74,12 @@ export default function Overlay({wins, loss, auth}: {wins: number; loss: number;
                     position: relative;
                 }
             `}</style>
+
+            <style global jsx>{`
+                html, body {
+                    width: ${cfg.backgroundAlign === 'center' ? '175px' : '160px'}!important;
+                }    
+            `}</style>
         </>;
     }
 
