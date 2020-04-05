@@ -15,6 +15,12 @@ const DotaStats = dynamic(
 function DotaOverlay({auth}: {auth: string}): ReactElement {
     return <ContextProvider initialState={initialState} reducer={reducer} url={'wss://api.streamdota.de/dota-gsi/live/' + auth}>
         <DotaStats frameKey={auth} />
+
+        <style global jsx>{`
+            html, body {
+                height: 60px!important;
+            }    
+        `}</style>
     </ContextProvider>;
 }
 
