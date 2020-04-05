@@ -11,6 +11,9 @@ import Position from './Overlay/Position';
 import Background from "./Overlay/Background";
 import { DotaOverlay } from "../../../api/@types/DotaOverlay";
 import { fetchOverlay, patchOverlay } from "../../../api/overlay";
+import FrameLink from "./Overlay/FrameLink";
+import { fetchCurrentUser } from "../../../api/user";
+import { User } from "../../../api/@types/User";
 
 function FontLoader({font, rawFonts}:{font: string; rawFonts: Font[]}  ): ReactElement | null {
     const fontConfig = useMemo(() => {
@@ -57,6 +60,7 @@ const defaultState: DotaOverlay = {
 export default function OverlaySetup(): ReactElement {
     const rawFonts = useAbortFetch<Font[]>(fetchFonts);
     const userCfg = useAbortFetch<DotaOverlay>(fetchOverlay);
+    const userData = useAbortFetch<User>(fetchCurrentUser);
     const [cfg, setCfg] = useState<DotaOverlay>(defaultState);
 
     useEffect(() => {
@@ -88,6 +92,7 @@ export default function OverlaySetup(): ReactElement {
             <div className={'col'}>
                 <Background cfg={cfg} patch={patch} />
                 <Position cfg={cfg} patch={patch} />
+                <FrameLink userData={userData} />
             </div>
         </div>
 
