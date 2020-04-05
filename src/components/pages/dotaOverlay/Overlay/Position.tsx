@@ -27,6 +27,7 @@ export default function Position({cfg, patch}: {cfg: DotaOverlay; patch: (v: Par
                 background-image: url('/images/dotaOverlayBackground.png');
                 background-size: cover;
                 height: 60px;
+                margin-bottom: 80px;
             }
 
             .positionFrame::before {
