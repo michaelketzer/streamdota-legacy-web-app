@@ -1,5 +1,6 @@
 import Router from 'next/router';
 import { startAuthRoutine } from '../api/authorization';
+import Loader from '../components/Loader';
 
 export default function Index() {
     if(process.browser) {
@@ -9,5 +10,5 @@ export default function Index() {
             startAuthRoutine();
         }
     }
-    return <>Loading</>;
+    return <Loader />;
 }
