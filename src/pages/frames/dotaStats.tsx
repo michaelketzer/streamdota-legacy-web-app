@@ -19,6 +19,7 @@ function DotaOverlay({auth}: {auth: string}): ReactElement {
         <style global jsx>{`
             html, body {
                 height: 60px!important;
+                background-color: transparent;
             }    
         `}</style>
     </ContextProvider>;
