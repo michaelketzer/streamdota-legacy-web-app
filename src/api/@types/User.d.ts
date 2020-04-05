@@ -15,3 +15,9 @@ export interface DotaStats {
     date: number;
     won: boolean;
 }
+
+export interface BotData {
+    useBot: boolean;
+    customBotName: string;
+    customBotAuth: string;
+}
