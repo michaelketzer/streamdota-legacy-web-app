@@ -20,7 +20,7 @@ function Number({color, x, y, height, cfg, children}: {color: string, x: number,
 }
 
 export default function Overlay({wins, loss, auth}: {wins: number; loss: number; auth: string}): ReactElement | null  {
-    const cfg = useAbortFetch(fetchOverlayFromAuthKey, auth);
+    const [cfg] = useAbortFetch(fetchOverlayFromAuthKey, auth);
 
     if(cfg) {
         return <>

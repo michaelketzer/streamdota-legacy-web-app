@@ -16,8 +16,8 @@ export enum OverlayMethods {
 }
 
 export default function Configuration(): ReactElement {
-    const user = useAbortFetch<User>(fetchCurrentUser);
-    const steamConnections = useAbortFetch<SteamConnection[]>(fetchSteamConnections);
+    const [user] = useAbortFetch<User>(fetchCurrentUser);
+    const [steamConnections] = useAbortFetch<SteamConnection[]>(fetchSteamConnections);
     const loading = useMemo(() => !user && !steamConnections, [user, steamConnections]);
     const [method, setMethod] = useState<OverlayMethods>(OverlayMethods.dotaGsi);
 

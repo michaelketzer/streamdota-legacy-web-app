@@ -58,9 +58,9 @@ const defaultState: DotaOverlay = {
 }
 
 export default function OverlaySetup(): ReactElement {
-    const rawFonts = useAbortFetch<Font[]>(fetchFonts);
-    const userCfg = useAbortFetch<DotaOverlay>(fetchOverlay);
-    const userData = useAbortFetch<User>(fetchCurrentUser);
+    const [rawFonts] = useAbortFetch<Font[]>(fetchFonts);
+    const [userCfg] = useAbortFetch<DotaOverlay>(fetchOverlay);
+    const [userData] = useAbortFetch<User>(fetchCurrentUser);
     const [cfg, setCfg] = useState<DotaOverlay>(defaultState);
 
     useEffect(() => {

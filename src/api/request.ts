@@ -52,6 +52,14 @@ export async function patch<T>(url: string, data: object, type: Type = 'text', i
     return query<T>(url, 'PATCH', type, {body: JSON.stringify(data), ...init});
 }
 
+export async function create<T>(url: string, data: object, init?: RequestInit): Promise<T> {
+    return query<T>(url, 'POST', 'text', {body: JSON.stringify(data), ...init});
+}
+
+export async function del<T>(url: string, init?: RequestInit): Promise<T> {
+    return query<T>(url, 'DELETE', 'text', init);
+}
+
 export async function downloadGsiConfig(): Promise<void> {
     const response = await fetch(process.env.API_URL + '/dota-gsi/generateConfig', {headers: getDefaultHeader()});
     console.log(response.headers.entries(), response.headers.get('Content-Disposition'))
