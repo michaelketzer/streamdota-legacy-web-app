@@ -31,7 +31,7 @@ export default function CommandList(): ReactElement {
                 <Input defaultValue={message} onBlur={async (e) => {
                     await updateCommand(id, command, e.target.value);
                     await load();
-                }} placeholder={'Response'} />
+                }} placeholder={'Antwort'} />
                 <div>
     
                     <Popconfirm title="Soll dieser Command wirklich gelöscht werden?" onConfirm={async () => {
@@ -44,7 +44,7 @@ export default function CommandList(): ReactElement {
             </React.Fragment>)}
     
             <Input value={cmd} onChange={(e) => setCmd(e.target.value)} placeholder={'Command'} />
-            <Input value={msg} onChange={(e) => setMsg(e.target.value)} placeholder={'Response'} />
+            <Input value={msg} onChange={(e) => setMsg(e.target.value)} placeholder={'Antwort'} />
             <div><Button type={'primary'} onClick={create}>Erstellen</Button></div>
     
             <style jsx>{`
