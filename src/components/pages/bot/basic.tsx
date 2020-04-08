@@ -7,7 +7,7 @@ import { Checkbox, Input } from "antd";
 import { UserOutlined } from '@ant-design/icons';
 
 export default function Basic(): ReactElement {
-    const config = useAbortFetch(fetchBotConfig);
+    const [config] = useAbortFetch(fetchBotConfig);
     const patch = useCallback((data: Partial<BotData>) => patchBotConfig(data), []);
 
     if(config) {

@@ -5,7 +5,7 @@ import { useAbortFetch } from "../hooks/abortFetch";
 import Picture from "./Picture";
 
 export default function TopBar(): ReactElement {
-    const user = useAbortFetch<User>(fetchCurrentUser);
+    const [user] = useAbortFetch<User>(fetchCurrentUser);
 
     return <div className={'header'}>
         <img alt={'site_logo'} title={'Site Logo'} src={'/images/header_logo.png'} />

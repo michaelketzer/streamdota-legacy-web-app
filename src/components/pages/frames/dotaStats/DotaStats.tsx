@@ -8,7 +8,7 @@ import Overlay from "./Overlay";
 
 export default function DotaStats({frameKey}: {frameKey: string}): ReactElement {
     const message = useMessageListener();
-    const status = useAbortFetch(fetchStats, frameKey);
+    const [status] = useAbortFetch(fetchStats, frameKey);
     const [wins, setWins] = useState(0);
     const [lost, setLost] = useState(0);
 
