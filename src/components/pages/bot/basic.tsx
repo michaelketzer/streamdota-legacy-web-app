@@ -1,13 +1,17 @@
 import { ReactElement, useCallback } from "react";
 import { useAbortFetch } from "../../../hooks/abortFetch";
-import { fetchBotConfig, patchBotConfig } from "../../../api/user";
+import { fetchBotConfig, patchBotConfig, fetchCurrentUser } from "../../../api/user";
 import { BotData } from "../../../api/@types/User";
 import Loader from "../../Loader";
 import { Checkbox, Input } from "antd";
 import { UserOutlined } from '@ant-design/icons';
+import ContextProvider from "../../context/websocket/context";
+import { initialState, reducer } from "../../context/websocket/state";
+import Logs from "./Logs";
 
 export default function Basic(): ReactElement {
     const [config] = useAbortFetch(fetchBotConfig);
+    const [user] = useAbortFetch(fetchCurrentUser);
     const patch = useCallback((data: Partial<BotData>) => patchBotConfig(data), []);
 
     if(config) {
@@ -26,6 +30,10 @@ export default function Basic(): ReactElement {
                        defaultValue={config.customBotToken} 
                        onBlur={(e) => patch({customBotToken: e.target.value})} />
             </div>
+
+            <ContextProvider initialState={initialState} reducer={reducer} url={'wss://api.streamdota.de/bot/live/' + (user && user.frameApiKey)}>
+                <Logs />
+            </ContextProvider>
 
             <style jsx>{`
                 .wrapper {

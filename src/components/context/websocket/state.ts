@@ -3,6 +3,7 @@ enum ACTIONS {
 }
 
 export enum MessageType {
+    chat = 'chat',
     gamestate = 'gamestate',
     winner = 'winner',
 }
@@ -17,7 +18,15 @@ export interface WinnerMessage {
     value: boolean;
 }
 
-export type Message =  GameStateMessage | WinnerMessage;
+export interface ChatMessage {
+    type: MessageType.chat;
+    value: {
+        user: string;
+        message: string;
+    };
+}
+
+export type Message =  GameStateMessage | WinnerMessage | ChatMessage;
 
 interface NewMessageAction {
     type: typeof ACTIONS.NEW_MESSAGE;
@@ -27,7 +36,6 @@ interface NewMessageAction {
 export interface State {
     messages: Array<Message>;
 }
-
 
 export const initialState: State = {
     messages: [],
