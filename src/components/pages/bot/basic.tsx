@@ -31,7 +31,7 @@ export default function Basic(): ReactElement {
                        onBlur={(e) => patch({customBotToken: e.target.value})} />
             </div>
 
-            {user && <ContextProvider initialState={initialState} reducer={reducer} url={'wss://api.streamdota.de/bot/live/' + user.frameApiKey}>
+            {user && <ContextProvider initialState={initialState} reducer={reducer} url={'wss://api.streamdota.de/user/bot/live/' + user.frameApiKey}>
                 <Logs />
             </ContextProvider>}
 
