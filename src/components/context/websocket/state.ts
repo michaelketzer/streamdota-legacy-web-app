@@ -1,3 +1,5 @@
+import dayjs from 'dayjs';
+
 enum ACTIONS {
     NEW_MESSAGE = 'NEW_MESSAGE',
 }
@@ -10,16 +12,19 @@ export enum MessageType {
 
 export interface GameStateMessage {
     type: MessageType.gamestate;
+    date: number;
     value: string;  
 };
 
 export interface WinnerMessage {
     type: MessageType.winner;
+    date: number;
     value: boolean;
 }
 
 export interface ChatMessage {
     type: MessageType.chat;
+    date: number;
     value: {
         user: string;
         message: string;
@@ -58,7 +63,10 @@ export const reducer = (state: State, action: NewMessageAction) => {
 
 export function newMessage(message: Message): NewMessageAction {
     return {
-        message,
+        message: {
+            ...message,
+            date: dayjs().unix(),
+        },
         type: ACTIONS.NEW_MESSAGE,
     };
 }

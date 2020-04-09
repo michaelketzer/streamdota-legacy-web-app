@@ -1,10 +1,12 @@
 import { ReactElement, useMemo, useRef, useEffect } from "react";
 import { useStateValue } from "../../context/websocket/context";
 import { ChatMessage, Message } from "../../context/websocket/state";
+import dayjs from "dayjs";
 
 function isChatMessage(message: Message): message is ChatMessage {
     return message.type === 'chat';
 }
+
 export default function Logs(): ReactElement {
     const [{messages}] = useStateValue();
     const ref = useRef<HTMLDivElement>();
@@ -21,8 +23,8 @@ export default function Logs(): ReactElement {
     return <div className={'container'}>
         <h2>Live Log Einträge</h2>
         <div className={'logsContainer'} ref={ref}>
-            {messagesByType.map(({value: {message, user}}, index) => <div key={index} className={'msg'}>
-                <span>{user}</span>: <span>{message}</span>
+            {messagesByType.map(({date, value: {message, user}}, index) => <div key={index} className={'msg'}>
+                <span>[{dayjs.unix(date).format('DD.MM. HH:mm')}]</span><span>{user}</span>: <span>{message}</span>
             </div>)}
         </div>
 
