@@ -24,7 +24,7 @@ export default function Logs(): ReactElement {
         <h2>Live Log Einträge</h2>
         <div className={'logsContainer'} ref={ref}>
             {messagesByType.map(({date, value: {message, user}}, index) => <div key={index} className={'msg'}>
-                <span>[{dayjs.unix(date).format('DD.MM. HH:mm')}]</span><span>{user}</span>: <span>{message}</span>
+                <span>[{dayjs.unix(date).format('HH:mm')}]</span> <span>{user}</span>: <span>{message}</span>
             </div>)}
         </div>
 
