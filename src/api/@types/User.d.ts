@@ -9,6 +9,7 @@ export interface User {
     profileUrl: string;
     gsiAuth: string;
     frameApiKey: string;
+    dotaStatsFrom: 'session' | 'day';
 }
 
 export interface DotaStats {

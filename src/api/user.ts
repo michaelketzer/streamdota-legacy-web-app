@@ -6,6 +6,9 @@ export async function fetchCurrentUser(abortController: AbortController): Promis
     return await get<User>('/user/baseData', 'json', {signal: abortController.signal});
 }
 
+export async function patchUser(data: Partial<User>): Promise<void> {
+    return await patch('/user/baseData', data);
+}
 export async function fetchSteamConnections(abortController: AbortController): Promise<SteamConnection[]> {
     return await get<SteamConnection[]>('/user/steam', 'json', {signal: abortController.signal});
 }
