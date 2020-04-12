@@ -1,6 +1,7 @@
 import { ReactElement } from "react";
 import PageFrame from "../components/PageFrame";
 import dynamic from "next/dynamic";
+import { Tabs } from "antd";
 
 const Configuration = dynamic(
     () => import('../components/pages/dotaOverlay/Configuration'),
@@ -21,10 +22,17 @@ const Stats = dynamic(
 export default function DotaOverlay(): ReactElement {
 
     return <PageFrame title={'Dota 2 Overlay'}>
-        <Configuration />
-        <div style={{margin: '50px 0'}} />
-        <Stats />
-        <div style={{margin: '50px 0'}} />
-        <OverlaySetup />
+
+        <Tabs defaultActiveKey="1" animated={false}>
+            <Tabs.TabPane tab="Konfiguration" key="1">
+                <Configuration />
+            </Tabs.TabPane>
+            <Tabs.TabPane tab="Stats Setup" key="2">
+                <Stats />
+            </Tabs.TabPane>
+            <Tabs.TabPane tab="Overlay Setup" key="3">
+                <OverlaySetup />
+            </Tabs.TabPane>
+        </Tabs>
     </PageFrame>
 }
