@@ -25,12 +25,6 @@ interface Props {
 
 export default function Configure({method, setMethod}: Props): ReactElement {
     return <div className={'methodsContainer'}>
-        <div className={'info'}>
-            <h1>Dota Stats Overlay</h1>
-            <p>
-                Mit dem "Dota Stats Overlay" kannst du deinen aktuellen Stand deiner heutigen Dota Spiele anzeigen.
-            </p>
-        </div>
 
         <div className={'method'} onClick={() => setMethod(OverlayMethods.dotaGsi)}>
             <CheckBox checked={method === OverlayMethods.dotaGsi} />

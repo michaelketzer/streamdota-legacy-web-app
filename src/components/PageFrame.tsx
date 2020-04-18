@@ -88,6 +88,10 @@ export default function PageFrame({children, title}): ReactElement {
             body {
                 color: #3B4044;
             }
+
+            .ant-tabs-tabpane {
+                outline: none;
+            }
         `}</style>
     </>;
 }
