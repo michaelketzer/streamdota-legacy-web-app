@@ -2,6 +2,7 @@ import { ReactElement } from "react";
 import PageFrame from "../components/PageFrame";
 import dynamic from "next/dynamic";
 import { Tabs } from "antd";
+import PageHeader from "../components/PageHeader";
 
 const Configuration = dynamic(
     () => import('../components/pages/dotaOverlay/Configuration'),
@@ -22,6 +23,10 @@ const Stats = dynamic(
 export default function DotaOverlay(): ReactElement {
 
     return <PageFrame title={'Dota 2 Overlay'}>
+
+        <PageHeader title={'Dota Win/Loss'} 
+                    description={'Mit “Dota Win/Loss” kannst du deine aktuellen Stats in Dota 2 auf deinem Livestream anzeigen'} />
+
 
         <Tabs defaultActiveKey="1" animated={false}>
             <Tabs.TabPane tab="Konfiguration" key="1">

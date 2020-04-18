@@ -2,6 +2,7 @@ import { ReactElement } from "react";
 import PageFrame from "../components/PageFrame";
 import dynamic from "next/dynamic";
 import { Tabs } from "antd";
+import PageHeader from "../components/PageHeader";
 
 const Basic = dynamic(
     () => import('../components/pages/bot/basic'),
@@ -14,14 +15,14 @@ const Commands = dynamic(
 
 export default function Bot(): ReactElement {
     return <PageFrame title={'Bot'}>
+        <PageHeader title={'StreamDota Bot'} 
+                    description={'StreamDota Bot ist ein Chatbot welcher dir Unterhaltung, Informationen zum aktuellen Dota2 Spiel und Interaktionen mit dem Chat bietet.'} />
 
-        <Tabs defaultActiveKey="1" animated={false}>
-            <Tabs.TabPane tab="Konfiguration" key="1">
-                <h1>StreamDota Bot</h1>
+        <Tabs defaultActiveKey="config" animated={false}>
+            <Tabs.TabPane tab="Konfiguration" key="config">
                 <Basic />
             </Tabs.TabPane>
-            <Tabs.TabPane tab="Statische Commands" key="2">
-                <h1>Statische Commands</h1>
+            <Tabs.TabPane tab="Commands" key="commands">
                 <Commands />
             </Tabs.TabPane>
         </Tabs>
