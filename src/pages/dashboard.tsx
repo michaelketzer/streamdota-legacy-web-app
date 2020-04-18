@@ -3,6 +3,26 @@ import PageFrame from "../components/PageFrame";
 
 export default function Dashboard(): ReactElement {
     return <PageFrame title={'Dashboard'}>
+        <h1>Update - 18.04.2020</h1>
+        <p>
+            <div>Die letzte Woche wurde intensiv genutzt um unser User Interface zu überarbeiten.</div>
+            <div>Wir haben einige Dinge entfernt und neu organisiert um euch die Funktionen und Features zu vereinfachen.</div>
+        </p>
+        <p>
+            Die kommenden Tage wird das neue Design und die Anpassung der Features umgesetzt.
+        </p>
+        <p>
+            <div>In naher Zukunft sollte ein umfassendes Bot Feature umgesetzt sein und zusätzlich wird das Wettsystem umgesetzt.</div>
+            <div>Ebenfalls wird es bald besondere Tools für die Caster Szene geben. Die Domains "castdota.de" & "castdota.com" wurden dafür schon reserviert.</div>
+        </p>
+        Grüße,<br />
+        Grief-Code
+
+        <br />
+        <br />
+        <br />
+
+
         <h1>Willkommen auf streamdota.de</h1>
 
 
