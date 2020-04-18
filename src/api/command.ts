@@ -9,8 +9,8 @@ export async function createCommand(command: string, message: string): Promise<C
     return await create('/user/command', {command, message});
 }
 
-export async function updateCommand(id: number, command: string, message: string): Promise<Command[]> {
-    return await patch('/user/command/' + id, {command, message});
+export async function updateCommand(id: number, active: boolean, command: string, message: string): Promise<Command[]> {
+    return await patch('/user/command/' + id, {active, command, message});
 }
 
 export async function deleteCommand(id: number): Promise<Command[]> {

@@ -18,12 +18,15 @@ export default function Bot(): ReactElement {
         <PageHeader title={'StreamDota Bot'} 
                     description={'StreamDota Bot ist ein Chatbot welcher dir Unterhaltung, Informationen zum aktuellen Dota2 Spiel und Interaktionen mit dem Chat bietet.'} />
 
-        <Tabs defaultActiveKey="config" animated={false}>
-            <Tabs.TabPane tab="Konfiguration" key="config">
+        <Tabs defaultActiveKey="info" animated={false}>
+            <Tabs.TabPane tab="Info" key="info">
                 <Basic />
             </Tabs.TabPane>
             <Tabs.TabPane tab="Commands" key="commands">
                 <Commands />
+            </Tabs.TabPane>
+            <Tabs.TabPane tab="Timer" key="timer">
+                Timer
             </Tabs.TabPane>
         </Tabs>
     </PageFrame>

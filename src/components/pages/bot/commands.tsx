@@ -1,34 +1,27 @@
-import { ReactElement, useCallback } from "react";
-import { useAbortFetch } from "../../../hooks/abortFetch";
-import { fetchBotConfig, patchBotConfig } from "../../../api/user";
-import { BotData } from "../../../api/@types/User";
-import Loader from "../../Loader";
-import { Input } from "antd";
+import { ReactElement } from "react";
 import CommandList from "./CommandList";
+import { Typography, Tag } from "antd";
 
 export default function Commands(): ReactElement {
-    const [config] = useAbortFetch(fetchBotConfig);
-    const patch = useCallback((data: Partial<BotData>) => patchBotConfig(data), []);
+    return <>
+        <div><Typography.Text strong>Variabeln</Typography.Text></div>
+        <div><Typography.Text>Du kannst in den Antworten eines Commands folgende Variabeln benutzen:</Typography.Text></div>
 
-    if(config) {
-        return <>
-            <div><b>Command Trigger</b></div>
-            <div className={'triggerInput'}>
-                <Input defaultValue={config.commandTrigger} onBlur={(e) => patch({commandTrigger: e.target.value})} />
-            </div>
+        <div className={'variableTags'}>
+            <Tag>{'{UPTIME}'}</Tag>
+            <Tag>{'{USER}'}</Tag>
+        </div>
 
-            <br />
-            <br />
+        <div><Typography.Text strong>Commands</Typography.Text></div>
+        <CommandList />
 
-            <CommandList />
-
-            <style jsx>{`
-                .triggerInput {
-                    max-width: 50px;
-                }    
-            `}</style>
-        </>;
-
-    }
-    return <Loader />;
+        <style jsx>{`
+            .variableTags {
+                display: flex;
+                align-items: center;
+                margin: 10px 0 32px;
+                flex-wrap: wrap;
+            }
+        `}</style>
+    </>;
 }
