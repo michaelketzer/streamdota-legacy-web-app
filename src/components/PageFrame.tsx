@@ -3,8 +3,8 @@ import Head from "next/head";
 import Navigation from "./Navigation";
 import dynamic from 'next/dynamic'
 
-const TopBar = dynamic(
-    () => import('./TopBar'),
+const UserInfo = dynamic(
+    () => import('./UserInfo'),
     { ssr: false }
 );
 
@@ -19,11 +19,9 @@ export default function PageFrame({children, title}): ReactElement {
         </Head>
 
         <div className={'layout'}>
-            <div className={'headerBar'}>
-                <TopBar />
-            </div>
             <div className={'contentWrapper'}>
                 <div className={'drawer'}>
+                    <UserInfo />
                     <Navigation />
                 </div>
                 <div className={'main'}>
