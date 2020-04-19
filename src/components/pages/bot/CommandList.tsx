@@ -9,8 +9,8 @@ import Loader from "../../Loader";
 import TextArea from "antd/lib/input/TextArea";
 
 function createPreview(msg: string): string {
-    const uptimeReplace = msg.replace(/\{UPTIME\}/, '4 Stunden und 20 Minuten');
-    const userReplace = uptimeReplace.replace(/\{USER\}/, 'griefcode'); 
+    const uptimeReplace = msg.replace(/\{UPTIME\}/g, '4 Stunden und 20 Minuten');
+    const userReplace = uptimeReplace.replace(/\{USER\}/g, 'griefcode'); 
     return userReplace;
 }
 
