@@ -10,6 +10,11 @@ const Commands = dynamic(
     { ssr: false }
 );
 
+const Timers = dynamic(
+    () => import('../components/pages/bot/timer'),
+    { ssr: false }
+);
+
 export default function Bot(): ReactElement {
     return <PageFrame title={'Bot'}>
         <PageHeader title={'StreamDota Bot'} 
@@ -23,7 +28,7 @@ export default function Bot(): ReactElement {
                 <Commands />
             </Tabs.TabPane>
             <Tabs.TabPane tab="Timer" key="timer">
-                Timer
+                <Timers />
             </Tabs.TabPane>
         </Tabs>
     </PageFrame>
