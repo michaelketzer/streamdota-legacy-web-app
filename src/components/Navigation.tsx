@@ -29,7 +29,7 @@ const items: MenuItem[] = [{
     icon: <LineChartOutlined />,    
     name: 'Dota W/L',
     path: '/dotaWL'
-}, {
+}/*, {
     icon: <PieChartOutlined />,
     name: 'Wettsytem',
     path: '/bets',
@@ -41,7 +41,7 @@ const items: MenuItem[] = [{
     icon: <EuroOutlined />,
     name: 'Sponsor Overlay',
     path: '/bets',
-}];
+}*/];
 
 
 export default function Navigation(): ReactElement {

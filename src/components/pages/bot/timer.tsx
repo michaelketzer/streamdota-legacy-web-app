@@ -1,80 +1,72 @@
-import { ReactElement, useCallback, useState } from "react";
+import { ReactElement, useState, useCallback } from "react";
+import CommandList from "./CommandList";
+import { Typography, Tag, Checkbox, Input, Popconfirm, Button } from "antd";
 import { useAbortFetch } from "../../../hooks/abortFetch";
-import { getCommands, updateCommand, createCommand, deleteCommand } from "../../../api/command";
-import { Command } from "../../../api/@types/Command";
+import { Timer } from "../../../api/@types/Timer";
+import { getTimers, createTimer, updateTimer, deleteTimer } from "../../../api/timer";
 import React from "react";
-import { Input, Button, Popconfirm, Checkbox } from "antd";
-import {DeleteOutlined} from '@ant-design/icons';
-import Loader from "../../Loader";
 import TextArea from "antd/lib/input/TextArea";
+import { DeleteOutlined } from "@ant-design/icons";
+import Loader from "../../Loader";
 
-function createPreview(msg: string): string {
-    const uptimeReplace = msg.replace(/\{UPTIME\}/, '4 Stunden und 20 Minuten');
-    const userReplace = uptimeReplace.replace(/\{USER\}/, 'griefcode'); 
-    return userReplace;
-}
-
-export default function CommandList(): ReactElement {
-    const [commands, load] = useAbortFetch<Command[]>(getCommands);
-    const [cmd, setCmd] = useState('');
+export default function Commands(): ReactElement {
+    const [timers, load] = useAbortFetch<Timer[]>(getTimers);
+    const [period, setPeriod] = useState(5);
     const [msg, setMsg] = useState('');
     const [act, setAct] = useState(false);
-
+    
     const create = useCallback(async () => {
-        if(msg.length > 0 && cmd.length > 0) {
-            await createCommand(act, cmd, msg);
+        if(msg.length > 0) {
+            await createTimer(act, period * 60, msg);
             await load();
-            setCmd('');
+            setPeriod(5);
             setMsg('');
         }
-    }, [act, cmd, msg]);
+    }, [act, period, msg]);
 
-    if(commands) {
+    if(timers) {
         return <div className={'commandsGrid'}>
             <div className={'label'}>Aktiv</div>
-            <div className={'label'}>Command</div>
-            <div className={'label'}>Antwort</div>
+            <div className={'label'}>Interval <span className={'small'}>(Minuten)</span></div>
+            <div className={'label'}>Nachricht</div>
             <div className={'label'}></div>
-            <div className={'label'}>Vorschau</div>
 
-            {commands.map(({active, id, command, message}) => <React.Fragment key={id}>
+            {timers.map(({active, id, period, message}) => <React.Fragment key={id}>
                 <div className={'activeBox'}>
                     <Checkbox defaultChecked={active} onChange={async (e) => {
-                        await updateCommand(id, e.target.checked, command, message);
+                        await updateTimer(id, e.target.checked, period, message);
                         await load();
                     }}/>
                 </div>
                 <div>
-                    <Input defaultValue={command} onBlur={async (e) => {
-                        await updateCommand(id, active, e.target.value, message);
+                    <Input defaultValue={period / 60} onBlur={async (e) => {
+                        await updateTimer(id, active, +e.target.value * 60, message);
                         await load();
                     }} />
                 </div>
                 <TextArea defaultValue={message} onBlur={async (e) => {
-                    await updateCommand(id, active, command, e.target.value);
+                    await updateTimer(id, active, period, e.target.value);
                     await load();
                 }} />
                 <div>
     
-                    <Popconfirm title="Soll dieser Command wirklich gelöscht werden?" onConfirm={async () => {
-                        await deleteCommand(id);
+                    <Popconfirm title="Soll dieser Timer wirklich gelöscht werden?" onConfirm={async () => {
+                        await deleteTimer(id);
                         await load();
                     }} okText="Ja" cancelText="Nein">
                         <Button type={'danger'} icon={<DeleteOutlined />} />
                     </Popconfirm>
                 </div>
-                <div>{createPreview(message)}</div>
             </React.Fragment>)}
     
             <div className={'activeBox'}>
                 <Checkbox defaultChecked={act} onChange={(e) => setAct(e.target.checked)}/>
             </div>
             <div>
-                <Input value={cmd} onChange={(e) => setCmd(e.target.value)} placeholder={'Command'} />
+                <Input value={period} onChange={(e) => setPeriod(+e.target.value)} placeholder={'Period'} />
             </div>
             <TextArea value={msg} onChange={(e) => setMsg(e.target.value)} placeholder={'Antwort'} />
             <div></div>
-                <div>{createPreview(msg)}</div>
             <div />
             <div />
             <div className={'createButton'}>
@@ -96,7 +88,7 @@ export default function CommandList(): ReactElement {
 
                 .commandsGrid {
                     display: grid;
-                    grid-template-columns: max-content 170px 330px 60px 1fr;
+                    grid-template-columns: max-content 170px 330px 1fr;
                     grid-column-gap: 20px;
                     grid-row-gap: 15px;
                 }
@@ -109,5 +101,4 @@ export default function CommandList(): ReactElement {
     }
 
     return <Loader />;
-
 }
