@@ -3,11 +3,8 @@ import PageFrame from "../components/PageFrame";
 import dynamic from "next/dynamic";
 import { Tabs } from "antd";
 import PageHeader from "../components/PageHeader";
+import Basic from '../components/pages/bot/basic';
 
-const Basic = dynamic(
-    () => import('../components/pages/bot/basic'),
-    { ssr: false }
-);
 const Commands = dynamic(
     () => import('../components/pages/bot/commands'),
     { ssr: false }

@@ -8,6 +8,12 @@ import {DeleteOutlined} from '@ant-design/icons';
 import Loader from "../../Loader";
 import TextArea from "antd/lib/input/TextArea";
 
+function createPreview(msg: string): string {
+    const uptimeReplace = msg.replace(/\{UPTIME\}/, '4 Stunden und 20 Minuten');
+    const userReplace = uptimeReplace.replace(/\{USER\}/, 'griefcode'); 
+    return userReplace;
+}
+
 export default function CommandList(): ReactElement {
     const [commands, load] = useAbortFetch<Command[]>(getCommands);
     const [cmd, setCmd] = useState('');
@@ -16,7 +22,7 @@ export default function CommandList(): ReactElement {
 
     const create = useCallback(async () => {
         if(msg.length > 0 && cmd.length > 0) {
-            await createCommand(cmd, msg);
+            await createCommand(act, cmd, msg);
             await load();
             setCmd('');
             setMsg('');
@@ -28,6 +34,7 @@ export default function CommandList(): ReactElement {
             <div className={'label'}>Aktiv</div>
             <div className={'label'}>Command</div>
             <div className={'label'}>Antwort</div>
+            <div className={'label'}>Aktion</div>
             <div className={'label'}>Vorschau</div>
 
             {commands.map(({active, id, command, message}) => <React.Fragment key={id}>
@@ -37,11 +44,13 @@ export default function CommandList(): ReactElement {
                         await load();
                     }}/>
                 </div>
-                <Input defaultValue={command} onBlur={async (e) => {
-                    await updateCommand(id, active, e.target.value, message);
-                    await load();
-                }} />
-                <Input defaultValue={message} onBlur={async (e) => {
+                <div>
+                    <Input defaultValue={command} onBlur={async (e) => {
+                        await updateCommand(id, active, e.target.value, message);
+                        await load();
+                    }} />
+                </div>
+                <TextArea defaultValue={message} onBlur={async (e) => {
                     await updateCommand(id, active, command, e.target.value);
                     await load();
                 }} />
@@ -54,6 +63,7 @@ export default function CommandList(): ReactElement {
                         <Button type={'danger'} icon={<DeleteOutlined />} />
                     </Popconfirm>
                 </div>
+                <div>{createPreview(message)}</div>
             </React.Fragment>)}
     
             <div className={'activeBox'}>
@@ -64,6 +74,7 @@ export default function CommandList(): ReactElement {
             </div>
             <TextArea value={msg} onChange={(e) => setMsg(e.target.value)} placeholder={'Antwort'} />
             <div></div>
+                <div>{createPreview(msg)}</div>
             <div />
             <div />
             <div className={'createButton'}>
@@ -85,7 +96,7 @@ export default function CommandList(): ReactElement {
 
                 .commandsGrid {
                     display: grid;
-                    grid-template-columns: max-content 170px 330px 1fr;
+                    grid-template-columns: max-content 170px 330px 60px 1fr;
                     grid-column-gap: 20px;
                     grid-row-gap: 15px;
                 }
