@@ -40,5 +40,11 @@ export default function Color({value, setValue, label}: Props): ReactElement {
                 width: 150px;
             }
         `}</style>
+
+        <style jsx global>{`
+            .sketch-picker {
+                box-shadow: none!important;
+            }
+        `}</style>
     </div>;
 }
