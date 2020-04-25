@@ -6,17 +6,6 @@ export default function Background({cfg, patch}: {cfg: DotaOverlay, patch: (v: P
     return <>
         <div><b>Hintergrund</b></div>
         <Switch defaultChecked={Boolean(cfg.showBackground)} onChange={(checked) => patch({showBackground: checked})} />
-
-        {cfg.showBackground && <>
-            <br />  
-            <br />  
-            <div><b>Bündigkeit</b></div>
-            <Radio.Group value={cfg.backgroundAlign} buttonStyle={'solid'} onChange={(e) => patch({backgroundAlign: e.target.value})}>
-                <Radio.Button value={'left'}>Links</Radio.Button>
-                <Radio.Button value={'center'}>Mittig</Radio.Button>
-                <Radio.Button value={'right'}>Rechts</Radio.Button>
-            </Radio.Group>
-        </>}
         <br />
         <br />
     </>;

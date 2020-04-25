@@ -25,7 +25,7 @@ export default function Overlay({wins, loss, auth}: {wins: number; loss: number;
     if(cfg) {
         return <>
             {cfg.font && cfg.font !== 'Arial' && <GoogleFontLoader fonts={[{font: cfg.font, weights: [cfg.variant]}]} />}
-            <div className={'positionFrame ' + cfg.backgroundAlign + ' ' + (!cfg.showBackground && 'noBg')}>
+            <div className={'positionFrame ' + (!cfg.showBackground && 'noBg')}>
                 <div className={'container'}>
                     <Number color={cfg.winColor} cfg={cfg} x={cfg.winX} y={cfg.winY} height={'.9em'}>{wins}</Number>
                     <Number color={cfg.dividerColor} cfg={cfg} x={cfg.dividerX} y={cfg.dividerY} height={'.7em'}>:</Number>
@@ -35,34 +35,9 @@ export default function Overlay({wins, loss, auth}: {wins: number; loss: number;
             <style jsx>{`
                 .positionFrame {
                     width: 160px;
-                    background-image: url('/images/dotaOverlayBackground.png');
+                    background-image: url('/images/w-l-background.png');
                     background-size: cover;
                     height: 60px;
-                }
-
-                .positionFrame::before {
-                    display: none;
-                    position: absolute;
-                    background: url('/images/dotaOverlayBackground.png');
-                    content: " ";
-                    background-size: cover;
-                    top: 0;
-                    bottom: 0;
-                    left: -15px;
-                    width: 15px;
-                }
-
-                .left, .center {
-                    background-position: 100%;
-                }
-
-                .center {
-                    margin-left: 15px;
-                    position: relative;
-                }
-
-                .center::before {
-                    display: block;
                 }
 
                 .noBg {
@@ -73,12 +48,6 @@ export default function Overlay({wins, loss, auth}: {wins: number; loss: number;
                     height: 58px;
                     position: relative;
                 }
-            `}</style>
-
-            <style global jsx>{`
-                html, body {
-                    width: ${cfg.backgroundAlign === 'center' ? '175px' : '160px'}!important;
-                }    
             `}</style>
         </>;
     }
