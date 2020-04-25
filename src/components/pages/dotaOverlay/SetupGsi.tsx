@@ -20,7 +20,7 @@ export default function SetupGsi({gsiAuth, gsiConnected, reload}: Props): ReactE
     
     if(hasSetup) {
         return <div className={'gsiSetup'}>
-            {gsiAuth.length > 0 && (gsiConnected === 0 || messages.length === 0) && <>
+            {(gsiConnected === 0 && messages.length === 0) && <>
                 <div className={'status'}>
                     <WarningOutlined style={{fontSize: '22px'}} />
                     <div className={'label'}>Dota GSI ist konfiguriert, hat aber keine Verbindung</div>
@@ -39,7 +39,7 @@ export default function SetupGsi({gsiAuth, gsiConnected, reload}: Props): ReactE
                 </div>
             </>}
 
-            {gsiAuth.length > 0 && (gsiConnected === 1 || messages.length > 0) && <>
+            {(gsiConnected === 1 || messages.length > 0) && <>
                 <div className={'status success'}>
                     <CheckCircleOutlined style={{fontSize: '22px'}} />
                     <div className={'label'}>Dota GSI ist konfiguriert</div>
