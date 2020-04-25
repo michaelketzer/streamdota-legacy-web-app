@@ -18,16 +18,16 @@ export default function DotaWLTabs(): ReactElement {
         </Tabs.TabPane>
 
         <Tabs.TabPane tab="Dota GSI Konfiguration" key="2">
-            <SetupGsi gsiAuth={user && user.gsiAuth} />
+            <SetupGsi gsiAuth={user && user.gsiAuth} gsiConnected={user && user.gsiConnected} />
         </Tabs.TabPane>
 
         <Tabs.TabPane tab="Stats Einstellungen" key="3">
             <Stats />
         </Tabs.TabPane>
 
-        <Tabs.TabPane tab="Streamdota Bot Command" key="4">
+        {/*<Tabs.TabPane tab="Streamdota Bot Command" key="4">
             Bot Commands
-        </Tabs.TabPane>
+        </Tabs.TabPane>*/}
 
         <Tabs.TabPane tab="Overlay Einstellungen" key="5">
             <OverlaySetup />

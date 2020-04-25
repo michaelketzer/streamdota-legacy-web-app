@@ -1,7 +1,9 @@
 import { ReactElement, useMemo } from "react";
 import { downloadGsiConfig } from "../../../api/request";
+import { ExclamationCircleOutlined, DownloadOutlined, WarningOutlined, CheckCircleOutlined } from "@ant-design/icons";
+import { Button } from "antd";
 
-export default function SetupGsi({gsiAuth}: {gsiAuth: string}): ReactElement {
+export default function SetupGsi({gsiAuth, gsiConnected}: {gsiAuth: string; gsiConnected: number}): ReactElement {
     const onLoadGsi = async () => {
         await downloadGsiConfig();
     };
@@ -9,19 +11,54 @@ export default function SetupGsi({gsiAuth}: {gsiAuth: string}): ReactElement {
     
     if(hasSetup) {
         return <div className={'gsiSetup'}>
-            <h4>Dota-GSI ist bereits aufgesetzt. Funktioniert irgendwas nicht? Dann versuch die folgenden Steps noch mal:</h4>
-            <div className={'listEntry'}>
-                <div><b>1.</b> Erstelle dir eine neue Konfigurations Datei:</div>
-                <div className={'download'} onClick={onLoadGsi}>Neue Dota-GSI konfiguration erstellen</div>
-            </div>
-            <div className={'listEntry'}>
-                <div><b>2.</b> Ersetze die alte Konfigurationsdatei mit der Neuen unter: <i>steamapps\common\dota 2 beta\game\dota\cfg\gamestate_integration\</i></div>
-            </div>
-            <div className={'listEntry'}>
-                <div><b>3.</b> Starte dein Dota neu</div>
-            </div>
+            {gsiAuth.length > 0 && gsiConnected === 0 && <>
+                <div className={'status'}>
+                    <WarningOutlined style={{fontSize: '22px'}} />
+                    <div className={'label'}>Dota GSI ist konfiguriert, hat aber keine Verbindung</div>
+                </div>
+                <p>Du hast Dota GSI aufgesetzt und bisher wurde noch keine Verbindung aufgebaut, sobald eine eingehende Verbindung vorhanden ist ändert sich der Status. Für eine Verbindung musst du lediglich ein Spiel spielen.</p>
+                <p>Du glaubst beim Setup ist was schief gelaufen? Dann kannst du es mit folgenden Schritten erneut versuchen:</p>
+                <div className={'listEntry'}>
+                    <div className={'createLabel'}><b>1.</b> Erstelle dir eine neue Dota GSI Konfigurationsdatei:</div>
+                    <Button type={'primary'} onClick={onLoadGsi} icon={<DownloadOutlined />}>Erstellen der Dota-GSI konfiguration</Button>
+                </div>
+                <div className={'listEntry'}>
+                    <div><b>2.</b> Platziere die Konfigurationsdatei in deinem Steamordner unter: <i>steamapps\common\dota 2 beta\game\dota\cfg\gamestate_integration\</i></div>
+                </div>
+                <div className={'listEntry'}>
+                    <div><b>3.</b> Starte dein Dota neu</div>
+                </div>
+            </>}
+
+            {gsiAuth.length > 0 && gsiConnected === 1 && <>
+                <div className={'status success'}>
+                    <CheckCircleOutlined style={{fontSize: '22px'}} />
+                    <div className={'label'}>Dota GSI ist konfiguriert</div>
+                </div>
+            </>}
 
             <style jsx>{`
+                .status {
+                    display: flex;
+                    align-items: center;
+                    color: #FFA940;
+                    font-size: 16px;
+                    font-weight: 500;
+                    margin-bottom: 25px;
+                }
+
+                .success {
+                    color: #389E0D;
+                }
+
+                .label {
+                    margin-left: 15px;
+                }
+
+                .createLabel {
+                    margin-right: 15px;
+                }
+
                 .gsiSetup {
                     padding: 20px;
                 }    
@@ -50,19 +87,41 @@ export default function SetupGsi({gsiAuth}: {gsiAuth: string}): ReactElement {
         </div>
     }
     return <div className={'gsiSetup'}>
-        <h4>Das Setup für Dota-GSI beinhält nur 3 Schritte:</h4>
+        <div className={'status'}>
+            <ExclamationCircleOutlined style={{fontSize: '22px'}} />
+            <div className={'label'}>Dota GSI ist noch nicht aufgesetzt</div>
+        </div>
+
+        <h4>Führe folgende Schritte aus um Dota GSI aufzusetzen:</h4>
         <div className={'listEntry'}>
-            <div><b>1.</b> Zum Setup von Dota-GSI lediglich die folgende Datei herunterladen:</div>
-            <div className={'download'} onClick={onLoadGsi}>Erstellen der Dota-GSI konfiguration</div>
+            <div className={'createLabel'}><b>1.</b> Erstelle dir eine neue Dota GSI Konfigurationsdatei:</div>
+            <Button type={'primary'} onClick={onLoadGsi} icon={<DownloadOutlined />}>Erstellen der Dota-GSI konfiguration</Button>
         </div>
         <div className={'listEntry'}>
-            <div><b>2.</b> Platziere die Konfigurationsdatei in dem Steam-Installationsordner unter: <i>steamapps\common\dota 2 beta\game\dota\cfg\gamestate_integration\</i></div>
+            <div><b>2.</b> Platziere die Konfigurationsdatei in deinem Steamordner unter: <i>steamapps\common\dota 2 beta\game\dota\cfg\gamestate_integration\</i></div>
         </div>
         <div className={'listEntry'}>
             <div><b>3.</b> Starte dein Dota neu</div>
         </div>
 
         <style jsx>{`
+            .status {
+                display: flex;
+                align-items: center;
+                color: #CF1322;
+                font-size: 16px;
+                font-weight: 500;
+                margin-bottom: 25px;
+            }
+
+            .label {
+                margin-left: 15px;
+            }
+
+            .createLabel {
+                margin-right: 15px;
+            }
+
             .gsiSetup {
                 padding: 20px;
             }    
