@@ -9,6 +9,7 @@ import { User } from "../../../api/@types/User";
 import { fetchCurrentUser } from "../../../api/user";
 import { initialState, reducer } from "../../context/websocket/state";
 import ContextProvider from "../../context/websocket/context";
+import Commands from "./Commands";
 
 
 export default function DotaWLTabs(): ReactElement {
@@ -30,9 +31,9 @@ export default function DotaWLTabs(): ReactElement {
             <Stats />
         </Tabs.TabPane>
 
-        {/*<Tabs.TabPane tab="Streamdota Bot Command" key="4">
-            Bot Commands
-        </Tabs.TabPane>*/}
+        <Tabs.TabPane tab="Streamdota Bot Command" key="4">
+            <Commands />
+        </Tabs.TabPane>
 
         <Tabs.TabPane tab="Overlay Einstellungen" key="5">
             <OverlaySetup />

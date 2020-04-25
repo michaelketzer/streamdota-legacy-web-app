@@ -1,4 +1,4 @@
-import { ReactElement, useCallback, useState } from "react";
+import { ReactElement, useCallback, useState, useMemo } from "react";
 import { useAbortFetch } from "../../../hooks/abortFetch";
 import { getCommands, updateCommand, createCommand, deleteCommand } from "../../../api/command";
 import { Command } from "../../../api/@types/Command";
@@ -8,13 +8,26 @@ import {DeleteOutlined} from '@ant-design/icons';
 import Loader from "../../Loader";
 import TextArea from "antd/lib/input/TextArea";
 
-function createPreview(msg: string): string {
-    const uptimeReplace = msg.replace(/\{UPTIME\}/g, '4 Stunden und 20 Minuten');
-    const userReplace = uptimeReplace.replace(/\{USER\}/g, 'griefcode'); 
-    return userReplace;
+const replace = {
+    UPTIME: '4 Stunden und 20 Minuten',
+    USER: 'griefcode',
+    TOTAL_GAMES: '5',
+    GAMES_WON: '3',
+    GAMES_LOST: '2',
 }
 
-export default function CommandList(): ReactElement {
+function createPreview(msg: string): string {
+    let replaced = msg;
+
+    for(const [key, value] of Object.entries(replace)) {
+        const regex = new RegExp(`{${key}}`, "g");
+        replaced = replaced.replace(regex, value);
+    }
+
+    return replaced;
+}
+
+export default function CommandList({commandType = 'default'}: {commandType?: Command['type']}): ReactElement {
     const [commands, load] = useAbortFetch<Command[]>(getCommands);
     const [cmd, setCmd] = useState('');
     const [msg, setMsg] = useState('');
@@ -22,12 +35,14 @@ export default function CommandList(): ReactElement {
 
     const create = useCallback(async () => {
         if(msg.length > 0 && cmd.length > 0) {
-            await createCommand(act, cmd, msg);
+            await createCommand(act, cmd, msg, commandType);
             await load();
             setCmd('');
             setMsg('');
         }
     }, [act, cmd, msg]);
+
+    const commandsByType = useMemo(() => (commands || []).filter(({type}) => type === commandType), [commands, commandType])
 
     if(commands) {
         return <div className={'commandsGrid'}>
@@ -37,7 +52,7 @@ export default function CommandList(): ReactElement {
             <div className={'label'}></div>
             <div className={'label'}>Vorschau</div>
 
-            {commands.map(({active, id, command, message}) => <React.Fragment key={id}>
+            {commandsByType.map(({active, id, command, message}) => <React.Fragment key={id}>
                 <div className={'activeBox'}>
                     <Checkbox defaultChecked={active} onChange={async (e) => {
                         await updateCommand(id, e.target.checked, command, message);
