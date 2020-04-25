@@ -54,7 +54,6 @@ const defaultState: DotaOverlay = {
     lossY: 5,
 
     showBackground: true,
-    backgroundAlign: 'right',
 }
 
 export default function OverlaySetup(): ReactElement {
