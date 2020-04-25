@@ -1,5 +1,5 @@
 import { User, DotaStats, BotData } from "./@types/User";
-import { get, patch } from "./request";
+import { get, patch, del } from "./request";
 import { SteamConnection } from "./@types/SteamConnection";
 
 export async function fetchCurrentUser(abortController: AbortController): Promise<User> {
@@ -23,4 +23,8 @@ export async function fetchBotConfig(abortController: AbortController): Promise<
 
 export async function patchBotConfig(data: Partial<BotData>): Promise<void> {
     return await patch('/user/bot', data);
+}
+
+export async function resetDotaGsi(): Promise<void> {
+    return await del('/dota-gsi/resetGsi');
 }
