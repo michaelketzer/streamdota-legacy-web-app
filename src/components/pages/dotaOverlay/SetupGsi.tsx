@@ -2,16 +2,25 @@ import { ReactElement, useMemo } from "react";
 import { downloadGsiConfig } from "../../../api/request";
 import { ExclamationCircleOutlined, DownloadOutlined, WarningOutlined, CheckCircleOutlined } from "@ant-design/icons";
 import { Button } from "antd";
+import { useStateValue } from "../../context/websocket/context";
 
-export default function SetupGsi({gsiAuth, gsiConnected}: {gsiAuth: string; gsiConnected: number}): ReactElement {
+interface Props {
+    gsiAuth: string;
+    gsiConnected: number;
+    reload: () => void;
+}
+export default function SetupGsi({gsiAuth, gsiConnected, reload}: Props): ReactElement {
+    const [{messages}] = useStateValue();
+
     const onLoadGsi = async () => {
         await downloadGsiConfig();
+        await reload();
     };
     const hasSetup = useMemo(() => gsiAuth.length > 0, [gsiAuth]);
     
     if(hasSetup) {
         return <div className={'gsiSetup'}>
-            {gsiAuth.length > 0 && gsiConnected === 0 && <>
+            {gsiAuth.length > 0 && (gsiConnected === 0 || messages.length === 0) && <>
                 <div className={'status'}>
                     <WarningOutlined style={{fontSize: '22px'}} />
                     <div className={'label'}>Dota GSI ist konfiguriert, hat aber keine Verbindung</div>
@@ -20,7 +29,7 @@ export default function SetupGsi({gsiAuth, gsiConnected}: {gsiAuth: string; gsiC
                 <p>Du glaubst beim Setup ist was schief gelaufen? Dann kannst du es mit folgenden Schritten erneut versuchen:</p>
                 <div className={'listEntry'}>
                     <div className={'createLabel'}><b>1.</b> Erstelle dir eine neue Dota GSI Konfigurationsdatei:</div>
-                    <Button type={'primary'} onClick={onLoadGsi} icon={<DownloadOutlined />}>Erstellen der Dota-GSI konfiguration</Button>
+                    <Button type={'primary'} onClick={onLoadGsi} icon={<DownloadOutlined />}>Neue Dota-GSI Konfiguration erstellen</Button>
                 </div>
                 <div className={'listEntry'}>
                     <div><b>2.</b> Platziere die Konfigurationsdatei in deinem Steamordner unter: <i>steamapps\common\dota 2 beta\game\dota\cfg\gamestate_integration\</i></div>
@@ -30,7 +39,7 @@ export default function SetupGsi({gsiAuth, gsiConnected}: {gsiAuth: string; gsiC
                 </div>
             </>}
 
-            {gsiAuth.length > 0 && gsiConnected === 1 && <>
+            {gsiAuth.length > 0 && (gsiConnected === 1 || messages.length > 0) && <>
                 <div className={'status success'}>
                     <CheckCircleOutlined style={{fontSize: '22px'}} />
                     <div className={'label'}>Dota GSI ist konfiguriert</div>

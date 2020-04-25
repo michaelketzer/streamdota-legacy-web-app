@@ -7,10 +7,12 @@ import OverlaySetup from "./OverlaySetup";
 import { useAbortFetch } from "../../../hooks/abortFetch";
 import { User } from "../../../api/@types/User";
 import { fetchCurrentUser } from "../../../api/user";
+import { initialState, reducer } from "../../context/websocket/state";
+import ContextProvider from "../../context/websocket/context";
 
 
 export default function DotaWLTabs(): ReactElement {
-    const [user] = useAbortFetch<User>(fetchCurrentUser);
+    const [user, reload] = useAbortFetch<User>(fetchCurrentUser);
     
     return <Tabs defaultActiveKey="1" animated={false}>
         <Tabs.TabPane tab="Basis Konfiguration" key="1">
@@ -18,7 +20,10 @@ export default function DotaWLTabs(): ReactElement {
         </Tabs.TabPane>
 
         <Tabs.TabPane tab="Dota GSI Konfiguration" key="2">
-            <SetupGsi gsiAuth={user && user.gsiAuth} gsiConnected={user && user.gsiConnected} />
+            <ContextProvider initialState={initialState} reducer={reducer} url={'wss://api.streamdota.de/dota-gsi/logs/' + (user && user.frameApiKey)}>
+                <SetupGsi gsiAuth={user && user.gsiAuth} gsiConnected={user && user.gsiConnected} reload={reload}/>
+            </ContextProvider>
+
         </Tabs.TabPane>
 
         <Tabs.TabPane tab="Stats Einstellungen" key="3">
