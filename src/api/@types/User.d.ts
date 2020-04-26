@@ -11,6 +11,8 @@ export interface User {
     gsiConnected: number;
     frameApiKey: string;
     dotaStatsFrom: 'session' | 'day';
+    useBets: number;
+    betSeasonId: number | null;
 }
 
 export interface DotaStats {
