@@ -1,6 +1,7 @@
 import { ReactElement, useState } from "react";
 import { Steps } from "antd";
 import NewCategoryForm from "./Forms/NewCategoryForm";
+import BotCommands from "./BotCommands";
 
 const getSteps = (onSeasonCreated: () => void) => [
     {
@@ -9,7 +10,7 @@ const getSteps = (onSeasonCreated: () => void) => [
     },
     {
       title: 'Streamdota Bot',
-      content: 'Second-content',
+      content: <BotCommands />,
     },
     {
       title: 'Overlay',
