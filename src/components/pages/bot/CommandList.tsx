@@ -14,12 +14,19 @@ const replace = {
     TOTAL_GAMES: '5',
     GAMES_WON: '3',
     GAMES_LOST: '2',
+    WINNER: 'A',
+    TOPLIST_STATS: '1. griefcode (5/8) 2. shokztv (5/9) ...',
+    USER_BETS_CORRECT: '1',
+    USER_BETS_WRONG: '1',
+    USER_BETS_TOTAL: '2',
+    USER_BETS_ACCURACY: '50%'
+
 }
 
-function createPreview(msg: string): string {
+function createPreview(msg: string, vars: {[x: string]: string}): string {
     let replaced = msg;
 
-    for(const [key, value] of Object.entries(replace)) {
+    for(const [key, value] of Object.entries({...replace, ...vars})) {
         const regex = new RegExp(`{${key}}`, "g");
         replaced = replaced.replace(regex, value);
     }
@@ -27,7 +34,12 @@ function createPreview(msg: string): string {
     return replaced;
 }
 
-export default function CommandList({commandType = 'default'}: {commandType?: Command['type']}): ReactElement {
+interface Props {
+    commandType?: Command['type'];
+    replaceVars?: {[x: string]: string};
+}
+
+export default function CommandList({commandType = 'default', replaceVars = {}}: Props): ReactElement {
     const [commands, load] = useAbortFetch<Command[]>(getCommands);
     const [cmd, setCmd] = useState('');
     const [msg, setMsg] = useState('');
@@ -42,7 +54,7 @@ export default function CommandList({commandType = 'default'}: {commandType?: Co
         }
     }, [act, cmd, msg]);
 
-    const commandsByType = useMemo(() => (commands || []).filter(({type}) => type === commandType), [commands, commandType])
+    const commandsByType = useMemo(() => (commands || []).filter(({type}) => type === commandType), [commands, commandType]);
 
     if(commands) {
         return <div className={'commandsGrid'}>
@@ -52,7 +64,7 @@ export default function CommandList({commandType = 'default'}: {commandType?: Co
             <div className={'label'}></div>
             <div className={'label'}>Vorschau</div>
 
-            {commandsByType.map(({active, id, command, message}) => <React.Fragment key={id}>
+            {commandsByType.map(({active, id, command, message, noResponse, deleteAble}) => <React.Fragment key={id}>
                 <div className={'activeBox'}>
                     <Checkbox defaultChecked={active} onChange={async (e) => {
                         await updateCommand(id, e.target.checked, command, message);
@@ -65,20 +77,20 @@ export default function CommandList({commandType = 'default'}: {commandType?: Co
                         await load();
                     }} />
                 </div>
-                <TextArea defaultValue={message} onBlur={async (e) => {
+                <TextArea defaultValue={message} disabled={noResponse === 1} rows={noResponse === 1 ? 1 : 2} onBlur={async (e) => {
                     await updateCommand(id, active, command, e.target.value);
                     await load();
                 }} />
                 <div>
     
-                    <Popconfirm title="Soll dieser Command wirklich gelöscht werden?" onConfirm={async () => {
+                    <Popconfirm disabled={deleteAble === 0} title="Soll dieser Command wirklich gelöscht werden?" onConfirm={async () => {
                         await deleteCommand(id);
                         await load();
                     }} okText="Ja" cancelText="Nein">
-                        <Button type={'danger'} icon={<DeleteOutlined />} />
+                        <Button disabled={deleteAble === 0} type={'danger'} icon={<DeleteOutlined />} />
                     </Popconfirm>
                 </div>
-                <div>{createPreview(message)}</div>
+                <div>{createPreview(message, replaceVars)}</div>
             </React.Fragment>)}
     
             <div className={'activeBox'}>
@@ -89,7 +101,7 @@ export default function CommandList({commandType = 'default'}: {commandType?: Co
             </div>
             <TextArea value={msg} onChange={(e) => setMsg(e.target.value)} placeholder={'Antwort'} />
             <div></div>
-                <div>{createPreview(msg)}</div>
+                <div>{createPreview(msg, replaceVars)}</div>
             <div />
             <div />
             <div className={'createButton'}>
