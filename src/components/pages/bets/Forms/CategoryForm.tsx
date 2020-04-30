@@ -2,26 +2,25 @@ import { ReactElement } from "react";
 import { Form, Typography, Input, Select, Button } from "antd";
 import TextArea from "antd/lib/input/TextArea";
 import { BetSeason } from "../../../../api/@types/BetSeason";
-import { createUserBetSeason } from "../../../../api/betSeason";
 
 interface Props {
-    onCreated: () => void;
+    onFinish?: (data: Partial<BetSeason>) => Promise<void>;
+    onValuesChange?: (data: Partial<BetSeason>) => void;
+    data?: Partial<BetSeason>;
+    title?: string;
+    submitLabel?: string;
 }
 
-export default function NewCategoryForm({onCreated}: Props): ReactElement {
-    const onFinish = async (data: Partial<BetSeason>) => {
-        await createUserBetSeason(data);
-        onCreated();
-    };
-
+export default function CategoryForm({onFinish, onValuesChange, title, submitLabel = 'Erstellen', data = { description: '', name: '', type: 'ladder' }}: Props): ReactElement {
     return <>
-        <Typography.Title level={2}>Neue Kategorie</Typography.Title>
+        {title && <Typography.Title level={2}>{title}</Typography.Title>}
 
         <div className={'form'}>
             <Form
                 name="basic"
-                initialValues={{ description: '', name: '', type: 'ladder' }}
+                initialValues={data}
                 onFinish={onFinish}
+                onValuesChange={(_changed, allValues) => onValuesChange && onValuesChange(allValues)}
                 layout={'vertical'}
             >
                 <Form.Item
@@ -37,16 +36,16 @@ export default function NewCategoryForm({onCreated}: Props): ReactElement {
                 <Form.Item label="Typ" name="type">
                     <Select>
                         <Select.Option value="ladder">Ladder</Select.Option>
-                        <Select.Option value="tournament">Tournier</Select.Option>
+                        <Select.Option value="tournament">Turnier</Select.Option>
                         <Select.Option value="other" disabled>Sonstiges</Select.Option>
                     </Select>
                 </Form.Item>
 
-                <Form.Item>
+                {onFinish && <Form.Item>
                     <Button type="primary" htmlType="submit">
-                        Erstellen
+                        {submitLabel}
                     </Button>
-                </Form.Item>
+                </Form.Item>}
             </Form>
         </div>
 

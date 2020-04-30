@@ -1,7 +1,9 @@
 import { ReactElement } from "react";
-import { Tabs } from "antd";
+import { Tabs, Typography } from "antd";
 import Dashboard from "./Dashboard";
 import BotCommands from "./BotCommands";
+import CurrentCategory from "./Categories/CurrentCategory";
+import CategoryList from "./Categories/CategoryList";
 
 export default function BetTabs(): ReactElement {
     return <Tabs defaultActiveKey="dashboard" animated={false}>
@@ -9,7 +11,9 @@ export default function BetTabs(): ReactElement {
             <Dashboard />
         </Tabs.TabPane>
         <Tabs.TabPane tab="Kategorien" key="categories">
-            Kategorien
+            <Typography.Paragraph>Kategorien ist gleichzusetzen mit einer “Season”. Wettrunden werden immer für eine aktuell ausgewählte Kategorie  gestartet. Du kannst hier alle Kategorien verwalten.</Typography.Paragraph>
+            <CurrentCategory />
+            <CategoryList />
         </Tabs.TabPane>
         <Tabs.TabPane tab="Runden" key="rounds">
             Runden
