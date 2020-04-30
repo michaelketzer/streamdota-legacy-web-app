@@ -10,7 +10,7 @@ import FirstTimeSetup from "./FirstTimeSetup";
 
 export default function Dashboard(): ReactElement {
     const [user, reload] = useAbortFetch<User>(fetchCurrentUser);
-    const [seasons, reloadSeasons] = useAbortFetch<BetSeason[]>(fetchUserBetSeasons);
+    const [seasons] = useAbortFetch<BetSeason[]>(fetchUserBetSeasons);
 
     const onToggleBets = useCallback(async () => {
         await patchUser({useBets: (user.useBets === 1 ? 0 : 1)});

@@ -1,12 +1,17 @@
 import { ReactElement, useState } from "react";
 import { Steps } from "antd";
-import NewCategoryForm from "./Forms/NewCategoryForm";
+import CategoryForm from "./Forms/CategoryForm";
 import BotCommands from "./BotCommands";
+import { BetSeason } from "../../../api/@types/BetSeason";
+import { createUserBetSeason } from "../../../api/betSeason";
 
 const getSteps = (onSeasonCreated: () => void) => [
     {
       title: 'Kategorie',
-      content: <NewCategoryForm onCreated={onSeasonCreated} />,
+      content: <CategoryForm title={'Neue Kategorie'} onFinish={async (data: Partial<BetSeason>) => {
+        await createUserBetSeason(data);
+        onSeasonCreated();
+      }}/>,
     },
     {
       title: 'Streamdota Bot',
