@@ -10,6 +10,7 @@ import { PlusOutlined } from "@ant-design/icons";
 interface Props {
     name: string;
     seasonId: number;
+    canManage: boolean;
 }
 
 const statusName = {
@@ -54,7 +55,7 @@ const columns = [
     },
 ];
 
-export default function SeasonInvites({name, seasonId}: Props): ReactElement {
+export default function SeasonInvites({name, seasonId, canManage}: Props): ReactElement {
     const [invites, reloadInvites] = useAbortFetch<Invite[]>(getInvites, seasonId);
 
     useEffect(() => {
@@ -64,9 +65,9 @@ export default function SeasonInvites({name, seasonId}: Props): ReactElement {
     return <>
         <Typography.Text strong>Einladungen für "{name}"</Typography.Text>
         <Table dataSource={invites} columns={columns} rowKey={'inviteKey'} pagination={false} />
-        <div className={'newButton'}>
-            <Button type={'primary'} icon={<PlusOutlined />}>Neue Einladung</Button>
-        </div>
+        {canManage && <div className={'newButton'}>
+            <Button type={'primary'} icon={<PlusOutlined />} disabled>Neue Einladung</Button>
+        </div>}
 
         <style jsx>{`
             .newButton {

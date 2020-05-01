@@ -2,7 +2,7 @@ import { ReactElement } from "react";
 import { Tabs } from "antd";
 import Dashboard from "./Dashboard";
 import BotCommands from "./BotCommands";
-import Category from "./Categories/Category";
+import CategoryTab from "./Categories/Tab";
 
 export default function BetTabs(): ReactElement {
     return <Tabs defaultActiveKey="dashboard" animated={false}>
@@ -10,7 +10,7 @@ export default function BetTabs(): ReactElement {
             <Dashboard />
         </Tabs.TabPane>
         <Tabs.TabPane tab="Kategorien" key="categories">
-            <Category />
+            <CategoryTab />
         </Tabs.TabPane>
         <Tabs.TabPane tab="Runden" key="rounds">
             Runden

@@ -1,4 +1,4 @@
-import { BetSeason, Invite } from "./@types/BetSeason";
+import { BetSeason, Invite, BetSeasonUser } from "./@types/BetSeason";
 import { get, create, del, patch } from "./request";
 
 export async function fetchUserBetSeasons(abortController: AbortController): Promise<BetSeason[]> {
@@ -19,4 +19,8 @@ export async function patchBetSeason(id: number, data: Partial<BetSeason>): Prom
 
 export async function getInvites(abortController: AbortController, id: number): Promise<Invite[]> {
     return await get<Invite[]>('/betSeason/invites/' + id, 'json', {signal: abortController.signal});
+}
+
+export async function getUsers(abortController: AbortController, id: number): Promise<BetSeasonUser[]> {
+    return await get<BetSeasonUser[]>('/betSeason/users/' + id, 'json', {signal: abortController.signal});
 }
