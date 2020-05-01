@@ -2,6 +2,7 @@ import { BetSeason } from "../../../../api/@types/BetSeason";
 import { ReactElement } from "react";
 import { List, Typography, Popconfirm } from "antd";
 import { BranchesOutlined, EditFilled, DeleteFilled } from "@ant-design/icons";
+import classNames from "classnames";
 
 const nameMap = {
     ladder: 'Ladder',
@@ -9,23 +10,24 @@ const nameMap = {
 }
 
 interface Props {
+    activeSeason: number;
     season: BetSeason;
     onEdit: () => void;
     onDelete: () => void;
 }
 
-export default function ListItem({season,onEdit, onDelete}: Props): ReactElement {
+export default function ListItem({activeSeason, season, onEdit, onDelete}: Props): ReactElement {
     return <List.Item key={season.id}>
     <div className={'item'}>
         <div className={'header'}>
-            <Typography.Text>{season.name}</Typography.Text>
+            <Typography.Text><span className={classNames({active: activeSeason === season.id})}>{season.name}</span></Typography.Text>
             <div className={'type'}>
                 <div className={'typeName'}>{nameMap[season.type]}</div>
                 <BranchesOutlined />
             </div>
         </div>
 
-        <div className={'description'}>{season.description}</div>
+        <div className={'description'}><Typography.Text type="secondary">{season.description}</Typography.Text></div>
 
         <div className={'footer'}>
             <div className={'link'} onClick={onEdit}>
@@ -60,7 +62,6 @@ export default function ListItem({season,onEdit, onDelete}: Props): ReactElement
         }
 
         .description {
-            color: #8C8C8C;
             font-size: 12px;
             line-height: 20px;
             margin-bottom: 10px;
@@ -86,6 +87,10 @@ export default function ListItem({season,onEdit, onDelete}: Props): ReactElement
         .item {
             padding: 15px 0;
             width: 100%;
+        }
+
+        .active {
+            color: #096DD9;
         }
     `}</style>
 </List.Item>

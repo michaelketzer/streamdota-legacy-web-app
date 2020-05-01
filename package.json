@@ -8,6 +8,7 @@
   "license": "MIT",
   "dependencies": {
     "@ant-design/icons": "^4.0.5",
+    "@types/classnames": "^2.2.10",
     "antd": "^4.1.0",
     "classnames": "^2.2.6",
     "dayjs": "^1.8.23",
