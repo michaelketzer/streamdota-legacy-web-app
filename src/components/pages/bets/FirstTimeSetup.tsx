@@ -1,6 +1,6 @@
 import { ReactElement, useState } from "react";
 import { Steps } from "antd";
-import CategoryForm from "./Forms/CategoryForm";
+import CategoryForm from "./Categories/Form";
 import BotCommands from "./BotCommands";
 import { BetSeason } from "../../../api/@types/BetSeason";
 import { createUserBetSeason } from "../../../api/betSeason";

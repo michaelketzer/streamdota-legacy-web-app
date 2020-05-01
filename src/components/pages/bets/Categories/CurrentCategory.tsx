@@ -4,12 +4,10 @@ import { fetchCurrentUser, patchUser } from "../../../../api/user";
 import { User } from "../../../../api/@types/User";
 import { Select, Typography } from "antd";
 import Loader from "../../../Loader";
-import { BetSeason } from "../../../../api/@types/BetSeason";
-import { fetchUserBetSeasons } from "../../../../api/betSeason";
+import { CategoryProps } from "./Category";
 
-export default function CurrentCategory(): ReactElement {
+export default function CurrentCategory({seasons}: CategoryProps): ReactElement {
     const [user] = useAbortFetch<User>(fetchCurrentUser);
-    const [seasons] = useAbortFetch<BetSeason[]>(fetchUserBetSeasons);
 
     if(user && seasons) {
         return <>
