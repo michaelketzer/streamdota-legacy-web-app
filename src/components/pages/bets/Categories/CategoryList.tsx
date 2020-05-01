@@ -11,7 +11,7 @@ import ListItem from "./ListItem";
 
 export const emptySeason: () => Partial<BetSeason> = () => ({id: null, name: '', description: '', type: 'tournament'});
 
-export default function CategoryList({seasons, reload, currentBetSeason}: CategoryProps): ReactElement {
+export default function CategoryList({seasons, reload, currentBetSeason, canManage}: CategoryProps & {canManage: boolean}): ReactElement {
     const [category, setCategory] = useState<Partial<BetSeason> | null>(null);
 
     if(seasons) {
@@ -23,7 +23,7 @@ export default function CategoryList({seasons, reload, currentBetSeason}: Catego
             }} />} />
 
             <div className={'buttons'}>
-                <Button type={'primary'} size={'middle'} icon={<PlusOutlined />} onClick={() => setCategory(emptySeason())}>Neue Kategorie</Button>
+                {canManage && <Button type={'primary'} size={'middle'} icon={<PlusOutlined />} onClick={() => setCategory(emptySeason())}>Neue Kategorie</Button>}
                 <Button type={'dashed'} size={'middle'} icon={<PlusOutlined />} disabled>Einladung annehmen</Button>
             </div>
             <CategoryPopup season={category} onFinish={() => reload()}/>

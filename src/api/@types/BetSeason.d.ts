@@ -12,3 +12,9 @@ export interface Invite {
     status: 'open';
     invitedBy: string;
 }
+
+export interface BetSeasonUser {
+    id: number;
+    displayName: string;
+    userRole: 'owner' | 'user';
+}
