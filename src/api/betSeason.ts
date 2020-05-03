@@ -1,4 +1,4 @@
-import { BetSeason, Invite, BetSeasonUser } from "./@types/BetSeason";
+import { BetSeason, Invite, BetSeasonUser, BetToplist } from "./@types/BetSeason";
 import { get, create, del, patch } from "./request";
 import { BetRound } from "./@types/BetRound";
 
@@ -24,6 +24,10 @@ export async function getInvites(abortController: AbortController, id: number): 
 
 export async function getUsers(abortController: AbortController, id: number): Promise<BetSeasonUser[]> {
     return await get<BetSeasonUser[]>('/betSeason/users/' + id, 'json', {signal: abortController.signal});
+}
+
+export async function getToplist(abortController: AbortController, id: number): Promise<BetToplist[]> {
+    return await get<BetToplist[]>('/betSeason/toplist/' + id, 'json', {signal: abortController.signal});
 }
 
 export async function getRounds(abortController: AbortController, id: number): Promise<BetRound[]> {

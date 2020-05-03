@@ -18,3 +18,10 @@ export interface BetSeasonUser {
     displayName: string;
     userRole: 'owner' | 'user';
 }
+
+export interface BetToplist {
+    name: string;
+    username: string;
+    won: number;
+    total: number;
+}
