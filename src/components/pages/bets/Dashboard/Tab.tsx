@@ -1,14 +1,15 @@
 import { ReactElement, useCallback } from "react";
-import { useAbortFetch } from "../../../hooks/abortFetch";
-import { fetchCurrentUser, patchUser } from "../../../api/user";
-import { User } from "../../../api/@types/User";
+import { useAbortFetch } from "../../../../hooks/abortFetch";
+import { fetchCurrentUser, patchUser } from "../../../../api/user";
+import { User } from "../../../../api/@types/User";
 import { Switch } from "antd";
-import { BetSeason } from "../../../api/@types/BetSeason";
-import { fetchUserBetSeasons } from "../../../api/betSeason";
-import FirstTimeSetup from "./FirstTimeSetup";
+import { BetSeason } from "../../../../api/@types/BetSeason";
+import { fetchUserBetSeasons } from "../../../../api/betSeason";
+import FirstTimeSetup from "../FirstTimeSetup";
+import Dashboard from "./Dashboard";
 
 
-export default function Dashboard(): ReactElement {
+export default function Tab(): ReactElement {
     const [user, reload] = useAbortFetch<User>(fetchCurrentUser);
     const [seasons] = useAbortFetch<BetSeason[]>(fetchUserBetSeasons);
 
@@ -24,6 +25,7 @@ export default function Dashboard(): ReactElement {
         </div>
 
         {user && user.useBets === 1 && seasons && seasons.length === 0 && <FirstTimeSetup />}
+        {user && user.useBets === 1 && seasons && seasons.length > 0 && <Dashboard />}
 
         <style jsx>{`
             .enableBets {
