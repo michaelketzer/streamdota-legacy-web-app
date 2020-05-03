@@ -1,26 +1,18 @@
-import { ReactElement, useState, useEffect } from "react";
-import { useAbortFetch } from "../../../../hooks/abortFetch";
-import { User } from "../../../../api/@types/User";
-import { fetchCurrentUser } from "../../../../api/user";
+import { ReactElement } from "react";
 import Loader from "../../../Loader";
-import CategorySelect from "./CategorySelect";
+import CategorySelect, { useSelectedCategory } from "../CategorySelect";
 import RoundsTable from "./RoundsTable";
 
 
 export default function Tab(): ReactElement {
-    const [user] = useAbortFetch<User>(fetchCurrentUser);
-    const [season, setSeason] = useState(null);
+    const {category, setCategory} = useSelectedCategory();
 
-    useEffect(() => {
-        user && setSeason(user.betSeasonId);
-    }, [user]);
-
-    if(user) {
+    if(category) {
         return <>
-            <CategorySelect season={season} setSeason={setSeason} />
+            <CategorySelect season={category} setSeason={setCategory} />
             <br />
             <br />
-            {season && <RoundsTable season={season} />}
+            <RoundsTable season={category} />
         </>;
     }
 
