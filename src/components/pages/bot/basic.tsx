@@ -4,7 +4,7 @@ import { Alert, Typography } from "antd";
 export default function Basic(): ReactElement {
     return <div className={'wrapper'}>
         <Alert message={<>
-            Vergess nicht den Bot zum Mod zu machen, das verhindert Probleme mit dem Chat. Einfach <span style={{fontFamily: 'monospace'}}><Typography.Text code>/mod streamdotade</Typography.Text></span> im Chat schreiben!
+            Vergess nicht den Bot zum Mod zu machen, das verhindert Probleme mit dem Chat. Einfach <span style={{fontFamily: 'monospace'}}><Typography.Text code>/mod TheTinkBot</Typography.Text></span> im Chat schreiben!
         </>} type={'warning'} />
         <br />
         <Alert message={<>
