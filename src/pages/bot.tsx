@@ -17,8 +17,8 @@ const Timers = dynamic(
 
 export default function Bot(): ReactElement {
     return <PageFrame title={'Bot'}>
-        <PageHeader title={'StreamDota Bot'} 
-                    description={'StreamDota Bot ist ein Chatbot welcher dir Unterhaltung, Informationen zum aktuellen Dota2 Spiel und Interaktionen mit dem Chat bietet.'} />
+        <PageHeader title={'TinkBot'} 
+                    description={'TinkBot ist ein Chatbot welcher dir Unterhaltung, Informationen zum aktuellen Dota2 Spiel und Interaktionen mit dem Chat bietet.'} />
 
         <Tabs defaultActiveKey="info" animated={false}>
             <Tabs.TabPane tab="Info" key="info">
