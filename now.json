@@ -15,13 +15,5 @@
         "src": "next.config.js",
         "use": "@now/next"
       }
-    ],
-    "build": {
-      "env": {
-          "API_URL": "@streamdota-staging-url"
-      }
-    },
-    "env": {
-        "API_URL": "@streamdota-staging-url"
-    }
+    ]
   }
