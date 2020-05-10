@@ -1,4 +1,5 @@
 import dayjs from 'dayjs';
+import { CurrentBetRound } from '../../pages/bets/BetContext/state';
 
 enum ACTIONS {
     NEW_MESSAGE = 'NEW_MESSAGE',
@@ -8,6 +9,7 @@ export enum MessageType {
     chat = 'chat',
     gamestate = 'gamestate',
     winner = 'winner',
+    betting = 'betting',
 }
 
 export interface GameStateMessage {
@@ -30,8 +32,13 @@ export interface ChatMessage {
         message: string;
     };
 }
+export interface BettingMessage {
+    type: MessageType.betting;
+    date: number;
+    value: CurrentBetRound;
+}
 
-export type Message =  GameStateMessage | WinnerMessage | ChatMessage;
+export type Message =  GameStateMessage | WinnerMessage | ChatMessage | BettingMessage;
 
 interface NewMessageAction {
     type: typeof ACTIONS.NEW_MESSAGE;

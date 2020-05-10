@@ -1,38 +1,27 @@
 import { ReactElement, useState } from "react";
 import { PlayCircleFilled } from "@ant-design/icons";
 import classNames from "classnames";
+import { setWinner } from "../../../../api/bets";
+import { createRound } from "../../../../api/betSeason";
 
-export enum Status {
-    ready = 'ready',
-    started = 'started',
-    running = 'running',
-    finished = 'finished'
-}
-
-export default function StatusTile({setStatus, status}: {status: Status; setStatus: (status: Status) => void}): ReactElement {
-
-    function setWinner(winner: string): void {
-        console.log('set winner', winner);
-        setStatus(Status.ready);
-    }
-
-    return <div className={classNames('statusTileWrapper', status)}>
-        {status === Status.ready && <>
-            <div className={'value ready'} onClick={() => setStatus(Status.started)}>
+export default function StatusTile({status}: {status: 'betting' | 'running' | 'finished'}): ReactElement {
+    return <div className={classNames('statusTileWrapper', status)} onClick={async () => {
+        if(status === 'finished') {
+            await createRound();
+        }
+    }}>
+        {status === 'finished' && <>
+            <div className={'value ready'}>
                 <PlayCircleFilled />
                 <div className={'iconLabel'}>Wette starten</div>
             </div>
             <div className={'label'}>STATUS</div>
         </>}
-        {status === Status.started && <>
-            <div className={'value started'} onClick={() => setStatus(Status.running)}>Wetten laufen</div>
+        {status === 'betting' && <>
+            <div className={'value started'}>Wetten laufen</div>
             <div className={'label'}>STATUS</div>
         </>}
-        {status === Status.running && <>
-            <div className={'value running'} onClick={() => setStatus(Status.finished)}>Spiel läuft</div>
-            <div className={'label'}>STATUS</div>
-        </>}
-        {status === Status.finished && <>
+        {status === 'running' && <>
             <div className={'value finished'}>Spiel fertig</div>
             <div className={'winnerSelect'}>
                 <span className={'winnerA'} onClick={() => setWinner('a')}>A</span>
@@ -114,6 +103,7 @@ export default function StatusTile({setStatus, status}: {status: Status; setStat
                 color: #0050B3;
                 font-size: 30px;
                 line-height: 38px;
+                cursor: pointer;
             }
 
             .label {
