@@ -1,33 +1,24 @@
 import { ReactElement, useState, useMemo } from "react";
 import SimpleValueTile from "./SimpleValueTile";
-import StatusTile, { Status } from "./StatusTile";
-import { BetRound } from "../../../../api/@types/BetRound";
+import StatusTile from "./StatusTile";
+import { useBetState } from "../BetContext/Context";
+import TimingTile from "./TimingTile";
 
 export default function Dashboard(): ReactElement {
-    const [status, setStatus] = useState<Status>(Status.ready);
-    const [data] = useState<Partial<BetRound>>();
-
-    const time = useMemo(() => {
-        if(status === Status.ready) {
-            return 'Warte auf Spiel';
-        } else if(status === Status.started) {
-            return '0:15';
-        }
-
-        return 'Abgelaufen';
-    }, [status, data]);
-
+    const [{status, bets, created, aBets, bBets}] = useBetState();
 
     return <div className={'dashboardGrid'}>
         <div className={'singleTile'}>
-            <StatusTile status={status} setStatus={setStatus} />
+            <StatusTile status={status} />
         </div>
         <div className={'singleTile'}>
-            <SimpleValueTile value={time} label={'Zeit'} />
+            <TimingTile created={created} status={status} />
         </div>
-        <div className={'singleTile doubleTile'} />
+        <div className={'singleTile doubleTile'}>
+            {aBets} / {bBets}
+        </div>
         <div className={'singleTile'}>
-            <SimpleValueTile value={'43'} label={'Abstimmungen'} />
+            <SimpleValueTile value={'' + bets} label={'Abstimmungen'} />
         </div>
         <div className={'singleTile'}>
             <SimpleValueTile value={'12%'} label={'Chat Teilnahme'} />

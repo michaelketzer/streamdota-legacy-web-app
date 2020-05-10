@@ -5,11 +5,14 @@ import BotCommands from "./BotCommands";
 import CategoryTab from "./Categories/Tab";
 import BetRoundsTab from "./BetRounds/Tab";
 import ToplistTab from "./Toplist/Tab";
+import BetContext from "./BetContext/Context";
 
 export default function BetTabs(): ReactElement {
     return <Tabs defaultActiveKey="dashboard" animated={false} destroyInactiveTabPane>
         <Tabs.TabPane tab="Dashboard" key="dashboard">
-            <DashboardTab />
+            <BetContext>
+                <DashboardTab />
+            </BetContext>
         </Tabs.TabPane>
         <Tabs.TabPane tab="Kategorien" key="categories">
             <CategoryTab />
