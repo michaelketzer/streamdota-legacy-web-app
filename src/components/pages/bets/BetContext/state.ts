@@ -10,6 +10,7 @@ export interface CurrentBetRound {
     bets: number;
     aBets: number;
     bBets: number;
+    chatters: number;
 }
 
 interface UpdateAction {
