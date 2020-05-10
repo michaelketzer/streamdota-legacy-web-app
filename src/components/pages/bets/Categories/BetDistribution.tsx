@@ -3,15 +3,16 @@ import { ReactElement, useMemo } from "react";
 interface Props {
     aBets: number;
     bBets: number;
+    bets: number;
 }
 
-export default function BetDistribution({aBets, bBets}: Props): ReactElement {
+export default function BetDistribution({aBets, bBets, bets}: Props): ReactElement {
     const percentage = useMemo(() => {
-        if((aBets + bBets) > 0) {
-            return (aBets * 100) / (aBets + bBets);
+        if((bets) > 0) {
+            return (aBets * 100) / bets;
         }
         return 50;
-    }, [aBets, bBets]);
+    }, [aBets, bBets, bets]);
 
     return <>
         <div className={'header'}>Wettverteilung</div>
