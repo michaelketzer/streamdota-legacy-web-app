@@ -3,6 +3,7 @@ import SimpleValueTile from "./SimpleValueTile";
 import StatusTile from "./StatusTile";
 import { useBetState } from "../BetContext/Context";
 import TimingTile from "./TimingTile";
+import BetDistribution from "../Categories/BetDistribution";
 
 export default function Dashboard(): ReactElement {
     const [{status, bets, created, aBets, bBets}] = useBetState();
@@ -15,7 +16,7 @@ export default function Dashboard(): ReactElement {
             <TimingTile created={created} status={status} />
         </div>
         <div className={'singleTile doubleTile'}>
-            {aBets} / {bBets}
+            <BetDistribution aBets={aBets} bBets={bBets} />
         </div>
         <div className={'singleTile'}>
             <SimpleValueTile value={'' + bets} label={'Abstimmungen'} />
