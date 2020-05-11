@@ -21,7 +21,7 @@ export default function DotaWLTabs(): ReactElement {
         </Tabs.TabPane>
 
         <Tabs.TabPane tab="Dota GSI Konfiguration" key="2">
-            <ContextProvider initialState={initialState} reducer={reducer} url={'wss://api.streamdota.de/dota-gsi/logs/' + (user && user.frameApiKey)}>
+            <ContextProvider initialState={initialState} reducer={reducer} url={'wss://api.streamdota.com/dota-gsi/logs/' + (user && user.frameApiKey)}>
                 <SetupGsi gsiAuth={user && user.gsiAuth} gsiConnected={user && user.gsiConnected} reload={reload}/>
             </ContextProvider>
 
