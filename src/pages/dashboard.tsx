@@ -27,7 +27,7 @@ export default function Dashboard(): ReactElement {
                 <br />
 
 
-                <h1>Willkommen auf streamdota.de</h1>
+                <h1>Willkommen auf streamdota.com</h1>
 
 
                 <p>Aktuell ist diese Seite noch Work In Progress. Über die nächsten Wochen kommen immer weitere und neuere Features dazu.</p>
