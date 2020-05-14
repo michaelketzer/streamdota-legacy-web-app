@@ -7,9 +7,8 @@ import { Command } from "../../../api/@types/Command";
 import { getCommands } from "../../../api/command";
 
 export default function BotCommands(): ReactElement {
-    const [commands] = useAbortFetch<Command[]>(getCommands);
-
-    const betCommand = commands && commands.find(({type, noResponse}) => noResponse && type === 'betting_user');
+    const [commands, reload] = useAbortFetch<Command[]>(getCommands);
+    const betCommand = commands && commands.find(({identifier}) => identifier === 'bet');
     
     return <>
 
@@ -19,9 +18,11 @@ export default function BotCommands(): ReactElement {
         <Tags tags={['bet_command', 'winner', 'toplist_stats', 'user_bets_correct', 'user_bets_wrong', 'user_bets_total', 'user_bets_accuracy']} />
 
         <div><Typography.Text strong>Streamer Commands</Typography.Text></div>
-        <CommandList commandType={'betting_streamer'} replaceVars={{BET_COMMAND: betCommand && betCommand.command}}/>
+        <CommandList commandType={'betting_streamer'} replaceVars={{BET_COMMAND: betCommand && betCommand.command}} onChange={reload} canCreate={false}/>
+
+        <div style={{margin: '40px 0'}} />
 
         <div><Typography.Text strong>User Commands</Typography.Text></div>
-        <CommandList commandType={'betting_user'} replaceVars={{BET_COMMAND: betCommand && betCommand.command}} />
+        <CommandList commandType={'betting_user'} replaceVars={{BET_COMMAND: betCommand && betCommand.command}} onChange={reload} />
     </>;
 }
