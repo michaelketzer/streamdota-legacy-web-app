@@ -37,13 +37,20 @@ function createPreview(msg: string, vars: {[x: string]: string}): string {
 interface Props {
     commandType?: Command['type'];
     replaceVars?: {[x: string]: string};
+    onChange?: () => Promise<void>;
+    canCreate?: boolean;
 }
 
-export default function CommandList({commandType = 'default', replaceVars = {}}: Props): ReactElement {
-    const [commands, load] = useAbortFetch<Command[]>(getCommands);
+export default function CommandList({commandType = 'default', replaceVars = {}, onChange = () => undefined, canCreate=true}: Props): ReactElement {
+    const [commands, reload] = useAbortFetch<Command[]>(getCommands);
     const [cmd, setCmd] = useState('');
     const [msg, setMsg] = useState('');
     const [act, setAct] = useState(false);
+
+    const load = useCallback(async () => {
+        await reload();
+        await onChange();
+    }, [reload, onChange]);
 
     const create = useCallback(async () => {
         if(msg.length > 0 && cmd.length > 0) {
@@ -92,21 +99,23 @@ export default function CommandList({commandType = 'default', replaceVars = {}}:
                 </div>
                 <div>{createPreview(message, replaceVars)}</div>
             </React.Fragment>)}
-    
-            <div className={'activeBox'}>
-                <Checkbox defaultChecked={act} onChange={(e) => setAct(e.target.checked)}/>
-            </div>
-            <div>
-                <Input value={cmd} onChange={(e) => setCmd(e.target.value)} placeholder={'Command'} />
-            </div>
-            <TextArea value={msg} onChange={(e) => setMsg(e.target.value)} placeholder={'Antwort'} />
-            <div></div>
-                <div>{createPreview(msg, replaceVars)}</div>
-            <div />
-            <div />
-            <div className={'createButton'}>
-                <Button type={'primary'} onClick={create}>Erstellen</Button>
-            </div>
+                
+            {canCreate && <>
+                <div className={'activeBox'}>
+                    <Checkbox defaultChecked={act} onChange={(e) => setAct(e.target.checked)}/>
+                </div>
+                <div>
+                    <Input value={cmd} onChange={(e) => setCmd(e.target.value)} placeholder={'Command'} />
+                </div>
+                <TextArea value={msg} onChange={(e) => setMsg(e.target.value)} placeholder={'Antwort'} />
+                <div></div>
+                    <div>{createPreview(msg, replaceVars)}</div>
+                <div />
+                <div />
+                <div className={'createButton'}>
+                    <Button type={'primary'} onClick={create}>Erstellen</Button>
+                </div>
+            </>}
     
             <style jsx>{`
                 .activeBox {

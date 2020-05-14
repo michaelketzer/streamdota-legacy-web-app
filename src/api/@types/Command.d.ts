@@ -7,4 +7,5 @@ export interface Command {
     access: 'user' | 'mod' | 'streamer';
     noResponse: number;
     deleteAble: number;
+    identifier: 'bet' | 'startbet' | 'betwinner';
 }
