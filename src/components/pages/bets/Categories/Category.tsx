@@ -17,7 +17,7 @@ export interface CategoryProps {
 
 export default function Category({user, reloadUser}: {user: User; reloadUser: () => void}): ReactElement {
     const [seasons, load] = useAbortFetch<BetSeason[]>(fetchUserBetSeasons);
-    const currentSeasonName = useMemo(() => (seasons && seasons.find(({id}) => id === user.betSeasonId).name) || '', [user, seasons]);
+    const currentSeasonName = useMemo(() => (seasons && user.betSeasonId && seasons.find(({id}) => id === user.betSeasonId).name) || '', [user, seasons]);
     const [users, reloadUsers] = useAbortFetch<BetSeasonUser[]>(getUsers, user.betSeasonId);
     const canManage = useMemo(() => users && users.find(({userRole}) => userRole === 'owner').id === user.id, [users]);
 
@@ -38,11 +38,11 @@ export default function Category({user, reloadUser}: {user: User; reloadUser: ()
                 <CategoryList seasons={seasons} reload={load} currentBetSeason={user.betSeasonId} canManage={canManage} />
             </Col>
 
-            <Col span={12}>
+            {user.betSeasonId && <Col span={12}>
                 <CategoryInvites name={currentSeasonName} seasonId={user.betSeasonId} canManage={canManage} />
                 <div style={{margin: '30px 0'}} />
                 <CategoryUsers name={currentSeasonName} seasonId={user.betSeasonId} canManage={canManage} />
-            </Col>
+            </Col>}
         </Row>
     </>;
 }

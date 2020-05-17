@@ -4,7 +4,7 @@ import { fetchCurrentUser } from "../../../../api/user";
 import Loader from "../../../Loader";
 import ContextProvider, { useStateValue } from "../../../context/websocket/context";
 import { initialState, reducer, MessageType } from "../../../context/websocket/state";
-import { BetState, betReducer, updateState } from "./state";
+import { BetState, betReducer, updateState, CurrentBetRound } from "./state";
 import { fetchCurrentBetRound } from "../../../../api/bets";
 import { useMessageListener } from "../../../context/websocket/MessageHandler";
 
@@ -25,8 +25,18 @@ const BetStateUpdated = () => {
     return <></>;
 };
 
-const BetContextProvider = ({children, initialState}) => {
+const defaultBetState: CurrentBetRound = {
+    id: '',
+    status: 'finished',
+    created: 0,
+    result: '',
+    bets: 0,
+    aBets: 0,
+    bBets: 0,
+    chatters: 0,
+};
 
+const BetContextProvider = ({children, initialState}) => {
     return <context.Provider value={useReducer(betReducer, initialState)}>
         <BetStateUpdated />
         {children}
@@ -37,9 +47,10 @@ export default function BetContext({children}: {children: ReactElement}): ReactE
     const [user] = useAbortFetch(fetchCurrentUser);
     const [status] = useAbortFetch(fetchCurrentBetRound);
 
-    if(user && status) {
+    console.log(status);
+    if(user && status !== undefined) {
         return <ContextProvider initialState={initialState} reducer={reducer} url={'ws://localhost/bets/live/' + (user && user.frameApiKey)}>
-            <BetContextProvider initialState={status}>
+            <BetContextProvider initialState={status || defaultBetState}>
                 {children}
             </BetContextProvider>
         </ContextProvider>;

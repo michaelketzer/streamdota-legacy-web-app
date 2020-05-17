@@ -7,6 +7,7 @@ import { BetSeason } from "../../../../api/@types/BetSeason";
 import { fetchUserBetSeasons } from "../../../../api/betSeason";
 import FirstTimeSetup from "../FirstTimeSetup";
 import Dashboard from "./Dashboard";
+import BetContext from "../BetContext/Context";
 
 
 export default function Tab(): ReactElement {
@@ -25,7 +26,7 @@ export default function Tab(): ReactElement {
         </div>
 
         {user && user.useBets === 1 && seasons && seasons.length === 0 && <FirstTimeSetup />}
-        {user && user.useBets === 1 && seasons && seasons.length > 0 && <Dashboard />}
+        {user && user.useBets === 1 && seasons && seasons.length > 0 && <BetContext><Dashboard /></BetContext>}
 
         <style jsx>{`
             .enableBets {
