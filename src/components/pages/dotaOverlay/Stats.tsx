@@ -1,9 +1,10 @@
 import React, { ReactElement, useCallback } from 'react';
-import { patchUser } from '../../../api/user';
 import Loader from '../../Loader';
 import { Radio, Typography } from 'antd';
 import { User } from '../../../api/@types/User';
 import { useCurrentUser } from '../../../hooks/currentUser';
+import { useDispatch } from 'react-redux';
+import { updateCurrentUser } from '../../../modules/reducer/Ui';
 
 const radioStyle = {
 	display: 'block',
@@ -13,9 +14,10 @@ const radioStyle = {
 
 export default function Stats(): ReactElement {
 	const user = useCurrentUser();
+	const dispatch = useDispatch();
 
 	const patch = useCallback(async (dotaStatsFrom: User['dotaStatsFrom']) => {
-		await patchUser({ dotaStatsFrom });
+		await dispatch(updateCurrentUser({ dotaStatsFrom }));
 	}, []);
 
 	if (user) {

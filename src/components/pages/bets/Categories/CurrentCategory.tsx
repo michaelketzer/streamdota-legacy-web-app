@@ -1,10 +1,12 @@
 import React, { ReactElement } from 'react';
-import { patchUser } from '../../../../api/user';
 import { Select, Typography } from 'antd';
 import Loader from '../../../Loader';
 import { CategoryProps } from './Category';
+import { useDispatch } from 'react-redux';
+import { updateCurrentUser } from '../../../../modules/reducer/Ui';
 
 export default function CurrentCategory({ seasons, currentBetSeason }: CategoryProps): ReactElement {
+	const dispatch = useDispatch();
 	if (seasons) {
 		return (
 			<React.Fragment>
@@ -14,7 +16,7 @@ export default function CurrentCategory({ seasons, currentBetSeason }: CategoryP
 					defaultValue={currentBetSeason}
 					style={{ width: '200px' }}
 					onChange={async (betSeasonId) => {
-						await patchUser({ betSeasonId });
+						await dispatch(updateCurrentUser({ betSeasonId }));
 					}}>
 					{seasons.map(({ id, name }) => (
 						<Select.Option key={id} value={id}>
