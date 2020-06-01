@@ -1,12 +1,13 @@
 import { ReactElement, useCallback, useState, useMemo } from "react";
-import { useAbortFetch } from "../../../hooks/abortFetch";
-import { getCommands, updateCommand, createCommand, deleteCommand } from "../../../api/command";
-import { Command } from "../../../api/@types/Command";
 import React from "react";
 import { Input, Button, Popconfirm, Checkbox } from "antd";
 import {DeleteOutlined} from '@ant-design/icons';
 import Loader from "../../Loader";
 import TextArea from "antd/lib/input/TextArea";
+import { useDispatch } from "react-redux";
+import { useUserCommands } from "../../../modules/selector/Command";
+import { createCommand, updateCommand, deleteCommand } from "../../../modules/reducer/Command";
+import { Command } from "@streamdota/shared-types";
 
 const replace = {
     UPTIME: '4 Stunden und 20 Minuten',
@@ -37,31 +38,23 @@ function createPreview(msg: string, vars: {[x: string]: string}): string {
 interface Props {
     commandType?: Command['type'];
     replaceVars?: {[x: string]: string};
-    onChange?: () => Promise<void>;
     canCreate?: boolean;
 }
 
-export default function CommandList({commandType = 'default', replaceVars = {}, onChange = () => undefined, canCreate=true}: Props): ReactElement {
-    const [commands, reload] = useAbortFetch<Command[]>(getCommands);
+export default function CommandList({commandType = 'default', replaceVars = {}, canCreate=true}: Props): ReactElement {
+    const commands = useUserCommands('default');
+    const dispatch = useDispatch();
     const [cmd, setCmd] = useState('');
     const [msg, setMsg] = useState('');
     const [act, setAct] = useState(false);
 
-    const load = useCallback(async () => {
-        await reload();
-        await onChange();
-    }, [reload, onChange]);
-
     const create = useCallback(async () => {
         if(msg.length > 0 && cmd.length > 0) {
-            await createCommand(act, cmd, msg, commandType);
-            await load();
+            dispatch(createCommand({active: act, command: cmd, message: msg, type: commandType}));
             setCmd('');
             setMsg('');
         }
     }, [act, cmd, msg]);
-
-    const commandsByType = useMemo(() => (commands || []).filter(({type}) => type === commandType), [commands, commandType]);
 
     if(commands) {
         return <div className={'commandsGrid'}>
@@ -71,30 +64,26 @@ export default function CommandList({commandType = 'default', replaceVars = {}, 
             <div className={'label'}></div>
             <div className={'label'}>Vorschau</div>
 
-            {commandsByType.map(({active, id, command, message, noResponse, deleteAble}) => <React.Fragment key={id}>
+            {commands.map(({active, id, command, message, noResponse, deleteAble}) => <React.Fragment key={id}>
                 <div className={'activeBox'}>
                     <Checkbox defaultChecked={active} onChange={async (e) => {
-                        await updateCommand(id, e.target.checked, command, message);
-                        await load();
+                        await dispatch(updateCommand(id, {active: e.target.checked}));
                     }}/>
                 </div>
                 <div>
                     <Input defaultValue={command} onBlur={async (e) => {
-                        await updateCommand(id, active, e.target.value, message);
-                        await load();
+                        await dispatch(updateCommand(id, { command: e.target.value }));
                     }} />
                 </div>
-                <TextArea defaultValue={message} disabled={noResponse === 1} rows={noResponse === 1 ? 1 : 2} onBlur={async (e) => {
-                    await updateCommand(id, active, command, e.target.value);
-                    await load();
+                <TextArea defaultValue={message} disabled={noResponse} rows={noResponse ? 1 : 2} onBlur={async (e) => {
+                    await dispatch(updateCommand(id, { message: e.target.value }));
                 }} />
                 <div>
     
-                    <Popconfirm disabled={deleteAble === 0} title="Soll dieser Command wirklich gelöscht werden?" onConfirm={async () => {
-                        await deleteCommand(id);
-                        await load();
+                    <Popconfirm disabled={!deleteAble} title="Soll dieser Command wirklich gelöscht werden?" onConfirm={async () => {
+                        await dispatch(deleteCommand(id));
                     }} okText="Ja" cancelText="Nein">
-                        <Button disabled={deleteAble === 0} type={'danger'} icon={<DeleteOutlined />} />
+                        <Button danger disabled={!deleteAble} type={'primary'} icon={<DeleteOutlined />} />
                     </Popconfirm>
                 </div>
                 <div>{createPreview(message, replaceVars)}</div>

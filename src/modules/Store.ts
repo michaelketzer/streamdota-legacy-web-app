@@ -5,11 +5,20 @@ import { HYDRATE, MakeStore, createWrapper } from 'next-redux-wrapper';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
 import networkMiddleware from './middleware/NetworkMiddleware';
+import { CommandState, commandReducer } from './reducer/Command';
+import { entitiesReducer } from './reducer/util/EntityReducer';
+import { combiner } from './reducer/util/Combiner';
 
 export interface State {
+	entities: {
+		command: CommandState;
+	};
 	ui: Ui;
 }
 const initial: State = {
+	entities: {
+		command: undefined,
+	},
 	ui: initialUiState,
 };
 
@@ -23,6 +32,10 @@ addReducer<HydrateAction>(HYDRATE, (store) => ({ ...store }));
 
 export const storeReducer = combineReducers<State>({
 	...stateReducer,
+	//@ts-ignore
+	entities: combiner({
+		command: entitiesReducer(commandReducer, 'command'),
+	}),
 	ui: uiReducer,
 });
 
