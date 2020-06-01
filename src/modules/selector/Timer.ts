@@ -1,5 +1,5 @@
 import { State } from '../Store';
-import { Command, Timer } from '@streamdota/shared-types';
+import { Timer } from '@streamdota/shared-types';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { loadUserTimer } from '../reducer/Timer';
