@@ -2,10 +2,6 @@ import { User, DotaStats, BotData } from './@types/User';
 import { get, patch, del } from './request';
 import { SteamConnection } from './@types/SteamConnection';
 
-export async function patchUser(data: Partial<User>): Promise<void> {
-	return await patch('/user/baseData', data);
-}
-
 export async function fetchSteamConnections(abortController: AbortController): Promise<SteamConnection[]> {
 	return await get<SteamConnection[]>('/user/steam', 'json', { signal: abortController.signal });
 }
