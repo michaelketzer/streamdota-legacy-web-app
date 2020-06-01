@@ -32,3 +32,20 @@ export function useUserCommands(type: Command['type']): Command[] | undefined {
 
 	return commands;
 }
+
+export function useCommandByIdentifier(identifier: Command['identifier']): Command | undefined {
+	const commands = useSelector(commandsSelector);
+	const loaded = useSelector(loadedCommandsSelector);
+	const dispatch = useDispatch();
+
+	useEffect(
+		() => {
+			if (!loaded) {
+				dispatch(loadUserCommands());
+			}
+		},
+		[ loaded ]
+	);
+
+	return commands.find(({ identifier: cIdentifier }) => cIdentifier === identifier);
+}
