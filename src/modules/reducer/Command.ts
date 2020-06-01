@@ -24,6 +24,15 @@ export interface CommandState {
 	[x: number]: Command;
 }
 
+interface DeleteCommandAction {
+	options: {
+		urlParams: {
+			commandId: number;
+		};
+	};
+	type: typeof DELETE_COMMAND_SUCCESS;
+}
+
 export const command = new schema.Entity(
 	'command',
 	{},
@@ -36,7 +45,13 @@ export const command = new schema.Entity(
 	}
 );
 
-const { combinedReducer } = createReducer<CommandState>();
+const { addReducer, combinedReducer } = createReducer<CommandState>();
+
+addReducer<DeleteCommandAction>(DELETE_COMMAND_SUCCESS, (state, { options: { urlParams: { commandId } } }) => {
+	const newState = { ...state };
+	delete newState[commandId];
+	return newState;
+});
 
 export const commandReducer = combinedReducer;
 

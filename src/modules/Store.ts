@@ -8,16 +8,19 @@ import networkMiddleware from './middleware/NetworkMiddleware';
 import { CommandState, commandReducer } from './reducer/Command';
 import { entitiesReducer } from './reducer/util/EntityReducer';
 import { combiner } from './reducer/util/Combiner';
+import { TimerState, timerReducer } from './reducer/Timer';
 
 export interface State {
 	entities: {
 		command: CommandState;
+		timer: TimerState;
 	};
 	ui: Ui;
 }
 const initial: State = {
 	entities: {
 		command: undefined,
+		timer: undefined,
 	},
 	ui: initialUiState,
 };
@@ -35,6 +38,7 @@ export const storeReducer = combineReducers<State>({
 	//@ts-ignore
 	entities: combiner({
 		command: entitiesReducer(commandReducer, 'command'),
+		timer: entitiesReducer(timerReducer, 'timer'),
 	}),
 	ui: uiReducer,
 });

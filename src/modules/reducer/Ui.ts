@@ -8,6 +8,7 @@ import {
 	UPDATE_CURRENT_USER_SUCCESS,
 	UPDATE_CURRENT_USER_REQUEST,
 	LOAD_COMMANDS_SUCCESS,
+	LOAD_TIMERS_SUCCESS,
 } from './Actions';
 import { DeepPartial } from 'redux';
 import { ApiActionResponse } from '../middleware/Network';
@@ -21,6 +22,7 @@ export interface Ui {
 	currentUser: User | null;
 	loadedEntities: {
 		commands: boolean;
+		timers: boolean;
 	};
 }
 
@@ -28,6 +30,7 @@ export const initialUiState: Ui = {
 	currentUser: null,
 	loadedEntities: {
 		commands: false,
+		timers: false,
 	},
 };
 
@@ -38,6 +41,10 @@ interface UiSet {
 
 interface CommandsLoaded {
 	type: typeof LOAD_COMMANDS_SUCCESS;
+}
+
+interface TimersLoaded {
+	type: typeof LOAD_TIMERS_SUCCESS;
 }
 
 interface CurrentUserSuccess extends ApiActionResponse<User> {
@@ -64,6 +71,16 @@ addReducer<CommandsLoaded>(LOAD_COMMANDS_SUCCESS, (state) => {
 		loadedEntities: {
 			...state.loadedEntities,
 			commands: true,
+		},
+	};
+});
+
+addReducer<TimersLoaded>(LOAD_TIMERS_SUCCESS, (state) => {
+	return {
+		...state,
+		loadedEntities: {
+			...state.loadedEntities,
+			timers: true,
 		},
 	};
 });
