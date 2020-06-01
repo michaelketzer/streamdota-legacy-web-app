@@ -1,15 +1,13 @@
-import { ReactElement } from "react";
-import { useAbortFetch } from "../../../../hooks/abortFetch";
-import { fetchCurrentUser } from "../../../../api/user";
-import { User } from "../../../../api/@types/User";
-import Category from "./Category";
+import { ReactElement } from 'react';
+import Category from './Category';
+import { useCurrentUser } from '../../../../hooks/currentUser';
 
 export default function Tab(): ReactElement | null {
-    const [user, reloadUser] = useAbortFetch<User>(fetchCurrentUser);
+	const user = useCurrentUser();
 
-    if(user) {
-        return <Category user={user} reloadUser={reloadUser}/>;
-    }
+	if (user) {
+		return <Category user={user} />;
+	}
 
-    return null;
+	return null;
 }

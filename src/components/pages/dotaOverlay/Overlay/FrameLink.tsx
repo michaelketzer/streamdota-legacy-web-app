@@ -1,13 +1,16 @@
-import { ReactElement } from "react";
-import Paragraph from "antd/lib/typography/Paragraph";
-import { User } from "../../../../api/@types/User";
+import React, { ReactElement } from 'react';
+import Paragraph from 'antd/lib/typography/Paragraph';
+import { User } from '@streamdota/shared-types';
 
-export default function FrameLink({userData}: {userData: User | null}): ReactElement {
-    const text = 'https://streamdota.com/frames/dotaStats?auth=' + (userData && userData.frameApiKey);
+export default function FrameLink({ userData }: { userData: User | null }): ReactElement {
+	const text = 'https://streamdota.com/frames/dotaStats?auth=' + (userData && userData.frameApiKey);
 
-    return <>
-        <div><b>Overlay Frame Source</b></div>
-        <Paragraph copyable={{ text }}>{text}</Paragraph>
-    </>;
-
+	return (
+		<React.Fragment>
+			<div>
+				<b>Overlay Frame Source</b>
+			</div>
+			<Paragraph copyable={{ text }}>{text}</Paragraph>
+		</React.Fragment>
+	);
 }
