@@ -7,6 +7,7 @@ import {
 	UPDATE_CURRENT_USER_FAILURE,
 	UPDATE_CURRENT_USER_SUCCESS,
 	UPDATE_CURRENT_USER_REQUEST,
+	LOAD_COMMANDS_SUCCESS,
 } from './Actions';
 import { DeepPartial } from 'redux';
 import { ApiActionResponse } from '../middleware/Network';
@@ -18,15 +19,25 @@ import { currentUserSelector } from '../selector/Ui';
 
 export interface Ui {
 	currentUser: User | null;
+	loadedEntities: {
+		commands: boolean;
+	};
 }
 
 export const initialUiState: Ui = {
 	currentUser: null,
+	loadedEntities: {
+		commands: false,
+	},
 };
 
 interface UiSet {
 	type: typeof SET_UI;
 	ui: DeepPartial<Ui>;
+}
+
+interface CommandsLoaded {
+	type: typeof LOAD_COMMANDS_SUCCESS;
 }
 
 interface CurrentUserSuccess extends ApiActionResponse<User> {
@@ -43,6 +54,16 @@ addReducer<CurrentUserSuccess>(LOAD_CURRENT_USER_SUCCESS, (state, { response: cu
 			...currentUser,
 			gsiConnected: Boolean(currentUser.gsiConnected),
 			useBets: Boolean(currentUser.useBets),
+		},
+	};
+});
+
+addReducer<CommandsLoaded>(LOAD_COMMANDS_SUCCESS, (state) => {
+	return {
+		...state,
+		loadedEntities: {
+			...state.loadedEntities,
+			commands: true,
 		},
 	};
 });
