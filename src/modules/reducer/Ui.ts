@@ -30,7 +30,11 @@ addReducer<UiSet>(SET_UI, (state, action) => mergeStates(state, action.ui));
 addReducer<CurrentUserSuccess>(LOAD_CURRENT_USER_SUCCESS, (state, { response: currentUser }) => {
 	return {
 		...state,
-		currentUser,
+		currentUser: {
+			...currentUser,
+			gsiConnected: Boolean(currentUser.gsiConnected),
+			useBets: Boolean(currentUser.useBets),
+		},
 	};
 });
 
