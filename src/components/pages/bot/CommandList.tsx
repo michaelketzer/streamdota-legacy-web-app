@@ -42,7 +42,7 @@ interface Props {
 }
 
 export default function CommandList({commandType = 'default', replaceVars = {}, canCreate=true}: Props): ReactElement {
-    const commands = useUserCommands('default');
+    const commands = useUserCommands(commandType);
     const dispatch = useDispatch();
     const [cmd, setCmd] = useState('');
     const [msg, setMsg] = useState('');
