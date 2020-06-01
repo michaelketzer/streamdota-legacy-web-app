@@ -11,7 +11,7 @@ const UserInfo = dynamic(
 export default function PageFrame({children, title}): ReactElement {
     return <>
         <Head>
-            <title>streamdota.com {title && ` - ${title}`}</title>
+            <title>StreamDota {title && ` - ${title}`}</title>
             <meta charSet="UTF-8" />
             <meta name="google" content="notranslate" />
             <meta httpEquiv="Content-Language" content="de" />
