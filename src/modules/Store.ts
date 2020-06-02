@@ -10,11 +10,13 @@ import { entitiesReducer } from './reducer/util/EntityReducer';
 import { combiner } from './reducer/util/Combiner';
 import { TimerState, timerReducer } from './reducer/Timer';
 import { DotaOverlayState, dotaOverlayReducer } from './reducer/DotaOverlay';
+import { googleFontReducer, FontState } from './reducer/GoogleFonts';
 
 export interface State {
 	entities: {
 		command: CommandState;
 		dotaOverlay: DotaOverlayState;
+		googleFont: FontState;
 		timer: TimerState;
 	};
 	ui: Ui;
@@ -23,6 +25,7 @@ const initial: State = {
 	entities: {
 		command: undefined,
 		dotaOverlay: undefined,
+		googleFont: undefined,
 		timer: undefined,
 	},
 	ui: initialUiState,
@@ -42,6 +45,7 @@ export const storeReducer = combineReducers<State>({
 	entities: combiner({
 		command: entitiesReducer(commandReducer, 'command'),
 		dotaOverlay: entitiesReducer(dotaOverlayReducer, 'dotaOverlay'),
+		googleFont: entitiesReducer(googleFontReducer, 'googleFont'),
 		timer: entitiesReducer(timerReducer, 'timer'),
 	}),
 	ui: uiReducer,
