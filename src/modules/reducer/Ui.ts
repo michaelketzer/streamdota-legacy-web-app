@@ -9,6 +9,7 @@ import {
 	UPDATE_CURRENT_USER_REQUEST,
 	LOAD_COMMANDS_SUCCESS,
 	LOAD_TIMERS_SUCCESS,
+	LOAD_GOOGLE_FONTS_SUCCESS,
 } from './Actions';
 import { DeepPartial } from 'redux';
 import { ApiActionResponse } from '../middleware/Network';
@@ -22,6 +23,7 @@ export interface Ui {
 	currentUser: User | null;
 	loadedEntities: {
 		commands: boolean;
+		googleFonts: boolean;
 		timers: boolean;
 	};
 }
@@ -30,6 +32,7 @@ export const initialUiState: Ui = {
 	currentUser: null,
 	loadedEntities: {
 		commands: false,
+		googleFonts: false,
 		timers: false,
 	},
 };
@@ -45,6 +48,9 @@ interface CommandsLoaded {
 
 interface TimersLoaded {
 	type: typeof LOAD_TIMERS_SUCCESS;
+}
+interface GoogleFontsLoaded {
+	type: typeof LOAD_GOOGLE_FONTS_SUCCESS;
 }
 
 interface CurrentUserSuccess extends ApiActionResponse<User> {
@@ -81,6 +87,16 @@ addReducer<TimersLoaded>(LOAD_TIMERS_SUCCESS, (state) => {
 		loadedEntities: {
 			...state.loadedEntities,
 			timers: true,
+		},
+	};
+});
+
+addReducer<GoogleFontsLoaded>(LOAD_GOOGLE_FONTS_SUCCESS, (state) => {
+	return {
+		...state,
+		loadedEntities: {
+			...state.loadedEntities,
+			googleFonts: true,
 		},
 	};
 });

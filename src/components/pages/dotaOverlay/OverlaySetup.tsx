@@ -1,8 +1,5 @@
-import React, { ReactElement, useMemo, useState, useEffect, useCallback, Fragment } from 'react';
+import React, { ReactElement, useMemo, useState, useEffect, Fragment } from 'react';
 import FontSelector from './Overlay/FontSelector';
-import { useAbortFetch } from '../../../hooks/abortFetch';
-import { fetchFonts } from '../../../api/googleFont';
-import { Font } from '../../../api/@types/Font';
 import FontVariantSelection from './Overlay/FontVariantSelection';
 import GoogleFontLoader from 'react-google-font-loader';
 import FontSize from './Overlay/FontSize';
@@ -15,6 +12,8 @@ import { useCurrentUser } from '../../../hooks/currentUser';
 import { useDotaOverlay } from '../../../modules/selector/DotaOverlay';
 import { useDispatch } from 'react-redux';
 import { updateDotaOverlay } from '../../../modules/reducer/DotaOverlay';
+import { useGoogleFont } from '../../../modules/selector/GoogleFonts';
+import { Font } from '@streamdota/shared-types';
 
 function FontLoader({ font, rawFonts }: { font: string; rawFonts: Font[] }): ReactElement | null {
 	const fontConfig = useMemo(
@@ -62,7 +61,7 @@ const defaultState: DotaOverlay = {
 
 export default function OverlaySetup(): ReactElement | null {
 	const userData = useCurrentUser();
-	const [ rawFonts ] = useAbortFetch<Font[]>(fetchFonts);
+	const rawFonts = useGoogleFont();
 	const userCfg = useDotaOverlay();
 	const [ cfg, setCfg ] = useState<DotaOverlay>(defaultState);
 	const dispatch = useDispatch();

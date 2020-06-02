@@ -1,5 +1,5 @@
-import { User, DotaStats, BotData } from './@types/User';
-import { get, patch, del } from './request';
+import { DotaStats } from './@types/User';
+import { get, del } from './request';
 import { SteamConnection } from './@types/SteamConnection';
 
 export async function fetchSteamConnections(abortController: AbortController): Promise<SteamConnection[]> {
@@ -8,14 +8,6 @@ export async function fetchSteamConnections(abortController: AbortController): P
 
 export async function fetchStats(abortController: AbortController, apiKey: string): Promise<DotaStats[]> {
 	return await get<DotaStats[]>('/user/dotaStats/' + apiKey, 'json', { signal: abortController.signal });
-}
-
-export async function fetchBotConfig(abortController: AbortController): Promise<BotData> {
-	return await get<BotData>('/user/bot', 'json', { signal: abortController.signal });
-}
-
-export async function patchBotConfig(data: Partial<BotData>): Promise<void> {
-	return await patch('/user/bot', data);
 }
 
 export async function resetDotaGsi(): Promise<void> {
