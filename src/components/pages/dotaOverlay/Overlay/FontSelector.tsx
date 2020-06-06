@@ -1,6 +1,6 @@
 import { ReactElement, useMemo, useState } from "react";
-import { Font } from "../../../../api/@types/Font";
 import { Select, Alert } from 'antd';
+import { Font } from "@streamdota/shared-types";
 
 interface Props {
     rawFonts: Font[];

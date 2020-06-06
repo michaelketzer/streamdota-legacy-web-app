@@ -1,6 +1,6 @@
 import { ReactElement, useMemo, CSSProperties } from "react";
-import { Font } from "../../../../api/@types/Font";
 import { Radio } from "antd";
+import { Font } from "@streamdota/shared-types";
 
 export function getVariant(variant: string): CSSProperties {
     return {
