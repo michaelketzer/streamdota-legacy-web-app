@@ -1,13 +1,15 @@
-import { ReactElement, useState } from "react";
+import { ReactElement } from "react";
 import { PlayCircleFilled } from "@ant-design/icons";
 import classNames from "classnames";
 import { setWinner } from "../../../../api/bets";
-import { createRound } from "../../../../api/betSeason";
+import { useDispatch } from "react-redux";
+import { createBetRound } from "../../../../modules/reducer/BetRound";
 
 export default function StatusTile({status}: {status: 'betting' | 'running' | 'finished'}): ReactElement {
+    const dispatch = useDispatch();
     return <div className={classNames('statusTileWrapper', status)} onClick={async () => {
         if(status === 'finished') {
-            await createRound();
+            await dispatch(createBetRound());
         }
     }}>
         {status === 'finished' && <>

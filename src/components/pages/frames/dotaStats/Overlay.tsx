@@ -2,10 +2,10 @@ import { ReactElement, ReactNode } from "react";
 import { useAbortFetch } from "../../../../hooks/abortFetch";
 import { fetchOverlayFromAuthKey } from "../../../../api/overlay";
 import GoogleFontLoader from 'react-google-font-loader';
-import { DotaOverlay } from "../../../../api/@types/DotaOverlay";
+import { OverlayConfig } from "@streamdota/shared-types";
 import { getVariant } from "../../dotaOverlay/Overlay/FontVariantSelection";
 
-function Number({color, x, y, height, cfg, children}: {color: string, x: number, y:number, height: string, cfg: DotaOverlay, children: ReactNode}): ReactElement {
+function Number({color, x, y, height, cfg, children}: {color: string, x: number, y:number, height: string, cfg: OverlayConfig, children: ReactNode}): ReactElement {
     return <div style={{
         color, 
         display: 'inline', 
