@@ -1,9 +1,8 @@
 import { ReactElement, useState, useEffect } from "react";
 import { Modal } from "antd";
 import { patchBetSeason, createUserBetSeason } from "../../../../api/betSeason";
-import { BetSeason } from "../../../../api/@types/BetSeason";
 import CategoryForm from "./Form";
-import { emptySeason } from "./CategoryList";
+import { BetSeason } from "@streamdota/shared-types";
 
 interface Props {
     season?: Partial<BetSeason>;

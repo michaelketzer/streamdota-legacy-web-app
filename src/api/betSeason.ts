@@ -1,6 +1,7 @@
-import { BetSeason, Invite, BetSeasonUser, BetToplist } from "./@types/BetSeason";
+import { Invite, BetSeasonUser, BetToplist } from "./@types/BetSeason";
 import { get, create, del, patch } from "./request";
 import { BetRound } from "./@types/BetRound";
+import { BetSeason } from "@streamdota/shared-types";
 
 export async function createUserBetSeason(data: Partial<BetSeason>): Promise<void> {
     return await create('/betSeason', data)
