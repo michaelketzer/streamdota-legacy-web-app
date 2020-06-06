@@ -1,11 +1,11 @@
-import { ReactElement, useEffect } from "react";
-import { useAbortFetch } from "../../../../hooks/abortFetch";
-import { BetRound } from "../../../../api/@types/BetRound";
-import { getRounds, updateRound, deleteRound } from "../../../../api/betSeason";
+import { ReactElement, Dispatch } from "react";
 import Loader from "../../../Loader";
 import { Table, Popconfirm } from "antd";
+import { useBetRounds } from "../../../../modules/selector/BetRound";
+import { useDispatch } from "react-redux";
+import { updateBetRound, deleteBetRound } from "../../../../modules/reducer/BetRound";
 
-const columns = (reload: () => void) => [
+const columns = (dispatch: Dispatch<any>) => [
     {
       title: '#',
       dataIndex: 'round',
@@ -36,12 +36,10 @@ const columns = (reload: () => void) => [
       key: 'actions',
       render: ({id, result}) => <>
         <a onClick={async () => {
-          await updateRound(id, {result: result === 'a' ? 'b' : 'a'});
-          reload();
+          await dispatch(updateBetRound(id, {result: result === 'a' ? 'b' : 'a'}));
         }}>Gewinner ändern</a><br />
         <Popconfirm title="Soll diese Runde wirklich gelöscht werden?" onConfirm={async () => {
-          await deleteRound(id);
-          reload();
+          await dispatch(deleteBetRound(id));
         }} okText="Ja" cancelText="Nein">
           <a>Löschen</a>
         </Popconfirm>
@@ -50,15 +48,12 @@ const columns = (reload: () => void) => [
 ];
 
 export default function RoundsTable({season}: {season: number}): ReactElement {
-    const [rounds, reload] = useAbortFetch<BetRound[]>(getRounds, season);
-    
-    useEffect(() => {
-        reload();
-    }, [season]);
+  const rounds = useBetRounds(season);
+  const dispatch = useDispatch();
 
-    if(rounds) {
-        return <Table dataSource={rounds} columns={columns(reload)} rowKey={'id'} pagination={false} />;
-    }
+  if(rounds) {
+      return <Table dataSource={rounds} columns={columns(dispatch)} rowKey={'id'} pagination={false} />;
+  }
 
     return <Loader/>;
 }

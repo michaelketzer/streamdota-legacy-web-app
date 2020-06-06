@@ -1,10 +1,10 @@
 import React, { ReactElement, useCallback } from 'react';
 import Loader from '../../Loader';
 import { Radio, Typography } from 'antd';
-import { User } from '../../../api/@types/User';
 import { useCurrentUser } from '../../../hooks/currentUser';
 import { useDispatch } from 'react-redux';
 import { updateCurrentUser } from '../../../modules/reducer/Ui';
+import { User } from '@streamdota/shared-types';
 
 const radioStyle = {
 	display: 'block',

@@ -10,3 +10,4 @@ export const loadedGoogleFontsSelector = (state: State): boolean => state.ui.loa
 export const loadedBeatSeasonInvitesSelector = (state: State): number[] => state.ui.loadedEntities.betSeasonInvites;
 export const loadedBeatSeasonUsersSelector = (state: State): number[] => state.ui.loadedEntities.betSeasonUsers;
 export const loadedBeatSeasonToplistSelector = (state: State): number[] => state.ui.loadedEntities.betSeasonToplists;
+export const loadedBetRoundsSelector = (state: State): number[] => state.ui.loadedEntities.betRounds;

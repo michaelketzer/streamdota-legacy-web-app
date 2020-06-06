@@ -14,6 +14,7 @@ import {
 	LOAD_BET_SEASON_INVITES_SUCCESS,
 	LOAD_BET_SEASON_USERS_SUCCESS,
 	LOAD_BET_SEASON_TOPLIST_SUCCESS,
+	LOAD_BET_ROUNDS_SUCCESS,
 } from './Actions';
 import { DeepPartial } from 'redux';
 import { ApiActionResponse } from '../middleware/Network';
@@ -26,6 +27,7 @@ import { currentUserSelector } from '../selector/Ui';
 export interface Ui {
 	currentUser: User | null;
 	loadedEntities: {
+		betRounds: number[];
 		betSeasons: boolean;
 		betSeasonInvites: number[];
 		betSeasonUsers: number[];
@@ -39,6 +41,7 @@ export interface Ui {
 export const initialUiState: Ui = {
 	currentUser: null,
 	loadedEntities: {
+		betRounds: [],
 		betSeasons: false,
 		betSeasonInvites: [],
 		betSeasonUsers: [],
@@ -90,6 +93,16 @@ interface BetSeasonUserLoaded {
 
 interface BetSeasonToplistLoaded {
 	type: typeof LOAD_BET_SEASON_TOPLIST_SUCCESS;
+	options: {
+		urlParams: {
+			seasonId: number;
+		};
+	};
+}
+
+
+interface BetRoundsLoaded {
+	type: typeof LOAD_BET_ROUNDS_SUCCESS;
 	options: {
 		urlParams: {
 			seasonId: number;
@@ -181,6 +194,16 @@ addReducer<BetSeasonToplistLoaded>(LOAD_BET_SEASON_TOPLIST_SUCCESS, (state, {opt
 		loadedEntities: {
 			...state.loadedEntities,
 			betSeasonToplists: state.loadedEntities.betSeasonToplists.concat(seasonId),
+		},
+	};
+});
+
+addReducer<BetRoundsLoaded>(LOAD_BET_ROUNDS_SUCCESS, (state, {options: {urlParams: {seasonId}}}) => {
+	return {
+		...state,
+		loadedEntities: {
+			...state.loadedEntities,
+			betRounds: state.loadedEntities.betRounds.concat(seasonId),
 		},
 	};
 });

@@ -6,14 +6,13 @@ import FontSize from './Overlay/FontSize';
 import Color from './Overlay/Color';
 import Position from './Overlay/Position';
 import Background from './Overlay/Background';
-import { DotaOverlay } from '../../../api/@types/DotaOverlay';
 import FrameLink from './Overlay/FrameLink';
 import { useCurrentUser } from '../../../hooks/currentUser';
 import { useDotaOverlay } from '../../../modules/selector/DotaOverlay';
 import { useDispatch } from 'react-redux';
 import { updateDotaOverlay } from '../../../modules/reducer/DotaOverlay';
 import { useGoogleFont } from '../../../modules/selector/GoogleFonts';
-import { Font } from '@streamdota/shared-types';
+import { Font, OverlayConfig } from '@streamdota/shared-types';
 
 function FontLoader({ font, rawFonts }: { font: string; rawFonts: Font[] }): ReactElement | null {
 	const fontConfig = useMemo(
@@ -39,7 +38,7 @@ function FontLoader({ font, rawFonts }: { font: string; rawFonts: Font[] }): Rea
 
 const FontLoaderFc = React.memo(FontLoader);
 
-const defaultState: DotaOverlay = {
+const defaultState: OverlayConfig = {
 	font: 'Arial',
 	fontSize: 50,
 	variant: '400',
@@ -63,7 +62,7 @@ export default function OverlaySetup(): ReactElement | null {
 	const userData = useCurrentUser();
 	const rawFonts = useGoogleFont();
 	const userCfg = useDotaOverlay();
-	const [ cfg, setCfg ] = useState<DotaOverlay>(defaultState);
+	const [ cfg, setCfg ] = useState<OverlayConfig>(defaultState);
 	const dispatch = useDispatch();
 
 	useEffect(
@@ -73,7 +72,7 @@ export default function OverlaySetup(): ReactElement | null {
 		[ userCfg ]
 	);
 
-	const patch = (newCfg: Partial<DotaOverlay>) => {
+	const patch = (newCfg: Partial<OverlayConfig>) => {
 		const config = { ...cfg, ...newCfg };
 		setCfg(config);
 		dispatch(updateDotaOverlay(config));
