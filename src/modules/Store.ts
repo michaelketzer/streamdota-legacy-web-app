@@ -2,7 +2,7 @@ import { combineReducers, createStore, applyMiddleware } from 'redux';
 import { Ui, uiReducer, initialUiState } from './reducer/Ui';
 import { createReducer } from './reducer/util/Reducer';
 import { HYDRATE, MakeStore, createWrapper } from 'next-redux-wrapper';
-import { composeWithDevTools } from 'redux-devtools-extension';
+import { composeWithDevTools } from 'remote-redux-devtools';
 import thunk from 'redux-thunk';
 import networkMiddleware from './middleware/NetworkMiddleware';
 import { CommandState, commandReducer } from './reducer/Command';
@@ -51,9 +51,13 @@ export const storeReducer = combineReducers<State>({
 	ui: uiReducer,
 });
 
+//@ts-ignore
 const makeStore: MakeStore<State> = () => {
 	const composeEnhancers = composeWithDevTools({
+		hostname: 'localhost',
+		realtime: true,
 		name: 'streamdota',
+		port: 8000,
 	});
 	//@ts-ignore
 	return createStore(storeReducer, composeEnhancers(applyMiddleware(thunk, networkMiddleware)));
