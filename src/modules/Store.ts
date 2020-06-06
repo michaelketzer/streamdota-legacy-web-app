@@ -11,9 +11,11 @@ import { combiner } from './reducer/util/Combiner';
 import { TimerState, timerReducer } from './reducer/Timer';
 import { DotaOverlayState, dotaOverlayReducer } from './reducer/DotaOverlay';
 import { googleFontReducer, FontState } from './reducer/GoogleFonts';
+import { BetSeasonState, betSeasonReducer } from './reducer/BetSeason';
 
 export interface State {
 	entities: {
+		betSeason: BetSeasonState;
 		command: CommandState;
 		dotaOverlay: DotaOverlayState;
 		googleFont: FontState;
@@ -23,6 +25,7 @@ export interface State {
 }
 const initial: State = {
 	entities: {
+		betSeason: undefined,
 		command: undefined,
 		dotaOverlay: undefined,
 		googleFont: undefined,
@@ -43,6 +46,7 @@ export const storeReducer = combineReducers<State>({
 	...stateReducer,
 	//@ts-ignore
 	entities: combiner({
+		betSeason: entitiesReducer(betSeasonReducer, 'betSeason'),
 		command: entitiesReducer(commandReducer, 'command'),
 		dotaOverlay: entitiesReducer(dotaOverlayReducer, 'dotaOverlay'),
 		googleFont: entitiesReducer(googleFontReducer, 'googleFont'),

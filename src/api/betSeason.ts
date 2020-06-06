@@ -2,10 +2,6 @@ import { BetSeason, Invite, BetSeasonUser, BetToplist } from "./@types/BetSeason
 import { get, create, del, patch } from "./request";
 import { BetRound } from "./@types/BetRound";
 
-export async function fetchUserBetSeasons(abortController: AbortController): Promise<BetSeason[]> {
-    return await get<BetSeason[]>('/betSeason', 'json', {signal: abortController.signal})
-}
-
 export async function createUserBetSeason(data: Partial<BetSeason>): Promise<void> {
     return await create('/betSeason', data)
 }
