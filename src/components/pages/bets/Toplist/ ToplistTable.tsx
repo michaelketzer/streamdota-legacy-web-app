@@ -1,9 +1,7 @@
-import { ReactElement, useEffect, useMemo } from "react";
-import { useAbortFetch } from "../../../../hooks/abortFetch";
-import { getToplist } from "../../../../api/betSeason";
+import { ReactElement, useMemo } from "react";
 import Loader from "../../../Loader";
 import { Table } from "antd";
-import { BetToplist } from "../../../../api/@types/BetSeason";
+import { useBetSeasonToplist } from "../../../../modules/selector/BetSeasonToplist";
 
 const columns = [
     {
@@ -34,23 +32,19 @@ const columns = [
 ];
 
 export default function ToplistTable({season, search}: {season: number; search: string}): ReactElement {
-    const [toplist, reload] = useAbortFetch<BetToplist[]>(getToplist, season);
-    
-    useEffect(() => {
-        reload();
-    }, [season]);
+  const toplist = useBetSeasonToplist(season);
 
-    const filteredRounds = useMemo(() => {
-      if(toplist) {
-        const withRank = toplist.map((data, index) => ({...data, rank: index + 1}));
-        return withRank.filter(({username}) => username.includes(search.toLowerCase()));
-      }
-      return null;
-    }, [toplist, search]);
-
-    if(filteredRounds) {
-        return <Table dataSource={filteredRounds} columns={columns} rowKey={'name'} pagination={false} />;
+  const filteredRounds = useMemo(() => {
+    if(toplist) {
+      const withRank = toplist.map((data, index) => ({...data, rank: index + 1}));
+      return withRank.filter(({username}) => username.includes(search.toLowerCase()));
     }
+    return null;
+  }, [toplist, search]);
 
-    return <Loader/>;
+  if(filteredRounds) {
+      return <Table dataSource={filteredRounds} columns={columns} rowKey={'name'} pagination={false} />;
+  }
+
+  return <Loader/>;
 }

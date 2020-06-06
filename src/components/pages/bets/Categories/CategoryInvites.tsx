@@ -1,11 +1,9 @@
 import { ReactElement, useEffect } from "react";
 import { Typography, Table, Button } from "antd";
-import { useAbortFetch } from "../../../../hooks/abortFetch";
-import { Invite } from "../../../../api/@types/BetSeason";
-import { getInvites } from "../../../../api/betSeason";
 import dayjs from "dayjs";
 import classNames from "classnames";
 import { PlusOutlined } from "@ant-design/icons";
+import { useBetSeasonInvites } from "../../../../modules/selector/BetSeasonInvites";
 
 interface Props {
     name: string;
@@ -56,11 +54,7 @@ const columns = [
 ];
 
 export default function SeasonInvites({name, seasonId, canManage}: Props): ReactElement {
-    const [invites, reloadInvites] = useAbortFetch<Invite[]>(getInvites, seasonId);
-
-    useEffect(() => {
-        reloadInvites();
-    }, [seasonId]);
+    const invites = useBetSeasonInvites(seasonId);
 
     return <>
         <Typography.Text strong>Einladungen für "{name}"</Typography.Text>

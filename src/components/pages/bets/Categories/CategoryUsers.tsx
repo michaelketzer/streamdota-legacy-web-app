@@ -1,8 +1,6 @@
-import { ReactElement, useEffect } from "react";
+import { ReactElement } from "react";
 import { Typography, Table } from "antd";
-import { useAbortFetch } from "../../../../hooks/abortFetch";
-import { Invite, BetSeasonUser } from "../../../../api/@types/BetSeason";
-import { getUsers } from "../../../../api/betSeason";
+import { useBetSeasonUsers } from "../../../../modules/selector/BetSeasonUsers";
 
 const roleNameMap = {
     user: 'Benutzer',
@@ -30,11 +28,7 @@ interface Props {
 }
 
 export default function CategoryUsers({name, seasonId}: Props): ReactElement {
-    const [users, reloadUsers] = useAbortFetch<BetSeasonUser[]>(getUsers, seasonId);
-
-    useEffect(() => {
-        reloadUsers();
-    }, [seasonId]);
+    const users = useBetSeasonUsers(seasonId);
 
     return <>
         <Typography.Text strong>Benutzer für "{name}"</Typography.Text>

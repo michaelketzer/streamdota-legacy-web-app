@@ -1,15 +1,17 @@
-import { ReactElement, useState } from "react";
+import { ReactElement, useState, Dispatch } from "react";
 import { Steps } from "antd";
 import CategoryForm from "./Categories/Form";
 import BotCommands from "./BotCommands";
-import { createUserBetSeason } from "../../../api/betSeason";
 import { BetSeason } from "@streamdota/shared-types";
+import { useDispatch } from "react-redux";
+import { createBetSeason } from "../../../modules/reducer/BetSeason";
+import { AnyAction } from "redux";
 
-const getSteps = (onSeasonCreated: () => void) => [
+const getSteps = (onSeasonCreated: () => void, dispatch: Dispatch<any>) => [
     {
       title: 'Kategorie',
       content: <CategoryForm title={'Neue Kategorie'} onFinish={async (data: Partial<BetSeason>) => {
-        await createUserBetSeason(data);
+        await dispatch(createBetSeason(data));
         onSeasonCreated();
       }}/>,
     },
@@ -24,13 +26,14 @@ const getSteps = (onSeasonCreated: () => void) => [
 ];
 
 export default function FirstTimeSetup(): ReactElement {
+    const dispatch = useDispatch();
     const [current, setCurrent] = useState(0);
 
     function next(): void {
         setCurrent(current + 1);
     }
 
-    const steps = getSteps(next);
+    const steps = getSteps(next, dispatch);
 
     return <>
         <div className={'info'}>
