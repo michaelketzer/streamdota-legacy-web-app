@@ -1,7 +1,4 @@
 import React, { ReactElement, useMemo, useEffect } from 'react';
-import { useAbortFetch } from '../../../../hooks/abortFetch';
-import { BetSeasonUser } from '../../../../api/@types/BetSeason';
-import { getUsers } from '../../../../api/betSeason';
 import { Typography, Row, Col } from 'antd';
 import CurrentCategory from './CurrentCategory';
 import CategoryList from './CategoryList';
@@ -9,6 +6,7 @@ import CategoryInvites from './CategoryInvites';
 import CategoryUsers from './CategoryUsers';
 import { BetSeason, User } from '@streamdota/shared-types';
 import { useBetSeasons } from '../../../../modules/selector/BetSeason';
+import { useBetSeasonUsers } from '../../../../modules/selector/BetSeasonUsers';
 
 export interface CategoryProps {
 	seasons: BetSeason[];
@@ -18,23 +16,14 @@ export interface CategoryProps {
 
 export default function Category({ user }: { user: User }): ReactElement {
 	const seasons = useBetSeasons();
+	const users = useBetSeasonUsers(user.betSeasonId);
 	const currentSeasonName = useMemo(
 		() => (seasons && user.betSeasonId && seasons.find(({ id }) => id === user.betSeasonId).name) || '',
 		[ user, seasons ]
 	);
-	const [ users, reloadUsers ] = useAbortFetch<BetSeasonUser[]>(getUsers, user.betSeasonId);
 	const canManage = useMemo(() => users && users.find(({ userRole }) => userRole === 'owner').id === user.id, [
 		users,
 	]);
-
-	useEffect(
-		() => {
-			if (user) {
-				reloadUsers();
-			}
-		},
-		[ user ]
-	);
 
 	return (
 		<React.Fragment>

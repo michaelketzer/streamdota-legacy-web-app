@@ -1,8 +1,9 @@
 import { ReactElement, useState, useEffect } from "react";
 import { Modal } from "antd";
-import { patchBetSeason, createUserBetSeason } from "../../../../api/betSeason";
 import CategoryForm from "./Form";
 import { BetSeason } from "@streamdota/shared-types";
+import { useDispatch } from "react-redux";
+import { patchBetSeason, createBetSeason } from "../../../../modules/reducer/BetSeason";
 
 interface Props {
     season?: Partial<BetSeason>;
@@ -10,6 +11,7 @@ interface Props {
 }
 
 export default function CategoryPopup({onFinish, season}: Props): ReactElement | null {
+    const dispatch = useDispatch();
     const [open, setOpen] = useState(false);
     const [data, setData] = useState<Partial<BetSeason>>();
 
@@ -26,9 +28,9 @@ export default function CategoryPopup({onFinish, season}: Props): ReactElement |
             setOpen(false);
         }} onOk={async () => {
             if(season.id) {
-                await patchBetSeason(season.id, data);
+                await dispatch(patchBetSeason(season.id, data));
             } else {
-                await createUserBetSeason(data);
+                await dispatch(createBetSeason(data));
             }
             setData(null);
             setOpen(false);
