@@ -1,13 +1,14 @@
 import React, { ReactElement, useMemo, useEffect } from 'react';
 import { useAbortFetch } from '../../../../hooks/abortFetch';
-import { BetSeason, BetSeasonUser } from '../../../../api/@types/BetSeason';
-import { fetchUserBetSeasons, getUsers } from '../../../../api/betSeason';
+import { BetSeasonUser } from '../../../../api/@types/BetSeason';
+import { getUsers } from '../../../../api/betSeason';
 import { Typography, Row, Col } from 'antd';
 import CurrentCategory from './CurrentCategory';
 import CategoryList from './CategoryList';
 import CategoryInvites from './CategoryInvites';
 import CategoryUsers from './CategoryUsers';
-import { User } from '@streamdota/shared-types';
+import { BetSeason, User } from '@streamdota/shared-types';
+import { useBetSeasons } from '../../../../modules/selector/BetSeason';
 
 export interface CategoryProps {
 	seasons: BetSeason[];
@@ -16,7 +17,7 @@ export interface CategoryProps {
 }
 
 export default function Category({ user }: { user: User }): ReactElement {
-	const [ seasons, load ] = useAbortFetch<BetSeason[]>(fetchUserBetSeasons);
+	const seasons = useBetSeasons();
 	const currentSeasonName = useMemo(
 		() => (seasons && user.betSeasonId && seasons.find(({ id }) => id === user.betSeasonId).name) || '',
 		[ user, seasons ]
@@ -46,10 +47,10 @@ export default function Category({ user }: { user: User }): ReactElement {
 
 			<Row gutter={[ 50, 50 ]}>
 				<Col span={12}>
-					<CurrentCategory seasons={seasons} reload={load} currentBetSeason={user.betSeasonId} />
+					<CurrentCategory seasons={seasons} reload={() => undefined} currentBetSeason={user.betSeasonId} />
 					<CategoryList
 						seasons={seasons}
-						reload={load}
+						reload={() => undefined}
 						currentBetSeason={user.betSeasonId}
 						canManage={canManage}
 					/>

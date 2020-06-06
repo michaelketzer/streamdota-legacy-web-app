@@ -1,8 +1,5 @@
 import { ReactElement, useCallback } from 'react';
-import { useAbortFetch } from '../../../../hooks/abortFetch';
 import { Switch } from 'antd';
-import { BetSeason } from '../../../../api/@types/BetSeason';
-import { fetchUserBetSeasons } from '../../../../api/betSeason';
 import FirstTimeSetup from '../FirstTimeSetup';
 import Dashboard from './Dashboard';
 import BetContext from '../BetContext/Context';
@@ -10,11 +7,12 @@ import { useCurrentUser } from '../../../../hooks/currentUser';
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { updateCurrentUser } from '../../../../modules/reducer/Ui';
+import { useBetSeasons } from '../../../../modules/selector/BetSeason';
 
 export default function Tab(): ReactElement {
 	const user = useCurrentUser();
 	const dispatch = useDispatch();
-	const [ seasons ] = useAbortFetch<BetSeason[]>(fetchUserBetSeasons);
+	const seasons = useBetSeasons();
 	const onToggleBets = useCallback(
 		async () => {
 			await dispatch(updateCurrentUser({ useBets: !user.useBets }));

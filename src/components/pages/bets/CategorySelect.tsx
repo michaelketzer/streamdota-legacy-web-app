@@ -1,10 +1,8 @@
 import React, { ReactElement, useState, useEffect } from 'react';
-import { fetchUserBetSeasons } from '../../../api/betSeason';
-import { useAbortFetch } from '../../../hooks/abortFetch';
-import { BetSeason } from '../../../api/@types/BetSeason';
 import Loader from '../../Loader';
 import { Typography, Select } from 'antd';
 import { useCurrentUser } from '../../../hooks/currentUser';
+import { useBetSeasons } from '../../../modules/selector/BetSeason';
 
 interface Params {
 	category: number;
@@ -31,7 +29,8 @@ interface Props {
 }
 
 export default function CategorySelect({ season, setSeason }: Props): ReactElement {
-	const [ seasons ] = useAbortFetch<BetSeason[]>(fetchUserBetSeasons);
+	const seasons = useBetSeasons();
+
 	if (seasons) {
 		return (
 			<React.Fragment>

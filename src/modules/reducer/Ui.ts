@@ -10,6 +10,7 @@ import {
 	LOAD_COMMANDS_SUCCESS,
 	LOAD_TIMERS_SUCCESS,
 	LOAD_GOOGLE_FONTS_SUCCESS,
+	LOAD_BET_SEASONS_SUCCESS,
 } from './Actions';
 import { DeepPartial } from 'redux';
 import { ApiActionResponse } from '../middleware/Network';
@@ -22,6 +23,7 @@ import { currentUserSelector } from '../selector/Ui';
 export interface Ui {
 	currentUser: User | null;
 	loadedEntities: {
+		betSeasons: boolean;
 		commands: boolean;
 		googleFonts: boolean;
 		timers: boolean;
@@ -31,6 +33,7 @@ export interface Ui {
 export const initialUiState: Ui = {
 	currentUser: null,
 	loadedEntities: {
+		betSeasons: false,
 		commands: false,
 		googleFonts: false,
 		timers: false,
@@ -49,8 +52,13 @@ interface CommandsLoaded {
 interface TimersLoaded {
 	type: typeof LOAD_TIMERS_SUCCESS;
 }
+
 interface GoogleFontsLoaded {
 	type: typeof LOAD_GOOGLE_FONTS_SUCCESS;
+}
+
+interface BetSeasonLoaded {
+	type: typeof LOAD_BET_SEASONS_SUCCESS;
 }
 
 interface CurrentUserSuccess extends ApiActionResponse<User> {
@@ -97,6 +105,16 @@ addReducer<GoogleFontsLoaded>(LOAD_GOOGLE_FONTS_SUCCESS, (state) => {
 		loadedEntities: {
 			...state.loadedEntities,
 			googleFonts: true,
+		},
+	};
+});
+
+addReducer<BetSeasonLoaded>(LOAD_BET_SEASONS_SUCCESS, (state) => {
+	return {
+		...state,
+		loadedEntities: {
+			...state.loadedEntities,
+			betSeasons: true,
 		},
 	};
 });
