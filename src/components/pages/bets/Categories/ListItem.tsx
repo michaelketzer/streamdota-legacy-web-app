@@ -1,8 +1,8 @@
-import { BetSeason } from "../../../../api/@types/BetSeason";
 import { ReactElement } from "react";
 import { List, Typography, Popconfirm } from "antd";
 import { BranchesOutlined, EditFilled, DeleteFilled } from "@ant-design/icons";
 import classNames from "classnames";
+import { BetSeason } from "@streamdota/shared-types";
 
 const nameMap = {
     ladder: 'Ladder',

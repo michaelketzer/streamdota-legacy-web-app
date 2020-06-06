@@ -1,12 +1,12 @@
 import { ReactElement, useState } from "react";
 import { deleteSeason } from "../../../../api/betSeason";
-import { BetSeason } from "../../../../api/@types/BetSeason";
 import Loader from "../../../Loader";
 import { List, Button } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
 import CategoryPopup from "./CategoryPopup";
 import { CategoryProps } from "./Category";
 import ListItem from "./ListItem";
+import { BetSeason } from "@streamdota/shared-types";
 
 
 export const emptySeason: () => Partial<BetSeason> = () => ({id: null, name: '', description: '', type: 'tournament'});

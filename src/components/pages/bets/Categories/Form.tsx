@@ -1,7 +1,7 @@
 import { ReactElement } from "react";
 import { Form, Typography, Input, Select, Button } from "antd";
 import TextArea from "antd/lib/input/TextArea";
-import { BetSeason } from "../../../../api/@types/BetSeason";
+import { BetSeason } from "@streamdota/shared-types";
 
 interface Props {
     onFinish?: (data: Partial<BetSeason>) => Promise<void>;

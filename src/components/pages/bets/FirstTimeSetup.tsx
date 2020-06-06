@@ -2,8 +2,8 @@ import { ReactElement, useState } from "react";
 import { Steps } from "antd";
 import CategoryForm from "./Categories/Form";
 import BotCommands from "./BotCommands";
-import { BetSeason } from "../../../api/@types/BetSeason";
 import { createUserBetSeason } from "../../../api/betSeason";
+import { BetSeason } from "@streamdota/shared-types";
 
 const getSteps = (onSeasonCreated: () => void) => [
     {
