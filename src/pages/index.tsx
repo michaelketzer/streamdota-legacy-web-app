@@ -1,5 +1,4 @@
 import Router from 'next/router';
-import { startAuthRoutine } from '../api/authorization';
 import Loader from '../components/Loader';
 
 export default function Index() {
@@ -7,7 +6,7 @@ export default function Index() {
         if(localStorage.getItem('jwt')) {
             Router.push('/dashboard');
         } else {
-            startAuthRoutine();
+            location.href = `${process.env.API_URL}/auth/twitch`;
         }
     }
     return <Loader />;
