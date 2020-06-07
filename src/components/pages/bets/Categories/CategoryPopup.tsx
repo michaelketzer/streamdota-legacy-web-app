@@ -7,10 +7,9 @@ import { patchBetSeason, createBetSeason } from "../../../../modules/reducer/Bet
 
 interface Props {
     season?: Partial<BetSeason>;
-    onFinish?: () => void;
 }
 
-export default function CategoryPopup({onFinish, season}: Props): ReactElement | null {
+export default function CategoryPopup({season}: Props): ReactElement | null {
     const dispatch = useDispatch();
     const [open, setOpen] = useState(false);
     const [data, setData] = useState<Partial<BetSeason>>();
@@ -34,7 +33,6 @@ export default function CategoryPopup({onFinish, season}: Props): ReactElement |
             }
             setData(null);
             setOpen(false);
-            onFinish();
         }}>
             <CategoryForm data={data} submitLabel={'Speichern'} onValuesChange={setData}/>
         </Modal>;

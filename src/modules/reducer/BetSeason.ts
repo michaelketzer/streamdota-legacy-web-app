@@ -75,6 +75,8 @@ export function createBetSeason(data: Partial<BetSeason>): ActionDispatcher<Prom
 				},
 			},
 		});
+
+		await dispatch(loadBetSeasons());
 	};
 }
 
@@ -97,6 +99,8 @@ export function patchBetSeason(seasonId: number, data: Partial<BetSeason>): Acti
 				},
 			},
 		});
+
+		await dispatch(loadBetSeasons());
 	};
 }
 
@@ -118,5 +122,7 @@ export function deleteBetSeason(seasonId: number): ActionDispatcher<Promise<void
 				},
 			},
 		});
+
+		await dispatch(loadBetSeasons());
 	};
 }

@@ -5,7 +5,6 @@ import BotCommands from "./BotCommands";
 import { BetSeason } from "@streamdota/shared-types";
 import { useDispatch } from "react-redux";
 import { createBetSeason } from "../../../modules/reducer/BetSeason";
-import { AnyAction } from "redux";
 
 const getSteps = (onSeasonCreated: () => void, dispatch: Dispatch<any>) => [
     {

@@ -18,10 +18,13 @@ export default function Category({ user }: { user: User }): ReactElement {
 	const seasons = useBetSeasons();
 	const users = useBetSeasonUsers(user.betSeasonId);
 	const currentSeasonName = useMemo(
-		() => (seasons && user.betSeasonId && seasons.find(({ id }) => id === user.betSeasonId).name) || '',
+		() => {
+			const season = seasons && user && user.betSeasonId && seasons.find(({ id }) => id === user.betSeasonId);
+			return season ? season.name : '';
+		},
 		[ user, seasons ]
 	);
-	const canManage = useMemo(() => users && users.find(({ userRole }) => userRole === 'owner').id === user.id, [
+	const canManage = useMemo(() => users && users.length > 0 && users.find(({ userRole }) => userRole === 'owner').id === user.id, [
 		users,
 	]);
 
