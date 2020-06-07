@@ -1,5 +1,5 @@
 import { State } from '../Store';
-import { Timer, Font } from '@streamdota/shared-types';
+import { Font } from '@streamdota/shared-types';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { loadedGoogleFontsSelector } from './Ui';

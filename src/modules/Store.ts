@@ -16,6 +16,7 @@ import { BetSeasonInviteState, betSeasonInviteReducer } from './reducer/BetSeaso
 import { BetSeasonUserState, betSeasonUserReducer } from './reducer/BetSeasonUser';
 import { BetSeasonToplistState, betSeasonToplistReducer } from './reducer/BetSeasonToplist';
 import { BetRoundState, betRoundReducer } from './reducer/BetRound';
+import { SteamConnectionState, steamConnectionReducer } from './reducer/SteamConnection';
 
 export interface State {
 	entities: {
@@ -27,6 +28,7 @@ export interface State {
 		command: CommandState;
 		dotaOverlay: DotaOverlayState;
 		googleFont: FontState;
+		steamConnection: SteamConnectionState;
 		timer: TimerState;
 	};
 	ui: Ui;
@@ -41,6 +43,7 @@ const initial: State = {
 		command: undefined,
 		dotaOverlay: undefined,
 		googleFont: undefined,
+		steamConnection: undefined,
 		timer: undefined,
 	},
 	ui: initialUiState,
@@ -66,6 +69,7 @@ export const storeReducer = combineReducers<State>({
 		command: entitiesReducer(commandReducer, 'command'),
 		dotaOverlay: entitiesReducer(dotaOverlayReducer, 'dotaOverlay'),
 		googleFont: entitiesReducer(googleFontReducer, 'googleFont'),
+		steamConnection: entitiesReducer(steamConnectionReducer, 'steamConnection'),
 		timer: entitiesReducer(timerReducer, 'timer'),
 	}),
 	ui: uiReducer,
