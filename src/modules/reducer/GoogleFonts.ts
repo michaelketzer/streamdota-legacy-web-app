@@ -10,7 +10,7 @@ export interface FontState {
 }
 
 export const font = new schema.Entity(
-	'command',
+	'googleFont',
 	{},
 	{
 		idAttribute: 'family',

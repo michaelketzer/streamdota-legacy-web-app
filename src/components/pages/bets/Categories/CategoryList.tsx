@@ -24,7 +24,7 @@ export default function CategoryList({seasons, currentBetSeason, canManage}: Cat
             }} />} />
 
             <div className={'buttons'}>
-                {canManage && <Button type={'primary'} size={'middle'} icon={<PlusOutlined />} onClick={() => setCategory(emptySeason())}>Neue Kategorie</Button>}
+                <Button type={'primary'} size={'middle'} icon={<PlusOutlined />} onClick={() => setCategory(emptySeason())}>Neue Kategorie</Button>
                 <Button type={'dashed'} size={'middle'} icon={<PlusOutlined />} disabled>Einladung annehmen</Button>
             </div>
             <CategoryPopup season={category}/>
