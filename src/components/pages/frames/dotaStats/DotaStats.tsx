@@ -1,14 +1,13 @@
 import { ReactElement, useState, useEffect } from "react";
 import { useMessageListener } from "../../../context/websocket/MessageHandler";
-import { useAbortFetch } from "../../../../hooks/abortFetch";
-import { fetchStats } from "../../../../api/user";
 import { MessageType } from "../../../context/websocket/state";
 import Overlay from "./Overlay";
+import { useDotaStats } from "../../../../modules/selector/DotaOverlay";
 
 
 export default function DotaStats({frameKey}: {frameKey: string}): ReactElement {
     const message = useMessageListener();
-    const [status] = useAbortFetch(fetchStats, frameKey);
+    const status = useDotaStats(frameKey);
     const [wins, setWins] = useState(0);
     const [lost, setLost] = useState(0);
 
