@@ -1,12 +1,14 @@
 import { ReactElement } from "react";
 import { PlayCircleFilled } from "@ant-design/icons";
 import classNames from "classnames";
-import { setWinner } from "../../../../api/bets";
 import { useDispatch } from "react-redux";
-import { createBetRound } from "../../../../modules/reducer/BetRound";
+import { createBetRound, updateBetRound } from "../../../../modules/reducer/BetRound";
+import { useCurrentBetRound } from "../../../../modules/selector/BetRound";
 
 export default function StatusTile({status}: {status: 'betting' | 'running' | 'finished'}): ReactElement {
     const dispatch = useDispatch();
+    const currentBetRound = useCurrentBetRound();
+
     return <div className={classNames('statusTileWrapper', status)} onClick={async () => {
         if(status === 'finished') {
             await dispatch(createBetRound());
@@ -26,9 +28,9 @@ export default function StatusTile({status}: {status: 'betting' | 'running' | 'f
         {status === 'running' && <>
             <div className={'value finished'}>Spiel fertig</div>
             <div className={'winnerSelect'}>
-                <span className={'winnerA'} onClick={() => setWinner('a')}>A</span>
+                <span className={'winnerA'} onClick={async() => await dispatch(updateBetRound(currentBetRound.id, {result: 'a'}))}>A</span>
                 <span className={'winnerOr'}>oder</span>
-                <span className={'winnerB'} onClick={() => setWinner('b')}>B</span>
+                <span className={'winnerB'} onClick={async() => await dispatch(updateBetRound(currentBetRound.id, {result: 'b'}))}>B</span>
             </div>
             <div className={'label'}>WÄHLE DEN GEWINNER</div>
         </>}

@@ -1,9 +1,8 @@
 import { ReactElement, ReactNode } from "react";
-import { useAbortFetch } from "../../../../hooks/abortFetch";
-import { fetchOverlayFromAuthKey } from "../../../../api/overlay";
 import GoogleFontLoader from 'react-google-font-loader';
 import { OverlayConfig } from "@streamdota/shared-types";
 import { getVariant } from "../../dotaOverlay/Overlay/FontVariantSelection";
+import { useDotaOverlay } from "../../../../modules/selector/DotaOverlay";
 
 function Number({color, x, y, height, cfg, children}: {color: string, x: number, y:number, height: string, cfg: OverlayConfig, children: ReactNode}): ReactElement {
     return <div style={{
@@ -20,7 +19,7 @@ function Number({color, x, y, height, cfg, children}: {color: string, x: number,
 }
 
 export default function Overlay({wins, loss, auth}: {wins: number; loss: number; auth: string}): ReactElement | null  {
-    const [cfg] = useAbortFetch(fetchOverlayFromAuthKey, auth);
+    const cfg = useDotaOverlay(auth);
 
     if(cfg) {
         return <>

@@ -1,16 +1,31 @@
 import { ReactElement, useMemo } from 'react';
-import { downloadGsiConfig } from '../../../api/request';
 import { ExclamationCircleOutlined, DownloadOutlined, WarningOutlined, CheckCircleOutlined } from '@ant-design/icons';
 import { Button, Popconfirm } from 'antd';
 import { useStateValue } from '../../context/websocket/context';
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { resetGsi } from '../../../modules/reducer/DotaOverlay';
+import { getDefaultHeader } from '../../../modules/middleware/Network';
+import fetch from 'isomorphic-unfetch';
+
+async function downloadGsiConfig(): Promise<void> {
+    const response = await fetch(process.env.API_URL + '/dota-gsi/generateConfig', {headers: getDefaultHeader()});
+    const filename = response.headers.get('Content-Disposition').split('filename=')[1];
+    const blob = await response.blob();
+    const url = window.URL.createObjectURL(blob);
+    var a = document.createElement('a');
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();    
+    a.remove();
+}
 
 interface Props {
 	gsiAuth: string;
 	gsiConnected: boolean;
 }
+
 export default function SetupGsi({ gsiAuth, gsiConnected }: Props): ReactElement {
 	const [ { messages } ] = useStateValue();
 	const dispatch = useDispatch();
