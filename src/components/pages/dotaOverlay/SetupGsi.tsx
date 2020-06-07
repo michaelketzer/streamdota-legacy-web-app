@@ -3,8 +3,9 @@ import { downloadGsiConfig } from '../../../api/request';
 import { ExclamationCircleOutlined, DownloadOutlined, WarningOutlined, CheckCircleOutlined } from '@ant-design/icons';
 import { Button, Popconfirm } from 'antd';
 import { useStateValue } from '../../context/websocket/context';
-import { resetDotaGsi } from '../../../api/user';
 import React from 'react';
+import { useDispatch } from 'react-redux';
+import { resetGsi } from '../../../modules/reducer/DotaOverlay';
 
 interface Props {
 	gsiAuth: string;
@@ -12,14 +13,9 @@ interface Props {
 }
 export default function SetupGsi({ gsiAuth, gsiConnected }: Props): ReactElement {
 	const [ { messages } ] = useStateValue();
-
-	const onLoadGsi = async () => {
-		await downloadGsiConfig();
-	};
-
-	const onResetGsi = async () => {
-		await resetDotaGsi();
-	};
+	const dispatch = useDispatch();
+	const onLoadGsi = async () => await downloadGsiConfig();
+	const onResetGsi = async () => await dispatch(resetGsi());
 	const hasSetup = useMemo(() => gsiAuth.length > 0, [ gsiAuth ]);
 
 	if (hasSetup) {

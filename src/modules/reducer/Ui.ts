@@ -1,4 +1,4 @@
-import { User } from '@streamdota/shared-types';
+import { User, DotaStats } from '@streamdota/shared-types';
 import {
 	SET_UI,
 	LOAD_CURRENT_USER_SUCCESS,
@@ -16,6 +16,7 @@ import {
 	LOAD_BET_SEASON_TOPLIST_SUCCESS,
 	LOAD_BET_ROUNDS_SUCCESS,
 	LOAD_STEAM_CONNECTIONS_SUCCESS,
+	LOAD_DOTA_STATS_SUCCESS,
 } from './Actions';
 import { DeepPartial } from 'redux';
 import { ApiActionResponse } from '../middleware/Network';
@@ -27,6 +28,7 @@ import { currentUserSelector } from '../selector/Ui';
 
 export interface Ui {
 	currentUser: User | null;
+	dotaStats: DotaStats[] | null;
 	loadedEntities: {
 		betRounds: number[];
 		betSeasons: boolean;
@@ -42,6 +44,7 @@ export interface Ui {
 
 export const initialUiState: Ui = {
 	currentUser: null,
+	dotaStats: null,
 	loadedEntities: {
 		betRounds: [],
 		betSeasons: false,
@@ -71,6 +74,11 @@ interface LoadedBetSeasonAsset<T> {
 			seasonId: number;
 		};
 	};
+}
+
+interface LoadedDotaStats {
+	type: typeof LOAD_DOTA_STATS_SUCCESS;
+	response: DotaStats[];
 }
 
 interface CurrentUserSuccess extends ApiActionResponse<User> {
@@ -130,6 +138,13 @@ for(const [key, listener] of betSeasonAssetsLoaded) {
 		};
 	});
 }
+
+addReducer<LoadedDotaStats>(LOAD_DOTA_STATS_SUCCESS, (state, {response}) => {
+	return {
+		...state,
+		dotaStats: response,
+	};
+});
 
 export const uiReducer = combinedReducer;
 
