@@ -15,6 +15,7 @@ import {
 	LOAD_BET_SEASON_USERS_SUCCESS,
 	LOAD_BET_SEASON_TOPLIST_SUCCESS,
 	LOAD_BET_ROUNDS_SUCCESS,
+	LOAD_STEAM_CONNECTIONS_SUCCESS,
 } from './Actions';
 import { DeepPartial } from 'redux';
 import { ApiActionResponse } from '../middleware/Network';
@@ -34,6 +35,7 @@ export interface Ui {
 		betSeasonToplists: number[];
 		commands: boolean;
 		googleFonts: boolean;
+		steamConnections: boolean;
 		timers: boolean;
 	};
 }
@@ -48,6 +50,7 @@ export const initialUiState: Ui = {
 		betSeasonToplists: [],
 		commands: false,
 		googleFonts: false,
+		steamConnections: false,
 		timers: false,
 	},
 };
@@ -57,52 +60,12 @@ interface UiSet {
 	ui: DeepPartial<Ui>;
 }
 
-interface CommandsLoaded {
-	type: typeof LOAD_COMMANDS_SUCCESS;
+interface EntityLoaded<T> {
+	type: T;
 }
 
-interface TimersLoaded {
-	type: typeof LOAD_TIMERS_SUCCESS;
-}
-
-interface GoogleFontsLoaded {
-	type: typeof LOAD_GOOGLE_FONTS_SUCCESS;
-}
-
-interface BetSeasonLoaded {
-	type: typeof LOAD_BET_SEASONS_SUCCESS;
-}
-
-interface BetSeasonInviteLoaded {
-	type: typeof LOAD_BET_SEASON_INVITES_SUCCESS;
-	options: {
-		urlParams: {
-			seasonId: number;
-		};
-	};
-}
-
-interface BetSeasonUserLoaded {
-	type: typeof LOAD_BET_SEASON_USERS_SUCCESS;
-	options: {
-		urlParams: {
-			seasonId: number;
-		};
-	};
-}
-
-interface BetSeasonToplistLoaded {
-	type: typeof LOAD_BET_SEASON_TOPLIST_SUCCESS;
-	options: {
-		urlParams: {
-			seasonId: number;
-		};
-	};
-}
-
-
-interface BetRoundsLoaded {
-	type: typeof LOAD_BET_ROUNDS_SUCCESS;
+interface LoadedBetSeasonAsset<T> {
+	type: T;
 	options: {
 		urlParams: {
 			seasonId: number;
@@ -128,85 +91,45 @@ addReducer<CurrentUserSuccess>(LOAD_CURRENT_USER_SUCCESS, (state, { response: cu
 	};
 });
 
-addReducer<CommandsLoaded>(LOAD_COMMANDS_SUCCESS, (state) => {
-	return {
-		...state,
-		loadedEntities: {
-			...state.loadedEntities,
-			commands: true,
-		},
-	};
-});
+const flatLoadedEntities = [
+	['commands', LOAD_COMMANDS_SUCCESS],
+	['timers', LOAD_TIMERS_SUCCESS],
+	['googleFonts', LOAD_GOOGLE_FONTS_SUCCESS],
+	['betSeasons', LOAD_BET_SEASONS_SUCCESS],
+	['steamConnections', LOAD_STEAM_CONNECTIONS_SUCCESS],
+];
 
-addReducer<TimersLoaded>(LOAD_TIMERS_SUCCESS, (state) => {
-	return {
-		...state,
-		loadedEntities: {
-			...state.loadedEntities,
-			timers: true,
-		},
-	};
-});
+for(const [key, listener] of flatLoadedEntities) {
+	addReducer<EntityLoaded<typeof listener>>(listener, (state) => {
+		return {
+			...state,
+			loadedEntities: {
+				...state.loadedEntities,
+				[key]: true,
+			},
+		};
+	});
+}
 
-addReducer<GoogleFontsLoaded>(LOAD_GOOGLE_FONTS_SUCCESS, (state) => {
-	return {
-		...state,
-		loadedEntities: {
-			...state.loadedEntities,
-			googleFonts: true,
-		},
-	};
-});
+const betSeasonAssetsLoaded  = [
+	['betSeasonInvites', LOAD_BET_SEASON_INVITES_SUCCESS],
+	['betSeasonUsers', LOAD_BET_SEASON_USERS_SUCCESS],
+	['betSeasonToplists', LOAD_BET_SEASON_TOPLIST_SUCCESS],
+	['betRounds', LOAD_BET_ROUNDS_SUCCESS],
+];
 
-addReducer<BetSeasonLoaded>(LOAD_BET_SEASONS_SUCCESS, (state) => {
-	return {
-		...state,
-		loadedEntities: {
-			...state.loadedEntities,
-			betSeasons: true,
-		},
-	};
-});
 
-addReducer<BetSeasonInviteLoaded>(LOAD_BET_SEASON_INVITES_SUCCESS, (state, {options: {urlParams: {seasonId}}}) => {
-	return {
-		...state,
-		loadedEntities: {
-			...state.loadedEntities,
-			betSeasonInvites: state.loadedEntities.betSeasonInvites.concat(seasonId),
-		},
-	};
-});
-
-addReducer<BetSeasonUserLoaded>(LOAD_BET_SEASON_USERS_SUCCESS, (state, {options: {urlParams: {seasonId}}}) => {
-	return {
-		...state,
-		loadedEntities: {
-			...state.loadedEntities,
-			betSeasonUsers: state.loadedEntities.betSeasonUsers.concat(seasonId),
-		},
-	};
-});
-
-addReducer<BetSeasonToplistLoaded>(LOAD_BET_SEASON_TOPLIST_SUCCESS, (state, {options: {urlParams: {seasonId}}}) => {
-	return {
-		...state,
-		loadedEntities: {
-			...state.loadedEntities,
-			betSeasonToplists: state.loadedEntities.betSeasonToplists.concat(seasonId),
-		},
-	};
-});
-
-addReducer<BetRoundsLoaded>(LOAD_BET_ROUNDS_SUCCESS, (state, {options: {urlParams: {seasonId}}}) => {
-	return {
-		...state,
-		loadedEntities: {
-			...state.loadedEntities,
-			betRounds: state.loadedEntities.betRounds.concat(seasonId),
-		},
-	};
-});
+for(const [key, listener] of betSeasonAssetsLoaded) {
+	addReducer<LoadedBetSeasonAsset<typeof listener>>(listener, (state, {options: {urlParams: {seasonId}}}) => {
+		return {
+			...state,
+			loadedEntities: {
+				...state.loadedEntities,
+				[key]: state.loadedEntities[key].concat(seasonId),
+			},
+		};
+	});
+}
 
 export const uiReducer = combinedReducer;
 

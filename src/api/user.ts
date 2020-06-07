@@ -1,15 +1,6 @@
 import { get, del } from './request';
+import { SteamConnection, DotaStats } from '@streamdota/shared-types';
 
-export interface SteamConnection {
-    id: number;
-    userId: number;
-    steamId: string;
-}
-
-export interface DotaStats {
-    date: number;
-    won: boolean;
-}
 
 export async function fetchSteamConnections(abortController: AbortController): Promise<SteamConnection[]> {
 	return await get<SteamConnection[]>('/user/steam', 'json', { signal: abortController.signal });

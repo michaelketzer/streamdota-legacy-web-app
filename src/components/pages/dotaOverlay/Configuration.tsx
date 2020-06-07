@@ -1,10 +1,8 @@
 import { ReactElement, useMemo, useState } from 'react';
-import { useAbortFetch } from '../../../hooks/abortFetch';
-import { fetchSteamConnections } from '../../../api/user';
-import { SteamConnection } from '../../../api/@types/SteamConnection';
 import Loader from '../../Loader';
 import Configure from './Configure';
 import { useCurrentUser } from '../../../hooks/currentUser';
+import { useSteamConnection } from '../../../modules/selector/SteamConnection';
 
 export enum OverlayMethods {
 	dotaGsi,
@@ -13,7 +11,7 @@ export enum OverlayMethods {
 
 export default function Configuration(): ReactElement {
 	const user = useCurrentUser();
-	const [ steamConnections ] = useAbortFetch<SteamConnection[]>(fetchSteamConnections);
+	const steamConnections = useSteamConnection();
 	const loading = useMemo(() => !user && !steamConnections, [ user, steamConnections ]);
 	const [ method, setMethod ] = useState<OverlayMethods>(OverlayMethods.dotaGsi);
 
