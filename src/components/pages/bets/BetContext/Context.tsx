@@ -1,12 +1,11 @@
 import React, { createContext, ReactElement, useReducer, useContext, Dispatch, useEffect } from 'react';
-import { useAbortFetch } from '../../../../hooks/abortFetch';
 import Loader from '../../../Loader';
 import ContextProvider from '../../../context/websocket/context';
 import { initialState, reducer, MessageType } from '../../../context/websocket/state';
 import { BetState, betReducer, updateState, CurrentBetRound } from './state';
-import { fetchCurrentBetRound } from '../../../../api/bets';
 import { useMessageListener } from '../../../context/websocket/MessageHandler';
 import { useCurrentUser } from '../../../../hooks/currentUser';
+import { useCurrentBetRound } from '../../../../modules/selector/BetRound';
 
 const context = createContext({});
 export const useBetState = (): [BetState, Dispatch<{}>] => useContext(context) as [BetState, Dispatch<{}>];
@@ -49,10 +48,9 @@ const BetContextProvider = ({ children, initialState }) => {
 
 export default function BetContext({ children }: { children: ReactElement }): ReactElement {
 	const user = useCurrentUser();
-	const [ status ] = useAbortFetch(fetchCurrentBetRound);
+	const status = useCurrentBetRound();
 
-	console.log(status);
-	if (user && status !== undefined) {
+	if (user && status) {
 		return (
 			<ContextProvider
 				initialState={initialState}

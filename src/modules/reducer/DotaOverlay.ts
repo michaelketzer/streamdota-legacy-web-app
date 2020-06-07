@@ -30,11 +30,12 @@ addReducer<LoadDotaOverlay>(LOAD_DOTA_OVERLAY_SUCCESS, (state, { response }) => 
 
 export const dotaOverlayReducer = combinedReducer;
 
-export function loadDotaOverlay(): ActionDispatcher<Promise<void>> {
+export function loadDotaOverlay(frameApiKey?: string): ActionDispatcher<Promise<void>> {
 	return async (dispatch) => {
+		const endpoint = frameApiKey ? `${process.env.API_URL}/overlay?frameApiKey=${frameApiKey}` : `${process.env.API_URL}/overlay`;
 		await dispatch<Promise<Response | NetworkError>>({
 			[CALL_API]: {
-				endpoint: `${process.env.API_URL}/overlay`,
+				endpoint,
 				types: {
 					requestType: LOAD_DOTA_OVERLAY_REQUEST,
 					successType: LOAD_DOTA_OVERLAY_SUCCESS,

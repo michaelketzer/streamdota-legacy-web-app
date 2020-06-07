@@ -1,10 +1,10 @@
 import { RequestOptions } from './NetworkMiddlewareTypes';
 
-export function getDefaultHeader(): object {
+export function getDefaultHeader(): RequestInit['headers'] {
 	const jwt = localStorage.getItem('jwt');
 	return {
 		'Content-Type': 'application/json',
-		...jwt ? { Authorization: `JWT ${jwt}` } : {},
+		...(jwt ? { Authorization: `JWT ${jwt}` } : {}),
 	};
 }
 

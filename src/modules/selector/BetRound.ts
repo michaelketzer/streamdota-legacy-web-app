@@ -3,7 +3,7 @@ import { BetRound } from '@streamdota/shared-types';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { loadedBetRoundsSelector } from './Ui';
-import { BetRoundState, loadBetRounds } from '../reducer/BetRound';
+import { BetRoundState, loadBetRounds, loadCurrentBetRound } from '../reducer/BetRound';
 
 export const betRoundEntitiesSelector = (state: State): BetRoundState => state.entities.betRound;
 
@@ -25,4 +25,22 @@ export function useBetRounds(seasonId: number): BetRound[] | undefined {
 	);
 
 	return rounds.filter(({betSeason}) => betSeason === seasonId);
+}
+
+export const currentBetRoundSelector = (state: State): BetRound | null => state.ui.currentBetRound;
+
+export function useCurrentBetRound(): BetRound | null {
+	const currentBetRound = useSelector(currentBetRoundSelector);
+	const dispatch = useDispatch();
+
+	useEffect(
+		() => {
+			if (currentBetRound === null) {
+				dispatch(loadCurrentBetRound());
+			}
+		},
+		[ currentBetRound ]
+	);
+
+	return currentBetRound;
 }

@@ -16,6 +16,9 @@ import {
     UPDATE_BET_ROUND_FAILURE,
     DELETE_BET_ROUND_REQUEST,
     DELETE_BET_ROUND_FAILURE,
+	LOAD_CURRENT_BET_ROUND_REQUEST,
+	LOAD_CURRENT_BET_ROUND_SUCCESS,
+	LOAD_CURRENT_BET_ROUND_FAILURE,
 } from './Actions';
 
 export interface BetRoundState {
@@ -118,6 +121,21 @@ export function deleteBetRound(betRoundId: number): ActionDispatcher<Promise<voi
 						betRoundId,
 					},
 				},
+			},
+		});
+	};
+}
+
+export function loadCurrentBetRound(): ActionDispatcher<Promise<void>> {
+	return async (dispatch) => {
+		await dispatch<Promise<Response | NetworkError>>({
+			[CALL_API]: {
+				endpoint: `${process.env.API_URL}/bets/current`,
+				types: {
+					requestType: LOAD_CURRENT_BET_ROUND_REQUEST,
+					successType: LOAD_CURRENT_BET_ROUND_SUCCESS,
+					failureType: LOAD_CURRENT_BET_ROUND_FAILURE,
+                },
 			},
 		});
 	};

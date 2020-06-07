@@ -1,4 +1,4 @@
-import { User, DotaStats } from '@streamdota/shared-types';
+import { User, DotaStats, BetRound } from '@streamdota/shared-types';
 import {
 	SET_UI,
 	LOAD_CURRENT_USER_SUCCESS,
@@ -17,6 +17,7 @@ import {
 	LOAD_BET_ROUNDS_SUCCESS,
 	LOAD_STEAM_CONNECTIONS_SUCCESS,
 	LOAD_DOTA_STATS_SUCCESS,
+	LOAD_CURRENT_BET_ROUND_SUCCESS,
 } from './Actions';
 import { DeepPartial } from 'redux';
 import { ApiActionResponse } from '../middleware/Network';
@@ -27,6 +28,7 @@ import NetworkError from '../middleware/NetworkError';
 import { currentUserSelector } from '../selector/Ui';
 
 export interface Ui {
+	currentBetRound: BetRound | null;
 	currentUser: User | null;
 	dotaStats: DotaStats[] | null;
 	loadedEntities: {
@@ -43,6 +45,7 @@ export interface Ui {
 }
 
 export const initialUiState: Ui = {
+	currentBetRound: null,
 	currentUser: null,
 	dotaStats: null,
 	loadedEntities: {
@@ -79,6 +82,11 @@ interface LoadedBetSeasonAsset<T> {
 interface LoadedDotaStats {
 	type: typeof LOAD_DOTA_STATS_SUCCESS;
 	response: DotaStats[];
+}
+
+interface LoadedCurrentBetRound {
+	type: typeof LOAD_CURRENT_BET_ROUND_SUCCESS;
+	response: BetRound;
 }
 
 interface CurrentUserSuccess extends ApiActionResponse<User> {
@@ -146,10 +154,17 @@ addReducer<LoadedDotaStats>(LOAD_DOTA_STATS_SUCCESS, (state, {response}) => {
 	};
 });
 
+addReducer<LoadedCurrentBetRound>(LOAD_CURRENT_BET_ROUND_SUCCESS, (state, {response}) => {
+	return {
+		...state,
+		currentBetRound: response,
+	};
+});
+
 export const uiReducer = combinedReducer;
 
 export function loadCurrentUser(): ActionDispatcher<Promise<void>> {
-	return async (dispatch, getState) => {
+	return async (dispatch) => {
 		const response = await dispatch<Promise<Response | NetworkError>>({
 			[CALL_API]: {
 				endpoint: `${process.env.API_URL}/user/baseData`,
