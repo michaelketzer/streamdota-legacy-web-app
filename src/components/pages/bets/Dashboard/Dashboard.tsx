@@ -1,13 +1,13 @@
 import { ReactElement, useMemo } from "react";
 import SimpleValueTile from "./SimpleValueTile";
 import StatusTile from "./StatusTile";
-import { useBetState } from "../BetContext/Context";
 import TimingTile from "./TimingTile";
 import BetDistribution from "../Categories/BetDistribution";
+import { useCurrentBetRound } from "../../../../modules/selector/BetRound";
 
 export default function Dashboard(): ReactElement {
-    const [{chatters, status, bets, created, aBets, bBets}] = useBetState();
-    const participation = useMemo(() => chatters > 0 ? Math.floor((bets * 100) / chatters) : 0, [bets, chatters]);
+    const {chatters, status, total, created, aBets, bBets} = useCurrentBetRound();
+    const participation = useMemo(() => chatters > 0 ? Math.floor((total * 100) / chatters) : 0, [total, chatters]);
 
     return <div className={'dashboardGrid'}>
         <div className={'singleTile'}>
@@ -17,10 +17,10 @@ export default function Dashboard(): ReactElement {
             <TimingTile created={created} status={status} />
         </div>
         <div className={'singleTile doubleTile'}>
-            <BetDistribution aBets={aBets} bBets={bBets} bets={bets} />
+            <BetDistribution aBets={aBets} bBets={bBets} bets={total} />
         </div>
         <div className={'singleTile'}>
-            <SimpleValueTile value={'' + bets} label={'Abstimmungen'} />
+            <SimpleValueTile value={'' + total} label={'Abstimmungen'} />
         </div>
         <div className={'singleTile'}>
             <SimpleValueTile value={`${participation}%`} label={'Chat Teilnahme'} />
