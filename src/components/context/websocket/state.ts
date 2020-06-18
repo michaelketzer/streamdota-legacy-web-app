@@ -1,5 +1,5 @@
 import dayjs from 'dayjs';
-import { CurrentBetRound } from '../../pages/bets/BetContext/state';
+import { BetRoundStats } from '@streamdota/shared-types';
 
 enum ACTIONS {
     NEW_MESSAGE = 'NEW_MESSAGE',
@@ -35,7 +35,7 @@ export interface ChatMessage {
 export interface BettingMessage {
     type: MessageType.betting;
     date: number;
-    value: CurrentBetRound;
+    value: BetRoundStats;
 }
 
 export type Message =  GameStateMessage | WinnerMessage | ChatMessage | BettingMessage;

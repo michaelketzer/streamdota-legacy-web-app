@@ -1,4 +1,4 @@
-import { User, DotaStats, BetRound } from '@streamdota/shared-types';
+import { User, DotaStats, BetRound, BetRoundStats } from '@streamdota/shared-types';
 import {
 	SET_UI,
 	LOAD_CURRENT_USER_SUCCESS,
@@ -28,7 +28,7 @@ import NetworkError from '../middleware/NetworkError';
 import { currentUserSelector } from '../selector/Ui';
 
 export interface Ui {
-	currentBetRound: BetRound | null;
+	currentBetRound: BetRoundStats | null;
 	currentUser: User | null;
 	dotaStats: DotaStats[] | null;
 	loadedEntities: {
@@ -86,7 +86,7 @@ interface LoadedDotaStats {
 
 interface LoadedCurrentBetRound {
 	type: typeof LOAD_CURRENT_BET_ROUND_SUCCESS;
-	response: BetRound;
+	response: BetRoundStats;
 }
 
 interface CurrentUserSuccess extends ApiActionResponse<User> {
@@ -203,4 +203,11 @@ export function updateCurrentUser(data: Partial<User>): ActionDispatcher<Promise
 			await dispatch(loadCurrentUser());
 		}
 	};
+}
+
+export function updateCurrentBetTound(betRound: BetRound): ActionDispatcher<void> {
+	return (dispatch) => dispatch({
+		type: LOAD_CURRENT_BET_ROUND_SUCCESS,
+		response: betRound,
+	});
 }
