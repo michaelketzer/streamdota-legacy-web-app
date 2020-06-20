@@ -1,5 +1,5 @@
 import { ReactElement, Fragment } from 'react';
-import { Typography, Tag } from 'antd';
+import { Typography } from 'antd';
 import CommandList from '../bot/CommandList';
 import Tags from '../../Commands/Tags';
 

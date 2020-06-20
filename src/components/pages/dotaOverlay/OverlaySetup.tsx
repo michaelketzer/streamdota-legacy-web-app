@@ -20,8 +20,8 @@ function FontLoader({ font, rawFonts }: { font: string; rawFonts: Font[] }): Rea
 			if (rawFonts && font && font !== 'Arial') {
 				const data = rawFonts.find(({ family }) => family === font);
 				return {
-					font: data.family || '',
-					weights: data.subSets || ['400'],
+					font: data?.family || '',
+					weights: data?.subSets || ['400'],
 				};
 			}
 			return null;
