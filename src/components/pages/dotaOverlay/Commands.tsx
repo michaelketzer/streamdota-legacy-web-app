@@ -20,7 +20,7 @@ export default function Commands(): ReactElement {
 			<div>
 				<Typography.Text strong>Commands</Typography.Text>
 			</div>
-			<CommandList commandType={'dotaWL'} />
+			<CommandList commandType={'dotaWinLoss'} />
 		</Fragment>
 	);
 }
