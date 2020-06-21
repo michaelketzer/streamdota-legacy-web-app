@@ -28,9 +28,9 @@ export default function StatusTile({status}: {status: 'betting' | 'running' | 'f
         {status === 'running' && <>
             <div className={'value finished'}>Spiel fertig</div>
             <div className={'winnerSelect'}>
-                <span className={'winnerA'} onClick={async() => await dispatch(updateBetRound(currentBetRound.id, {result: 'a'}))}>A</span>
+                <span className={'winnerA'} onClick={async() => await dispatch(updateBetRound(currentBetRound.id, {result: 'a', status: 'finished'}))}>A</span>
                 <span className={'winnerOr'}>oder</span>
-                <span className={'winnerB'} onClick={async() => await dispatch(updateBetRound(currentBetRound.id, {result: 'b'}))}>B</span>
+                <span className={'winnerB'} onClick={async() => await dispatch(updateBetRound(currentBetRound.id, {result: 'b', status: 'finished', }))}>B</span>
             </div>
             <div className={'label'}>WÄHLE DEN GEWINNER</div>
         </>}
