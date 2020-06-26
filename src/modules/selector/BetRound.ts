@@ -43,5 +43,5 @@ export function useCurrentBetRound(): BetRoundStats | null {
 		[ currentBetRound ]
 	);
 
-	return currentBetRound;
+	return currentBetRound || defaultBetState;
 }
