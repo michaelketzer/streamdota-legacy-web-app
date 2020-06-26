@@ -18,6 +18,8 @@ export function authUser(code: string) {
                     },
                 },
             });
+            console.log(jwt);
+            debugger;
             if(jwt) {
                 localStorage.setItem('jwt', jwt);
                 await dispatch(loadCurrentUser());
