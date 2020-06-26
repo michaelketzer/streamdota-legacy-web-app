@@ -77,13 +77,17 @@ export const storeReducer = combineReducers<State>({
 
 //@ts-ignore
 const makeStore: MakeStore<State> = () => {
-	const composeEnhancers = composeWithDevTools({
-		hostname: 'localhost',
-		realtime: true,
-		name: 'streamdota',
-		port: 8000,
-	});
+	if(process.env.NODE_ENV === 'development') {
+		const composeEnhancers = composeWithDevTools({
+			hostname: 'localhost',
+			realtime: true,
+			name: 'streamdota',
+			port: 8000,
+		});
+		//@ts-ignore
+		return createStore(storeReducer, composeEnhancers(applyMiddleware(thunk, networkMiddleware)));
+	}
 	//@ts-ignore
-	return createStore(storeReducer, composeEnhancers(applyMiddleware(thunk, networkMiddleware)));
+	return createStore(storeReducer, applyMiddleware(thunk, networkMiddleware));
 };
 export const wrapper = createWrapper<State>(makeStore);
