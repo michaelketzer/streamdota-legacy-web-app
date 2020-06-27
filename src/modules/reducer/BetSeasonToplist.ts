@@ -13,7 +13,9 @@ export interface BetSeasonToplistState {
 	[x: number]: BetSeasonToplist;
 }
 
-export const betSeasonToplist = new schema.Entity('betSeasonToplist');
+export const betSeasonToplist = new schema.Entity('betSeasonToplist', {}, {
+	idAttribute: (item) => item.betSeason + '-' + item.id
+});
 const { combinedReducer } = createReducer<BetSeasonToplistState>();
 
 export const betSeasonToplistReducer = combinedReducer;
