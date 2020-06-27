@@ -18,6 +18,8 @@ import {
 	LOAD_STEAM_CONNECTIONS_SUCCESS,
 	LOAD_DOTA_STATS_SUCCESS,
 	LOAD_CURRENT_BET_ROUND_SUCCESS,
+	LOAD_BET_OVERLAY_SUCCESS,
+	UPDATE_BET_OVERLAY_SUCCESS,
 } from './Actions';
 import { DeepPartial } from 'redux';
 import { ApiActionResponse } from '../middleware/Network';
@@ -33,6 +35,7 @@ export interface Ui {
 	dotaStats: DotaStats[] | null;
 	loadedEntities: {
 		betRounds: number[];
+		betOverlay: boolean;
 		betSeasons: boolean;
 		betSeasonInvites: number[];
 		betSeasonUsers: number[];
@@ -50,6 +53,7 @@ export const initialUiState: Ui = {
 	dotaStats: null,
 	loadedEntities: {
 		betRounds: [],
+		betOverlay: false,
 		betSeasons: false,
 		betSeasonInvites: [],
 		betSeasonUsers: [],
@@ -108,20 +112,23 @@ addReducer<CurrentUserSuccess>(LOAD_CURRENT_USER_SUCCESS, (state, { response: cu
 });
 
 const flatLoadedEntities = [
-	['commands', LOAD_COMMANDS_SUCCESS],
-	['timers', LOAD_TIMERS_SUCCESS],
-	['googleFonts', LOAD_GOOGLE_FONTS_SUCCESS],
-	['betSeasons', LOAD_BET_SEASONS_SUCCESS],
-	['steamConnections', LOAD_STEAM_CONNECTIONS_SUCCESS],
+	['commands', LOAD_COMMANDS_SUCCESS, true],
+	['betOverlay', LOAD_BET_OVERLAY_SUCCESS, true],
+	['betOverlay', UPDATE_BET_OVERLAY_SUCCESS, false],
+	['timers', LOAD_TIMERS_SUCCESS, true],
+	['googleFonts', LOAD_GOOGLE_FONTS_SUCCESS, true],
+	['betSeasons', LOAD_BET_SEASONS_SUCCESS, true],
+	['steamConnections', LOAD_STEAM_CONNECTIONS_SUCCESS, true],
 ];
 
-for(const [key, listener] of flatLoadedEntities) {
+for(const [key, listener, loaded] of flatLoadedEntities) {
 	addReducer<EntityLoaded<typeof listener>>(listener, (state) => {
 		return {
 			...state,
 			loadedEntities: {
 				...state.loadedEntities,
-				[key]: true,
+				//@ts-ignore
+				[key]: loaded,
 			},
 		};
 	});
