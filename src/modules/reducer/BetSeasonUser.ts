@@ -22,7 +22,7 @@ export function loadBetSeasonUsers(seasonId: number): ActionDispatcher<Promise<v
 	return async (dispatch) => {
 		await dispatch<Promise<Response | NetworkError>>({
 			[CALL_API]: {
-				endpoint: `${process.env.API_URL}/betSeason/toplist/:seasonId`,
+				endpoint: `${process.env.API_URL}/betSeason/user/:seasonId`,
 				schema: [ betSeasonUser ],
 				types: {
 					requestType: LOAD_BET_SEASON_USERS_REQUEST,

@@ -24,6 +24,5 @@ export function useBetSeasonToplist(seasonId: number): BetSeasonToplist[] | unde
 		[ loaded ]
 	);
 
-	console.log(toplist, seasonId);
 	return toplist.filter(({betSeason}) => betSeason === seasonId);
 }
