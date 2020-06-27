@@ -17,10 +17,12 @@ import { BetSeasonUserState, betSeasonUserReducer } from './reducer/BetSeasonUse
 import { BetSeasonToplistState, betSeasonToplistReducer } from './reducer/BetSeasonToplist';
 import { BetRoundState, betRoundReducer } from './reducer/BetRound';
 import { SteamConnectionState, steamConnectionReducer } from './reducer/SteamConnection';
+import { BetOverlayState, betOverlayReducer } from './reducer/BetOverlay';
 
 export interface State {
 	entities: {
 		betRound: BetRoundState;
+		betOverlay: BetOverlayState;
 		betSeason: BetSeasonState;
 		betSeasonInvite: BetSeasonInviteState;
 		betSeasonUser: BetSeasonUserState;
@@ -36,6 +38,7 @@ export interface State {
 const initial: State = {
 	entities: {
 		betRound: undefined,
+		betOverlay: null,
 		betSeason: undefined,
 		betSeasonInvite: undefined,
 		betSeasonUser: undefined,
@@ -62,6 +65,7 @@ export const storeReducer = combineReducers<State>({
 	//@ts-ignore
 	entities: combiner({
 		betRound: entitiesReducer(betRoundReducer, 'betRound'),
+		betOverlay: entitiesReducer(betOverlayReducer, 'betOverlay'),
 		betSeason: entitiesReducer(betSeasonReducer, 'betSeason'),
 		betSeasonInvite: entitiesReducer(betSeasonInviteReducer, 'betSeasonInvite'),
 		betSeasonUser: entitiesReducer(betSeasonUserReducer, 'betSeasonUser'),

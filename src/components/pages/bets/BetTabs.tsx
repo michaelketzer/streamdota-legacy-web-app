@@ -5,6 +5,7 @@ import BotCommands from "./BotCommands";
 import CategoryTab from "./Categories/Tab";
 import BetRoundsTab from "./BetRounds/Tab";
 import ToplistTab from "./Toplist/Tab";
+import Overlay from "./Overlay/Overlay";
 
 export default function BetTabs(): ReactElement {
     return <Tabs defaultActiveKey="dashboard" animated={false} destroyInactiveTabPane>
@@ -24,7 +25,7 @@ export default function BetTabs(): ReactElement {
             <BotCommands />
         </Tabs.TabPane>
         <Tabs.TabPane tab="Overlay Einstellungen" key="overlay">
-            Overlay Einstellungen
+            <Overlay />
         </Tabs.TabPane>
     </Tabs>
 }
