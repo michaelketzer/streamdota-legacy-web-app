@@ -32,9 +32,12 @@ export default function Timer(): ReactElement {
             </div>
         </div>
 
-        <div className={'preview'}>
-            <img className={'exampleBackground'} src={'/images/example_background.png'} />
-            <div className={'timer'}><TimerCounter overlay={overlay} /></div>
+        <div className={'previewContainer'}>
+            <Typography.Title level={3}>Vorschau</Typography.Title>
+            <div className={'preview'}>
+                <img className={'exampleBackground'} src={'/images/example_background.png'} />
+                <div className={'timer'}><TimerCounter overlay={overlay} /></div>
+            </div>
         </div>
 
         <style jsx>{`
@@ -44,12 +47,15 @@ export default function Timer(): ReactElement {
                 grid-column-gap: 100px;
             }
 
+            .previewContainer {
+                margin-top: 80px;
+            }
+
             .preview {
                 position: relative;
                 min-width: 400px;
                 padding: 20px;
                 padding-top: 7rem;
-                margin-top: 80px;
             }
 
             .exampleBackground {
