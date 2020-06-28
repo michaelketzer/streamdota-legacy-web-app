@@ -9,6 +9,16 @@ interface Props {
     disableAlpha?: boolean;
 }
 
+interface RGBA {
+    r: number;
+    g: number;
+    b: number;
+    a: number;
+}
+function rgbToStr({r, g, b, a}: RGBA): string {
+    return `rgba(${r}, ${g}, ${b}, ${a})`;
+}
+
 export default function Color({value, setValue, label, disableAlpha = true}: Props): ReactElement {
     const [update, setUpdate] = useState(value);
 
@@ -18,7 +28,7 @@ export default function Color({value, setValue, label, disableAlpha = true}: Pro
 
     return <div className={'color'}>
         <div className={'label'}><b>{label}</b></div>
-        <Popover content={<SketchPicker disableAlpha={disableAlpha} color={value} onChangeComplete={({hex}) => setValue(hex)} onChange={({hex}) => setUpdate(hex)}/>} title="Wähle eine Farbe">
+        <Popover content={<SketchPicker disableAlpha={disableAlpha} color={value} onChangeComplete={({hex, rgb}) => setValue(disableAlpha ? hex : rgbToStr(rgb))} onChange={({hex, rgb}) => setUpdate(disableAlpha ? hex : rgbToStr(rgb))}/>} title="Wähle eine Farbe">
             <div className={'colorDot'} style={{backgroundColor: update}} />
         </Popover>
         <br />

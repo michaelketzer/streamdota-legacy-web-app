@@ -8,6 +8,8 @@ import { patchBetOverlay } from "../../../../modules/reducer/BetOverlay";
 import FontVariantSelection from "../../dotaOverlay/Overlay/FontVariantSelection";
 import { Typography, Tabs } from "antd";
 import Distribution from "./Distribution";
+import Timer from "./Timer";
+import Toplist from "./Toplist";
 
 export default function Overlay(): ReactElement {
     const overlay = useBetOverlay();
@@ -25,7 +27,7 @@ export default function Overlay(): ReactElement {
         </div>
         
         <div className={'variant'}>
-            <FontVariantSelection font={overlay.fontFamily} rawFonts={rawFonts} variant={overlay.fontVariant} setVariant={(fontVariant) => patch({fontVariant})} />
+            <FontVariantSelection key={overlay.fontFamily} font={overlay.fontFamily} rawFonts={rawFonts} variant={overlay.fontVariant} setVariant={(fontVariant) => patch({fontVariant})} />
         </div>
 
 
@@ -34,10 +36,10 @@ export default function Overlay(): ReactElement {
               <div className={'paneContent'}><Distribution /></div>
             </Tabs.TabPane>
             <Tabs.TabPane tab={'Timer'} key={'Timer'}>
-              <div className={'paneContent'}>Timer</div>
+              <div className={'paneContent'}><Timer /></div>
             </Tabs.TabPane>
             <Tabs.TabPane tab={'Toplist'} key={'Toplist'}>
-              <div className={'paneContent'}>Toplist</div>
+              <div className={'paneContent'}><Toplist /></div>
             </Tabs.TabPane>
         </Tabs>
 
