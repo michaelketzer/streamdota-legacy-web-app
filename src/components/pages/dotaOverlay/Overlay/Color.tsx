@@ -6,9 +6,10 @@ interface Props {
     value: string;
     setValue: (v: string) => void;
     label: string;
+    disableAlpha?: boolean;
 }
 
-export default function Color({value, setValue, label}: Props): ReactElement {
+export default function Color({value, setValue, label, disableAlpha = true}: Props): ReactElement {
     const [update, setUpdate] = useState(value);
 
     useEffect(() => {
@@ -17,7 +18,7 @@ export default function Color({value, setValue, label}: Props): ReactElement {
 
     return <div className={'color'}>
         <div className={'label'}><b>{label}</b></div>
-        <Popover content={<SketchPicker disableAlpha color={value} onChangeComplete={({hex}) => setValue(hex)} onChange={({hex}) => setUpdate(hex)}/>} title="Wähle eine Farbe">
+        <Popover content={<SketchPicker disableAlpha={disableAlpha} color={value} onChangeComplete={({hex}) => setValue(hex)} onChange={({hex}) => setUpdate(hex)}/>} title="Wähle eine Farbe">
             <div className={'colorDot'} style={{backgroundColor: update}} />
         </Popover>
         <br />
@@ -33,7 +34,7 @@ export default function Color({value, setValue, label}: Props): ReactElement {
             .color {
                 display: flex;
                 align-items: center;
-                padding: 20px 0;
+                padding: 10px 0;
             }
 
             .label {
