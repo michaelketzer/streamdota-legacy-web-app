@@ -27,7 +27,6 @@ export default function DistributionSlider({overlay, distribution = 50}: Props):
             .distributionSlider {
                 display: flex;
                 align-items: center;
-                font-family: ${overlay.fontFamily};
             }
 
             .vote {
@@ -37,6 +36,7 @@ export default function DistributionSlider({overlay, distribution = 50}: Props):
                 font-size: ${overlay.distributionFontSize}px;
                 flex-shrink: 0;
                 line-height: 1em;
+                font-family: ${overlay.fontFamily};
             }
 
             .slider {
@@ -58,7 +58,7 @@ export default function DistributionSlider({overlay, distribution = 50}: Props):
                 border-top-left-radius: 8px;
                 border-bottom-left-radius: 8px;
             }
-            
+
             .progress:after {
                 content: ' ';
                 position: absolute;
