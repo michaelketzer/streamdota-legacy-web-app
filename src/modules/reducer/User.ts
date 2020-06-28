@@ -18,11 +18,9 @@ export function authUser(code: string) {
                     },
                 },
             });
-            if(jwt) {
-                localStorage.setItem('jwt', jwt);
-                await dispatch(loadCurrentUser());
-                return true;
-            }
+            localStorage.setItem('jwt', jwt);
+            await dispatch(loadCurrentUser());
+            return true;
         }
 
         return false;
