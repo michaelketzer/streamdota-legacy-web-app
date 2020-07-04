@@ -116,6 +116,7 @@ async function handleResponse(response: Response): Promise<Response | object | s
 				reject(response);
 			}
 		} else {
+			console.log(response);
 			console.log('not ok response');
 			reject(response);
 		}
