@@ -105,8 +105,10 @@ async function handleResponse(response: Response): Promise<Response | object | s
 
 			try {
 				if (isJson) {
+					console.log('handle json response', respType);
 					response.json().then((data) => resolve(data));
 				} else {
+					console.log('handle text response', respType);
 					response.text().then((data) => resolve(data));
 				}
 			} catch (err) {
