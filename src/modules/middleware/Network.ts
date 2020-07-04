@@ -99,25 +99,24 @@ async function handleResponse(response: Response): Promise<Response | object | s
 				respType &&
 				(respType.indexOf('application/json') !== -1 || respType.indexOf('application/javascript') !== -1);
 
+
+
+				console.log(response.headers.get('Content-Length'), response);
 			if (+response.headers.get('Content-Length') === 0) {
 				return resolve('');
 			}
 
 			try {
 				if (isJson) {
-					console.log('handle json response', respType);
 					response.json().then((data) => resolve(data));
 				} else {
-					console.log('handle text response', respType);
 					response.text().then((data) => resolve(data));
 				}
 			} catch (err) {
-				console.log(err);
 				reject(response);
 			}
 		} else {
 			console.log(response);
-			console.log('not ok response');
 			reject(response);
 		}
 	});
