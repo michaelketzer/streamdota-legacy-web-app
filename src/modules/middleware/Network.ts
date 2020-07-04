@@ -99,11 +99,8 @@ async function handleResponse(response: Response): Promise<Response | object | s
 				respType &&
 				(respType.indexOf('application/json') !== -1 || respType.indexOf('application/javascript') !== -1);
 
-
-
-				console.log(response.headers.get('Content-Length'), response, response.text().then((data) => console.log(data)));
 			if (+response.headers.get('Content-Length') === 0) {
-				return resolve('');
+				return response.text().then((data) => resolve(data));
 			}
 
 			try {
@@ -116,7 +113,6 @@ async function handleResponse(response: Response): Promise<Response | object | s
 				reject(response);
 			}
 		} else {
-			console.log(response);
 			reject(response);
 		}
 	});
