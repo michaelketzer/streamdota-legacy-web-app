@@ -101,7 +101,7 @@ async function handleResponse(response: Response): Promise<Response | object | s
 
 
 
-				console.log(response.headers.get('Content-Length'), response);
+				console.log(response.headers.get('Content-Length'), response, response.text().then((data) => console.log(data)));
 			if (+response.headers.get('Content-Length') === 0) {
 				return resolve('');
 			}
