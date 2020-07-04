@@ -112,9 +112,11 @@ async function handleResponse(response: Response): Promise<Response | object | s
 					response.text().then((data) => resolve(data));
 				}
 			} catch (err) {
+				console.log(err);
 				reject(response);
 			}
 		} else {
+			console.log('not ok response');
 			reject(response);
 		}
 	});
