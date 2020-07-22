@@ -4,9 +4,10 @@ import TwitchChat, { Chat } from "./TwitchChat";
 interface Props {
     children: ReactNode;
     chats: Chat[];
+    startChat: boolean;
 }
 
-export default function TwitchFrame({chats, children}: Props): ReactElement {
+export default function TwitchFrame({chats, children, startChat}: Props): ReactElement {
     return <div className={'streamWrapper'}>
         <div className={'mainContent'}>
             <div className={'stream'}>
@@ -29,7 +30,7 @@ export default function TwitchFrame({chats, children}: Props): ReactElement {
         </div>
         <div className={'chat'}>
             <div>
-                <TwitchChat chats={chats} />
+                {startChat && <TwitchChat chats={chats} />}
             </div>
         </div>
 
@@ -52,6 +53,7 @@ export default function TwitchFrame({chats, children}: Props): ReactElement {
                 aspect-ratio: 16 / 9;
                 flex-shrink: 0;
                 flex-grow: 1;
+                position: relative;
             }
 
             .streamerDetails {
