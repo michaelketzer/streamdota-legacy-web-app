@@ -1,93 +1,97 @@
-import { ReactElement } from "react";
+import { ReactElement, useState } from "react";
 import ReactPlayer from 'react-player'
 import TwitchFrame from "../TwitchFrame";
 import { Chat } from "../TwitchChat";
+import BettingSlider from "./BettingSlider";
 
 const chats: Chat[] = [{
     streamer: true,
-    delay: 2,
+    delay: 3,
     message: '!startbet',
     mod: false,
     nameLength: 5,
 }, {
     streamer: false,
-    delay: 2.2,
+    delay: 3.2,
     message: 'Bets are open now! You can bet with \'!win\' or \'!loose\'.',
     mod: true,
     nameLength: 7,
 }, {
     streamer: false,
-    delay: 2.5,
+    delay: 3.5,
     message: '!win',
     mod: false,
     nameLength: 8,
 }, {
     streamer: false,
-    delay: 3,
+    delay: 4,
     message: '!win',
     mod: false,
     nameLength: 4,
 }, {
     streamer: false,
-    delay: 4,
+    delay: 5,
     message: '!win',
     mod: false,
     nameLength: 5,
 }, {
     streamer: false,
-    delay: 4.5,
+    delay: 5.5,
     message: '!loose',
     mod: false,
     nameLength: 3,
 }, {
     streamer: false,
-    delay: 4.7,
+    delay: 5.7,
     message: '!win',
     mod: false,
     nameLength: 5,
 }, {
     streamer: false,
-    delay: 6,
+    delay: 7,
     message: '!win',
     mod: true,
     nameLength: 7,
 }, {
     streamer: false,
-    delay: 8,
+    delay: 9,
     message: '!win',
     mod: false,
     nameLength: 4,
 }, {
     streamer: false,
-    delay: 10,
+    delay: 11,
     message: '!loose',
     mod: false,
     nameLength: 6,
 }, {
     streamer: false,
-    delay: 12,
+    delay: 13,
     message: '!win',
     mod: false,
     nameLength: 5,
 }, {
     streamer: false,
-    delay: 12.2,
+    delay: 13.2,
     message: 'Bets are closed now.',
     mod: true,
     nameLength: 7,
 }, {
     streamer: false,
-    delay: 13,
+    delay: 14,
     message: '!win',
     mod: false,
     nameLength: 8,
 }]
 
 export default function Betting(): ReactElement {
-    return <TwitchFrame chats={chats}>
+    const [live, setLive] = useState(false);
+    return <TwitchFrame chats={chats} startChat={live}>
         <div className={'videoOverlay'}>
-            <ReactPlayer url={'/videos/bet_background.mp4'} muted={true} volume={1} width={'100%'} height={'100%'} autoPlay playsinline playing/>
+            <ReactPlayer url={'/videos/bet_background.mp4'} muted={true} volume={1} width={'100%'} height={'100%'} autoPlay playsinline playing onPlay={() => setLive(true)}/>
         </div>
+
+        {live && <BettingSlider />}
 
         <style jsx>{`
             .videoOverlay {
@@ -95,6 +99,7 @@ export default function Betting(): ReactElement {
                 height: 100%;
                 width: 100%;
             }
+
             .videoOverlay::after {
                 position: absolute;
                 top: 0;
