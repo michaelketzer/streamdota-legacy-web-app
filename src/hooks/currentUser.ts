@@ -4,17 +4,17 @@ import { currentUserSelector } from '../modules/selector/Ui';
 import { useEffect } from 'react';
 import { loadCurrentUser } from '../modules/reducer/Ui';
 
-export function useCurrentUser(): User | null {
+export function useCurrentUser(auth?: string): User | null {
 	const user = useSelector(currentUserSelector);
 	const dispatch = useDispatch();
 
 	useEffect(
 		() => {
 			if (!user) {
-				dispatch(loadCurrentUser());
+				dispatch(loadCurrentUser(auth));
 			}
 		},
-		[ user ]
+		[ auth, user ]
 	);
 
 	return user;

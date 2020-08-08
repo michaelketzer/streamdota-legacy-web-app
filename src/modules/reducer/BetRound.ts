@@ -126,11 +126,12 @@ export function deleteBetRound(betRoundId: number): ActionDispatcher<Promise<voi
 	};
 }
 
-export function loadCurrentBetRound(): ActionDispatcher<Promise<void>> {
+export function loadCurrentBetRound(frameApiKey?: string): ActionDispatcher<Promise<void>> {
 	return async (dispatch) => {
+		const endpoint = frameApiKey ? `${process.env.API_URL}/bets/current?frameApiKey=${frameApiKey}` : `${process.env.API_URL}/bets/current`;
 		await dispatch<Promise<Response | NetworkError>>({
 			[CALL_API]: {
-				endpoint: `${process.env.API_URL}/bets/current`,
+				endpoint,
 				types: {
 					requestType: LOAD_CURRENT_BET_ROUND_REQUEST,
 					successType: LOAD_CURRENT_BET_ROUND_SUCCESS,

@@ -38,9 +38,9 @@ export const defaultBetState: BetRoundStats = {
 	chatters: 0,
 };
 
-export default function BetContext({ children }: { children: ReactElement }): ReactElement {
-	const user = useCurrentUser();
-	const status = useCurrentBetRound();
+export default function BetContext({ auth, children }: { auth?: string; children: ReactElement }): ReactElement {
+	const user = useCurrentUser(auth);
+	const status = useCurrentBetRound(auth);
 
 	if (user && status) {
 		return (

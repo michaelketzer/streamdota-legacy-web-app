@@ -6,7 +6,7 @@ import { useEffect } from "react";
 export const betOverlayLoadedSelector = (state: State): boolean => state.ui.loadedEntities.betOverlay;
 export const betOverlaySelector = (state: State): BetOverlayState | null => state.entities.betOverlay;
 
-export function useBetOverlay(): BetOverlayState | null {
+export function useBetOverlay(auth?: string): BetOverlayState | null {
     const betOverlay = useSelector(betOverlaySelector);
     const loaded = useSelector(betOverlayLoadedSelector);
     const dispatch = useDispatch();
@@ -14,10 +14,10 @@ export function useBetOverlay(): BetOverlayState | null {
 	useEffect(
 		() => {
 			if (!loaded) {
-				dispatch(loadBetOverlay());
+				dispatch(loadBetOverlay(auth));
 			}
 		},
-		[ loaded,  betOverlay ]
+		[ auth, loaded,  betOverlay ]
 	);
 
 	return betOverlay;

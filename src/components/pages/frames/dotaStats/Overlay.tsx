@@ -21,7 +21,7 @@ function Number({color, x, y, height, cfg, children}: {color: string, x: number,
 export default function Overlay({wins, loss, auth}: {wins: number; loss: number; auth: string}): ReactElement | null  {
     const cfg = useDotaOverlay(auth);
 
-    if(cfg) {
+    if(Object.keys(cfg).length > 0) {
         return <>
             {cfg.font && cfg.font !== 'Arial' && <GoogleFontLoader fonts={[{font: cfg.font, weights: [cfg.variant]}]} />}
             <div className={'positionFrame ' + (!cfg.showBackground && 'noBg')}>
