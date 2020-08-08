@@ -13,7 +13,7 @@ const DotaStats = dynamic(
 );
 
 function DotaOverlay({auth}: {auth: string}): ReactElement {
-    return <ContextProvider initialState={initialState} reducer={reducer} url={'wss://api.streamdota.com/dota-gsi/live/' + auth}>
+    return <ContextProvider initialState={initialState} reducer={reducer} url={'wss://'+process.env.API_URL+'/dota-gsi/live/' + auth}>
         <DotaStats frameKey={auth} />
 
         <style global jsx>{`

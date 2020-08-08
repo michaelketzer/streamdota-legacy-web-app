@@ -11,7 +11,6 @@ interface Props {
 export default React.memo(function Toplist({auth}: Props): ReactElement | null {
     const overlay = useBetOverlay(auth);
     const currentBetRound = useSelector(currentBetRoundSelector);
-    console.log(currentBetRound);
 
     if(Object.keys(overlay).length > 0 && currentBetRound && currentBetRound.betSeason !== 0) {
         return <>
