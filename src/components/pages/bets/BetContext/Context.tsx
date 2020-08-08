@@ -26,6 +26,7 @@ const BetStateUpdated = () => {
 };
 
 export const defaultBetState: BetRoundStats = {
+	betSeason: 0,
 	id: 0,
 	round: 0,
 	userId: 0,
