@@ -2,20 +2,8 @@ import { ReactElement, Fragment } from "react";
 import { BetOverlay } from "@streamdota/shared-types";
 import classNames from "classnames";
 
-const toplist = [
-    {name: 'rmiLEtAnCI', total: 18, won: 16},
-    {name: 'rarSeMeNthEAcyCL', total: 16, won: 15},
-    {name: 'UrDrIblect', total: 18, won: 15},
-    {name: 'DaRNATHRIo', total: 15, won: 14},
-    {name: 'IfY', total: 16, won: 14},
-    {name: 'thYSmaiNTerahAnd', total: 14, won: 13},
-    {name: 'hesPEdenEW', total: 14, won: 12},
-    {name: 'hurSTIoNtEareAdU', total: 11, won: 11},
-    {name: 'rarSeMeNthEAcyCL', total: 10, won: 10},
-    {name: 'rarSeMeNthEAcyCL', total: 10, won: 8},
-]
-
 interface Props {
+    list: Array<{name: string; won: number; total: number}>;
     overlay: BetOverlay;
 }
 
@@ -24,10 +12,9 @@ function getAccuracy(win, total): string {
     return '' + acc;
 }
 
-export default function ToplistOverlay({overlay}: Props): ReactElement {
-
+export default function ToplistOverlay({list, overlay}: Props): ReactElement {
     return <div className={classNames('toplist', {rank: overlay.toplistShowRank})}>
-        {toplist.map((user, idx) => <Fragment key={user.name}>
+        {list.map((user, idx) => <Fragment key={user.name}>
             {Boolean(overlay.toplistShowRank) && <div>{idx + 1}.</div>}
             <div className={'name'}>{user.name}</div>
             <div className={'result'}>

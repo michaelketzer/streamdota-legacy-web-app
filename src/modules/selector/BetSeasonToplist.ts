@@ -10,7 +10,7 @@ export const betSeasonToplistEntitiesSelector = (state: State): BetSeasonToplist
 export const betSeasonToplistSelector = (state: State): BetSeasonToplist[] | undefined =>
 	state.entities.betSeasonToplist ? Object.values(state.entities.betSeasonToplist) : undefined;
 
-export function useBetSeasonToplist(seasonId: number): BetSeasonToplist[] | undefined {
+export function useBetSeasonToplist(seasonId: number, auth?: string): BetSeasonToplist[] | undefined {
 	const toplist = useSelector(betSeasonToplistSelector);
 	const loaded = (useSelector(loadedBeatSeasonToplistSelector) || []).includes(seasonId);
 	const dispatch = useDispatch();
@@ -18,7 +18,7 @@ export function useBetSeasonToplist(seasonId: number): BetSeasonToplist[] | unde
 	useEffect(
 		() => {
 			if (!loaded) {
-				dispatch(loadBetSeasonToplist(seasonId));
+				dispatch(loadBetSeasonToplist(seasonId, auth));
 			}
 		},
 		[ loaded ]
