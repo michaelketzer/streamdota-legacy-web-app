@@ -8,6 +8,7 @@ import { useCurrentBetRound } from '../../../../modules/selector/BetRound';
 import { BetRoundStats, BetRound } from '@streamdota/shared-types';
 import { useDispatch } from 'react-redux';
 import { updateCurrentBetTound } from '../../../../modules/reducer/Ui';
+import getWebsocketUrl from '../../../../modules/Router';
 
 const BetStateUpdated = () => {
 	const message = useMessageListener();
@@ -48,7 +49,7 @@ export default function BetContext({ auth, children }: { auth?: string; children
 			<ContextProvider
 				initialState={initialState}
 				reducer={reducer}
-				url={'wss://'+process.env.API_URL+'/bets/live/' + (user && user.frameApiKey)}>
+				url={getWebsocketUrl()+'/bets/live/' + (user && user.frameApiKey)}>
 				<BetStateUpdated />
 				{children}
 			</ContextProvider>
