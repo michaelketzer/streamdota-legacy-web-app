@@ -8,6 +8,19 @@ import Color from "../../dotaOverlay/Overlay/Color";
 import FontSize from "../../dotaOverlay/Overlay/FontSize";
 import ToplistOverlay from "./ToplistOverlay";
 
+const toplist = [
+    {name: 'rmiLEtAnCI', total: 18, won: 16},
+    {name: 'rarSeMeNthEAcyCL', total: 16, won: 15},
+    {name: 'UrDrIblect', total: 18, won: 15},
+    {name: 'DaRNATHRIo', total: 15, won: 14},
+    {name: 'IfY', total: 16, won: 14},
+    {name: 'thYSmaiNTerahAnd', total: 14, won: 13},
+    {name: 'hesPEdenEW', total: 14, won: 12},
+    {name: 'hurSTIoNtEareAdU', total: 11, won: 11},
+    {name: 'rarSeMeNthEAcyCL', total: 10, won: 10},
+    {name: 'rarSeMeNthEAcyCL', total: 10, won: 8},
+]
+
 export default function Toplist(): ReactElement {
     const overlay = useBetOverlay();
     const dispatch = useDispatch();
@@ -50,7 +63,7 @@ export default function Toplist(): ReactElement {
                 <img className={'exampleBackground'} src={'/images/example_background_vertical.png'} />
 
                 <div className={'toplist'}>
-                    <ToplistOverlay overlay={overlay} />
+                    <ToplistOverlay overlay={overlay} list={toplist} />
                 </div>
             </div>
         </div>

@@ -20,11 +20,12 @@ const { combinedReducer } = createReducer<BetSeasonToplistState>();
 
 export const betSeasonToplistReducer = combinedReducer;
 
-export function loadBetSeasonToplist(seasonId: number): ActionDispatcher<Promise<void>> {
+export function loadBetSeasonToplist(seasonId: number, frameApiKey?: string): ActionDispatcher<Promise<void>> {
 	return async (dispatch) => {
+		const endpoint = frameApiKey ? `${process.env.API_URL}/betSeason/toplist/:seasonId?frameApiKey=${frameApiKey}` : `${process.env.API_URL}/betSeason/toplist/:seasonId`;
 		await dispatch<Promise<Response | NetworkError>>({
 			[CALL_API]: {
-				endpoint: `${process.env.API_URL}/betSeason/toplist/:seasonId`,
+				endpoint,
 				schema: [ betSeasonToplist ],
 				types: {
 					requestType: LOAD_BET_SEASON_TOPLIST_REQUEST,
