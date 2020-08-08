@@ -170,11 +170,12 @@ addReducer<LoadedCurrentBetRound>(LOAD_CURRENT_BET_ROUND_SUCCESS, (state, {respo
 
 export const uiReducer = combinedReducer;
 
-export function loadCurrentUser(): ActionDispatcher<Promise<void>> {
+export function loadCurrentUser(frameApiKey?: string): ActionDispatcher<Promise<void>> {
 	return async (dispatch) => {
+		const endpoint = frameApiKey ? `${process.env.API_URL}/user/baseData?frameApiKey=${frameApiKey}` : `${process.env.API_URL}/user/baseData`;
 		const response = await dispatch<Promise<Response | NetworkError>>({
 			[CALL_API]: {
-				endpoint: `${process.env.API_URL}/user/baseData`,
+				endpoint,
 				types: {
 					requestType: LOAD_CURRENT_USER_REQUEST,
 					successType: LOAD_CURRENT_USER_SUCCESS,

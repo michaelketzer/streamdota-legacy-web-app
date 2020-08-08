@@ -21,11 +21,12 @@ addReducer<BetOverlayLoaded>(LOAD_BET_OVERLAY_SUCCESS, (_state, {response}) => {
 
 export const betOverlayReducer = combinedReducer;
 
-export function loadBetOverlay(): ActionDispatcher<Promise<void>> {
+export function loadBetOverlay(frameApiKey?: string): ActionDispatcher<Promise<void>> {
 	return async (dispatch) => {
+		const endpoint = frameApiKey ? `${process.env.API_URL}/betsOverlay?frameApiKey=${frameApiKey}` : `${process.env.API_URL}/betsOverlay`;
 		await dispatch<Promise<Response | NetworkError>>({
 			[CALL_API]: {
-                endpoint: `${process.env.API_URL}/betsOverlay`,
+                endpoint,
 				types: {
 					requestType: LOAD_BET_OVERLAY_REQUEST,
 					successType: LOAD_BET_OVERLAY_SUCCESS,

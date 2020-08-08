@@ -30,17 +30,17 @@ export function useBetRounds(seasonId: number): BetRound[] | undefined {
 
 export const currentBetRoundSelector = (state: State): BetRoundStats | null => state.ui.currentBetRound;
 
-export function useCurrentBetRound(): BetRoundStats | null {
+export function useCurrentBetRound(auth?: string): BetRoundStats | null {
 	const currentBetRound = useSelector(currentBetRoundSelector);
 	const dispatch = useDispatch();
 
 	useEffect(
 		() => {
 			if (currentBetRound === null) {
-				dispatch(loadCurrentBetRound());
+				dispatch(loadCurrentBetRound(auth));
 			}
 		},
-		[ currentBetRound ]
+		[ auth, currentBetRound ]
 	);
 
 	return currentBetRound || defaultBetState;
