@@ -48,7 +48,7 @@ export default function BetContext({ auth, children }: { auth?: string; children
 			<ContextProvider
 				initialState={initialState}
 				reducer={reducer}
-				url={'ws://localhost/bets/live/' + (user && user.frameApiKey)}>
+				url={'wss://'+process.env.API_URL+'/bets/live/' + (user && user.frameApiKey)}>
 				<BetStateUpdated />
 				{children}
 			</ContextProvider>
