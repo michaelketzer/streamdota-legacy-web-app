@@ -35,7 +35,7 @@ export default function Timer(): ReactElement {
                 <br />
                 <br />
 
-                <FrameLink access={'betting/timer'} auth={user?.frameApiKey || ''} height={70} width={140} />
+                <FrameLink access={'betting/timer'} auth={user?.frameApiKey || ''} height={70} width={140} testing/>
             </div>
         </div>
 
