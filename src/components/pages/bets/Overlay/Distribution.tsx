@@ -37,7 +37,7 @@ export default function Distribution(): ReactElement {
                 <br />
                 <br />
 
-                <FrameLink access={'betting/slider'} auth={user?.frameApiKey || ''} height={50} width={500} />
+                <FrameLink access={'betting/slider'} auth={user?.frameApiKey || ''} height={50} width={500} testing/>
             </div>
         </div>
 
