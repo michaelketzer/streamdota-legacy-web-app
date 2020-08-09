@@ -116,7 +116,7 @@ export default function OverlaySetup(): ReactElement | null {
 					<div className={'col'}>
 						<Background cfg={cfg} patch={patch} />
 						<Position cfg={cfg} patch={patch} />
-						<FrameLink userData={userData} />
+						<FrameLink auth={userData?.frameApiKey || ''} access={'dotaStats'} height={60} width={160} />
 					</div>
 				</div>
 

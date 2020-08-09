@@ -7,6 +7,8 @@ import { Typography, Switch } from "antd";
 import Color from "../../dotaOverlay/Overlay/Color";
 import FontSize from "../../dotaOverlay/Overlay/FontSize";
 import ToplistOverlay from "./ToplistOverlay";
+import FrameLink from "../../dotaOverlay/Overlay/FrameLink";
+import { useCurrentUser } from "../../../../hooks/currentUser";
 
 const toplist = [
     {name: 'rmiLEtAnCI', total: 18, won: 16},
@@ -24,6 +26,7 @@ const toplist = [
 export default function Toplist(): ReactElement {
     const overlay = useBetOverlay();
     const dispatch = useDispatch();
+    const user = useCurrentUser();
 
     const patch = useCallback((data: Partial<BetOverlay>): void => {
         dispatch(patchBetOverlay(data));
@@ -40,6 +43,11 @@ export default function Toplist(): ReactElement {
             <div>
                 <Typography.Title level={3}>Schrift</Typography.Title>
                 <FontSize fontSize={overlay.toplistFontSize} setFontSize={(toplistFontSize) => patch({toplistFontSize})} />
+
+                <br />
+                <br />
+
+                <FrameLink access={'betting/toplist'} auth={user?.frameApiKey || ''} height={600} width={300} />
             </div>
 
 
