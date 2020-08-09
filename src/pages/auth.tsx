@@ -1,17 +1,18 @@
 import Router from 'next/router';
-import { completeAuthRoutine } from '../api/authorization';
 import Loader from '../components/Loader';
+import { useDispatch } from 'react-redux';
+import { Dispatch } from 'react';
+import { authUser } from '../modules/reducer/User';
 
-async function handleAuthRoutine(code: string): Promise<void> {
-    const success = await completeAuthRoutine(code);
-
+async function handleAuthRoutine(dispatch: Dispatch<any>, code: string): Promise<void> {
+    const success = (await dispatch(authUser(code))) as unknown as boolean;
     Router.push(success ? '/dashboard' : '/');
 }
 
 const Auth = ({code}: {code: string}) => {
-    console.log(code);
+    const dispatch = useDispatch();
     if(process.browser && code) {
-        handleAuthRoutine(code);
+        handleAuthRoutine(dispatch, code);
     }
     return <Loader />;
 }

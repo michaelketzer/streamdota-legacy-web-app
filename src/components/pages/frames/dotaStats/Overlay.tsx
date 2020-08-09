@@ -1,11 +1,10 @@
 import { ReactElement, ReactNode } from "react";
-import { useAbortFetch } from "../../../../hooks/abortFetch";
-import { fetchOverlayFromAuthKey } from "../../../../api/overlay";
 import GoogleFontLoader from 'react-google-font-loader';
-import { DotaOverlay } from "../../../../api/@types/DotaOverlay";
+import { OverlayConfig } from "@streamdota/shared-types";
 import { getVariant } from "../../dotaOverlay/Overlay/FontVariantSelection";
+import { useDotaOverlay } from "../../../../modules/selector/DotaOverlay";
 
-function Number({color, x, y, height, cfg, children}: {color: string, x: number, y:number, height: string, cfg: DotaOverlay, children: ReactNode}): ReactElement {
+function Number({color, x, y, height, cfg, children}: {color: string, x: number, y:number, height: string, cfg: OverlayConfig, children: ReactNode}): ReactElement {
     return <div style={{
         color, 
         display: 'inline', 
@@ -20,9 +19,9 @@ function Number({color, x, y, height, cfg, children}: {color: string, x: number,
 }
 
 export default function Overlay({wins, loss, auth}: {wins: number; loss: number; auth: string}): ReactElement | null  {
-    const [cfg] = useAbortFetch(fetchOverlayFromAuthKey, auth);
+    const cfg = useDotaOverlay(auth);
 
-    if(cfg) {
+    if(Object.keys(cfg).length > 0) {
         return <>
             {cfg.font && cfg.font !== 'Arial' && <GoogleFontLoader fonts={[{font: cfg.font, weights: [cfg.variant]}]} />}
             <div className={'positionFrame ' + (!cfg.showBackground && 'noBg')}>

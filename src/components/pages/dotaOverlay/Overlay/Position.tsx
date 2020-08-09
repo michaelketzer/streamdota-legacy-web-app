@@ -1,9 +1,9 @@
 import { ReactElement, useEffect, useState } from "react";
 import Draggable from "./Draggable";
 import { Alert } from "antd";
-import { DotaOverlay } from "../../../../api/@types/DotaOverlay";
+import { OverlayConfig } from "@streamdota/shared-types";
 
-export default function Position({cfg, patch}: {cfg: DotaOverlay; patch: (v: Partial<DotaOverlay>) => void}): ReactElement {
+export default function Position({cfg, patch}: {cfg: OverlayConfig; patch: (v: Partial<OverlayConfig>) => void}): ReactElement {
 
     return <>
         <div><b>Position</b></div>

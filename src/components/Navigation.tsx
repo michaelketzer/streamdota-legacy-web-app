@@ -29,11 +29,11 @@ const items: MenuItem[] = [{
     icon: <LineChartOutlined />,    
     name: 'Dota W/L',
     path: '/dotaWL'
-}/*, {
+}, {
     icon: <PieChartOutlined />,
     name: 'Wettsytem',
     path: '/bets',
-}, {
+}/*, {
     icon: <AudioOutlined />,
     name: 'Caster Tools',
     path: '/bets',
