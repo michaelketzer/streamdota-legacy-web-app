@@ -17,6 +17,7 @@ import {
 	DELETE_BET_SEASON_SUCCESS,
 	DELETE_BET_SEASON_FAILURE,
 } from './Actions';
+import { loadCurrentUser } from './Ui';
 
 export interface BetSeasonState {
 	[x: number]: BetSeason;
@@ -77,6 +78,7 @@ export function createBetSeason(data: Partial<BetSeason>): ActionDispatcher<Prom
 		});
 
 		await dispatch(loadBetSeasons());
+		await dispatch(loadCurrentUser());
 	};
 }
 
