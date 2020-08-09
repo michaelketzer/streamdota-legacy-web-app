@@ -7,10 +7,13 @@ import { Typography } from "antd";
 import Color from "../../dotaOverlay/Overlay/Color";
 import FontSize from "../../dotaOverlay/Overlay/FontSize";
 import DistributionSlider from "./DistributionSlider";
+import FrameLink from "../../dotaOverlay/Overlay/FrameLink";
+import { useCurrentUser } from "../../../../hooks/currentUser";
 
 export default function Distribution(): ReactElement {
     const overlay = useBetOverlay();
     const dispatch = useDispatch();
+    const user = useCurrentUser();
 
     const patch = useCallback((data: Partial<BetOverlay>): void => {
         dispatch(patchBetOverlay(data));
@@ -30,6 +33,11 @@ export default function Distribution(): ReactElement {
                 <Typography.Title level={3}>Schrift</Typography.Title>
 
                 <FontSize fontSize={overlay.distributionFontSize} setFontSize={(distributionFontSize) => patch({distributionFontSize})} />
+
+                <br />
+                <br />
+
+                <FrameLink access={'betting/slider'} auth={user?.frameApiKey || ''} height={50} width={500} />
             </div>
         </div>
 

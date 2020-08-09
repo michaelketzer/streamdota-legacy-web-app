@@ -1,9 +1,16 @@
 import React, { ReactElement } from 'react';
 import Paragraph from 'antd/lib/typography/Paragraph';
-import { User } from '@streamdota/shared-types';
 
-export default function FrameLink({ userData }: { userData: User | null }): ReactElement {
-	const text = 'https://streamdota.com/frames/dotaStats?auth=' + (userData && userData.frameApiKey);
+interface Props {
+	access: string; 
+	auth: string;
+
+	height?: number | null;
+	width?: number | null;
+}
+
+export default React.memo(function FrameLink({ access, auth, height = null, width = null }: Props): ReactElement {
+	const text = `${process.env.FRAMER_BASE_URL}/${access}?auth=${auth}`;
 
 	return (
 		<React.Fragment>
@@ -11,6 +18,13 @@ export default function FrameLink({ userData }: { userData: User | null }): Reac
 				<b>Overlay Frame Source</b>
 			</div>
 			<Paragraph copyable={{ text }}>{text}</Paragraph>
+			{height && width && <Paragraph>
+				Empfohlene Browser-Source Größe: 
+				<ul>
+					<li>Breite: {width}px</li>
+					<li>Höhe: {height}px</li>
+				</ul>
+			</Paragraph>}
 		</React.Fragment>
 	);
-}
+});

@@ -7,9 +7,12 @@ import { Typography } from "antd";
 import Color from "../../dotaOverlay/Overlay/Color";
 import FontSize from "../../dotaOverlay/Overlay/FontSize";
 import TimerCounter from "./TimerCounter";
+import FrameLink from "../../dotaOverlay/Overlay/FrameLink";
+import { useCurrentUser } from "../../../../hooks/currentUser";
 
 export default function Timer(): ReactElement {
     const overlay = useBetOverlay();
+    const user = useCurrentUser();
     const dispatch = useDispatch();
 
     const patch = useCallback((data: Partial<BetOverlay>): void => {
@@ -29,6 +32,10 @@ export default function Timer(): ReactElement {
 
                 <FontSize fontSize={overlay.timerFontSize} setFontSize={(timerFontSize) => patch({timerFontSize})} />
 
+                <br />
+                <br />
+
+                <FrameLink access={'betting/timer'} auth={user?.frameApiKey || ''} height={70} width={140} />
             </div>
         </div>
 
