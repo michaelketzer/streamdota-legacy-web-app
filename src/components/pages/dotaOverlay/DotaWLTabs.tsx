@@ -17,7 +17,7 @@ export default function DotaWLTabs(): ReactElement {
 			<Tabs.TabPane tab='Basis Konfiguration' key='1'>
 				<Configuration />
 			</Tabs.TabPane>
-
+			
 			<Tabs.TabPane tab='Dota GSI Konfiguration' key='2'>
 				<ContextProvider
 					initialState={initialState}
