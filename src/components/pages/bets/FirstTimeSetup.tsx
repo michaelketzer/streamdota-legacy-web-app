@@ -1,7 +1,6 @@
 import { ReactElement, useState, Dispatch } from "react";
 import { Steps } from "antd";
 import CategoryForm from "./Categories/Form";
-import BotCommands from "./BotCommands";
 import { BetSeason } from "@streamdota/shared-types";
 import { useDispatch } from "react-redux";
 import { createBetSeason } from "../../../modules/reducer/BetSeason";
@@ -13,14 +12,6 @@ const getSteps = (onSeasonCreated: () => void, dispatch: Dispatch<any>) => [
         await dispatch(createBetSeason(data));
         onSeasonCreated();
       }}/>,
-    },
-    {
-      title: 'Streamdota Bot',
-      content: <BotCommands />,
-    },
-    {
-      title: 'Overlay',
-      content: 'Last-content',
     },
 ];
 
