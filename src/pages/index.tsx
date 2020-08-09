@@ -1,14 +1,11 @@
-import Router from 'next/router';
-import { startAuthRoutine } from '../api/authorization';
-import Loader from '../components/Loader';
+import { useEffect } from "react";
+import Router from "next/router";
+import Loader from "../components/Loader";
 
 export default function Index() {
-    if(process.browser) {
-        if(localStorage.getItem('jwt')) {
-            Router.push('/dashboard');
-        } else {
-            startAuthRoutine();
-        }
-    }
+    useEffect(() => {
+        Router.push('/login');
+    }, []);
+    
     return <Loader />;
 }

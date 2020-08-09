@@ -112,6 +112,7 @@ export default function Configure({method, setMethod}: Props): ReactElement {
             }
 
             .label {
+                font-size: 14px;
                 margin-left: 15px;
             }
         `}</style>
