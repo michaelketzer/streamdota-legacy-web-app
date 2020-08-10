@@ -93,6 +93,7 @@ export function resetGsi(): ActionDispatcher<Promise<void>> {
 		await dispatch<Promise<Response | NetworkError>>({
 			[CALL_API]: {
 				endpoint: `${process.env.API_URL}/dota-gsi/resetGsi`,
+				method: 'del',
 				types: {
 					requestType: RESET_DOTA_GSI_REQUEST,
 					successType: RESET_DOTA_GSI_SUCCESS,
