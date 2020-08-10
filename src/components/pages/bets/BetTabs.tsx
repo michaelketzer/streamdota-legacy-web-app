@@ -21,7 +21,7 @@ export default function BetTabs(): ReactElement {
         <Tabs.TabPane tab="Toplist" key="toplist">
             <ToplistTab />
         </Tabs.TabPane>
-        <Tabs.TabPane tab="Streamdota Bot Commands" key="commands">
+        <Tabs.TabPane tab="TinkBot Command" key="commands">
             <BotCommands />
         </Tabs.TabPane>
         <Tabs.TabPane tab="Overlay Einstellungen" key="overlay">
