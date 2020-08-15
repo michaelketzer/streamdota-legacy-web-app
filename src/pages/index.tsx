@@ -1,11 +1,6 @@
-import { useEffect } from "react";
-import Router from "next/router";
-import Loader from "../components/Loader";
+import Page from "../components/pages/index/new/Page";
 
 export default function Index() {
-    useEffect(() => {
-        Router.push('/login');
-    }, []);
     
-    return <Loader />;
+    return <Page />;
 }
