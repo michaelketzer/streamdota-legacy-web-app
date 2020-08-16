@@ -1,4 +1,21 @@
 import { ReactElement } from "react";
+import {motion} from 'framer-motion';
+import ToolboxOptions from "./ToolboxOptions";
+
+const containerAnimation = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1
+      }
+    }
+};
+
+const itemAnimations = {
+    hidden: {opacity: 0, x: -50},
+    show: {opacity: 1, x: 0},
+}
 
 export default function HeroBanner(): ReactElement {
 
@@ -7,9 +24,17 @@ export default function HeroBanner(): ReactElement {
 
         <div className={'content-wrapper'}>
             <div className={'text-wrapper'}>
-                <div className={'main'}>Your toolbox for <span className={'highlight'}>streaming</span> Dota</div>
-                <div className={'sub'}>Enrich your stream with powerful <br /> <span className={'weak-highlight'}>overlays</span> and <span className={'weak-highlight'}>chat commands</span></div>
-                <div className={'learnMore'}>Learn more</div>
+                <motion.div initial={'hidden'} animate={'show'} variants={containerAnimation}>
+                    <motion.div variants={itemAnimations}>
+                        <div className={'main'}>Your toolbox for <ToolboxOptions /> Dota</div>
+                    </motion.div>
+                    <motion.div variants={itemAnimations}>
+                        <div className={'sub'}>Enrich your stream with powerful <br /> <span className={'weak-highlight'}>overlays</span> and <span className={'weak-highlight'}>chat commands</span></div>
+                    </motion.div>
+                    <motion.div variants={itemAnimations}>
+                        <a className={'learnMore'} href={'#wl'}>Learn more</a>
+                    </motion.div>
+                </motion.div>
             
             </div>
 
@@ -46,24 +71,29 @@ export default function HeroBanner(): ReactElement {
             }
 
             .text-wrapper {
-                padding: 2rem 8rem;
+                padding: 15px 20px;
                 border-radius: 1rem;
                 color: #666;
                 font-weight: bold;
                 text-transform: uppercase;
             }
 
+            @media only screen and (min-width: 600px) {
+                .text-wrapper {
+                    padding: 2rem 8rem;
+                }
+            }
+
             .main {
                 font-size: 45px;
+                display: flex;
+                align-items: center;
+                flex-wrap: wrap;
             }
 
             .sub {
                 font-size: 30px;
                 margin-top: 2rem;
-            }
-
-            .highlight {
-                color: #fa7035;
             }
 
             .weak-highlight {
