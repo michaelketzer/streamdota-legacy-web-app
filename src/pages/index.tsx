@@ -1,11 +1,13 @@
-import { useEffect } from "react";
-import Router from "next/router";
-import Loader from "../components/Loader";
+import Page from "../components/pages/index/new/Page";
+import Head from "next/head";
 
 export default function Index() {
-    useEffect(() => {
-        Router.push('/login');
-    }, []);
     
-    return <Loader />;
+    return <>
+        <Head>
+            <title>StreamDota</title>
+            <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1"/>
+        </Head>
+        <Page />
+    </>;
 }
