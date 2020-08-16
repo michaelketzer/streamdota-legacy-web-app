@@ -2,6 +2,7 @@ import * as Sentry from '@sentry/browser';
 import { Store } from 'redux';
 import App, { AppInitialProps } from 'next/app';
 import 'antd/dist/antd.min.css';
+import 'react-typist/dist/Typist.css';
 import { State, wrapper } from '../modules/Store';
 
 if (process.env.SENTRY_DSN && process.env.SENTRY_DSN.length > 0) {

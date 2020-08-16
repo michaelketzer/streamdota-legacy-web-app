@@ -4,7 +4,7 @@ import Link from "next/link";
 export default function Header(): ReactElement {
     return <header>
         <div className={'inner'}>
-            <div className={'logo'}>StreamDota</div>
+            <div className={'logo'}>StreamDota <span className={'minor'}>Beta</span></div>
 
             <Link href={'/login'}>
                 <div className={'login'}>
@@ -54,6 +54,11 @@ export default function Header(): ReactElement {
 
             .logo {
                 font-size: 20px;
+            }
+
+            .minor {
+                font-size: 14px;
+                color: #777;
             }
         `}</style>
     </header>;
