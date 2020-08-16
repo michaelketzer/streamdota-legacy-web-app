@@ -1,10 +1,15 @@
 import Header from "../components/pages/index/new/Header";
 import Footer from "../components/pages/index/new/Footer";
 import Frame from "../components/pages/index/new/Frame";
+import Head from "next/head";
 
 export default function DataPolicy() {
     
     return <>
+        <Head>
+            <title>StreamDota - Data Policy</title>
+            <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1"/>
+        </Head>
         <Header />
         <Frame>
             <h2>1. An overview of data protection</h2>

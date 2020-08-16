@@ -1,10 +1,15 @@
 import Header from "../components/pages/index/new/Header";
 import Footer from "../components/pages/index/new/Footer";
 import Frame from "../components/pages/index/new/Frame";
+import Head from "next/head";
 
 export default function Imprint() {
     
     return <>
+        <Head>
+            <title>StreamDota - Imprint</title>
+            <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1"/>
+        </Head>
         <Header />
             <Frame>
                 <b>Information provided according to Sec. 5 German Telemedia Act (TMG):</b>
