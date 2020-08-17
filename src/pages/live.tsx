@@ -6,6 +6,8 @@ import { useCurrentUser } from "../hooks/currentUser";
 import PageHeader from "../components/PageHeader";
 import { Alert } from "antd";
 import LeagueIdSelector from "../components/pages/live/LeagueIdSelector";
+import getWebsocketUrl from "../modules/Router";
+import LiveFeed from "../components/pages/live/LiveFeed";
 
 export default function Live(): ReactElement {
     const user = useCurrentUser();
@@ -26,8 +28,8 @@ export default function Live(): ReactElement {
             <LeagueIdSelector leagueId={leagueId} setLeagueId={setLeagueId} />
         </div>
 
-        {user && <ContextProvider initialState={initialState} reducer={reducer} url={'wss://api.streamdota.de/dota-gsi/logs/' + user.frameApiKey}>
-            
+        {user && <ContextProvider initialState={initialState} reducer={reducer} url={getWebsocketUrl() + '/dota-gsi/live/' + user.frameApiKey}>
+            <LiveFeed apiKey={user.frameApiKey} leagueId={leagueId} />
         </ContextProvider>}
 
         <style jsx>{`
