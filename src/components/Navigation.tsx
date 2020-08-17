@@ -1,6 +1,5 @@
 import { ReactElement, ReactNode } from "react";
 import { useRouter } from "next/router";
-import Link from "next/link";
 import { Menu } from 'antd';
 import {
   DashboardOutlined,
@@ -9,6 +8,7 @@ import {
   PieChartOutlined,
   AudioOutlined,
   EuroOutlined,
+  DotChartOutlined,
 } from '@ant-design/icons';
 
 interface MenuItem {
@@ -33,11 +33,11 @@ const items: MenuItem[] = [{
     icon: <PieChartOutlined />,
     name: 'Wettsytem',
     path: '/bets',
-}/*, {
-    icon: <AudioOutlined />,
-    name: 'Caster Tools',
-    path: '/bets',
 }, {
+    icon: <DotChartOutlined />,
+    name: 'Live Feed',
+    path: '/live',
+}/*, {
     icon: <EuroOutlined />,
     name: 'Sponsor Overlay',
     path: '/bets',
