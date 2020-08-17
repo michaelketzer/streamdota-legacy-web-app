@@ -1,51 +1,33 @@
 import { ReactElement } from "react";
 import PageFrame from "../components/PageFrame";
+import ContextProvider from "../components/context/websocket/context";
+import { initialState, reducer } from "../components/context/websocket/state";
+import { useCurrentUser } from "../hooks/currentUser";
+import SetupGsi from "../components/pages/dashboard/SetupGsi";
+import { Typography } from "antd";
 
 export default function Dashboard(): ReactElement {
+    const user = useCurrentUser();
+    
     return <PageFrame title={'Dashboard'}>
         <div className={'lastNews'}>
-            <div>
-            <h1>Update - 18.04.2020</h1>
-                <div>Die letzte Woche wurde intensiv genutzt um unser User Interface zu überarbeiten.</div>
-                <div>Wir haben einige Dinge entfernt und neu organisiert um euch die Funktionen und Features zu vereinfachen.</div>
-                <br />
-                <p>
-                    Die kommenden Tage wird das neue Design und die Anpassung der Features umgesetzt.
-                </p>
-                <div>In naher Zukunft sollte ein umfassendes Bot Feature umgesetzt sein und zusätzlich wird das Wettsystem umgesetzt.</div>
-                <div>Ebenfalls wird es bald besondere Tools für die Caster Szene geben. Die Domains "castdota.de" & "castdota.com" wurden dafür schon reserviert.</div>
-                <br />
-                Grüße,<br />
-                Grief-Code
 
-        
+            <Typography.Title level={3}>Dota GSI</Typography.Title>
+            <p className={'desc'}>Dota GSI (Dota Game State Integration) ist eine von Valve bereitgestellte Lösung um lokale Matchdetails mit einem Server zu synchronisieren. Die Kommunikation erfolgt ausschließlich vom Spiel zum Server und geht nicht umgekehrt. Wir empfangen nur die notwendigen Daten.</p>
 
-                <br />
-                <br />
-                <br />
-
-
-                <h1>Willkommen auf streamdota.com</h1>
-
-
-                <p>Aktuell ist diese Seite noch Work In Progress. Über die nächsten Wochen kommen immer weitere und neuere Features dazu.</p>
-                <p>Wenn Ihr Probleme habt oder Bugs findet, bitte so schnell wie möglich an mich (<a href={'https://discordapp.com/channels/@me/148698273899610112/'}>GriefCode#1337</a>) in Discord melden.</p>
-
-                <br />
-                <p>Da mich mehrere gefragt haben, unterstützden könnt Ihr mich über <a href={"https://paypal.me/gamershost"} target={'_blank'}>Paypal</a>. Ist aber nicht nötig, ich bin nicht darauf angewiesen und dieses Projekt ist ein reines Hobbyprojekt für mich. Das bedeutet aber nicht, dass es nur den Standard eines Hobbyprojektes hat, es hat für mich den gleichen Stellenwert wie ein bezahltes Projekt.</p>
-                <br />
-
-                Grüße,<br />
-                Grief-Code
-            </div>
-            <img src={'/images/heroes/clockwerk_400.png'} alt={'clockwerk'} />
+            <p className={'subDesc'}>Es gibt leider keine offizielle Dota 2 Dokumentation, weitere Details können aber in der CS:GO Dokumentation nachgelesen werden: <a href={'https://developer.valvesoftware.com/wiki/Counter-Strike:_Global_Offensive_Game_State_Integration'}>valvesoftware.com</a></p>
+                    
+            <br />
+            <p className={'important'}>Dota GSI <b>muss</b> aufgesetzt werden, da sonst alle Tools & Lösungen dieser Wesbite <b>nicht funktionieren</b>.</p>
+            {user && <ContextProvider initialState={initialState} reducer={reducer} url={'wss://api.streamdota.de/dota-gsi/logs/' + user.frameApiKey}>
+                <SetupGsi gsiAuth={user.gsiAuth} gsiConnected={user.gsiConnected} />
+            </ContextProvider>}
         </div>
+
         <style jsx>{`
-            .lastNews {
-                display: flex;
-                justify-content: space-between;
-                align-items: flex-start;
-            }    
+            .important {
+                font-size: 16px;
+            }
         `}</style>
     </PageFrame>
 }
