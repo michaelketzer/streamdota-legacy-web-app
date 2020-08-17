@@ -8,37 +8,69 @@ enum ACTIONS {
 export enum MessageType {
     chat = 'chat',
     gamestate = 'gamestate',
+    connected = 'connected',
     winner = 'winner',
     betting = 'betting',
+    roshan = 'roshan',
+    draft = 'draft',
 }
 
-export interface GameStateMessage {
-    type: MessageType.gamestate;
+export interface BaseMessage {
+    type: MessageType;
     date: number;
+}
+
+export interface GameStateMessage extends BaseMessage {
+    type: MessageType.gamestate;
     value: string;  
 };
 
-export interface WinnerMessage {
+export interface WinnerMessage extends BaseMessage {
     type: MessageType.winner;
-    date: number;
     value: boolean;
 }
 
-export interface ChatMessage {
+export interface ChatMessage extends BaseMessage  {
     type: MessageType.chat;
-    date: number;
     value: {
         user: string;
         message: string;
     };
 }
-export interface BettingMessage {
+export interface BettingMessage extends BaseMessage {
     type: MessageType.betting;
-    date: number;
     value: BetRoundStats;
 }
+export interface ConnectedMessage extends BaseMessage {
+    type: MessageType.connected;
+    value: boolean;
+}
 
-export type Message =  GameStateMessage | WinnerMessage | ChatMessage | BettingMessage;
+export interface RoshanMessage extends BaseMessage {
+    type: MessageType.roshan;
+    value: {
+        state: 'alive' | 'respawn_base' | 'respawn_variable';
+        remaining: number;
+    };
+}
+
+export interface DraftMessage extends BaseMessage {
+    type: MessageType.draft;
+    value: {
+        change: Array<{id: number; class: string}>;
+        team: 'dire' | 'radiant';
+        type: 'pick' | 'ban';
+    };
+}
+
+export type Message =  GameStateMessage | WinnerMessage | ChatMessage | BettingMessage | ConnectedMessage | RoshanMessage | DraftMessage;
+
+export function isRoshanMessage(msg: Message): msg is RoshanMessage {
+    return msg.type === MessageType.roshan;
+}
+export function isDraftMessage(msg: Message): msg is DraftMessage {
+    return msg.type === MessageType.draft;
+}
 
 interface NewMessageAction {
     type: typeof ACTIONS.NEW_MESSAGE;
