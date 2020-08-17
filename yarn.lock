@@ -1174,10 +1174,10 @@
     "@sentry/types" "5.21.1"
     tslib "^1.9.3"
 
-"@streamdota/shared-types@1.0.19":
-  version "1.0.19"
-  resolved "https://registry.yarnpkg.com/@streamdota/shared-types/-/shared-types-1.0.19.tgz#5e91a2cf82957cf062267ab3673828774763eafa"
-  integrity sha512-55tDa3g1bIa9+G96bTREFBVrDFqYdk4oOT5VJDy3VXk2LXGU2fHFrnfzC/8Y7HTaRAlyUSdC8qepTExiZBtY2w==
+"@streamdota/shared-types@1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@streamdota/shared-types/-/shared-types-1.1.0.tgz#8c6107772e9dfa51428afd46725a240a02dd5284"
+  integrity sha512-+a75c8gFk3X7tl6X3/K9gXv/pJL1T8xeOAVOh1p6OHF/m/O+IHtIz+09f/4dtxoyoRBGB5p+pKKYQiKDEs19NQ==
 
 "@types/classnames@^2.2.10":
   version "2.2.10"
@@ -1216,10 +1216,10 @@
   dependencies:
     next-redux-wrapper "*"
 
-"@types/node@^14.0.19":
-  version "14.0.27"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-14.0.27.tgz#a151873af5a5e851b51b3b065c9e63390a9e0eb1"
-  integrity sha512-kVrqXhbclHNHGu9ztnAwSncIgJv/FaxmzXJvGXNdcCpV1b8u1/Mi6z6m0vwy0LzKeXFTPLH0NzwmoJ3fNCIq0g==
+"@types/node@^14.6.0":
+  version "14.6.0"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-14.6.0.tgz#7d4411bf5157339337d7cff864d9ff45f177b499"
+  integrity sha512-mikldZQitV94akrc4sCcSjtJfsTKt4p+e/s0AGscVA6XArQ9kFclP+ZiYUMnq987rc6QlYxXv/EivqlfSLxpKA==
 
 "@types/normalizr@^2.0.18":
   version "2.0.18"
@@ -2480,7 +2480,7 @@ dom-align@^1.7.0:
   resolved "https://registry.yarnpkg.com/dom-align/-/dom-align-1.12.0.tgz#56fb7156df0b91099830364d2d48f88963f5a29c"
   integrity sha512-YkoezQuhp3SLFGdOlr5xkqZ640iXrnHAwVYcDg8ZKRUtO7mSzSC2BA5V0VuyAwPSJA4CLIc6EDDJh4bEsD2+zA==
 
-dom-serializer@1.0.1:
+dom-serializer@1.0.1, dom-serializer@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/dom-serializer/-/dom-serializer-1.0.1.tgz#79695eb49af3cd8abc8d93a73da382deb1ca0795"
   integrity sha512-1Aj1Qy3YLbdslkI75QEOfdp9TkQ3o8LRISAzxOibjBs/xWwr1WxZFOQphFkZuepHFGo+kB8e5FVJSS0faAJ4Rw==
@@ -2514,12 +2514,21 @@ domhandler@3.0.0, domhandler@^3.0.0:
   dependencies:
     domelementtype "^2.0.1"
 
-domutils@2.1.0, domutils@^2.0.0:
+domutils@2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/domutils/-/domutils-2.1.0.tgz#7ade3201af43703fde154952e3a868eb4b635f16"
   integrity sha512-CD9M0Dm1iaHfQ1R/TI+z3/JWp/pgub0j4jIQKH89ARR4ATAV2nbaOQS5XxU9maJP5jHaPdDDQSEHuE2UmpUTKg==
   dependencies:
     dom-serializer "^0.2.1"
+    domelementtype "^2.0.1"
+    domhandler "^3.0.0"
+
+domutils@^2.0.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/domutils/-/domutils-2.2.0.tgz#f3ce1610af5c30280bde1b71f84b018b958f32cf"
+  integrity sha512-0haAxVr1PR0SqYwCH7mxMpHZUwjih9oPPedqpR/KufsnxPyZ9dyVw1R5093qnJF3WXSbjBkdzRWLw/knJV/fAg==
+  dependencies:
+    dom-serializer "^1.0.1"
     domelementtype "^2.0.1"
     domhandler "^3.0.0"
 
@@ -4488,9 +4497,9 @@ rc-pagination@~2.4.5:
     classnames "^2.2.1"
 
 rc-picker@~1.15.1:
-  version "1.15.3"
-  resolved "https://registry.yarnpkg.com/rc-picker/-/rc-picker-1.15.3.tgz#e4379e6fed9a29f0c1705115d11d196625096b83"
-  integrity sha512-+VfzcsZui6oOOA0W44qQ7TRC28FUCLrZLjowwyouJKMjvU4HtKdDlSMTJHZNvBbfQoAfED4+mzUG2xtcdW7M+g==
+  version "1.15.4"
+  resolved "https://registry.yarnpkg.com/rc-picker/-/rc-picker-1.15.4.tgz#b5878260fbd32c7ffa456dc811f645b359d804ea"
+  integrity sha512-GYgSyoSJy/Zp9ZF75eJ/fv1P88IrWzrGCtefZW47POw6UXz5Yh+6O+pJZcTbx0HwiAE9HHb8nyOjciS6XjYszg==
   dependencies:
     "@babel/runtime" "^7.10.1"
     classnames "^2.2.1"
@@ -4499,7 +4508,6 @@ rc-picker@~1.15.1:
     moment "^2.24.0"
     rc-trigger "^4.0.0"
     rc-util "^5.0.1"
-    react "^16.0.0"
     shallowequal "^1.1.0"
 
 rc-progress@~3.0.0:
@@ -4790,7 +4798,7 @@ react-websocket@^2.1.0:
   resolved "https://registry.yarnpkg.com/react-websocket/-/react-websocket-2.1.0.tgz#1150ce55aaa38e845f5711684266a823781ee2e4"
   integrity sha512-VstINrNXmp08aol9TQt1LZQgtzmad6CjTvEX8TYAFxU7K0ByMtDP7T2WMtgNEttWtPThVA7TDhHNu+fGTaAExQ==
 
-react@^16.0.0, react@^16.13.1:
+react@^16.13.1:
   version "16.13.1"
   resolved "https://registry.yarnpkg.com/react/-/react-16.13.1.tgz#2e818822f1a9743122c063d6410d85c1e3afe48e"
   integrity sha512-YMZQQq32xHLX0bz5Mnibv1/LHb3Sqzngu7xstSM+vrkE5Kzr9xE0yMByK5kMoTK30YVJE61WfbxIFFvfeDKT1w==
