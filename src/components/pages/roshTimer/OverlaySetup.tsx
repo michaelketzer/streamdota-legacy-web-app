@@ -63,7 +63,7 @@ export default function OverlaySetup(): ReactElement | null {
 					</div>
 
                     <div className={'col'}>
-						<FrameLink auth={userData?.frameApiKey || ''} access={'casting/roshTimer'} testing />
+						<FrameLink auth={userData?.frameApiKey || ''} access={'casting/roshanTimer'} testing />
 
 						<Preview overlay={overlay} />
                     </div>
