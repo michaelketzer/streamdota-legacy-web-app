@@ -3,9 +3,11 @@ import Header from "./Header";
 import HeroBanner from "./HeroBanner";
 import StatsOverlay from "./StatsOverlay";
 import Betting from "./Betting";
-import Casting from "./Casting";
 import Contact from "./Contact";
 import Footer from "./Footer";
+import RoshTimer from "./RoshTimer";
+import LiveFeed from "./LiveFeed";
+import Other from "./Other";
 
 export default function Page(): ReactElement {
     return <>
@@ -17,7 +19,11 @@ export default function Page(): ReactElement {
 
         <Betting />
 
-        <Casting />
+        <RoshTimer />
+
+        <LiveFeed />
+
+        <Other />
 
         <Contact />
 
