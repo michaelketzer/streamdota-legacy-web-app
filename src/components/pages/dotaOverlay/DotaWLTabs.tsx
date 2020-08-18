@@ -19,7 +19,7 @@ export default function DotaWLTabs(): ReactElement {
 				<Stats />
 			</Tabs.TabPane>
 
-			<Tabs.TabPane tab='TinkBot Command' key='4'>
+			<Tabs.TabPane tab='StreamDota Bot Command' key='4'>
 				<Commands />
 			</Tabs.TabPane>
 
