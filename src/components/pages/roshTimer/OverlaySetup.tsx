@@ -11,6 +11,7 @@ import FontVariantSelection from '../dotaOverlay/Overlay/FontVariantSelection';
 import FontSize from '../dotaOverlay/Overlay/FontSize';
 import Color from '../dotaOverlay/Overlay/Color';
 import FrameLink from '../dotaOverlay/Overlay/FrameLink';
+import Preview from './Preview';
 
 
 export default function OverlaySetup(): ReactElement | null {
@@ -63,6 +64,8 @@ export default function OverlaySetup(): ReactElement | null {
 
                     <div className={'col'}>
 						<FrameLink auth={userData?.frameApiKey || ''} access={'casting/roshTimer'} testing />
+
+						<Preview overlay={overlay} />
                     </div>
 				</div>
 
