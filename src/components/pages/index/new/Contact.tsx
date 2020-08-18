@@ -3,7 +3,7 @@ import Frame from "./Frame";
 
 
 export default function Contact(): ReactElement {
-    return <Frame>
+    return <Frame blue>
         <div className={'getInTouch'}>
             You are interested and want to get in touch?
 

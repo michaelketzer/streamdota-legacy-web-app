@@ -8,7 +8,7 @@ import Highlight from "./Highlight";
 
 
 export default function Other(): ReactElement {
-    return <Frame>
+    return <Frame orange>
         <Title>and much more...</Title>
         <SubTitle>A small list of stuff worth mentioning</SubTitle>
         <Row>
