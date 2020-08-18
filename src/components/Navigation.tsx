@@ -9,6 +9,7 @@ import {
   AudioOutlined,
   EuroOutlined,
   DotChartOutlined,
+  ClockCircleOutlined,
 } from '@ant-design/icons';
 
 interface MenuItem {
@@ -33,6 +34,10 @@ const items: MenuItem[] = [{
     icon: <PieChartOutlined />,
     name: 'Wettsytem',
     path: '/bets',
+}, {
+    icon: <ClockCircleOutlined />,
+    name: 'Roshan Timer',
+    path: '/roshTimer',
 }, {
     icon: <DotChartOutlined />,
     name: 'Live Feed',
