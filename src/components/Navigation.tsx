@@ -24,7 +24,7 @@ const items: MenuItem[] = [{
     path: '/dashboard'
 }, {
     icon: <RobotOutlined />,
-    name: 'TinkBot',
+    name: 'StreamDota Bot',
     path: '/bot'
 }, {
     icon: <LineChartOutlined />,    
