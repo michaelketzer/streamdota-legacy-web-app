@@ -36,7 +36,7 @@ function FontLoader({ font, rawFonts }: { font: string; rawFonts: Font[] }): Rea
 	return null;
 }
 
-const FontLoaderFc = React.memo(FontLoader);
+export const FontLoaderFc = React.memo(FontLoader);
 
 const defaultState: OverlayConfig = {
 	font: 'Arial',
