@@ -9,7 +9,7 @@ import Highlight from "./Highlight";
 
 
 export default function LiveFeed(): ReactElement {
-    return <Frame>
+    return <Frame grey>
         <Title>Casting tool - live feed</Title>
         <SubTitle>Access data of picks & bans quickly and overwhelm your audience with simple, yet powerful stats</SubTitle>
         <Row>
@@ -29,6 +29,8 @@ export default function LiveFeed(): ReactElement {
                 max-width: 200px;
                 width: 100%;
                 margin: 20px auto;
+                border-radius: 8px;
+                box-shadow: 2px 2px 10px 0 rgba(0,0,0,.1);
             }
         `}</style>
     </Frame>;
