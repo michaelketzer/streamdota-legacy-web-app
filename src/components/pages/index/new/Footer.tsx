@@ -18,7 +18,6 @@ export default function Footer(): ReactElement {
         <style jsx>{`
             .footer {
                 height: 40px;
-                margin-top: 20px;
                 background-color: #888;
                 color: #FFF;
             }

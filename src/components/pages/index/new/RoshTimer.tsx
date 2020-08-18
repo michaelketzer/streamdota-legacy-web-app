@@ -17,12 +17,20 @@ export default function RoshTimer(): ReactElement {
                 <ContentTitle>Features</ContentTitle>
                 <ul>
                     <li><Highlight>Aegis countdown</Highlight> see the expiration time for aegis</li>
-                    <li><Highlight>Base countdown</Highlight> see the remaining base countdown after the aegis expired or was used</li>
+                    <li><Highlight>Base countdown</Highlight> see the remaining base countdown <br />after the aegis expired or was used</li>
                     <li><Highlight>Variable countdown</Highlight> see the variable time after the base time</li>
                     <li><Highlight>Smart</Highlight> the overlay will hide when roshan is alive</li>
                 </ul>
             </Sub>
-            <img src={'/images/preview/roshtimer_preview.jpg'} />
+            <img src={'/images/landingPreview/roshanTimer.jpg'} />
         </Row>
+
+        <style jsx>{`
+            img {
+                margin: 20px auto;
+                border-radius: 8px;
+                box-shadow: 2px 2px 10px 0 rgba(0,0,0,.1);
+            }
+        `}</style>
     </Frame>;
 }

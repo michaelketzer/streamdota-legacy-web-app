@@ -23,14 +23,14 @@ export default function StatsOverlay(): ReactElement {
                 </ul>
             </Sub>
 
-            <img src={'/images/preview/dotaWL.png'} />
+            <img src={'/images/landingPreview/winLoss.jpg'} />
         </Row>
 
         <style jsx>{`
             img {
-                max-width: 400px;
-                width: 100%;
-                margin: 0 auto;
+                margin: 20px auto;
+                border-radius: 8px;
+                box-shadow: 2px 2px 10px 0 rgba(0,0,0,.1);
             }
         `}</style>
     </Frame>;

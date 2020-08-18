@@ -9,7 +9,7 @@ import Highlight from "./Highlight";
 
 
 export default function LiveFeed(): ReactElement {
-    return <Frame>
+    return <Frame grey>
         <Title>Casting tool - live feed</Title>
         <SubTitle>Access data of picks & bans quickly and overwhelm your audience with simple, yet powerful stats</SubTitle>
         <Row>
@@ -19,7 +19,7 @@ export default function LiveFeed(): ReactElement {
                 <ul>
                     <li><Highlight>League</Highlight> you decide which source league is used to gather stats</li>
                     <li><Highlight>Automatic</Highlight> picks & bans of captains mode games are instantly available</li>
-                    <li><Highlight>Oerlay</Highlight> by a click an overlay is shown at the stream to display the data directly to your viewers</li>
+                    <li><Highlight>Overlay</Highlight> by a click an overlay is shown at the stream to display the data directly to your viewers</li>
                 </ul>
             </Sub>
         </Row>
@@ -29,6 +29,8 @@ export default function LiveFeed(): ReactElement {
                 max-width: 200px;
                 width: 100%;
                 margin: 20px auto;
+                border-radius: 8px;
+                box-shadow: 2px 2px 10px 0 rgba(0,0,0,.1);
             }
         `}</style>
     </Frame>;
