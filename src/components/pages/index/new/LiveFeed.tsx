@@ -19,7 +19,7 @@ export default function LiveFeed(): ReactElement {
                 <ul>
                     <li><Highlight>League</Highlight> you decide which source league is used to gather stats</li>
                     <li><Highlight>Automatic</Highlight> picks & bans of captains mode games are instantly available</li>
-                    <li><Highlight>Oerlay</Highlight> by a click an overlay is shown at the stream to display the data directly to your viewers</li>
+                    <li><Highlight>Overlay</Highlight> by a click an overlay is shown at the stream to display the data directly to your viewers</li>
                 </ul>
             </Sub>
         </Row>
