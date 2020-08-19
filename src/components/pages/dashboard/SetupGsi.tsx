@@ -31,7 +31,7 @@ export default function SetupGsi({ gsiAuth, gsiConnected }: Props): ReactElement
 	const dispatch = useDispatch();
 	const onLoadGsi = async () => await downloadGsiConfig();
 	const onResetGsi = async () => await dispatch(resetGsi());
-	const hasSetup = useMemo(() => gsiAuth.length > 0, [ gsiAuth ]);
+	const hasSetup = useMemo(() => gsiAuth && gsiAuth.length > 0, [ gsiAuth ]);
 
 	if (hasSetup) {
 		return (
