@@ -1,0 +1,9 @@
+{
+    "liveFeed-title": "Live Feed",
+    "liveFeed-title-sub": "Gathers data about current ingame actions, such as picks, bans & items and allows casters to display detailed stats on these actions.",
+
+    "league-info-start": "Source league id should be the id of the league where the data is gathered from. The stratz API is used to gain these details. You can search for the revelant league here",
+    "league-info-end": ". By clicking on the league you will find the id in the url, like here:",
+    
+    "league-id-label": "League id"
+}

@@ -8,19 +8,21 @@ import { Alert } from "antd";
 import LeagueIdSelector from "../components/pages/live/LeagueIdSelector";
 import getWebsocketUrl from "../modules/Router";
 import LiveFeed from "../components/pages/live/LiveFeed";
+import { WithTranslation } from "next-i18next";
+import i18nInstance from "../i18n";
 
-export default function Live(): ReactElement {
+const Live = ({t}: WithTranslation): ReactElement => {
     const user = useCurrentUser();
     const [leagueId, setLeagueId] = useState(0);
     
     return <PageFrame title={'Live Feed'}>
         <PageHeader 
-            title={'Live Feed'} 
-            description={'Zeigt Daten zu aktuellen in-game Ereignissen an, wie Picks und Bans, mit weitere Daten der aktuellen Liga'} />
+            title={t('liveFeed-title')} 
+            description={t('liveFeed-title-sub')} />
 
         <Alert message={
             <>
-                Die Liga ID ist die Liga von der die Daten zu Picks & Bans angezeigt wird. Dazu benutzen wir die stratz API. Die ID musst du leider selbst ermitteln unter folgendem Link: <span className={'highlight'}>https://stratz.com/leagues</span>. Einfach auf die entsprechende Liga klicken und aus der Browser URL die letzte Zahl kopieren, wie zB hier: https://stratz.com/leagues/<span className={'highlight'}>11629</span>
+                {t('league-info-start')} <span className={'highlight'}>https://stratz.com/leagues</span>{t('league-info-end')} https://stratz.com/leagues/<span className={'highlight'}>11629</span>
             </>
         } type="info" />
 
@@ -44,3 +46,10 @@ export default function Live(): ReactElement {
         `}</style>
     </PageFrame>
 }
+
+
+Live.getInitialProps = async () => ({
+    namespacesRequired: ['liveFeed', 'nav'],
+});
+
+export default i18nInstance.withTranslation('liveFeed')(Live);

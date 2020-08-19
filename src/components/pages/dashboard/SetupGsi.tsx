@@ -7,6 +7,8 @@ import { useDispatch } from 'react-redux';
 import { resetGsi } from '../../../modules/reducer/DotaOverlay';
 import { getDefaultHeader } from '../../../modules/middleware/Network';
 import fetch from 'isomorphic-unfetch';
+import i18nInstance from '../../../i18n';
+import { WithTranslation } from 'next-i18next';
 
 async function downloadGsiConfig(): Promise<void> {
     const response = await fetch(process.env.API_URL + '/dota-gsi/generateConfig', {headers: getDefaultHeader()});
@@ -21,12 +23,12 @@ async function downloadGsiConfig(): Promise<void> {
     a.remove();
 }
 
-interface Props {
+interface Props extends WithTranslation {
 	gsiAuth: string;
 	gsiConnected: boolean;
 }
 
-export default function SetupGsi({ gsiAuth, gsiConnected }: Props): ReactElement {
+const SetupGsi = ({ t, gsiAuth, gsiConnected }: Props): ReactElement => {
 	const [ { messages } ] = useStateValue();
 	const dispatch = useDispatch();
 	const onLoadGsi = async () => await downloadGsiConfig();
@@ -41,34 +43,27 @@ export default function SetupGsi({ gsiAuth, gsiConnected }: Props): ReactElement
 					<React.Fragment>
 						<div className={'status'}>
 							<WarningOutlined style={{ fontSize: '22px' }} />
-							<div className={'label'}>Dota GSI ist konfiguriert, hat aber keine Verbindung</div>
+							<div className={'label'}>{t('gsi-setup-noConnection-header')}</div>
 						</div>
-						<p>
-							Du hast Dota GSI aufgesetzt und bisher wurde noch keine Verbindung aufgebaut, sobald eine
-							eingehende Verbindung vorhanden ist ändert sich der Status. Für eine Verbindung musst du
-							lediglich ein Spiel spielen.
-						</p>
-						<p>
-							Du glaubst beim Setup ist was schief gelaufen? Dann kannst du es mit folgenden Schritten
-							erneut versuchen:
-						</p>
+						<p>{t('gsi-setup-noConnection-desc')}</p>
+						<p>{t('gsi-setup-noConnection-desc-2')}</p>
 						<div className={'listEntry'}>
 							<div className={'createLabel'}>
-								<b>1.</b> Erstelle dir eine neue Dota GSI Konfigurationsdatei:
+								<b>1.</b> {t('gsi-setup-noConnection-step1')}
 							</div>
 							<Button type={'primary'} onClick={onLoadGsi} icon={<DownloadOutlined />}>
-								Neue Dota GSI Konfiguration erstellen
+							{t('gsi-setup-noConnection-step1-button')}
 							</Button>
 						</div>
 						<div className={'listEntry'}>
 							<div>
-								<b>2.</b> Platziere die Konfigurationsdatei in deinem Steamordner unter:{' '}
+								<b>2.</b> {t('gsi-setup-noConnection-step2')}{' '}
 								<i>steamapps\common\dota 2 beta\game\dota\cfg\gamestate_integration\</i>
 							</div>
 						</div>
 						<div className={'listEntry'}>
 							<div>
-								<b>3.</b> Starte dein Dota neu
+								<b>3.</b> {t('gsi-setup-noConnection-step3')}
 							</div>
 						</div>
 					</React.Fragment>
@@ -78,11 +73,11 @@ export default function SetupGsi({ gsiAuth, gsiConnected }: Props): ReactElement
 					<React.Fragment>
 						<div className={'status success'}>
 							<CheckCircleOutlined style={{ fontSize: '22px' }} />
-							<div className={'label'}>Dota GSI ist konfiguriert</div>
+							<div className={'label'}>{t('gsi-setup-success-header')}</div>
 						</div>
 
 						<div className={'successInfo'}>
-							Dota GSI ist eingerichtet und hatte schon eine Verbindung zu unserem Server.
+						{t('gsi-setup-success-desc')}
 						</div>
 
 						<Popconfirm
@@ -90,7 +85,7 @@ export default function SetupGsi({ gsiAuth, gsiConnected }: Props): ReactElement
 							onConfirm={onResetGsi}
 							okText='Löschen'
 							cancelText='Abbrechen'>
-							<Button type={'dashed'}>Einstellungen zurücksetzen</Button>
+							<Button type={'dashed'}>{t('gsi-setup-success-button')}</Button>
 						</Popconfirm>
 					</React.Fragment>
 				)}
@@ -153,27 +148,27 @@ export default function SetupGsi({ gsiAuth, gsiConnected }: Props): ReactElement
 		<div className={'gsiSetup'}>
 			<div className={'status'}>
 				<ExclamationCircleOutlined style={{ fontSize: '22px' }} />
-				<div className={'label'}>Dota GSI ist noch nicht aufgesetzt</div>
+				<div className={'label'}>{t('gsi-not-setup-header')}</div>
 			</div>
 
-			<h4>Führe folgende Schritte aus um Dota GSI aufzusetzen:</h4>
+			<h4>{t('gsi-setup-header')}</h4>
 			<div className={'listEntry'}>
 				<div className={'createLabel'}>
-					<b>1.</b> Erstelle dir eine neue Dota GSI Konfigurationsdatei:
+					<b>1.</b> {t('gsi-setup-step1')}
 				</div>
 				<Button type={'primary'} onClick={onLoadGsi} icon={<DownloadOutlined />}>
-					Erstellen der Dota GSI Konfiguration
+				{t('gsi-setup-step1-button')}
 				</Button>
 			</div>
 			<div className={'listEntry'}>
 				<div>
-					<b>2.</b> Platziere die Konfigurationsdatei in deinem Steamordner unter:{' '}
+					<b>2.</b> {t('gsi-setup-step2')}{' '}
 					<i>steamapps\common\dota 2 beta\game\dota\cfg\gamestate_integration\</i>
 				</div>
 			</div>
 			<div className={'listEntry'}>
 				<div>
-					<b>3.</b> Starte dein Dota neu
+					<b>3.</b> {t('gsi-setup-step3')}
 				</div>
 			</div>
 
@@ -223,3 +218,5 @@ export default function SetupGsi({ gsiAuth, gsiConnected }: Props): ReactElement
 		</div>
 	);
 }
+
+export default i18nInstance.withTranslation('dashboard')(SetupGsi);

@@ -7,8 +7,10 @@ import Loader from '../../Loader';
 import { useUserTimer } from '../../../modules/selector/Timer';
 import { useDispatch } from 'react-redux';
 import { createTimer, updateTimer, deleteTimer } from '../../../modules/reducer/Timer';
+import { WithTranslation } from 'next-i18next';
+import i18nInstance from '../../../i18n';
 
-export default function Commands(): ReactElement {
+const Timers = ({t}: WithTranslation): ReactElement => {
 	const timers = useUserTimer();
 	const dispatch = useDispatch();
 	const [ period, setPeriod ] = useState(5);
@@ -29,11 +31,11 @@ export default function Commands(): ReactElement {
 	if (timers) {
 		return (
 			<div className={'commandsGrid'}>
-				<div className={'label'}>Aktiv</div>
+				<div className={'label'}>{t('commands-list-active')}</div>
 				<div className={'label'}>
-					Interval <span className={'small'}>(Minuten)</span>
+				{t('timer-interval')} <span className={'small'}>({t('timer-interval-minutes')})</span>
 				</div>
-				<div className={'label'}>Nachricht</div>
+				<div className={'label'}>{t('timer-message')}</div>
 				<div className={'label'} />
 
 				{timers.map(({ active, id, period, message }) => (
@@ -56,10 +58,10 @@ export default function Commands(): ReactElement {
 						/>
 						<div>
 							<Popconfirm
-								title='Soll dieser Timer wirklich gelöscht werden?'
+								title={t('timer-delete')}
 								onConfirm={async () => await dispatch(deleteTimer(id))}
-								okText='Ja'
-								cancelText='Nein'>
+								okText={t('timer-delete-yes')}
+								cancelText={t('timer-delete-no')}>
 								<Button danger icon={<DeleteOutlined />} type={'primary'} />
 							</Popconfirm>
 						</div>
@@ -70,15 +72,15 @@ export default function Commands(): ReactElement {
 					<Checkbox defaultChecked={act} onChange={(e) => setAct(e.target.checked)} />
 				</div>
 				<div>
-					<Input value={period} onChange={(e) => setPeriod(+e.target.value)} placeholder={'Period'} />
+					<Input value={period} onChange={(e) => setPeriod(+e.target.value)} placeholder={t('timer-interval')} />
 				</div>
-				<TextArea value={msg} onChange={(e) => setMsg(e.target.value)} placeholder={'Antwort'} />
+				<TextArea value={msg} onChange={(e) => setMsg(e.target.value)} placeholder={t('timer-message')} />
 				<div />
 				<div />
 				<div />
 				<div className={'createButton'}>
 					<Button type={'primary'} onClick={create}>
-						Erstellen
+					{t('timer-create')}
 					</Button>
 				</div>
 
@@ -112,3 +114,5 @@ export default function Commands(): ReactElement {
 
 	return <Loader />;
 }
+
+export default i18nInstance.withTranslation('bot')(Timers);

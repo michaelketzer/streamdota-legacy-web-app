@@ -6,21 +6,21 @@ import { useCurrentUser } from "../hooks/currentUser";
 import SetupGsi from "../components/pages/dashboard/SetupGsi";
 import { Typography } from "antd";
 import getWebsocketUrl from "../modules/Router";
+import i18nInstance, { TransFN } from "../i18n";
 
-export default function Dashboard(): ReactElement {
+const Dashboard = ({t}: {t: TransFN}): ReactElement => {
     const user = useCurrentUser();
-    console.log(user);
     
     return <PageFrame title={'Dashboard'}>
         <div className={'lastNews'}>
 
-            <Typography.Title level={3}>Dota GSI</Typography.Title>
-            <p className={'desc'}>Dota GSI (Dota Game State Integration) ist eine von Valve bereitgestellte Lösung um lokale Matchdetails mit einem Server zu synchronisieren. Die Kommunikation erfolgt ausschließlich vom Spiel zum Server und geht nicht umgekehrt. Wir empfangen nur die notwendigen Daten.</p>
+            <Typography.Title level={3}>{t('gsi-header')}</Typography.Title>
+            <p className={'desc'}>{t('gsi-header-sub')}</p>
 
-            <p className={'subDesc'}>Es gibt leider keine offizielle Dota 2 Dokumentation, weitere Details können aber in der CS:GO Dokumentation nachgelesen werden: <a href={'https://developer.valvesoftware.com/wiki/Counter-Strike:_Global_Offensive_Game_State_Integration'}>valvesoftware.com</a></p>
+            <p className={'subDesc'}>{t('gsi-header-desc')} <a href={'https://developer.valvesoftware.com/wiki/Counter-Strike:_Global_Offensive_Game_State_Integration'}>valvesoftware.com</a></p>
                     
             <br />
-            <p className={'important'}>Dota GSI <b>muss</b> aufgesetzt werden, da sonst alle Tools & Lösungen dieser Wesbite <b>nicht funktionieren</b>.</p>
+            <p className={'important'}>{t('gsi-notice')}</p>
             {user && user.frameApiKey && <ContextProvider initialState={initialState} reducer={reducer} url={getWebsocketUrl() + '/dota-gsi/logs/' + user.frameApiKey}>
                 <SetupGsi gsiAuth={user.gsiAuth} gsiConnected={user.gsiConnected} />
             </ContextProvider>}
@@ -33,3 +33,9 @@ export default function Dashboard(): ReactElement {
         `}</style>
     </PageFrame>
 }
+
+Dashboard.getInitialProps = async () => ({
+    namespacesRequired: ['dashboard', 'nav'],
+});
+
+export default i18nInstance.withTranslation('dashboard')(Dashboard);

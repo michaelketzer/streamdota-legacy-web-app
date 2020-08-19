@@ -1,0 +1,36 @@
+{
+    "title": "Dota Win/Loss",
+    "title-sub": "With the “Dota Win/Loss” overlay you can show your current dota 2 stats on your stream",
+
+    "tab-settings": "Settings",
+    "tab-commands": "StreamDota Bot Command",
+    "tab-overlay": "Overlay Settings",
+
+    "settings-title": "Decide when the timer does reset",
+    "settings-session": "Session - The count is reseted once the stream starts",
+    "settings-day": "Day - All games of the day are counted",
+
+    "overlay-title": "Overlay configuration",
+    "overlay-font-info": "Select a font family, you can get an overview of all available fonts here:",
+    "overlay-font-label": "Font family",
+
+    "overlay-font-variant-label": "Font variant",
+    "overlay-font-variant-noVariant": "The current font does not have a variant",
+
+    "overlayfont-size": "Font size",
+
+    "overlay-color-won": "Color won",
+    "overlay-color-lost": "Color lost",
+    "overlay-color-divider": "Color divider",
+
+    "overlay-background": "Background",
+
+    "overlay-position": "Position",
+    "overlay-position-info": "You can drag the numbers to adjust the position.",
+
+    "overlay-source-title": "Overlay frame source",
+    "overlay-source-test": "Testing frame source (to position the overlay, you can just switch the links after)",
+    "overlay-source-suggested-size": "Recommended browser source size:",
+    "overlay-source-suggested-height": "Height",
+    "overlay-source-suggested-width": "Width" 
+}

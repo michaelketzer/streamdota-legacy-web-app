@@ -1,0 +1,9 @@
+{
+    "liveFeed-title": "Live Feed",
+    "liveFeed-title-sub": "Zeigt Daten zu aktuellen in-game Ereignissen an, wie Picks und Bans, mit weitere Daten der aktuellen Liga",
+
+    "league-info-start": "Die Liga ID ist die Liga von der die Daten zu Picks & Bans angezeigt wird. Dazu benutzen wir die stratz API. Die ID musst du leider selbst ermitteln unter folgendem Link:",
+    "league-info-end": ". Einfach auf die entsprechende Liga klicken und aus der Browser URL die letzte Zahl kopieren, wie zB hier:",
+    
+    "league-id-label": "Liga ID"
+}

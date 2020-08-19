@@ -1,0 +1,35 @@
+{
+    "title": "StreamDota Bot",
+    "title-sub": "StreamDota Bot is a chat bot that provides entertainement, information about the dota game and further interaction",
+
+    "tab-info": "Info",
+    "tab-commands": "Commands",
+    "tab-timer": "Timer",
+
+    "info-mod-start": "Do not forget to mod the bot on your channel to avoid response issues. Simple use",
+    "info-mod-end": "in your chat!",
+    "info-custom": "You want a custom bot name, then contact me on discord.",
+    
+    "commands-vars": "Variables",
+    "commands-vars-sub": "You can use the following variables as placeholder for your responses:",
+    "commands-title": "Commands",
+
+    "commands-list-active": "Active",
+    "commands-list-command": "Command",
+    "commands-list-response": "Response",
+    "commands-list-preview": "Preview",
+    "commands-list-create": "Create",
+    "commands-list-delete": "Should the command be deleted?",
+    "commands-list-delete-yes": "Yes",
+    "commands-list-delete-no": "No",
+
+    "timer-active": "Active",
+    "timer-interval": "Interval",
+    "timer-interval-minutes": "Minutes",
+    "timer-message": "Message",
+    "timer-create": "Create",
+    "timer-delete": "Should this time be deleted?",
+    "timer-delete-yes": "Yes",
+    "timer-delete-no": "No"
+
+}

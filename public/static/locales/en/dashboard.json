@@ -1,0 +1,25 @@
+{
+    "gsi-header": "Dota GSI",
+    "gsi-header-sub": "Dota GSI (Dota Game State Integration) is a valve solution from valve to sync local match details to a remote server. The communication is only from game to the server and not vice versa. We receive only absolute necessary data.",
+    "gsi-header-desc": "There is sadly no official Dota 2 documentation about this, but you can check the official CS:GO documentation:",
+    "gsi-notice": "Dota GSI is required for using streamdota.com, either the features will not work at all.",
+
+    "gsi-not-setup-header": "Dota GSI has not been setted up yet",
+    "gsi-setup-header": "You can setup Dota GSI with the following steps:",
+    "gsi-setup-step1": "Create a new Dota GSI configuration file:",
+    "gsi-setup-step1-button": "Create new Dota GSI configuration",
+    "gsi-setup-step2": "Locate the config file under the following path:",
+    "gsi-setup-step3": "Restart your dota",
+
+    "gsi-setup-noConnection-header": "Dota GSI is configured, but has no active connection",
+    "gsi-setup-noConnection-desc": "You correctly setup Dota GSI but there is no current connection, as soon as you join a game, the status will update.",
+    "gsi-setup-noConnection-desc-2": "You think you missed a step? You can repeat the setup process:",
+    "gsi-setup-noConnection-step1": "Create a new configration file:",
+    "gsi-setup-noConnection-step1-button": "Create new Dota GSI configuration file",
+    "gsi-setup-noConnection-step2": "Locate the config file under the following path:",
+    "gsi-setup-noConnection-step3": "Restart your dota",
+
+    "gsi-setup-success-header": "Dota GSI is configured and connected",
+    "gsi-setup-success-desc": "Dota GSI is configured and had at least one connection to our server.",
+    "gsi-setup-success-button": "Reset Dota GSI"
+}
