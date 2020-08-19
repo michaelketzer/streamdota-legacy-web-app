@@ -9,6 +9,7 @@ import getWebsocketUrl from "../modules/Router";
 
 export default function Dashboard(): ReactElement {
     const user = useCurrentUser();
+    console.log(user);
     
     return <PageFrame title={'Dashboard'}>
         <div className={'lastNews'}>
@@ -20,7 +21,7 @@ export default function Dashboard(): ReactElement {
                     
             <br />
             <p className={'important'}>Dota GSI <b>muss</b> aufgesetzt werden, da sonst alle Tools & Lösungen dieser Wesbite <b>nicht funktionieren</b>.</p>
-            {user && <ContextProvider initialState={initialState} reducer={reducer} url={getWebsocketUrl() + '/dota-gsi/logs/' + user.frameApiKey}>
+            {user && user.frameApiKey && <ContextProvider initialState={initialState} reducer={reducer} url={getWebsocketUrl() + '/dota-gsi/logs/' + user.frameApiKey}>
                 <SetupGsi gsiAuth={user.gsiAuth} gsiConnected={user.gsiConnected} />
             </ContextProvider>}
         </div>
