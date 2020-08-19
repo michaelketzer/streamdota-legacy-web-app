@@ -2,21 +2,29 @@ import { ReactElement } from "react";
 import PageFrame from "../components/PageFrame";
 import dynamic from "next/dynamic";
 import PageHeader from "../components/PageHeader";
+import { WithTranslation } from "next-i18next";
+import i18nInstance from "../i18n";
 
 const DotaWLTabs = dynamic(
     () => import('../components/pages/dotaOverlay/DotaWLTabs'),
     { ssr: false }
 );
 
-export default function DotaOverlay(): ReactElement {
+const DotaOverlay = ({t}: WithTranslation): ReactElement => {
 
     return <PageFrame title={'Dota 2 Overlay'}>
         <PageHeader 
-            title={'Dota Win/Loss'} 
-            description={'Mit “Dota Win/Loss” kannst du deine aktuellen Stats in Dota 2 auf deinem Livestream anzeigen'}
+            title={t('title')} 
+            description={t('title-sub')}
             previewSr={'/images/preview/dotaWL.png'}
         />
 
         <DotaWLTabs />
     </PageFrame>
 }
+
+DotaOverlay.getInitialProps = async () => ({
+    namespacesRequired: ['dotaWL', 'bot', 'nav'],
+});
+
+export default i18nInstance.withTranslation('dotaWL')(DotaOverlay);

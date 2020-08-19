@@ -13,6 +13,8 @@ import { useDispatch } from 'react-redux';
 import { updateDotaOverlay } from '../../../modules/reducer/DotaOverlay';
 import { useGoogleFont } from '../../../modules/selector/GoogleFonts';
 import { Font, OverlayConfig } from '@streamdota/shared-types';
+import { WithTranslation } from 'next-i18next';
+import i18nInstance from '../../../i18n';
 
 function FontLoader({ font, rawFonts }: { font: string; rawFonts: Font[] }): ReactElement | null {
 	const fontConfig = useMemo(
@@ -58,7 +60,7 @@ const defaultState: OverlayConfig = {
 	showBackground: true,
 };
 
-export default function OverlaySetup(): ReactElement | null {
+const OverlaySetup = ({t}: WithTranslation): ReactElement | null => {
 	const userData = useCurrentUser();
 	const rawFonts = useGoogleFont();
 	const userCfg = useDotaOverlay();
@@ -81,7 +83,7 @@ export default function OverlaySetup(): ReactElement | null {
 	if (cfg && Object.keys(cfg).length > 0) {
 		return (
 			<Fragment>
-				<h1>Overlay setup</h1>
+				<h1>{t('overlay-title')}</h1>
 				<FontLoaderFc font={cfg.font} rawFonts={rawFonts} />
 
 				<div className={'setup'}>
@@ -99,17 +101,17 @@ export default function OverlaySetup(): ReactElement | null {
 						<Color
 							value={cfg.winColor}
 							setValue={(winColor) => patch({ winColor })}
-							label={'Farbe Gewonnen'}
+							label={t('overlay-color-won')}
 						/>
 						<Color
 							value={cfg.lossColor}
 							setValue={(lossColor) => patch({ lossColor })}
-							label={'Farbe Verloren'}
+							label={t('overlay-color-lost')}
 						/>
 						<Color
 							value={cfg.dividerColor}
 							setValue={(dividerColor) => patch({ dividerColor })}
-							label={'Farbe Trenner'}
+							label={t('overlay-color-divider')}
 						/>
 					</div>
 
@@ -137,3 +139,6 @@ export default function OverlaySetup(): ReactElement | null {
 
 	return null;
 }
+
+
+export default i18nInstance.withTranslation('dotaWL')(OverlaySetup);

@@ -1,0 +1,36 @@
+{
+    "title": "Dota Win/Loss",
+    "title-sub": "Mit “Dota Win/Loss” kannst du deine aktuellen Stats in Dota 2 auf deinem Livestream anzeigen",
+
+    "tab-settings": "Stats Einstellungen",
+    "tab-commands": "StreamDota Bot Command",
+    "tab-overlay": "Overlay Einstellungen",
+
+    "settings-title": "Lege fest, ab wann die Stats gezählt werden sollen",
+    "settings-session": "Session - Der Stand ist “0 - 0” sobald der Stream startet",
+    "settings-day": "Tag - Es werden alle Stats des aktuellen Tages gezählt",
+
+    "overlay-title": "Overlay Konfiugration",
+    "overlay-font-info": "Wähle eine Schriftart, um einen generellen Überblick über alle Schriften zu erhalten kannst du bei Google Fonts nachsehen:",
+    "overlay-font-label": "Schrift",
+
+    "overlay-font-variant-label": "Schriftvariante",
+    "overlay-font-variant-noVariant": "Die aktuelle Schrift hat keine Varianten",
+
+    "overlayfont-size": "Schriftgröße",
+
+    "overlay-color-won": "Farbe Gewonnen",
+    "overlay-color-lost": "Farbe Verloren",
+    "overlay-color-divider": "Farbe Trenner",
+
+    "overlay-background": "Hintergrund",
+
+    "overlay-position": "Position",
+    "overlay-position-info": "Zieh dir die Zahlen so wie du sie haben möchtest. Der Doppelpunkt ist leider in jeder Schriftart anders behandelt und sollte manuell mittig geschoben werden",
+
+    "overlay-source-title": "Overlay Frame Source",
+    "overlay-source-test": "Test Frame Source (zum Positionieren, einfach die Links anschließend austauschen)",
+    "overlay-source-suggested-size": "Empfohlene Browser-Source Größe:",
+    "overlay-source-suggested-height": "Höhe",
+    "overlay-source-suggested-width": "Breite" 
+}

@@ -1,0 +1,25 @@
+{
+    "gsi-header": "Dota GSI",
+    "gsi-header-sub": "Dota GSI (Dota Game State Integration) ist eine von Valve bereitgestellte Lösung um lokale Matchdetails mit einem Server zu synchronisieren. Die Kommunikation erfolgt ausschließlich vom Spiel zum Server und geht nicht umgekehrt. Wir empfangen nur die notwendigen Daten.",
+    "gsi-header-desc": "Es gibt leider keine offizielle Dota 2 Dokumentation, weitere Details können aber in der CS:GO Dokumentation nachgelesen werden:",
+    "gsi-notice": "Dota GSI muss aufgesetzt werden, da sonst alle Tools & Lösungen dieser Wesbite nicht funktionieren.",
+
+    "gsi-not-setup-header": "Dota GSI ist noch nicht aufgesetzt",
+    "gsi-setup-header": "Führe folgende Schritte aus um Dota GSI aufzusetzen:",
+    "gsi-setup-step1": "Erstelle dir eine neue Dota GSI Konfigurationsdatei:",
+    "gsi-setup-step1-button": "Erstellen der Dota GSI Konfiguration",
+    "gsi-setup-step2": "Platziere die Konfigurationsdatei in deinem Steamordner unter:",
+    "gsi-setup-step3": "Starte dein Dota neu",
+
+    "gsi-setup-noConnection-header": "Dota GSI ist konfiguriert, hat aber keine Verbindung",
+    "gsi-setup-noConnection-desc": "Du hast Dota GSI aufgesetzt und bisher wurde noch keine Verbindung aufgebaut, sobald eine eingehende Verbindung vorhanden ist ändert sich der Status. Für eine Verbindung musst du lediglich ein Spiel spielen.",
+    "gsi-setup-noConnection-desc-2": "Du glaubst beim Setup ist was schief gelaufen? Dann kannst du es mit folgenden Schritten erneut versuchen:",
+    "gsi-setup-noConnection-step1": "Erstelle dir eine neue Dota GSI Konfigurationsdatei",
+    "gsi-setup-noConnection-step1-button": "Neue Dota GSI Konfiguration erstellen",
+    "gsi-setup-noConnection-step2": "Platziere die Konfigurationsdatei in deinem Steamordner unter:",
+    "gsi-setup-noConnection-step3": "Starte dein Dota neu",
+
+    "gsi-setup-success-header": "Dota GSI ist konfiguriert",
+    "gsi-setup-success-desc": "Dota GSI ist eingerichtet und hatte schon eine Verbindung zu unserem Server.",
+    "gsi-setup-success-button": "Einstellungen zurücksetzen"
+}
