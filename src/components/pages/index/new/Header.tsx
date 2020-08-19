@@ -10,7 +10,7 @@ const Header = ({t}: {t: TransFN}): ReactElement => {
                 StreamDota 
                 <span className={'minor'}>Beta</span>
                 <Button size={'small'} onClick={() => i18nInstance.i18n.changeLanguage(i18nInstance.i18n.language === 'en' ? 'de' : 'en')}>
-                    {i18nInstance.i18n.language === 'en' ? 'Deutsch' : 'Englisch'}
+                    {i18nInstance.i18n.language === 'en' ? 'Deutsch' : 'English'}
                 </Button>    
             </div>
 
