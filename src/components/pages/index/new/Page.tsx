@@ -29,5 +29,13 @@ export default function Page(): ReactElement {
         <Contact />
 
         <Footer />
+
+        <style jsx global>{`
+            body {
+                overflow-y: hidden;
+                max-width: 100%;
+                width: 100%;
+            }
+        `}</style>
     </>;
 }
