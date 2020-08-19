@@ -7,9 +7,7 @@ const i18nInstance = new NextI18Next({
   browserLanguageDetection: true,
   defaultLanguage: 'en',
   otherLanguages: ['de', 'en'],
-  fallbackLng: {
-    'de': ['en']
-  },
+  fallbackLng: 'en',
   localeSubpaths,
   localePath: path.resolve('./public/static/locales')
 });
