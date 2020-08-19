@@ -32,7 +32,8 @@ export default function Page(): ReactElement {
 
         <style jsx global>{`
             body {
-                overflow-y: hidden;
+                overflow-x: hidden;
+                overflow-y: scroll;
                 max-width: 100%;
                 width: 100%;
             }
