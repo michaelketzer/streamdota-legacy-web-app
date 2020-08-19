@@ -20,23 +20,27 @@ interface MenuItem {
 
 const items: MenuItem[] = [{
     icon: <DashboardOutlined />,    
-    name: 'Dashboard',
+    name: 'Allgemeint Einstellungen',
     path: '/dashboard'
 }, {
     icon: <RobotOutlined />,
     name: 'StreamDota Bot',
     path: '/bot'
 }, {
-    icon: <LineChartOutlined />,    
-    name: 'Dota W/L',
-    path: '/dotaWL'
-}, {
     icon: <PieChartOutlined />,
     name: 'Wettsytem',
     path: '/bets',
-}, {
+}];
+
+const gamingItems: MenuItem[] = [{
+    icon: <LineChartOutlined />,    
+    name: 'Dota W/L',
+    path: '/dotaWL'
+}];
+
+const castingItems: MenuItem[] = [{
     icon: <ClockCircleOutlined />,
-    name: 'Roshan Timer',
+    name: 'Roshan Countdown',
     path: '/roshTimer',
 }, {
     icon: <DotChartOutlined />,
@@ -58,6 +62,30 @@ export default function Navigation(): ReactElement {
                 {item.icon}
                 {item.name}
             </Menu.Item>)}
+
+            <div className={'spacer'} />
+
+            <Menu.ItemGroup title={'Gameplay Werkzeuge'}>
+                {gamingItems.map((item) => <Menu.Item key={item.path} onClick={() => router.push(item.path)}>
+                    {item.icon}
+                    {item.name}
+                </Menu.Item>)}
+            </Menu.ItemGroup>
+
+            <div className={'spacer'} />
+
+            <Menu.ItemGroup title={'Kommentator Werkzeuge'}>
+                {castingItems.map((item) => <Menu.Item key={item.path} onClick={() => router.push(item.path)}>
+                    {item.icon}
+                    {item.name}
+                </Menu.Item>)}
+            </Menu.ItemGroup>
         </Menu>
+
+        <style jsx>{`
+            .spacer {
+                margin: 30px 0;
+            }
+        `}</style>
     </nav>;
 }
