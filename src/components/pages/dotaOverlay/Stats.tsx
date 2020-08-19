@@ -5,6 +5,8 @@ import { useCurrentUser } from '../../../hooks/currentUser';
 import { useDispatch } from 'react-redux';
 import { updateCurrentUser } from '../../../modules/reducer/Ui';
 import { User } from '@streamdota/shared-types';
+import i18nInstance from '../../../i18n';
+import { WithTranslation } from 'next-i18next';
 
 const radioStyle = {
 	display: 'block',
@@ -12,7 +14,7 @@ const radioStyle = {
 	lineHeight: '30px',
 };
 
-export default function Stats(): ReactElement {
+const Stats = ({t}: WithTranslation): ReactElement => {
 	const user = useCurrentUser();
 	const dispatch = useDispatch();
 
@@ -23,14 +25,14 @@ export default function Stats(): ReactElement {
 	if (user) {
 		return (
 			<React.Fragment>
-				<Typography.Title level={4}>Lege fest, ab wann die Stats gezählt werden sollen:</Typography.Title>
+				<Typography.Title level={4}>{t('settings-title')}</Typography.Title>
 
 				<Radio.Group onChange={(e) => patch(e.target.value)} value={user.dotaStatsFrom}>
 					<Radio style={radioStyle} value={'session'}>
-						Session - Der Stand ist “0 - 0” sobald der Stream startet
+						{t('settings-session')}
 					</Radio>
 					<Radio style={radioStyle} value={'day'}>
-						Tag - Es werden alle Stats des aktuellen Tages gezählt
+						{t('settings-day')}
 					</Radio>
 				</Radio.Group>
 			</React.Fragment>
@@ -39,3 +41,5 @@ export default function Stats(): ReactElement {
 
 	return <Loader />;
 }
+
+export default i18nInstance.withTranslation('dotaWL')(Stats);

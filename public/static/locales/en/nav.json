@@ -1,0 +1,11 @@
+{
+    "nav-general-settings": "General settings",
+    "nav-general-bot": "StreamDota Bot",
+    "nav-general-betsystem": "Betsystem",
+    "nav-general-dotaWL": "Dota W/L",
+    "nav-general-roshTimer": "Roshan Timer",
+    "nav-general-liveFeed": "Live Feed",
+
+    "subHeader-gameplay": "Gameplay Tools",
+    "subHeader-cast": "Caster Tools"
+}
