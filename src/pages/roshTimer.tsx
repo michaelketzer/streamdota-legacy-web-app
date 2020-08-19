@@ -7,8 +7,8 @@ export default function Live(): ReactElement {
     
     return <PageFrame title={'Live Feed'}>
         <PageHeader 
-            title={'Roshan Timer'} 
-            description={'Displays a simple timer listing when the aegis expires, the base roshan time is over and the variable time is over'} />
+            title={'Roshan Countdown'} 
+            description={'Zeigt einen einfachen timer wann Aegis ausläuft, die Basis Zeit abläuft und bis Roshan wiedergeboren wird'} />
 
         <OverlaySetup />
     </PageFrame>

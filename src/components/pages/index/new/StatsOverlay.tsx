@@ -6,20 +6,21 @@ import SubTitle from "./SubTitle";
 import ContentTitle from "./ContentTitle";
 import Row from "./Row";
 import Highlight from "./Highlight";
+import i18nInstance, { TransFN } from "../../../../i18n";
 
 
-export default function StatsOverlay(): ReactElement {
+const StatsOverlay = ({t}: {t: TransFN}): ReactElement => {
     return <Frame id={'wl'}>
-        <Title>Your Win/Loss Stats</Title>
-        <SubTitle>Let your viewers know your daily dota progress by a fully customizable, automatic and smart win/loss-overlay!</SubTitle>
+        <Title>{t('wl-header')}</Title>
+        <SubTitle>{t('wl-header-sub')}</SubTitle>
         <Row>
             <Sub>
-                <ContentTitle>Features</ContentTitle>
+                <ContentTitle>{t('features')}</ContentTitle>
                 <ul>
-                    <li><Highlight>Automatic</Highlight> you do not need to manually adjust any counter</li>
-                    <li><Highlight>Instantly</Highlight> the stats will update within seconds after a win</li>
-                    <li><Highlight>Customizable</Highlight> match the design your stream szene with ease</li>
-                    <li><Highlight>Smart</Highlight> the overlay will hide if you close Dota</li>
+                    <li><Highlight>{t('wl-feature-automatic')}</Highlight> {t('wl-feature-automatic-sub')}</li>
+                    <li><Highlight>{t('wl-feature-instant')}</Highlight> {t('wl-feature-instant-sub')}</li>
+                    <li><Highlight>{t('wl-feature-customizable')}</Highlight> {t('wl-feature-customizable-sub')}</li>
+                    <li><Highlight>{t('wl-feature-smart')}</Highlight> {t('wl-feature-smart-sub')}</li>
                 </ul>
             </Sub>
 
@@ -35,3 +36,5 @@ export default function StatsOverlay(): ReactElement {
         `}</style>
     </Frame>;
 }
+
+export default i18nInstance.withTranslation('common')(StatsOverlay);

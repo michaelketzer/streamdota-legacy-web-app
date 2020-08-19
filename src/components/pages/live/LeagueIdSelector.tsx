@@ -10,7 +10,7 @@ interface Props {
 export default function LeagueIdSelector({leagueId, setLeagueId}: Props): ReactElement {
 
     return <>
-        <div><b>Source League ID</b></div>
+        <div><b>Liga ID</b></div>
         <Input value={leagueId} onChange={(e) => setLeagueId(+e.target.value)} />
     </>;
 

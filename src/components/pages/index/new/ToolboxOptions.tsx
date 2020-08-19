@@ -1,5 +1,6 @@
-import { ReactElement, useState, useEffect } from "react";
+import { ReactElement, useState, useEffect, useMemo } from "react";
 import Typist from 'react-typist';
+import i18n, { TransFN } from "../../../../i18n";
 
 
 const words = [
@@ -9,8 +10,17 @@ const words = [
     'spectating',
 ];
 
-export default function ToolboxOptions(): ReactElement {
+const ToolboxOptions = ({t}: {t: TransFN}): ReactElement => {
     const [key, setKey] = useState(0);
+
+    const words = useMemo(() => {
+        return [
+            t('herobanner-header-streaming'),
+            t('herobanner-header-casting'),
+            t('herobanner-header-broadcasting'),
+            t('herobanner-header-spectating'),
+        ];
+    }, [t]);
 
     return <span className={'options'}>
         <Typist key={key} onTypingDone={() => setKey(key+1)} cursor={{blink: true}}>
@@ -34,3 +44,5 @@ export default function ToolboxOptions(): ReactElement {
         `}</style>
     </span>
 }
+
+export default i18n.withTranslation('common')(ToolboxOptions);

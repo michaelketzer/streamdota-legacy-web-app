@@ -1,6 +1,7 @@
 import { ReactElement } from "react";
 import {motion} from 'framer-motion';
 import ToolboxOptions from "./ToolboxOptions";
+import i18n, { TransFN } from "../../../../i18n";
 
 const containerAnimation = {
     hidden: { opacity: 0 },
@@ -17,7 +18,7 @@ const itemAnimations = {
     show: {opacity: 1, x: 0},
 }
 
-export default function HeroBanner(): ReactElement {
+const HeroBanner = ({t}: {t: TransFN}): ReactElement => { 
 
     return <div className={'herobanner'}>
         <div className={'image'} />
@@ -26,13 +27,13 @@ export default function HeroBanner(): ReactElement {
             <div className={'text-wrapper'}>
                 <motion.div initial={'hidden'} animate={'show'} variants={containerAnimation}>
                     <motion.div variants={itemAnimations}>
-                        <div className={'main'}>Your toolbox for <ToolboxOptions /> Dota</div>
+                        <div className={'main'}>{t('herobanner-header-start')} <ToolboxOptions /> {t('herobanner-header-end')}</div>
                     </motion.div>
                     <motion.div variants={itemAnimations}>
-                        <div className={'sub'}>Enrich your stream with powerful <br /> <span className={'weak-highlight'}>overlays</span> and <span className={'weak-highlight'}>chat commands</span></div>
+                        <div className={'sub'}>{t('herobanner-sub-start')} <br /> <span className={'weak-highlight'}>{t('herobanner-sub-overlays')}</span> {t('herobanner-sub-and')} <span className={'weak-highlight'}>{t('herobanner-sub-chat-commands')}</span></div>
                     </motion.div>
                     <motion.div variants={itemAnimations}>
-                        <a className={'learnMore'} href={'#wl'}>Learn more</a>
+                        <a className={'learnMore'} href={'#wl'}>{t('herobanner-more')}</a>
                     </motion.div>
                 </motion.div>
             
@@ -117,3 +118,5 @@ export default function HeroBanner(): ReactElement {
         `}</style>
     </div>;
 }
+
+export default i18n.withTranslation('common')(HeroBanner);

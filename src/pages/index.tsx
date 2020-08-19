@@ -1,7 +1,7 @@
 import Page from "../components/pages/index/new/Page";
 import Head from "next/head";
 
-export default function Index() {
+const Index = () => {
     
     return <>
         <Head>
@@ -11,3 +11,9 @@ export default function Index() {
         <Page />
     </>;
 }
+
+Index.getInitialProps = async () => ({
+    namespacesRequired: ['common'],
+});
+
+export default Index;
