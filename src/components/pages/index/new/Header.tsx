@@ -68,6 +68,7 @@ const Header = ({t}: {t: TransFN}): ReactElement => {
                 font-size: 14px;
                 color: #777;
                 margin-right: 40px;
+                margin-left: 8px;
             }
         `}</style>
     </header>;
