@@ -4,6 +4,7 @@ const { localeSubpaths } = require('next/config').default().publicRuntimeConfig
 const path = require('path')
 
 const i18nInstance = new NextI18Next({
+  browserLanguageDetection: true,
   defaultLanguage: 'en',
   otherLanguages: ['de', 'en'],
   fallbackLng: {
