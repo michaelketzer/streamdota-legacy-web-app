@@ -6,20 +6,21 @@ import Row from "./Row";
 import Sub from "./Sub";
 import ContentTitle from "./ContentTitle";
 import Highlight from "./Highlight";
+import i18nInstance, { TransFN } from "../../../../i18n";
 
 
-export default function LiveFeed(): ReactElement {
+const LiveFeed = ({t}: {t: TransFN}): ReactElement => {
     return <Frame grey>
-        <Title>Casting tool - live feed</Title>
-        <SubTitle>Access data of picks & bans quickly and overwhelm your audience with simple, yet powerful stats</SubTitle>
+        <Title>{t('livefeed-header')}</Title>
+        <SubTitle>{t('livefeed-header-sub')}</SubTitle>
         <Row>
             <img src={'/images/preview/liveFeed.png'} />
             <Sub>
-                <ContentTitle>Features</ContentTitle>
+                <ContentTitle>{t('features')}</ContentTitle>
                 <ul>
-                    <li><Highlight>League</Highlight> you decide which source league is used to gather stats</li>
-                    <li><Highlight>Automatic</Highlight> picks & bans of captains mode games are instantly available</li>
-                    <li><Highlight>Overlay</Highlight> by a click an overlay is shown at the stream to display the data directly to your viewers</li>
+                    <li><Highlight>{t('livefeed-league')}</Highlight> {t('livefeed-league-sub')}</li>
+                    <li><Highlight>{t('livefeed-automatic')}</Highlight> {t('livefeed-automatic-sub')}</li>
+                    <li><Highlight>{t('livefeed-overlay')}</Highlight> {t('livefeed-overlay-sub')}</li>
                 </ul>
             </Sub>
         </Row>
@@ -35,3 +36,5 @@ export default function LiveFeed(): ReactElement {
         `}</style>
     </Frame>;
 }
+
+export default i18nInstance.withTranslation('common')(LiveFeed)

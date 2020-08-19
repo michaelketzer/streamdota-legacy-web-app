@@ -8,6 +8,7 @@ export default function Sub({children}: {children: ReactNode}): ReactElement {
             div {
                 margin-top: 2rem;
                 font-size: 16px;
+                max-width: 600px;
             }
         `}</style>
     </div>;

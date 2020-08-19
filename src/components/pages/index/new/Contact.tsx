@@ -1,13 +1,13 @@
 import { ReactElement } from "react";
 import Frame from "./Frame";
+import i18nInstance, { TransFN } from "../../../../i18n";
 
 
-export default function Contact(): ReactElement {
+const Contact = ({t}: {t: TransFN}): ReactElement => {
     return <Frame blue>
         <div className={'getInTouch'}>
-            You are interested and want to get in touch?
-
-            <a className={'discord'} href={'https://discord.gg/EYRQUaz'} target={'_blank'}>Join our Discord</a>
+            {t('contact')}
+            <a className={'discord'} href={'https://discord.gg/EYRQUaz'} target={'_blank'}>{t('joinDiscord')}</a>
         </div>
 
         <style jsx>{`
@@ -34,3 +34,5 @@ export default function Contact(): ReactElement {
         `}</style>
     </Frame>;
 }
+
+export default i18nInstance.withTranslation('common')(Contact);

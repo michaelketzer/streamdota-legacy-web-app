@@ -6,22 +6,23 @@ import SubTitle from "./SubTitle";
 import ContentTitle from "./ContentTitle";
 import Row from "./Row";
 import Highlight from "./Highlight";
+import i18nInstance, { TransFN } from "../../../../i18n";
 
 
-export default function Betting(): ReactElement {
+const Betting = ({t}: {t: TransFN}): ReactElement => {
     return <Frame grey>
-        <Title>Bet System</Title>
-        <SubTitle>Let your viewers interact with your games by betting on teams, your win or loss and much more...</SubTitle>
+        <Title>{t('betting-header')}</Title>
+        <SubTitle>{t('betting-header-sub')}</SubTitle>
         <Row>
             <img src={'/images/landingPreview/betsystem.jpg'} />
             <Sub>
-                <ContentTitle>Features</ContentTitle>
+                <ContentTitle>{t('features')}</ContentTitle>
                 <ul>
-                    <li><Highlight>Seasons</Highlight> group bets to seasons to switch between events</li>
-                    <li><Highlight>Invites</Highlight> share seasons with other streamers and create merged toplists</li>
-                    <li><Highlight>Control</Highlight> easily start bettings or set winners from chat, <br />dashboard or even your stream deck</li>
-                    <li><Highlight>Customizable</Highlight> match any overlays or chat commands your stream</li>
-                    <li><Highlight>Automatic</Highlight> winners are determined automatically</li>
+                    <li><Highlight>{t('betting-seasons')}</Highlight> {t('betting-seasons-sub')}</li>
+                    <li><Highlight>{t('betting-invites')}</Highlight> {t('betting-invites-sub')}</li>
+                    <li><Highlight>{t('betting-control')}</Highlight> {t('betting-control-sub')}</li>
+                    <li><Highlight>{t('betting-customizable')}</Highlight> {t('betting-customizable-sub')}</li>
+                    <li><Highlight>{t('betting-automatic')}</Highlight> {t('betting-automatic-sub')}</li>
                 </ul>
             </Sub>
         </Row>
@@ -35,3 +36,5 @@ export default function Betting(): ReactElement {
         `}</style>
     </Frame>;
 }
+
+export default i18nInstance.withTranslation('common')(Betting);

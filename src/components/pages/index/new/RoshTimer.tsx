@@ -6,20 +6,21 @@ import Row from "./Row";
 import Sub from "./Sub";
 import ContentTitle from "./ContentTitle";
 import Highlight from "./Highlight";
+import i18nInstance, { TransFN } from "../../../../i18n";
 
 
-export default function RoshTimer(): ReactElement {
+const RoshTimer = ({t}: {t: TransFN}): ReactElement => {
     return <Frame>
-        <Title>Casting tool - roshan timer</Title>
-        <SubTitle>Enrich your casting stream with a roshan timer to let your viewers now the timings.</SubTitle>
+        <Title>{t('roshtimer-header')}</Title>
+        <SubTitle>{t('roshtimer-header-sub')}</SubTitle>
         <Row>
             <Sub>
-                <ContentTitle>Features</ContentTitle>
+                <ContentTitle>{t('features')}</ContentTitle>
                 <ul>
-                    <li><Highlight>Aegis countdown</Highlight> see the expiration time for aegis</li>
-                    <li><Highlight>Base countdown</Highlight> see the remaining base countdown <br />after the aegis expired or was used</li>
-                    <li><Highlight>Variable countdown</Highlight> see the variable time after the base time</li>
-                    <li><Highlight>Smart</Highlight> the overlay will hide when roshan is alive</li>
+                    <li><Highlight>{t('roshtimer-aegis')}</Highlight> {t('roshtimer-aegis-sub')}</li>
+                    <li><Highlight>{t('roshtimer-baseCountdown')}</Highlight> {t('roshtimer-baseCountdown-sub')}</li>
+                    <li><Highlight>{t('roshtimer-variableCountdown')}</Highlight> {t('roshtimer-variableCountdown-sub')}</li>
+                    <li><Highlight>{t('roshtimer-smart')}</Highlight> {t('roshtimer-smart-sub')}</li>
                 </ul>
             </Sub>
             <img src={'/images/landingPreview/roshanTimer.jpg'} />
@@ -34,3 +35,5 @@ export default function RoshTimer(): ReactElement {
         `}</style>
     </Frame>;
 }
+
+export default i18nInstance.withTranslation('common')(RoshTimer);
