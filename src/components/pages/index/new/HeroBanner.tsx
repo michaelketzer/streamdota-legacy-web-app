@@ -81,7 +81,8 @@ const HeroBanner = ({t}: {t: TransFN}): ReactElement => {
 
             @media only screen and (min-width: 600px) {
                 .text-wrapper {
-                    padding: 2rem 8rem;
+                    padding: 2rem 10%;
+                    max-width: 100%;
                 }
             }
 
