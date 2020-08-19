@@ -1,16 +1,16 @@
 import { ReactElement } from "react";
-import Link from "next/link";
+import i18n, { TransFN } from "../../../../i18n";
 
-export default function Header(): ReactElement {
+const Header = ({t}: {t: TransFN}): ReactElement => {
     return <header>
         <div className={'inner'}>
             <div className={'logo'}>StreamDota <span className={'minor'}>Beta</span></div>
 
-            <Link href={'/login'}>
-                <div className={'login'}>
-                    Login with Twitch
-                </div>
-            </Link>
+            <i18n.Link href={'/login'}>
+                <a className={'login'}>
+                    {t('twitchLogin')}
+                </a>
+            </i18n.Link>
         </div>
 
         <style jsx>{`
@@ -63,3 +63,5 @@ export default function Header(): ReactElement {
         `}</style>
     </header>;
 }
+
+export default i18n.withTranslation('common')(Header);
