@@ -8,7 +8,6 @@ import Footer from "./Footer";
 import RoshTimer from "./RoshTimer";
 import LiveFeed from "./LiveFeed";
 import Other from "./Other";
-import { TransFN } from "../../../../i18n";
 
 export default function Page(): ReactElement {
     return <>
