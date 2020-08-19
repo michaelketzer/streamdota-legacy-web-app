@@ -1,14 +1,17 @@
 import { ReactElement, useMemo, useState } from "react";
 import { Select, Alert } from 'antd';
 import { Font } from "@streamdota/shared-types";
+import { WithTranslation } from "next-i18next";
+import i18nInstance from "../../../../i18n";
+import FontSize from "./FontSize";
 
-interface Props {
+interface Props extends WithTranslation{
     rawFonts: Font[];
     selected: string;
     setSelected: (font: string) => void;
 }
 
-export default function FontSelector({rawFonts, selected, setSelected}: Props): ReactElement {
+const FontSelector = ({t, rawFonts, selected, setSelected}: Props): ReactElement => {
     const [search, setSearch] = useState('');
     const fonts = useMemo(() => {
         if(rawFonts) {
@@ -19,14 +22,14 @@ export default function FontSelector({rawFonts, selected, setSelected}: Props): 
 
         return <>
         <div>
-            <Alert message="Schriftart" type="info" description={<>
-                    Wähle eine Schriftart, um einen generellen Überblick über alle Schriften zu erhalten kannst du bei Google Fonts nachsehen: <a href="https://fonts.google.com/" target={'_blank'}>https://fonts.google.com/</a>
+            <Alert message={t('overlay-font-label')} type="info" description={<>
+                    {t('overlay-font-info')} <a href="https://fonts.google.com/" target={'_blank'}>https://fonts.google.com/</a>
                 </>} />
             <br />
         </div>
     
         <div>
-            <div><b>Schrift</b></div>
+            <div><b>{t('overlay-font-label')}</b></div>
             <Select 
                 showSearch
                 style={{width: '300px'}}
@@ -40,3 +43,5 @@ export default function FontSelector({rawFonts, selected, setSelected}: Props): 
         </div>
     </>;
 }
+
+export default i18nInstance.withTranslation('dotaWL')(FontSelector);

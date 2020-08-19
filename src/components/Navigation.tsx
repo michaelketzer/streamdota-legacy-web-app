@@ -6,11 +6,11 @@ import {
   RobotOutlined,
   LineChartOutlined,
   PieChartOutlined,
-  AudioOutlined,
-  EuroOutlined,
   DotChartOutlined,
   ClockCircleOutlined,
 } from '@ant-design/icons';
+import { WithTranslation } from "next-i18next";
+import i18nInstance from "../i18n";
 
 interface MenuItem {
     icon: ReactNode;
@@ -20,31 +20,31 @@ interface MenuItem {
 
 const items: MenuItem[] = [{
     icon: <DashboardOutlined />,    
-    name: 'Allgemeint Einstellungen',
+    name: 'nav-general-settings',
     path: '/dashboard'
 }, {
     icon: <RobotOutlined />,
-    name: 'StreamDota Bot',
+    name: 'nav-general-bot',
     path: '/bot'
 }, {
     icon: <PieChartOutlined />,
-    name: 'Wettsytem',
+    name: 'nav-general-betsystem',
     path: '/bets',
 }];
 
 const gamingItems: MenuItem[] = [{
     icon: <LineChartOutlined />,    
-    name: 'Dota W/L',
+    name: 'nav-general-dotaWL',
     path: '/dotaWL'
 }];
 
 const castingItems: MenuItem[] = [{
     icon: <ClockCircleOutlined />,
-    name: 'Roshan Countdown',
+    name: 'nav-general-roshTimer',
     path: '/roshTimer',
 }, {
     icon: <DotChartOutlined />,
-    name: 'Live Feed',
+    name: 'nav-general-liveFeed',
     path: '/live',
 }/*, {
     icon: <EuroOutlined />,
@@ -53,31 +53,31 @@ const castingItems: MenuItem[] = [{
 }*/];
 
 
-export default function Navigation(): ReactElement {
+const Navigation = ({t}: WithTranslation): ReactElement => {
     const router = useRouter();
 
     return <nav className={'navigation'}>
         <Menu mode={'inline'} defaultSelectedKeys={[router.pathname]}>
             {items.map((item) => <Menu.Item key={item.path} onClick={() => router.push(item.path)}>
                 {item.icon}
-                {item.name}
+                {t(item.name)}
             </Menu.Item>)}
 
             <div className={'spacer'} />
 
-            <Menu.ItemGroup title={'Gameplay Werkzeuge'}>
+            <Menu.ItemGroup title={t('subHeader-gameplay')}>
                 {gamingItems.map((item) => <Menu.Item key={item.path} onClick={() => router.push(item.path)}>
                     {item.icon}
-                    {item.name}
+                    {t(item.name)}
                 </Menu.Item>)}
             </Menu.ItemGroup>
 
             <div className={'spacer'} />
 
-            <Menu.ItemGroup title={'Kommentator Werkzeuge'}>
+            <Menu.ItemGroup title={t('subHeader-cast')}>
                 {castingItems.map((item) => <Menu.Item key={item.path} onClick={() => router.push(item.path)}>
                     {item.icon}
-                    {item.name}
+                    {t(item.name)}
                 </Menu.Item>)}
             </Menu.ItemGroup>
         </Menu>
@@ -89,3 +89,5 @@ export default function Navigation(): ReactElement {
         `}</style>
     </nav>;
 }
+
+export default i18nInstance.withTranslation('nav')(Navigation);

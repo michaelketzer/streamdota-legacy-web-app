@@ -2,12 +2,14 @@ import { ReactElement, useEffect, useState } from "react";
 import Draggable from "./Draggable";
 import { Alert } from "antd";
 import { OverlayConfig } from "@streamdota/shared-types";
+import { WithTranslation } from "next-i18next";
+import i18nInstance from "../../../../i18n";
 
-export default function Position({cfg, patch}: {cfg: OverlayConfig; patch: (v: Partial<OverlayConfig>) => void}): ReactElement {
+const Position = ({t, cfg, patch}: {cfg: OverlayConfig; patch: (v: Partial<OverlayConfig>) => void} & WithTranslation): ReactElement => {
 
     return <>
-        <div><b>Position</b></div>
-        <Alert type='info' message='Zieh dir die Zahlen so wie du sie haben möchtest. Der Doppelpunkt ist leider in jeder Schriftart anders behandelt und sollte manuell mittig geschoben werden' />
+        <div><b>{t('overlay-position')}</b></div>
+        <Alert type='info' message={t('overlay-position-info')} />
         <div className={'positionFrame ' + (!cfg.showBackground && 'noBg')}>
             <div className={'container'}>
                 <Draggable color={cfg.winColor} cfg={cfg} x={cfg.winX} y={cfg.winY} patch={(x, y) => patch({winX: x, winY: y})} height={'.9em'}>3</Draggable>
@@ -41,3 +43,5 @@ export default function Position({cfg, patch}: {cfg: OverlayConfig; patch: (v: P
         `}</style>
     </>;
 }
+
+export default i18nInstance.withTranslation('dotaWL')(Position);

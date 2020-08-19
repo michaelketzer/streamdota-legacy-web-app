@@ -1,0 +1,10 @@
+{
+    "roshanTimer-title": "Roshan Timer",
+    "roshanTimer-title-sub": "Show a simple timer when aegis expires, the base timer expires and until roshan respawns",
+
+    "roshanTimer-overlay": "Overlay setup",
+    "roshanTimer-preview": "Preview",
+    "roshanTimer-colorAegis": "Color of aegis expiration",
+    "roshanTimer-colorBase": "Color of base time",
+    "roshanTimer-colorVariable": "Color of variable time"
+}

@@ -12,9 +12,11 @@ import FontSize from '../dotaOverlay/Overlay/FontSize';
 import Color from '../dotaOverlay/Overlay/Color';
 import FrameLink from '../dotaOverlay/Overlay/FrameLink';
 import Preview from './Preview';
+import { WithTranslation } from 'next-i18next';
+import i18nInstance from '../../../i18n';
 
 
-export default function OverlaySetup(): ReactElement | null {
+const OverlaySetup = ({t}: WithTranslation): ReactElement | null => {
 	const userData = useCurrentUser();
 	const rawFonts = useGoogleFont();
 	const roshOverlay = useRoshOverlay();
@@ -30,7 +32,7 @@ export default function OverlaySetup(): ReactElement | null {
 	if (overlay) {
 		return (
 			<Fragment>
-				<h1>Overlay setup</h1>
+				<h1>{t('roshanTimer-overlay')}</h1>
 				<FontLoaderFc font={overlay.font} rawFonts={rawFonts} />
 
 				<div className={'setup'}>
@@ -48,24 +50,24 @@ export default function OverlaySetup(): ReactElement | null {
 						<Color
 							value={overlay.aegisColor}
 							setValue={(aegisColor) => patch({ aegisColor })}
-							label={'Farbe vom Aegis timer'}
+							label={t('roshanTimer-colorAegis')}
 						/>
 						<Color
 							value={overlay.baseColor}
 							setValue={(baseColor) => patch({ baseColor })}
-							label={'Farbe der Basis Zeit'}
+							label={t('roshanTimer-colorBase')}
 						/>
 						<Color
 							value={overlay.variableColor}
 							setValue={(variableColor) => patch({ variableColor })}
-							label={'Farbe der variablen Zeit'}
+							label={t('roshanTimer-colorVariable')}
 						/>
 					</div>
 
                     <div className={'col'}>
 						<FrameLink auth={userData?.frameApiKey || ''} access={'casting/roshanTimer'} testing width={1920} height={1080} />
 
-						<div><b>Vorschau</b></div>
+						<div><b>{t('roshanTimer-preview')}</b></div>
 						<Preview overlay={overlay} />
                     </div>
 				</div>
@@ -87,3 +89,6 @@ export default function OverlaySetup(): ReactElement | null {
 
 	return null;
 }
+
+
+export default i18nInstance.withTranslation('roshTimer')(OverlaySetup);

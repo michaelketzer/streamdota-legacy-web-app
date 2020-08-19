@@ -1,0 +1,11 @@
+{
+    "nav-general-settings": "Allgemeint Einstellungen",
+    "nav-general-bot": "StreamDota Bot",
+    "nav-general-betsystem": "Wettsystem",
+    "nav-general-dotaWL": "Dota W/L",
+    "nav-general-roshTimer": "Roshan Countdown",
+    "nav-general-liveFeed": "Live Feed",
+
+    "subHeader-gameplay": "Gameplay Werkzeuge",
+    "subHeader-cast": "Kommentator Werkzeuge"
+}

@@ -1,14 +1,16 @@
 import { ReactElement } from "react";
 import { Alert, Typography } from "antd";
+import { WithTranslation } from "next-i18next";
+import i18nInstance from "../../../i18n";
 
-export default function Basic(): ReactElement {
+const Basic = ({t}: WithTranslation): ReactElement => {
     return <div className={'wrapper'}>
         <Alert message={<>
-            Vergess nicht den Bot zum Mod zu machen, das verhindert Probleme mit dem Chat. Einfach <span style={{fontFamily: 'monospace'}}><Typography.Text code>/mod StreamDotaBot</Typography.Text></span> im Chat schreiben!
+            {t('info-mod-start')} <span style={{fontFamily: 'monospace'}}><Typography.Text code>/mod StreamDotaBot</Typography.Text></span> {t('info-mod-end')}
         </>} type={'warning'} />
         <br />
         <Alert message={<>
-            Du möchtest deinen eigenen Namen für den Bot haben? Dann schreib mich einfach bei Discord an! (<a href={'https://discordapp.com/channels/@me/148698273899610112/'}>GriefCode#1337</a>)
+            {t('info-custom')} (<a href={'https://discordapp.com/channels/@me/148698273899610112/'}>GriefCode#1337</a>)
         </>} type={'info'} />
 
         <style jsx>{`
@@ -25,3 +27,5 @@ export default function Basic(): ReactElement {
         `}</style>
     </div>;
 }
+
+export default i18nInstance.withTranslation('bot')(Basic);

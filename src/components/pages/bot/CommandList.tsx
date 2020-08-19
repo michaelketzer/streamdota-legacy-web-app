@@ -8,6 +8,8 @@ import { useDispatch } from "react-redux";
 import { useUserCommands } from "../../../modules/selector/Command";
 import { createCommand, updateCommand, deleteCommand } from "../../../modules/reducer/Command";
 import { Command } from "@streamdota/shared-types";
+import { WithTranslation } from "next-i18next";
+import i18nInstance from "../../../i18n";
 
 const replace = {
     UPTIME: '4 Stunden und 20 Minuten',
@@ -35,13 +37,13 @@ function createPreview(msg: string, vars: {[x: string]: string}): string {
     return replaced;
 }
 
-interface Props {
+interface Props extends WithTranslation {
     commandType?: Command['type'];
     replaceVars?: {[x: string]: string};
     canCreate?: boolean;
 }
 
-export default function CommandList({commandType = 'default', replaceVars = {}, canCreate=true}: Props): ReactElement {
+const CommandList = ({t, commandType = 'default', replaceVars = {}, canCreate=true}: Props): ReactElement => {
     const commands = useUserCommands(commandType);
     const dispatch = useDispatch();
     const [cmd, setCmd] = useState('');
@@ -58,11 +60,11 @@ export default function CommandList({commandType = 'default', replaceVars = {}, 
 
     if(commands) {
         return <div className={'commandsGrid'}>
-            <div className={'label'}>Aktiv</div>
-            <div className={'label'}>Command</div>
-            <div className={'label'}>Antwort</div>
+            <div className={'label'}>{t('commands-list-active')}</div>
+            <div className={'label'}>{t('commands-list-command')}</div>
+            <div className={'label'}>{t('commands-list-response')}</div>
             <div className={'label'}></div>
-            <div className={'label'}>Vorschau</div>
+            <div className={'label'}>{t('commands-list-preview')}</div>
 
             {commands.map(({active, id, command, message, noResponse, deleteAble}) => <React.Fragment key={id}>
                 <div className={'activeBox'}>
@@ -80,9 +82,9 @@ export default function CommandList({commandType = 'default', replaceVars = {}, 
                 }} />
                 <div>
     
-                    <Popconfirm disabled={!deleteAble} title="Soll dieser Command wirklich gelöscht werden?" onConfirm={async () => {
+                    <Popconfirm disabled={!deleteAble} title={t('commands-list-delete')} onConfirm={async () => {
                         await dispatch(deleteCommand(id));
-                    }} okText="Ja" cancelText="Nein">
+                    }} okText={t('commands-list-delete-yes')} cancelText={t('commands-list-delete-no')}>
                         <Button danger disabled={!deleteAble} type={'primary'} icon={<DeleteOutlined />} />
                     </Popconfirm>
                 </div>
@@ -94,15 +96,15 @@ export default function CommandList({commandType = 'default', replaceVars = {}, 
                     <Checkbox defaultChecked={act} onChange={(e) => setAct(e.target.checked)}/>
                 </div>
                 <div>
-                    <Input value={cmd} onChange={(e) => setCmd(e.target.value)} placeholder={'Command'} />
+                    <Input value={cmd} onChange={(e) => setCmd(e.target.value)} placeholder={t('commands-list-command')} />
                 </div>
-                <TextArea value={msg} onChange={(e) => setMsg(e.target.value)} placeholder={'Antwort'} />
+                <TextArea value={msg} onChange={(e) => setMsg(e.target.value)} placeholder={t('commands-list-response')} />
                 <div></div>
                     <div>{createPreview(msg, replaceVars)}</div>
                 <div />
                 <div />
                 <div className={'createButton'}>
-                    <Button type={'primary'} onClick={create}>Erstellen</Button>
+                    <Button type={'primary'} onClick={create}>{t('commands-list-create')}</Button>
                 </div>
             </>}
     
@@ -136,3 +138,5 @@ export default function CommandList({commandType = 'default', replaceVars = {}, 
     return <Loader />;
 
 }
+
+export default i18nInstance.withTranslation('bot')(CommandList);
