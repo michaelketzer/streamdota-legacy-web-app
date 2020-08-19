@@ -5,6 +5,7 @@ import { initialState, reducer } from "../components/context/websocket/state";
 import { useCurrentUser } from "../hooks/currentUser";
 import SetupGsi from "../components/pages/dashboard/SetupGsi";
 import { Typography } from "antd";
+import getWebsocketUrl from "../modules/Router";
 
 export default function Dashboard(): ReactElement {
     const user = useCurrentUser();
@@ -19,7 +20,7 @@ export default function Dashboard(): ReactElement {
                     
             <br />
             <p className={'important'}>Dota GSI <b>muss</b> aufgesetzt werden, da sonst alle Tools & Lösungen dieser Wesbite <b>nicht funktionieren</b>.</p>
-            {user && <ContextProvider initialState={initialState} reducer={reducer} url={'wss://api.streamdota.de/dota-gsi/logs/' + user.frameApiKey}>
+            {user && <ContextProvider initialState={initialState} reducer={reducer} url={getWebsocketUrl() + '/dota-gsi/logs/' + user.frameApiKey}>
                 <SetupGsi gsiAuth={user.gsiAuth} gsiConnected={user.gsiConnected} />
             </ContextProvider>}
         </div>
