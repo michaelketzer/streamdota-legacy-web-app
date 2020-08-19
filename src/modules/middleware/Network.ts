@@ -99,7 +99,7 @@ async function handleResponse(response: Response): Promise<Response | object | s
 				respType &&
 				(respType.indexOf('application/json') !== -1 || respType.indexOf('application/javascript') !== -1);
 
-			if (+response.headers.get('Content-Length') === 0) {
+			if (!isJson && +response.headers.get('Content-Length') === 0) {
 				return response.text().then((data) => resolve(data));
 			}
 
