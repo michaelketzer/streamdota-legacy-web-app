@@ -1,4 +1,4 @@
-import NextI18Next, {Trans} from 'next-i18next';
+import NextI18Next from 'next-i18next';
 
 const { localeSubpaths } = require('next/config').default().publicRuntimeConfig
 const path = require('path')
