@@ -1,16 +1,24 @@
 import { ReactElement } from "react";
-import i18n, { TransFN } from "../../../../i18n";
+import i18nInstance, { TransFN } from "../../../../i18n";
+import { Button } from "antd";
+import Link from "next/link";
 
 const Header = ({t}: {t: TransFN}): ReactElement => {
     return <header>
         <div className={'inner'}>
-            <div className={'logo'}>StreamDota <span className={'minor'}>Beta</span></div>
+            <div className={'logo'}>
+                StreamDota 
+                <span className={'minor'}>Beta</span>
+                <Button size={'small'} onClick={() => i18nInstance.i18n.changeLanguage(i18nInstance.i18n.language === 'en' ? 'de' : 'en')}>
+                    {i18nInstance.i18n.language === 'en' ? 'Deutsch' : 'Englisch'}
+                </Button>    
+            </div>
 
-            <i18n.Link href={'/login'}>
+            <Link href={'/login'}>
                 <a className={'login'}>
                     {t('twitchLogin')}
                 </a>
-            </i18n.Link>
+            </Link>
         </div>
 
         <style jsx>{`
@@ -59,9 +67,10 @@ const Header = ({t}: {t: TransFN}): ReactElement => {
             .minor {
                 font-size: 14px;
                 color: #777;
+                margin-right: 40px;
             }
         `}</style>
     </header>;
 }
 
-export default i18n.withTranslation('common')(Header);
+export default i18nInstance.withTranslation('common')(Header);
