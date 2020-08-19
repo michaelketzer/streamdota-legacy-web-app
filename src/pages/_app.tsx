@@ -4,6 +4,7 @@ import App, { AppInitialProps } from 'next/app';
 import 'antd/dist/antd.min.css';
 import 'react-typist/dist/Typist.css';
 import { State, wrapper } from '../modules/Store';
+import i18n from '../i18n'
 
 if (process.env.SENTRY_DSN && process.env.SENTRY_DSN.length > 0) {
 	Sentry.init({ dsn: process.env.SENTRY_DSN });
@@ -21,4 +22,4 @@ class MyApp extends App<AppInitialProps & { store: Store<State> }> {
 	}
 }
 
-export default wrapper.withRedux(MyApp);
+export default wrapper.withRedux(i18n.appWithTranslation(MyApp));
