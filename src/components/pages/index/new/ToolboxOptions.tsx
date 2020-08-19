@@ -20,7 +20,11 @@ const ToolboxOptions = ({t}: {t: TransFN}): ReactElement => {
             t('herobanner-header-broadcasting'),
             t('herobanner-header-spectating'),
         ];
-    }, [t]);
+    }, [t, i18n.i18n.language]);
+
+    useEffect(() => {
+        setKey(key+1)
+    }, [i18n.i18n.language]);
 
     return <span className={'options'}>
         <Typist key={key} onTypingDone={() => setKey(key+1)} cursor={{blink: true}}>
