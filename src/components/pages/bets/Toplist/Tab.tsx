@@ -3,8 +3,10 @@ import CategorySelect, { useSelectedCategory } from "../CategorySelect";
 import Loader from "../../../Loader";
 import ToplistTable from "./ ToplistTable";
 import { Input } from "antd";
+import { WithTranslation } from "next-i18next";
+import i18nInstance from "../../../../i18n";
 
-export default function Tab(): ReactElement {
+const Tab = ({t}: WithTranslation): ReactElement => {
     const {category, setCategory} = useSelectedCategory();
     const [search, setSearch] = useState('');
 
@@ -14,7 +16,7 @@ export default function Tab(): ReactElement {
                 <div className={'search'}>
                     <CategorySelect season={category} setSeason={setCategory} />
                 </div>
-                <Input.Search onChange={(e) => setSearch(e.target.value)}  placeholder={'Suche Benutzername...'} style={{width: '200px'}} />
+                <Input.Search onChange={(e) => setSearch(e.target.value)}  placeholder={t('bet-season-toplist-search')} style={{width: '200px'}} />
             </div>
             <br />
             <br />
@@ -35,3 +37,5 @@ export default function Tab(): ReactElement {
 
     return <Loader />;
 }
+
+export default i18nInstance.withTranslation('betSystem')(Tab);

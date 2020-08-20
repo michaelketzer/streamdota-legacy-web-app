@@ -4,8 +4,10 @@ import classNames from "classnames";
 import { useDispatch } from "react-redux";
 import { createBetRound, updateBetRound } from "../../../../modules/reducer/BetRound";
 import { useCurrentBetRound } from "../../../../modules/selector/BetRound";
+import { WithTranslation } from "next-i18next";
+import i18nInstance from "../../../../i18n";
 
-export default function StatusTile({status}: {status: 'betting' | 'running' | 'finished'}): ReactElement {
+const StatusTile = ({t, status}: {status: 'betting' | 'running' | 'finished'} & WithTranslation): ReactElement => {
     const dispatch = useDispatch();
     const currentBetRound = useCurrentBetRound();
 
@@ -17,22 +19,22 @@ export default function StatusTile({status}: {status: 'betting' | 'running' | 'f
         {status === 'finished' && <>
             <div className={'value ready'}>
                 <PlayCircleFilled />
-                <div className={'iconLabel'}>Wette starten</div>
+                <div className={'iconLabel'}>{t('bet-dashboard-status-start')}</div>
             </div>
-            <div className={'label'}>STATUS</div>
+            <div className={'label'}>{t('bet-dashboard-status-label')}</div>
         </>}
         {status === 'betting' && <>
-            <div className={'value started'}>Wetten laufen</div>
-            <div className={'label'}>STATUS</div>
+            <div className={'value started'}>{t('bet-dashboard-status-running')}</div>
+            <div className={'label'}>{t('bet-dashboard-status-label')}</div>
         </>}
         {status === 'running' && <>
-            <div className={'value finished'}>Spiel fertig</div>
+            <div className={'value finished'}>{t('bet-dashboard-status-finished')}</div>
             <div className={'winnerSelect'}>
                 <span className={'winnerA'} onClick={async() => await dispatch(updateBetRound(currentBetRound.id, {result: 'a', status: 'finished'}))}>A</span>
-                <span className={'winnerOr'}>oder</span>
+                <span className={'winnerOr'}>{t('bet-dashboard-status-finished-or')}</span>
                 <span className={'winnerB'} onClick={async() => await dispatch(updateBetRound(currentBetRound.id, {result: 'b', status: 'finished', }))}>B</span>
             </div>
-            <div className={'label'}>WÄHLE DEN GEWINNER</div>
+            <div className={'label'}>{t('bet-dashboard-status-finished-label')}</div>
         </>}
 
         <style jsx>{`
@@ -119,3 +121,5 @@ export default function StatusTile({status}: {status: 'betting' | 'running' | 'f
         `}</style>
     </div>;
 }
+
+export default i18nInstance.withTranslation('betSystem')(StatusTile);

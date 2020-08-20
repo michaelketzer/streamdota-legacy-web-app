@@ -3,6 +3,8 @@ import Loader from '../../Loader';
 import { Typography, Select } from 'antd';
 import { useCurrentUser } from '../../../hooks/currentUser';
 import { useBetSeasons } from '../../../modules/selector/BetSeason';
+import { WithTranslation } from 'next-i18next';
+import i18nInstance from '../../../i18n';
 
 interface Params {
 	category: number;
@@ -23,18 +25,18 @@ export function useSelectedCategory(): Params {
 	return { category, setCategory };
 }
 
-interface Props {
+interface Props extends WithTranslation {
 	season: number;
 	setSeason: (season: number) => void;
 }
 
-export default function CategorySelect({ season, setSeason }: Props): ReactElement {
+const CategorySelect = ({ t, season, setSeason }: Props): ReactElement => {
 	const seasons = useBetSeasons();
 
 	if (seasons) {
 		return (
 			<React.Fragment>
-				<Typography.Text strong>Kategorie</Typography.Text>
+				<Typography.Text strong>{t('bet-season-label')}</Typography.Text>
 				<br />
 				<Select defaultValue={season} onChange={setSeason} style={{ width: '200px' }}>
 					{seasons.map(({ id, name }) => (
@@ -49,3 +51,5 @@ export default function CategorySelect({ season, setSeason }: Props): ReactEleme
 
 	return <Loader />;
 }
+
+export default i18nInstance.withTranslation('betSystem')(CategorySelect);

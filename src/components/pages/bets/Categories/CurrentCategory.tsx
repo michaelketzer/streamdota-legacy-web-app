@@ -4,13 +4,14 @@ import Loader from '../../../Loader';
 import { CategoryProps } from './Category';
 import { useDispatch } from 'react-redux';
 import { updateCurrentUser } from '../../../../modules/reducer/Ui';
+import i18nInstance from '../../../../i18n';
 
-export default function CurrentCategory({ seasons, currentBetSeason }: CategoryProps): ReactElement {
+const CurrentCategory = ({ t, seasons, currentBetSeason }: CategoryProps): ReactElement => {
 	const dispatch = useDispatch();
 	if (seasons) {
 		return (
 			<React.Fragment>
-				<Typography.Text strong>Aktuelle Kategorie</Typography.Text>
+				<Typography.Text strong>{t('bet-season-current-season')}</Typography.Text>
 				<br />
 				<Select
 					defaultValue={currentBetSeason}
@@ -30,3 +31,5 @@ export default function CurrentCategory({ seasons, currentBetSeason }: CategoryP
 
 	return <Loader />;
 }
+
+export default i18nInstance.withTranslation('betSystem')(CurrentCategory);

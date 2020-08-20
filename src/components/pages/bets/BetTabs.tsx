@@ -6,26 +6,30 @@ import CategoryTab from "./Categories/Tab";
 import BetRoundsTab from "./BetRounds/Tab";
 import ToplistTab from "./Toplist/Tab";
 import Overlay from "./Overlay/Overlay";
+import { WithTranslation } from "next-i18next";
+import i18nInstance from "../../../i18n";
 
-export default function BetTabs(): ReactElement {
+const BetTabs = ({t}: WithTranslation): ReactElement => {
     return <Tabs defaultActiveKey="dashboard" animated={false} destroyInactiveTabPane>
-        <Tabs.TabPane tab="Dashboard" key="dashboard">
+        <Tabs.TabPane tab={t('tab-dashboard')} key="dashboard">
             <DashboardTab />
         </Tabs.TabPane>
-        <Tabs.TabPane tab="Kategorien" key="categories">
+        <Tabs.TabPane tab={t('tab-seasons')} key="categories">
             <CategoryTab />
         </Tabs.TabPane>
-        <Tabs.TabPane tab="Runden" key="rounds">
+        <Tabs.TabPane tab={t('tab-rounds')} key="rounds">
             <BetRoundsTab />
         </Tabs.TabPane>
-        <Tabs.TabPane tab="Toplist" key="toplist">
+        <Tabs.TabPane tab={t('tab-toplist')} key="toplist">
             <ToplistTab />
         </Tabs.TabPane>
-        <Tabs.TabPane tab="StreamDota Bot Command" key="commands">
+        <Tabs.TabPane tab={t('tab-bot')} key="commands">
             <BotCommands />
         </Tabs.TabPane>
-        <Tabs.TabPane tab="Overlay Einstellungen" key="overlay">
+        <Tabs.TabPane tab={t('tab-overlay')} key="overlay">
             <Overlay />
         </Tabs.TabPane>
     </Tabs>
 }
+
+export default i18nInstance.withTranslation('betSystem')(BetTabs);

@@ -2,36 +2,38 @@ import { ReactElement, useMemo } from "react";
 import Loader from "../../../Loader";
 import { Table } from "antd";
 import { useBetSeasonToplist } from "../../../../modules/selector/BetSeasonToplist";
+import { WithTranslation } from "next-i18next";
+import i18nInstance from "../../../../i18n";
 
-const columns = [
+const columns = (t: WithTranslation['t']) => [
     {
       title: '#',
       dataIndex: 'rank',
       key: 'round',
     },
     {
-      title: 'User',
+      title: t('bet-season-toplist-user'),
       dataIndex: 'name',
       key: 'username',
     },
     {
-      title: 'Teilnahmen',
+      title: t('bet-season-toplist-bets'),
       dataIndex: 'total',
       key: 'total',
     },
     {
-      title: 'Richtige',
+      title: t('bet-season-toplist-correct'),
       dataIndex: 'won',
       key: 'correct',
     },
     {
-      title: 'Rate',
+      title: t('bet-season-toplist-rate'),
       key: 'result',
       render: ({won, total}) => Math.floor((won * 100) / total) + '%',
     },
 ];
 
-export default function ToplistTable({season, search}: {season: number; search: string}): ReactElement {
+const ToplistTable = ({t, season, search}: {season: number; search: string} & WithTranslation): ReactElement => {
   const toplist = useBetSeasonToplist(season);
 
   const filteredRounds = useMemo(() => {
@@ -43,8 +45,10 @@ export default function ToplistTable({season, search}: {season: number; search: 
   }, [toplist, search]);
 
   if(filteredRounds) {
-      return <Table dataSource={filteredRounds} columns={columns} rowKey={'name'} pagination={false} />;
+      return <Table dataSource={filteredRounds} columns={columns(t)} rowKey={'name'} pagination={false} />;
   }
 
   return <Loader/>;
 }
+
+export default i18nInstance.withTranslation('betSystem')(ToplistTable);
