@@ -36,8 +36,10 @@
     "bet-season-create": "New season",
     "bet-season-edit-season": "Edit season",
     "bet-season-save": "Save",
+    "bet-season-name": "Name",
     "bet-season-name-required": "A name is required!",
     "bet-season-description": "Description",
+    "bet-season-type": "Type",
     
     "bet-season-type-ladder": "Ladder",
     "bet-season-type-tournament": "Tournament",
