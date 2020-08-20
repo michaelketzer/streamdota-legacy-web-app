@@ -1,12 +1,14 @@
 import { ReactElement, useMemo } from "react";
+import { WithTranslation } from "next-i18next";
+import i18nInstance from "../../../../i18n";
 
-interface Props {
+interface Props extends WithTranslation {
     aBets: number;
     bBets: number;
     bets: number;
 }
 
-export default function BetDistribution({aBets, bBets, bets}: Props): ReactElement {
+const BetDistribution = ({t, aBets, bBets, bets}: Props): ReactElement => {
     const percentage = useMemo(() => {
         if((bets) > 0) {
             return (aBets * 100) / bets;
@@ -15,7 +17,7 @@ export default function BetDistribution({aBets, bBets, bets}: Props): ReactEleme
     }, [aBets, bBets, bets]);
 
     return <>
-        <div className={'header'}>Wettverteilung</div>
+        <div className={'header'}>{t('bet-dashboard-distribution')}</div>
 
         <div className={'distributionNumbers'}>
             <div className={'count teamA'}>{aBets}</div>
@@ -85,3 +87,5 @@ export default function BetDistribution({aBets, bBets, bets}: Props): ReactEleme
         `}</style>
     </>;
 }
+
+export default i18nInstance.withTranslation('betSystem')(BetDistribution);

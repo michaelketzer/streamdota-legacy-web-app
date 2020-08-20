@@ -3,26 +3,28 @@ import { List, Typography, Popconfirm } from "antd";
 import { BranchesOutlined, EditFilled, DeleteFilled } from "@ant-design/icons";
 import classNames from "classnames";
 import { BetSeason } from "@streamdota/shared-types";
+import { WithTranslation } from "next-i18next";
+import i18nInstance from "../../../../i18n";
 
 const nameMap = {
-    ladder: 'Ladder',
-    tournament: 'Turnier',
+    ladder: 'bet-season-type-ladder',
+    tournament: 'bet-season-type-tournament',
 }
 
-interface Props {
+interface Props extends WithTranslation {
     activeSeason: number;
     season: BetSeason;
     onEdit: () => void;
     onDelete: () => void;
 }
 
-export default function ListItem({activeSeason, season, onEdit, onDelete}: Props): ReactElement {
+const ListItem = ({t, activeSeason, season, onEdit, onDelete}: Props): ReactElement => {
     return <List.Item key={season.id}>
     <div className={'item'}>
         <div className={'header'}>
             <Typography.Text><span className={classNames({active: activeSeason === season.id})}>{season.name}</span></Typography.Text>
             <div className={'type'}>
-                <div className={'typeName'}>{nameMap[season.type]}</div>
+                <div className={'typeName'}>{t(nameMap[season.type])}</div>
                 <BranchesOutlined />
             </div>
         </div>
@@ -32,12 +34,12 @@ export default function ListItem({activeSeason, season, onEdit, onDelete}: Props
         <div className={'footer'}>
             <div className={'link'} onClick={onEdit}>
                 <EditFilled />
-                <div className={'label'}>Bearbeiten</div>
+                <div className={'label'}>{t('bet-season-edit')}</div>
             </div>
-            <Popconfirm title="Soll diese Season gelöscht werden?" onConfirm={onDelete} okText="Ja" cancelText="Nein">
+            <Popconfirm title={t('bet-season-delete-confirm')} onConfirm={onDelete} okText={t('bet-season-delete-confirm-yes')} cancelText={t('bet-season-delete-confirm-no')}>
                 <div className={'link'}>
                     <DeleteFilled />
-                    <div className={'label'}>Löschen</div>
+                    <div className={'label'}>{t('bet-season-delete')}</div>
                 </div>
             </Popconfirm>
         </div>
@@ -95,3 +97,5 @@ export default function ListItem({activeSeason, season, onEdit, onDelete}: Props
     `}</style>
 </List.Item>
 }
+
+export default i18nInstance.withTranslation('betSystem')(ListItem);

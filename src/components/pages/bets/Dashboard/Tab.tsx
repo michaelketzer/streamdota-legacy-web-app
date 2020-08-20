@@ -8,8 +8,10 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { updateCurrentUser } from '../../../../modules/reducer/Ui';
 import { useBetSeasons } from '../../../../modules/selector/BetSeason';
+import { WithTranslation } from 'next-i18next';
+import i18nInstance from '../../../../i18n';
 
-export default function Tab(): ReactElement {
+const Tab = ({t}: WithTranslation): ReactElement => {
 	const user = useCurrentUser();
 	const dispatch = useDispatch();
 	const seasons = useBetSeasons();
@@ -24,7 +26,7 @@ export default function Tab(): ReactElement {
 		<React.Fragment>
 			<div className={'enableBets'} onClick={onToggleBets}>
 				<Switch checked={Boolean(user && user.useBets)} />
-				<div className={'label'}>Wettsystem aktivieren</div>
+				<div className={'label'}>{t('bet-dashboard-active')}</div>
 			</div>
 
 			{user && user.useBets && seasons && seasons.length === 0 && <FirstTimeSetup />}
@@ -51,3 +53,5 @@ export default function Tab(): ReactElement {
 		</React.Fragment>
 	);
 }
+
+export default i18nInstance.withTranslation('betSystem')(Tab);

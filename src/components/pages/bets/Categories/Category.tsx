@@ -7,14 +7,16 @@ import CategoryUsers from './CategoryUsers';
 import { BetSeason, User } from '@streamdota/shared-types';
 import { useBetSeasons } from '../../../../modules/selector/BetSeason';
 import { useBetSeasonUsers } from '../../../../modules/selector/BetSeasonUsers';
+import { WithTranslation } from 'next-i18next';
+import i18nInstance from '../../../../i18n';
 
-export interface CategoryProps {
+export interface CategoryProps extends WithTranslation {
 	seasons: BetSeason[];
 	reload?: () => void;
 	currentBetSeason?: number;
 }
 
-export default function Category({ user }: { user: User }): ReactElement {
+const Category = ({ user, t }: { user: User } & WithTranslation): ReactElement => {
 	const seasons = useBetSeasons();
 	const users = useBetSeasonUsers(user.betSeasonId);
 	const currentSeasonName = useMemo(
@@ -31,8 +33,7 @@ export default function Category({ user }: { user: User }): ReactElement {
 	return (
 		<React.Fragment>
 			<Typography.Paragraph>
-				Kategorien ist gleichzusetzen mit einer “Season”. Wettrunden werden immer für eine aktuell ausgewählte
-				Kategorie gestartet. Du kannst hier alle Kategorien verwalten.
+				{t('bet-season-info')}
 			</Typography.Paragraph>
 
 			<div style={{ margin: '30px 0' }} />
@@ -59,3 +60,5 @@ export default function Category({ user }: { user: User }): ReactElement {
 		</React.Fragment>
 	);
 }
+
+export default i18nInstance.withTranslation('betSystem')(Category);
