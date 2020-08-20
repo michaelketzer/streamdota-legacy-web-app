@@ -36,8 +36,10 @@
     "bet-season-create": "Neue Kategorie",
     "bet-season-edit-season": "Kategorie bearbeiten",
     "bet-season-save": "Speichern",
+    "bet-season-name": "Name",
     "bet-season-name-required": "Du musst einen Namen angeben!",
     "bet-season-description": "Beschreibung",
+    "bet-season-type": "Typ",
     
     "bet-season-type-ladder": "Ladder",
     "bet-season-type-tournament": "Turnier",
