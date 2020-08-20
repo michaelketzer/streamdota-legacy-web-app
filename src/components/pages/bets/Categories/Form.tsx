@@ -2,8 +2,10 @@ import { ReactElement } from "react";
 import { Form, Typography, Input, Select, Button } from "antd";
 import TextArea from "antd/lib/input/TextArea";
 import { BetSeason } from "@streamdota/shared-types";
+import { WithTranslation } from "next-i18next";
+import i18nInstance from "../../../../i18n";
 
-interface Props {
+interface Props extends WithTranslation {
     onFinish?: (data: Partial<BetSeason>) => Promise<void>;
     onValuesChange?: (data: Partial<BetSeason>) => void;
     data?: Partial<BetSeason>;
@@ -11,7 +13,7 @@ interface Props {
     submitLabel?: string;
 }
 
-export default function CategoryForm({onFinish, onValuesChange, title, submitLabel = 'Erstellen', data = { description: '', name: '', type: 'ladder' }}: Props): ReactElement {
+const CategoryForm = ({t, onFinish, onValuesChange, title, submitLabel = 'Erstellen', data = { description: '', name: '', type: 'ladder' }}: Props): ReactElement => {
     return <>
         {title && <Typography.Title level={2}>{title}</Typography.Title>}
 
@@ -24,20 +26,20 @@ export default function CategoryForm({onFinish, onValuesChange, title, submitLab
                 layout={'vertical'}
             >
                 <Form.Item
-                    label="Name"
+                    label={t('bet-season-name')}
                     name="name"
-                    rules={[{ required: true, message: 'Du musst einen Namen angeben!' }]}
+                    rules={[{ required: true, message: t('bet-season-name-required') }]}
                 >
                     <Input />
                 </Form.Item>
-                <Form.Item label="Beschreibung" name="description">
+                <Form.Item label={t('bet-season-description')} name="description">
                     <TextArea />
                 </Form.Item>
                 <Form.Item label="Typ" name="type">
                     <Select>
-                        <Select.Option value="ladder">Ladder</Select.Option>
-                        <Select.Option value="tournament">Turnier</Select.Option>
-                        <Select.Option value="other" disabled>Sonstiges</Select.Option>
+                        <Select.Option value="ladder">{t('bet-season-type-ladder')}</Select.Option>
+                        <Select.Option value="tournament">{t('bet-season-type-tournament')}</Select.Option>
+                        <Select.Option value="other" disabled>{t('bet-season-type-other')}</Select.Option>
                     </Select>
                 </Form.Item>
 
@@ -57,3 +59,5 @@ export default function CategoryForm({onFinish, onValuesChange, title, submitLab
         `}</style>
     </>;
 }
+
+export default i18nInstance.withTranslation('betSystem')(CategoryForm);

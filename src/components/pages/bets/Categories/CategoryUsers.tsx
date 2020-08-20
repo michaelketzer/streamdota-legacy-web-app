@@ -1,38 +1,40 @@
 import { ReactElement } from "react";
 import { Typography, Table } from "antd";
 import { useBetSeasonUsers } from "../../../../modules/selector/BetSeasonUsers";
+import { WithTranslation } from "next-i18next";
+import i18nInstance from "../../../../i18n";
 
 const roleNameMap = {
-    user: 'Benutzer',
-    owner: 'Ersteller'
+    user: 'bet-season-user-role-user',
+    owner: 'bet-season-user-role-owner'
 }
 
-const columns = [
+const columns = (t: WithTranslation['t']) => [
     {
-      title: 'Name',
+      title: t('bet-season-user-name'),
       dataIndex: 'displayName',
       key: 'displayName',
     },
     {
-      title: 'Rolle',
+      title: t('bet-season-user-role'),
       dataIndex: 'userRole',
       key: 'userRole',
       render: (role) => roleNameMap[role],
     },
 ];
 
-interface Props {
+interface Props extends WithTranslation{
     name: string;
     seasonId: number;
     canManage: boolean;
 }
 
-export default function CategoryUsers({name, seasonId}: Props): ReactElement {
+const CategoryUsers = ({t, name, seasonId}: Props): ReactElement => {
     const users = useBetSeasonUsers(seasonId);
 
     return <>
-        <Typography.Text strong>Benutzer für "{name}"</Typography.Text>
-        <Table dataSource={users} columns={columns} rowKey={'id'} pagination={false} />
+        <Typography.Text strong>{t('bet-season-user-label')} "{name}"</Typography.Text>
+        <Table dataSource={users} columns={columns(t)} rowKey={'id'} pagination={false} />
 
         <style jsx>{`
             .newButton {
@@ -43,3 +45,5 @@ export default function CategoryUsers({name, seasonId}: Props): ReactElement {
         `}</style>
     </>;
 }
+
+export default i18nInstance.withTranslation('betSystem')(CategoryUsers);

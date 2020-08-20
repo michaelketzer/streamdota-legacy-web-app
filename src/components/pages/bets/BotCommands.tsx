@@ -3,18 +3,20 @@ import { Typography } from 'antd';
 import Tags from '../../Commands/Tags';
 import CommandList from '../bot/CommandList';
 import { useCommandByIdentifier } from '../../../modules/selector/Command';
+import { WithTranslation } from 'next-i18next';
+import i18nInstance from '../../../i18n';
 
-export default function BotCommands(): ReactElement {
+const BotCommands = ({t}: WithTranslation): ReactElement => {
 	const betCommand = useCommandByIdentifier('bet');
 
 	return (
 		<Fragment>
 			<div>
-				<Typography.Text strong>Variabeln</Typography.Text>
+				<Typography.Text strong>{t('commands-vars')}</Typography.Text>
 			</div>
 			<div>
 				<Typography.Text>
-					Du kannst in den Antworten eines Commands folgende Variabeln benutzen:
+					{t('commands-vars-sub')}
 				</Typography.Text>
 			</div>
 
@@ -31,7 +33,7 @@ export default function BotCommands(): ReactElement {
 			/>
 
 			<div>
-				<Typography.Text strong>Streamer Commands</Typography.Text>
+				<Typography.Text strong>{t('bet-season-commands-streamer')}</Typography.Text>
 			</div>
 			<CommandList
 				commandType={'betting_streamer'}
@@ -42,9 +44,11 @@ export default function BotCommands(): ReactElement {
 			<div style={{ margin: '40px 0' }} />
 
 			<div>
-				<Typography.Text strong>User Commands</Typography.Text>
+				<Typography.Text strong>{t('bet-season-commands-user')}</Typography.Text>
 			</div>
 			<CommandList commandType={'betting_user'} replaceVars={{ BET_COMMAND: betCommand && betCommand.command }} />
 		</Fragment>
 	);
 }
+
+export default i18nInstance.withTranslation('betSystem')(BotCommands);

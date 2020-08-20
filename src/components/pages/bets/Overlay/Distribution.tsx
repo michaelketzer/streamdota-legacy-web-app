@@ -9,8 +9,10 @@ import FontSize from "../../dotaOverlay/Overlay/FontSize";
 import DistributionSlider from "./DistributionSlider";
 import FrameLink from "../../dotaOverlay/Overlay/FrameLink";
 import { useCurrentUser } from "../../../../hooks/currentUser";
+import { WithTranslation } from "next-i18next";
+import i18nInstance from "../../../../i18n";
 
-export default function Distribution(): ReactElement {
+const Distribution = ({t}: WithTranslation): ReactElement => {
     const overlay = useBetOverlay();
     const dispatch = useDispatch();
     const user = useCurrentUser();
@@ -22,15 +24,15 @@ export default function Distribution(): ReactElement {
     return <div>
         <div className={'topGrid'}>
             <div>
-                <Typography.Title level={3}>Farbe</Typography.Title>
-                <Color label={'Hintergrund'} disableAlpha={false} value={overlay.distributionBackground} setValue={(distributionBackground) => patch({distributionBackground})}/>
+                <Typography.Title level={3}>{t('bet-season-overlay-color')}</Typography.Title>
+                <Color label={t('bet-season-overlay-background')} disableAlpha={false} value={overlay.distributionBackground} setValue={(distributionBackground) => patch({distributionBackground})}/>
                 <Color label={'Schrift'} value={overlay.distributionFont} setValue={(distributionFont) => patch({distributionFont})}/>
-                <Color label={'Team A'} value={overlay.distributionColorLeft} setValue={(distributionColorLeft) => patch({distributionColorLeft})}/>
-                <Color label={'Team B'} value={overlay.distributionColorRight} setValue={(distributionColorRight) => patch({distributionColorRight})}/>
+                <Color label={t('bet-season-overlay-teamA')} value={overlay.distributionColorLeft} setValue={(distributionColorLeft) => patch({distributionColorLeft})}/>
+                <Color label={t('bet-season-overlay-teamB')} value={overlay.distributionColorRight} setValue={(distributionColorRight) => patch({distributionColorRight})}/>
             </div>
 
             <div>
-                <Typography.Title level={3}>Schrift</Typography.Title>
+                <Typography.Title level={3}>{t('bet-season-overlay-font')}</Typography.Title>
 
                 <FontSize fontSize={overlay.distributionFontSize} setFontSize={(distributionFontSize) => patch({distributionFontSize})} />
 
@@ -42,7 +44,7 @@ export default function Distribution(): ReactElement {
         </div>
 
         <div className={'previewContainer'}>
-            <Typography.Title level={3}>Vorschau</Typography.Title>
+            <Typography.Title level={3}>{t('bet-season-overlay-preview')}</Typography.Title>
             <div className={'preview'}>
                 <img className={'exampleBackground'} src={'/images/example_background.png'} />
                 <div className={'slider'}><DistributionSlider overlay={overlay} /></div>
@@ -83,3 +85,5 @@ export default function Distribution(): ReactElement {
         `}</style>
     </div>
 }
+
+export default i18nInstance.withTranslation('betSystem')(Distribution);

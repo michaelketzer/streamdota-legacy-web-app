@@ -1,0 +1,105 @@
+{
+    "bet-title": "Betsystem",
+    "bet-title-sub": "The bet system provides your users an option to bet on a team or game as soon as the game starts",
+
+    "tab-dashboard": "Dashboard",
+    "tab-seasons": "Seasons",
+    "tab-rounds": "Rounds",
+    "tab-toplist": "Toplist",
+    "tab-bot": "StreamDota Bot Commands",
+    "tab-overlay": "Overlay Settings",
+
+    "bet-dashboard-active": "Activate bet system",
+
+    "bet-dashboard-status-start": "Start bet",
+    "bet-dashboard-status-label": "STATUS",
+    "bet-dashboard-status-running": "Bets running",
+    "bet-dashboard-status-finished": "Game finished",
+    "bet-dashboard-status-finished-or": "or",
+    "bet-dashboard-status-finished-label": "CHOOSE THE WINNER",
+
+    "bet-dashboard-timing-waiting": "Waiting for game",
+    "bet-dashboard-timing-label": "Time",
+    "bet-dashboard-timing-expired": "Expired",
+
+    "bet-dashboard-distribution": "Bet distribution",
+
+    "bet-dashboard-count": "Participants",
+    "bet-dashboard-participation": "Chat participation",
+
+    "bet-season-info": "Seasons are groups of bet rounds. You can manage your seasons in this tab or change the current active bet season.",
+    
+    "bet-season-current-season": "Current season",
+    "bet-season-new-season": "New season",
+    "bet-season-accept-invite": "Accept invite",
+
+    "bet-season-create": "New season",
+    "bet-season-edit-season": "Edit season",
+    "bet-season-save": "Save",
+    "bet-season-name": "Name",
+    "bet-season-name-required": "A name is required!",
+    "bet-season-description": "Description",
+    "bet-season-type": "Type",
+    
+    "bet-season-type-ladder": "Ladder",
+    "bet-season-type-tournament": "Tournament",
+    "bet-season-type-other": "Other",
+
+    "bet-season-edit": "Edit",
+    "bet-season-delete": "Delete",
+    "bet-season-delete-confirm": "Should this season be deleted?",
+    "bet-season-delete-confirm-yes": "Yes",
+    "bet-season-delete-confirm-no": "No",
+
+    "bet-season-invites-label": "Invites for ",
+    "bet-season-invite-new": "New invite",
+
+    "bet-season-invite-key": "Key",
+    "bet-season-invite-created": "Created",
+    "bet-season-invite-kestatusy": "Status",
+
+    "bet-season-user-label": "Users for ",
+    "bet-season-user-name": "Name",
+    "bet-season-user-role": "Role",
+    "bet-season-user-role-user": "User",
+    "bet-season-user-role-owner": "Owner",
+
+    "bet-season-label": "Season",
+
+    "bet-season-round-channel": "Channel",
+    "bet-season-round-bets": "Participants",
+    "bet-season-round-distribution": "Team A/B",
+    "bet-season-round-winner": "Winner",
+    "bet-season-round-actions": "Actions",
+    "bet-season-round-actions-delete": "Delete",
+    "bet-season-round-actions-changeWinner": "Change winner",
+    "bet-season-round-delete-info": "Should this bet round be deleted?",
+    "bet-season-round-delete-yes": "Yes",
+    "bet-season-round-delete-no": "No",
+
+    "bet-season-toplist-search": "Search username...",
+
+    "bet-season-toplist-user": "User",
+    "bet-season-toplist-bets": "Participations",
+    "bet-season-toplist-correct": "Correct",
+    "bet-season-toplist-rate": "Rate",
+
+    "bet-season-commands-streamer": "Streamer Commands",
+    "bet-season-commands-user": "User Commands",
+
+    "bet-season-overlay-font": "Font",
+    "bet-season-overlay-tab-distribution": "Bet distributions",
+    "bet-season-overlay-tab-timer": "Timer",
+    "bet-season-overlay-tab-toplist": "Toplist",
+
+    "bet-season-overlay-color": "Color",
+    "bet-season-overlay-background": "Background",
+    "bet-season-overlay-teamA": "Team A",
+    "bet-season-overlay-teamB": "Team B",
+    "bet-season-overlay-preview": "Preview",
+
+    "bet-season-overlay-settings": "Settings",
+    "bet-season-overlay-showRank": "Show ranks (1. 2. 3.)",
+    "bet-season-overlay-showTotal": "Show total bets (/10)",
+    "bet-season-overlay-quota": "Show correct quota in percent"
+}
