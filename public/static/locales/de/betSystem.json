@@ -1,0 +1,103 @@
+{
+    "bet-title": "Wettsystem",
+    "bet-title-sub": "Das Wettsystem erlaubt deinen Zuschauern auf ein Team oder dich bzw. gegen dich zu setzen wenn ein Spiel beginnt.",
+
+    "tab-dashboard": "Dashboard",
+    "tab-seasons": "Kategorien",
+    "tab-rounds": "Runden",
+    "tab-toplist": "Toplist",
+    "tab-bot": "StreamDota Bot Commands",
+    "tab-overlay": "Overlay Einstellungen",
+
+    "bet-dashboard-active": "Wettsystem aktivieren",
+
+    "bet-dashboard-status-start": "Wette starten",
+    "bet-dashboard-status-label": "STATUS",
+    "bet-dashboard-status-running": "Wetten laufen",
+    "bet-dashboard-status-finished": "Spiel fertig",
+    "bet-dashboard-status-finished-or": "oder",
+    "bet-dashboard-status-finished-label": "WÄHLE DEN GEWINNER",
+
+    "bet-dashboard-timing-waiting": "Warte auf Spiel",
+    "bet-dashboard-timing-label": "Zeit",
+    "bet-dashboard-timing-expired": "Abgelaufen",
+
+    "bet-dashboard-distribution": "Wettverteilung",
+
+    "bet-dashboard-count": "Wettverteilung",
+    "bet-dashboard-participation": "Wettverteilung",
+
+    "bet-season-info": "Kategorien ist gleichzusetzen mit einer “Season”. Wettrunden werden immer für eine aktuell ausgewählte Kategorie gestartet. Du kannst hier alle Kategorien verwalten.",
+    
+    "bet-season-current-season": "Aktuelle Kategorie",
+    "bet-season-new-season": "Neue Kategorie",
+    "bet-season-accept-invite": "Einladung annehmen",
+
+    "bet-season-create": "Neue Kategorie",
+    "bet-season-edit-season": "Kategorie bearbeiten",
+    "bet-season-save": "Speichern",
+    "bet-season-name-required": "Du musst einen Namen angeben!",
+    "bet-season-description": "Beschreibung",
+    
+    "bet-season-type-ladder": "Ladder",
+    "bet-season-type-tournament": "Turnier",
+    "bet-season-type-other": "Sonstiges",
+
+    "bet-season-edit": "Bearbeiten",
+    "bet-season-delete": "Löschen",
+    "bet-season-delete-confirm": "Soll diese Season gelöscht werden?",
+    "bet-season-delete-confirm-yes": "Ja",
+    "bet-season-delete-confirm-no": "Nein",
+
+    "bet-season-invites-label": "Einladungen für",
+    "bet-season-invite-new": "Neue Einladung",
+
+    "bet-season-invite-key": "Key",
+    "bet-season-invite-created": "Erstellt",
+    "bet-season-invite-kestatusy": "Status",
+
+    "bet-season-user-label": "Benutzer für",
+    "bet-season-user-name": "Name",
+    "bet-season-user-role": "Rolle",
+    "bet-season-user-role-user": "Benutzer",
+    "bet-season-user-role-owner": "Owner",
+
+    "bet-season-label": "Kategorie",
+
+    "bet-season-round-channel": "Channel",
+    "bet-season-round-bets": "Abstimmungen",
+    "bet-season-round-distribution": "Team A/B",
+    "bet-season-round-winner": "Gewinner",
+    "bet-season-round-actions": "Aktionen",
+    "bet-season-round-actions-delete": "Löschen",
+    "bet-season-round-actions-changeWinner": "Gewinner ändern",
+    "bet-season-round-delete-info": "Soll diese Runde wirklich gelöscht werden?",
+    "bet-season-round-delete-yes": "Ja",
+    "bet-season-round-delete-no": "Nein",
+
+    "bet-season-toplist-search": "Suche Benutzername...",
+
+    "bet-season-toplist-user": "User",
+    "bet-season-toplist-bets": "Teilnahmen",
+    "bet-season-toplist-correct": "Richtige",
+    "bet-season-toplist-rate": "Rate",
+
+    "bet-season-commands-streamer": "Streamer Commands",
+    "bet-season-commands-user": "Benutzer Commands",
+
+    "bet-season-overlay-font": "Schrift",
+    "bet-season-overlay-tab-distribution": "Wettverteilung",
+    "bet-season-overlay-tab-timer": "Timer",
+    "bet-season-overlay-tab-toplist": "Toplist",
+
+    "bet-season-overlay-color": "Farbe",
+    "bet-season-overlay-background": "Hintergrund",
+    "bet-season-overlay-teamA": "Team A",
+    "bet-season-overlay-teamB": "Team B",
+    "bet-season-overlay-preview": "Vorschau",
+
+    "bet-season-overlay-settings": "Einstellungen",
+    "bet-season-overlay-showRank": "Zeige Rank (1. 2. 3.)",
+    "bet-season-overlay-showTotal": "Zeige Totale Wetten (/10)",
+    "bet-season-overlay-quota": "Zeige richtige Wettquote in Prozent"
+}

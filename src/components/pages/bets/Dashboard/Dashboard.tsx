@@ -4,8 +4,10 @@ import StatusTile from "./StatusTile";
 import TimingTile from "./TimingTile";
 import BetDistribution from "../Categories/BetDistribution";
 import { useCurrentBetRound } from "../../../../modules/selector/BetRound";
+import { WithTranslation } from "next-i18next";
+import i18nInstance from "../../../../i18n";
 
-export default function Dashboard(): ReactElement {
+const Dashboard = ({t}: WithTranslation): ReactElement =>  {
     const {chatters, status, total, created, aBets, bBets} = useCurrentBetRound();
     const participation = useMemo(() => chatters > 0 ? Math.floor((total * 100) / chatters) : 0, [total, chatters]);
 
@@ -20,10 +22,10 @@ export default function Dashboard(): ReactElement {
             <BetDistribution aBets={aBets} bBets={bBets} bets={total} />
         </div>
         <div className={'singleTile'}>
-            <SimpleValueTile value={'' + total} label={'Abstimmungen'} />
+            <SimpleValueTile value={'' + total} label={t('bet-dashboard-count')} />
         </div>
         <div className={'singleTile'}>
-            <SimpleValueTile value={`${participation}%`} label={'Chat Teilnahme'} />
+            <SimpleValueTile value={`${participation}%`} label={t('bet-dashboard-participation')} />
         </div>
 
         <style jsx>{`
@@ -48,3 +50,5 @@ export default function Dashboard(): ReactElement {
         `}</style>
     </div>;
 }
+
+export default i18nInstance.withTranslation('betSystem')(Dashboard);

@@ -8,11 +8,12 @@ import ListItem from "./ListItem";
 import { BetSeason } from "@streamdota/shared-types";
 import { useDispatch } from "react-redux";
 import { deleteBetSeason } from "../../../../modules/reducer/BetSeason";
+import i18nInstance from "../../../../i18n";
 
 
 export const emptySeason: () => Partial<BetSeason> = () => ({id: null, name: '', description: '', type: 'tournament'});
 
-export default function CategoryList({seasons, currentBetSeason, canManage}: CategoryProps & {canManage: boolean}): ReactElement {
+const CategoryList = ({t, seasons, currentBetSeason, canManage}: CategoryProps & {canManage: boolean}): ReactElement => {
     const dispatch = useDispatch();
     const [category, setCategory] = useState<Partial<BetSeason> | null>(null);
 
@@ -24,8 +25,8 @@ export default function CategoryList({seasons, currentBetSeason, canManage}: Cat
             }} />} />
 
             <div className={'buttons'}>
-                <Button type={'primary'} size={'middle'} icon={<PlusOutlined />} onClick={() => setCategory(emptySeason())}>Neue Kategorie</Button>
-                <Button type={'dashed'} size={'middle'} icon={<PlusOutlined />} disabled>Einladung annehmen</Button>
+                <Button type={'primary'} size={'middle'} icon={<PlusOutlined />} onClick={() => setCategory(emptySeason())}>{t('bet-season-new-season')}</Button>
+                <Button type={'dashed'} size={'middle'} icon={<PlusOutlined />} disabled>{t('bet-season-accept-invite')}</Button>
             </div>
             <CategoryPopup season={category}/>
 
@@ -40,5 +41,6 @@ export default function CategoryList({seasons, currentBetSeason, canManage}: Cat
     }
 
     return <Loader />
-
 }
+
+export default i18nInstance.withTranslation('betSystem')(CategoryList);

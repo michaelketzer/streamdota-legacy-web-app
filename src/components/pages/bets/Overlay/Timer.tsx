@@ -9,8 +9,10 @@ import FontSize from "../../dotaOverlay/Overlay/FontSize";
 import TimerCounter from "./TimerCounter";
 import FrameLink from "../../dotaOverlay/Overlay/FrameLink";
 import { useCurrentUser } from "../../../../hooks/currentUser";
+import { WithTranslation } from "next-i18next";
+import i18nInstance from "../../../../i18n";
 
-export default function Timer(): ReactElement {
+const Timer = ({t}: WithTranslation): ReactElement => {
     const overlay = useBetOverlay();
     const user = useCurrentUser();
     const dispatch = useDispatch();
@@ -22,13 +24,13 @@ export default function Timer(): ReactElement {
     return <div>
         <div className={'topGrid'}>
             <div>
-                <Typography.Title level={3}>Farbe</Typography.Title>
-                <Color label={'Hintergrund'} disableAlpha={false} value={overlay.timerBackground} setValue={(timerBackground) => patch({timerBackground})}/>
-                <Color label={'Schrift'} value={overlay.timerFont} setValue={(timerFont) => patch({timerFont})}/>
+                <Typography.Title level={3}>{t('bet-season-overlay-color')}</Typography.Title>
+                <Color label={t('bet-season-overlay-background')} disableAlpha={false} value={overlay.timerBackground} setValue={(timerBackground) => patch({timerBackground})}/>
+                <Color label={t('bet-season-overlay-font')} value={overlay.timerFont} setValue={(timerFont) => patch({timerFont})}/>
             </div>
 
             <div>
-                <Typography.Title level={3}>Schrift</Typography.Title>
+                <Typography.Title level={3}>{t('bet-season-overlay-font')}</Typography.Title>
 
                 <FontSize fontSize={overlay.timerFontSize} setFontSize={(timerFontSize) => patch({timerFontSize})} />
 
@@ -40,7 +42,7 @@ export default function Timer(): ReactElement {
         </div>
 
         <div className={'previewContainer'}>
-            <Typography.Title level={3}>Vorschau</Typography.Title>
+            <Typography.Title level={3}>{t('bet-season-overlay-preview')}</Typography.Title>
             <div className={'preview'}>
                 <img className={'exampleBackground'} src={'/images/example_background.png'} />
                 <div className={'timer'}><TimerCounter overlay={overlay} /></div>
@@ -82,3 +84,5 @@ export default function Timer(): ReactElement {
         `}</style>
     </div>
 }
+
+export default i18nInstance.withTranslation('betSystem')(Timer);

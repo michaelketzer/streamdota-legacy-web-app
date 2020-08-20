@@ -9,10 +9,12 @@ import FontSize from "../../dotaOverlay/Overlay/FontSize";
 import ToplistOverlay from "./ToplistOverlay";
 import FrameLink from "../../dotaOverlay/Overlay/FrameLink";
 import { useCurrentUser } from "../../../../hooks/currentUser";
+import { WithTranslation } from "next-i18next";
+import i18nInstance from "../../../../i18n";
 
 const toplist = [
     {name: 'rmiLEtAnCI', total: 18, won: 16},
-    {name: 'rarSeMeNthEAcyCL', total: 16, won: 15},
+    {name: 'rarSeMeNthFFcyCL', total: 16, won: 15},
     {name: 'UrDrIblect', total: 18, won: 15},
     {name: 'DaRNATHRIo', total: 15, won: 14},
     {name: 'IfY', total: 16, won: 14},
@@ -20,10 +22,10 @@ const toplist = [
     {name: 'hesPEdenEW', total: 14, won: 12},
     {name: 'hurSTIoNtEareAdU', total: 11, won: 11},
     {name: 'rarSeMeNthEAcyCL', total: 10, won: 10},
-    {name: 'rarSeMeNthEAcyCL', total: 10, won: 8},
+    {name: 'rarSeMeTThEAcyCL', total: 10, won: 8},
 ]
 
-export default function Toplist(): ReactElement {
+const Toplist = ({t}: WithTranslation): ReactElement => {
     const overlay = useBetOverlay();
     const dispatch = useDispatch();
     const user = useCurrentUser();
@@ -35,13 +37,13 @@ export default function Toplist(): ReactElement {
     return <div className={'setupGrid'}>
         <div className={'topGrid'}>
             <div>
-                <Typography.Title level={3}>Farbe</Typography.Title>
-                <Color label={'Hintergrund'} disableAlpha={false} value={overlay.toplistBackground} setValue={(toplistBackground) => patch({toplistBackground})}/>
-                <Color label={'Schrift'} value={overlay.toplistFont} setValue={(toplistFont) => patch({toplistFont})}/>
+                <Typography.Title level={3}>{t('bet-season-overlay-color')}</Typography.Title>
+                <Color label={t('bet-season-overlay-background')} disableAlpha={false} value={overlay.toplistBackground} setValue={(toplistBackground) => patch({toplistBackground})}/>
+                <Color label={t('bet-season-overlay-font')} value={overlay.toplistFont} setValue={(toplistFont) => patch({toplistFont})}/>
             </div>
 
             <div>
-                <Typography.Title level={3}>Schrift</Typography.Title>
+                <Typography.Title level={3}>{t('bet-season-overlay-font')}</Typography.Title>
                 <FontSize fontSize={overlay.toplistFontSize} setFontSize={(toplistFontSize) => patch({toplistFontSize})} />
 
                 <br />
@@ -52,21 +54,21 @@ export default function Toplist(): ReactElement {
 
 
             <div>
-                <Typography.Title level={3}>Einstellungen</Typography.Title>
+                <Typography.Title level={3}>{t('bet-season-overlay-settings')}</Typography.Title>
                 <div className={'settingsGrid'}>
                     <Switch checked={overlay.toplistShowRank} onChange={(toplistShowRank) => patch({toplistShowRank})}/>
-                    <div className={'label'} onClick={() => patch({toplistShowRank: !overlay.toplistShowRank})}>Zeige Rank (1. 2. 3.)</div>
+                    <div className={'label'} onClick={() => patch({toplistShowRank: !overlay.toplistShowRank})}>{t('bet-season-overlay-showRank')}</div>
                     <Switch checked={overlay.toplistShowTotalBets} onChange={(toplistShowTotalBets) => patch({toplistShowTotalBets})} />
-                    <div className={'label'} onClick={() => patch({toplistShowTotalBets: !overlay.toplistShowTotalBets})}>Zeige Totale Wetten (/10)</div>
+                    <div className={'label'} onClick={() => patch({toplistShowTotalBets: !overlay.toplistShowTotalBets})}>{t('bet-season-overlay-showTotal')}</div>
                     <Switch checked={overlay.toplistShowAccuracy} onChange={(toplistShowAccuracy) => patch({toplistShowAccuracy})} />
-                    <div className={'label'} onClick={() => patch({toplistShowAccuracy: !overlay.toplistShowAccuracy})}>Zeige richtige Wettquote in Prozent</div>
+                    <div className={'label'} onClick={() => patch({toplistShowAccuracy: !overlay.toplistShowAccuracy})}>{t('bet-season-overlay-quota')}</div>
                 </div>
             </div>
         </div>
 
 
         <div className={'previewContainer'}>
-            <Typography.Title level={3}>Vorschau</Typography.Title>
+            <Typography.Title level={3}>{t('bet-season-overlay-preview')}</Typography.Title>
             <div className={'preview'}>
                 <img className={'exampleBackground'} src={'/images/example_background_vertical.png'} />
 
@@ -138,3 +140,5 @@ export default function Toplist(): ReactElement {
         `}</style>
     </div>
 }
+
+export default i18nInstance.withTranslation('betSystem')(Toplist);

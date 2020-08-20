@@ -10,8 +10,10 @@ import { Typography, Tabs } from "antd";
 import Distribution from "./Distribution";
 import Timer from "./Timer";
 import Toplist from "./Toplist";
+import { WithTranslation } from "next-i18next";
+import i18nInstance from "../../../../i18n";
 
-export default function Overlay(): ReactElement {
+const Overlay = ({t}: WithTranslation): ReactElement => {
     const overlay = useBetOverlay();
     const rawFonts = useGoogleFont();
     const dispatch = useDispatch();
@@ -21,7 +23,7 @@ export default function Overlay(): ReactElement {
     }, [dispatch]);
     
     return <div>
-        <Typography.Title level={2}>Schrift</Typography.Title>
+        <Typography.Title level={2}>{t('bet-season-overlay-font')}</Typography.Title>
         <div className='fontSelection'>
             <FontSelector rawFonts={rawFonts} selected={overlay.fontFamily} setSelected={(fontFamily) => patch({fontFamily})}/>
         </div>
@@ -32,13 +34,13 @@ export default function Overlay(): ReactElement {
 
 
         <Tabs defaultActiveKey="Wettverteilung" tabPosition={'left'} destroyInactiveTabPane>
-            <Tabs.TabPane tab={'Wettverteilung'} key={'Wettverteilung'}>
+            <Tabs.TabPane tab={t('bet-season-overlay-tab-distribution')} key={'Wettverteilung'}>
               <div className={'paneContent'}><Distribution /></div>
             </Tabs.TabPane>
-            <Tabs.TabPane tab={'Timer'} key={'Timer'}>
+            <Tabs.TabPane tab={t('bet-season-overlay-tab-timer')} key={'Timer'}>
               <div className={'paneContent'}><Timer /></div>
             </Tabs.TabPane>
-            <Tabs.TabPane tab={'Toplist'} key={'Toplist'}>
+            <Tabs.TabPane tab={t('bet-season-overlay-tab-toplist')} key={'Toplist'}>
               <div className={'paneContent'}><Toplist /></div>
             </Tabs.TabPane>
         </Tabs>
@@ -62,3 +64,5 @@ export default function Overlay(): ReactElement {
         `}</style>
     </div>
 }
+
+export default i18nInstance.withTranslation('betSystem')(Overlay);
