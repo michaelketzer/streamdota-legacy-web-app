@@ -4,18 +4,20 @@ import CategoryForm from "./Categories/Form";
 import { BetSeason } from "@streamdota/shared-types";
 import { useDispatch } from "react-redux";
 import { createBetSeason } from "../../../modules/reducer/BetSeason";
+import { WithTranslation } from "next-i18next";
+import i18nInstance from "../../../i18n";
 
-const getSteps = (onSeasonCreated: () => void, dispatch: Dispatch<any>) => [
+const getSteps = (onSeasonCreated: () => void, dispatch: Dispatch<any>, t: WithTranslation['t']) => [
     {
-      title: 'Kategorie',
-      content: <CategoryForm title={'Neue Kategorie'} onFinish={async (data: Partial<BetSeason>) => {
+      title: 'bet-season-label',
+      content: <CategoryForm title={t('bet-season-create')} onFinish={async (data: Partial<BetSeason>) => {
         await dispatch(createBetSeason(data));
         onSeasonCreated();
       }}/>,
     },
 ];
 
-export default function FirstTimeSetup(): ReactElement {
+const FirstTimeSetup = ({t}: WithTranslation): ReactElement => {
     const dispatch = useDispatch();
     const [current, setCurrent] = useState(0);
 
@@ -23,18 +25,18 @@ export default function FirstTimeSetup(): ReactElement {
         setCurrent(current + 1);
     }
 
-    const steps = getSteps(next, dispatch);
+    const steps = getSteps(next, dispatch, t);
 
     return <>
         <div className={'info'}>
-            <div>Hey, es sieht so aus, als wenn du das erste mal hier bist.</div>
-            <div>Damit es für dich einfacher ist dich erstmal zurecht zu finden, haben wir hier die ersten Schritte:</div>
+            <div>{t('bet-season-first-time-setup')}</div>
+            <div>{t('bet-season-first-time-setup-1')}</div>
         </div>
 
         <div className={'setupGrid'}>
             <Steps direction="vertical" size="small" current={current}>
             {steps.map(item => (
-                <Steps.Step key={item.title} title={item.title}  description={' '} />
+                <Steps.Step key={item.title} title={t(item.title)}  description={' '} />
             ))}
             </Steps>
 
@@ -56,3 +58,5 @@ export default function FirstTimeSetup(): ReactElement {
         `}</style>
     </>;
 }
+
+export default i18nInstance.withTranslation('betSystem')(FirstTimeSetup);
