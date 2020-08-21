@@ -15,6 +15,7 @@ interface Event {
     type: 'pick' | 'ban';
     id: number;
     class: string;
+    matchId: number;
 }
 
 const container = {
@@ -40,12 +41,25 @@ export default function LiveFeed({leagueId}: Props): ReactElement {
 
     useEffect(() => {
         if(message && isDraftMessage(message)) {
-            message.value.change.forEach(({id, class: heroClass}) => setEvents([{id, class: heroClass, team: message.value.team, type: message.value.type}, ...events]));
+            message.value.change.forEach(({id, class: heroClass}) => {
+                if(!events.find(({matchId, id: heroId}) => matchId === message.value.matchId && id === heroId)) {
+                    setEvents([
+                        {
+                            id,
+                            class: heroClass, 
+                            matchId: message.value.matchId,
+                            team: message.value.team, 
+                            type: message.value.type
+                        }, 
+                        ...events
+                    ]);
+                }
+            })
         }
     }, [message])
 
     return <motion.div initial={'hidden'} animate={'show'} variants={container}>
-        {events.map(({id, class: heroClass, team, type}) => <motion.div key={id + ':' + team + ':' + type} variants={item}>
+        {events.map(({id, class: heroClass, team, type, matchId}) => <motion.div key={id + ':' + team + ':' + type + ':' + matchId} variants={item}>
             <EventRow id={id} heroClass={heroClass} team={team} type={type} leagueId={leagueId} />
         </motion.div>)}
     </motion.div>;
