@@ -57,6 +57,7 @@ export interface RoshanMessage extends BaseMessage {
 export interface DraftMessage extends BaseMessage {
     type: MessageType.draft;
     value: {
+        matchId: number;
         change: Array<{id: number; class: string}>;
         team: 'dire' | 'radiant';
         type: 'pick' | 'ban';
