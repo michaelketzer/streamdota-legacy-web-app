@@ -5,8 +5,8 @@ export default function Footer(): ReactElement {
     return <div className={'footer'}>
         <div className={'inner'}>
             <div className={'links'}>
-                <Link href={'/dataPolicy'}>Data policy</Link>&nbsp;&nbsp;&nbsp;
-                <Link href={'/imprint'}>Imprint</Link>
+                <Link href={'/dataPolicy'}><a>Data policy</a></Link>&nbsp;&nbsp;&nbsp;
+                <Link href={'/imprint'}><a>Imprint</a></Link>
             </div>
 
             <div>
