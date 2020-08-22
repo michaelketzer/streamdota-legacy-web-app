@@ -2,6 +2,7 @@ import { ReactElement } from "react";
 import { RoshOverlay } from "@streamdota/shared-types";
 import classNames from "classnames";
 import GoogleFontLoader from 'react-google-font-loader';
+import { getVariant } from "../dotaOverlay/Overlay/FontVariantSelection";
 
 
 interface Props {
@@ -12,7 +13,7 @@ export default function Timer({overlay}: Props): ReactElement {
     const minutes = 2;
     const seconds = 45;
 
-    return <div className={classNames('timer', {state: 'respawn_base'})}>
+    return <div className={classNames('timer', {state: 'respawn_base'})} style={{...getVariant(overlay.variant)}}>
         {overlay.font && overlay.font !== 'Arial' && <GoogleFontLoader fonts={[{font: overlay.font, weights: [overlay.variant]}]} />}
         {minutes}:{seconds}
 
