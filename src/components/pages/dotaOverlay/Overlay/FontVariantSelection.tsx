@@ -1,4 +1,4 @@
-import { ReactElement, useMemo, CSSProperties } from "react";
+import { ReactElement, useMemo, CSSProperties, useEffect } from "react";
 import { Radio } from "antd";
 import { Font } from "@streamdota/shared-types";
 import { WithTranslation } from "next-i18next";
@@ -20,37 +20,43 @@ interface Props extends WithTranslation {
 }
 
 const subsetMap = {
-    '100': 'Extra Dünn',
-    '100italic': 'Extra Dünn Kursiv',
-    '200': 'Dünn',
-    '200italic': 'Dünn Kursiv',
-    '300': 'Schmal',
-    '300italic': 'Schmal Kursiv',
-    '400': 'Regulär',
-    'regular': 'Regulär',
-    '400italic': 'Regulär Kursiv',
-    'italic': 'Regulär Kursiv',
-    '500': 'Mittelgroß',
-    '500italic': 'Mittelgroß Kursiv',
-    '600': 'Halbfett',
-    '600italic': 'Halbfett Kursiv',
-    '700': 'Fett',
-    '700italic': 'Fett Kursiv',
-    '800': 'Extra Fett',
-    '800italic': 'Extra Fett Kursiv',
-    '900': 'Schwarz',
-    '900italic': 'Schwarz Kursiv',
+    '100': 'font-100',
+    '100italic': 'font-100italic',
+    '200': 'font-200',
+    '200italic': 'font-200italic',
+    '300': 'font-300',
+    '300italic': 'font-300italic',
+    '400': 'font-400',
+    'regular': 'font-400',
+    '400italic': 'font-400italic',
+    'italic': 'font-400italic',
+    '500': 'font-500',
+    '500italic': 'font-500italic',
+    '600': 'font-600',
+    '600italic': 'font-600italic',
+    '700': 'font-700',
+    '700italic': 'font-700italic',
+    '800': 'font-800',
+    '800italic': 'font-800italic',
+    '900': 'font-900',
+    '900italic': 'font-900italic',
 };
 
 const FontVariantSelection = ({t, rawFonts, font, variant, setVariant}: Props): ReactElement => {
     const {subSets} = useMemo<{subSets: string[]}>(() => (font && rawFonts && rawFonts.find((f) => f.family === font)) || {subSets: []}, [font, rawFonts]);
     const sorted = subSets.sort();
 
+    useEffect(() => {
+        if(!subSets.includes(variant)) {
+            setVariant(subSets[0]);
+        }
+    }, [subSets]);
+
     return <div className={'gridSubSets'}>
         <div><b>{t('overlay-font-variant-label')}</b></div>
         <Radio.Group onChange={(e) => setVariant(e.target.value)} value={variant}>
             {sorted.map((s) =>  <Radio key={s} value={s}>
-                <span style={{fontFamily: font, ...getVariant(s)}}>{subsetMap[s]}</span>
+                <span style={{fontFamily: font, ...getVariant(s)}}>{t(subsetMap[s])}</span>
             </Radio>)}
         </Radio.Group>
 
