@@ -7,13 +7,14 @@ import { getVariant } from "../dotaOverlay/Overlay/FontVariantSelection";
 
 interface Props {
     overlay: RoshOverlay;
+    state?: string;
 }
 
-export default function Timer({overlay}: Props): ReactElement {
+export default function Timer({overlay, state = 'respawn_base'}: Props): ReactElement {
     const minutes = 2;
     const seconds = 45;
 
-    return <div className={classNames('timer', {state: 'respawn_base'})} style={{...getVariant(overlay.variant)}}>
+    return <div className={classNames('timer', state)} style={{...(overlay.variant ? getVariant(overlay.variant) : {})}}>
         {overlay.font && overlay.font !== 'Arial' && <GoogleFontLoader fonts={[{font: overlay.font, weights: [overlay.variant]}]} />}
         {minutes}:{seconds}
 
@@ -36,8 +37,11 @@ export default function Timer({overlay}: Props): ReactElement {
                 color: ${overlay.baseColor};
             }
 
-            .timer.respawn_variable {
+            .respawn_variable {
                 color: ${overlay.variableColor};
+            }
+            .aegis {
+                color: ${overlay.aegisColor};
             }
         `}</style>
     </div>;
