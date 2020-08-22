@@ -10,8 +10,14 @@ interface Props {
 export default function Preview({overlay}: Props): ReactElement {
 
     return <div className={'preview'}>
-        <div className={'timer'}>
+        <div className={'faketimer faketimer2'}>
+            <Timer overlay={overlay} state={'aegis'} />
+        </div>
+        <div className={'faketimer'}>
             <Timer overlay={overlay} />
+        </div>
+        <div className={'timer'}>
+            <Timer overlay={overlay} state={'respawn_variable'}/>
         </div>
 
 
@@ -22,6 +28,21 @@ export default function Preview({overlay}: Props): ReactElement {
                 background-image: url('/images/preview/roshTimer.png');
                 background-size: cover;
                 position: relative;
+            }
+
+            .faketimer {
+                position: absolute;
+                right: 64px;
+                width: 64px;
+                height: 30px;
+                bottom: 218px;
+                background-image: url('/images/preview/roshTimer_timeBG.png');
+                background-repeat: no-repeat;
+                object-fit: contain;
+            }
+
+            .faketimer2 {
+                bottom: 248px;
             }
 
             .timer {
