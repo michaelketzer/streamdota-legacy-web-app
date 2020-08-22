@@ -32,5 +32,26 @@
     "overlay-source-test": "Test Frame Source (zum Positionieren, einfach die Links anschließend austauschen)",
     "overlay-source-suggested-size": "Empfohlene Browser-Source Größe:",
     "overlay-source-suggested-height": "Höhe",
-    "overlay-source-suggested-width": "Breite" 
+    "overlay-source-suggested-width": "Breite",
+
+    "font-100": "Extra Dünn",
+    "font-100italic": "Extra Dünn Kursiv",
+    "font-200": "Dünn",
+    "font-200italic": "Dünn Kursivn",
+    "font-300": "Schmal",
+    "font-300italic": "Schmal Kursiv",
+    "font-400": "Regulär",
+    "font-regular": "Regulär",
+    "font-400italic": "Regulär Kursiv",
+    "font-italic": "Regulär Kursiv",
+    "font-500": "Mittelgroß",
+    "font-500italic": "Mittelgroß Kursiv",
+    "font-600": "Halbfett",
+    "font-600italic": "Halbfett Kursiv",
+    "font-700": "Fett",
+    "font-700italic": "Fett Kursiv",
+    "font-800": "Extra Fett",
+    "font-800italic": "Extra Fett Kursiv",
+    "font-900": "Schwarz",
+    "font-900italic": "Schwarz Kursiv"
 }
