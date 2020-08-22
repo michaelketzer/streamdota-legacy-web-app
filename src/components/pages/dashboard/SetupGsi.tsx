@@ -81,10 +81,10 @@ const SetupGsi = ({ t, gsiAuth, gsiConnected }: Props): ReactElement => {
 						</div>
 
 						<Popconfirm
-							title='Bist du sicher, dass deine Einstellungen gelöscht werden sollen?'
+							title={t('gsi-reset')}
 							onConfirm={onResetGsi}
-							okText='Löschen'
-							cancelText='Abbrechen'>
+							okText={t('gsi-reset-confirm')}
+							cancelText={t('gsi-reset-cancel')}>
 							<Button type={'dashed'}>{t('gsi-setup-success-button')}</Button>
 						</Popconfirm>
 					</React.Fragment>
