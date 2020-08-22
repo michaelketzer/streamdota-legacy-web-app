@@ -8,6 +8,7 @@
   "license": "MIT",
   "dependencies": {
     "@ant-design/icons": "^4.0.5",
+    "@sentry/apm": "^5.21.3",
     "@sentry/browser": "^5.21.1",
     "antd": "^4.5.4",
     "asmcrypto-lite": "^1.1.0",
