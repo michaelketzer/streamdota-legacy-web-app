@@ -21,5 +21,9 @@
 
     "gsi-setup-success-header": "Dota GSI is configured and connected",
     "gsi-setup-success-desc": "Dota GSI is configured and had at least one connection to our server.",
-    "gsi-setup-success-button": "Reset Dota GSI"
+    "gsi-setup-success-button": "Reset Dota GSI",
+
+    "gsi-reset": "Are you sure that you want to reset your settings?",
+    "gsi-reset-confirm": "Reset",
+    "gsi-reset-cancel": "Cancel"
 }
