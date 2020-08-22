@@ -26,7 +26,7 @@ export default function Draggable({cfg, color, children, x, y, patch, height}: P
             fontSize: cfg.fontSize + 'px',
             lineHeight: height,
             fontFamily: cfg.font,
-            ...getVariant(cfg.variant),
+            ...(cfg ? getVariant(cfg.variant) : {}),
         }}>{children}</div>
     </ReactDraggable>;
 }
