@@ -5,9 +5,16 @@ import 'antd/dist/antd.min.css';
 import 'react-typist/dist/Typist.css';
 import { State, wrapper } from '../modules/Store';
 import i18n from '../i18n'
+import { Integrations } from '@sentry/apm';
 
 if (process.env.SENTRY_DSN && process.env.SENTRY_DSN.length > 0) {
-	Sentry.init({ dsn: process.env.SENTRY_DSN });
+    Sentry.init({
+        dsn: process.env.SENTRY_DSN,
+        integrations: [
+        	new Integrations.Tracing(),
+        ],
+        tracesSampleRate: 0.5,
+    });
 }
 
 class MyApp extends App<AppInitialProps & { store: Store<State> }> {
