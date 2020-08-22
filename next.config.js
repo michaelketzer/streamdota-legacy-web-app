@@ -12,5 +12,6 @@ module.exports = {
   env: {
     API_URL: process.env.API_URL,
     FRAMER_BASE_URL: process.env.FRAMER_BASE_URL,
+    SENTRY_DSN: process.env.SENTRY_DSN,
   },
 };
