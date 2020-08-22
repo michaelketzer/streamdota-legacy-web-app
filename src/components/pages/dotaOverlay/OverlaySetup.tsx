@@ -77,7 +77,7 @@ const OverlaySetup = ({t}: WithTranslation): ReactElement | null => {
 	const patch = (newCfg: Partial<OverlayConfig>) => {
 		const config = { ...cfg, ...newCfg };
 		setCfg(config);
-		dispatch(updateDotaOverlay(config));
+		dispatch(updateDotaOverlay(newCfg));
 	};
 
 	if (cfg && Object.keys(cfg).length > 0) {
