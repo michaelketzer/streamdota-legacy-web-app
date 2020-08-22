@@ -32,5 +32,26 @@
     "overlay-source-test": "Testing frame source (to position the overlay, you can just switch the links after)",
     "overlay-source-suggested-size": "Recommended browser source size:",
     "overlay-source-suggested-height": "Height",
-    "overlay-source-suggested-width": "Width" 
+    "overlay-source-suggested-width": "Width",
+
+    "font-100": "Thin",
+    "font-100italic": "Thin italic",
+    "font-200": "Extra-light",
+    "font-200italic": "Extra-light italic",
+    "font-300": "Light",
+    "font-300italic": "Light italic",
+    "font-400": "Regular",
+    "font-regular": "Regular",
+    "font-400italic": "Regular italic",
+    "font-italic": "Regular italic",
+    "font-500": "Medium",
+    "font-500italic": "Medium italic",
+    "font-600": "Semi-bold",
+    "font-600italic": "Semi-bold italic",
+    "font-700": "Bold",
+    "font-700italic": "Bold italic",
+    "font-800": "Extra-bold",
+    "font-800italic": "Extra-bold italic",
+    "font-900": "Black",
+    "font-900italic": "Black italic"
 }
