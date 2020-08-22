@@ -4,12 +4,16 @@ import { Font } from "@streamdota/shared-types";
 import { WithTranslation } from "next-i18next";
 import i18nInstance from "../../../../i18n";
 
-export function getVariant(variant: string): CSSProperties {
-    return {
-        //@ts-ignore
-        fontWeight: variant.substring(0, 3), 
-        fontStyle: variant.includes('italic') ? 'italic' : 'initial'
-    };
+export function getVariant(variant?: string): CSSProperties {
+    if(variant) {
+        return {
+            //@ts-ignore
+            fontWeight: variant.substring(0, 3), 
+            fontStyle: variant.includes('italic') ? 'italic' : 'initial'
+        };
+    }
+
+    return null;
 }
 
 interface Props extends WithTranslation {
