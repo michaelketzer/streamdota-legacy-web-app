@@ -5,11 +5,18 @@ import { initialState, reducer } from "../components/context/websocket/state";
 import { useCurrentUser } from "../hooks/currentUser";
 import PageHeader from "../components/PageHeader";
 import { Alert } from "antd";
-import LeagueIdSelector from "../components/pages/live/LeagueIdSelector";
 import getWebsocketUrl from "../modules/Router";
 import LiveFeed from "../components/pages/live/LiveFeed";
 import { WithTranslation } from "next-i18next";
 import i18nInstance from "../i18n";
+import dynamic from "next/dynamic";
+
+
+
+const LeagueIdSelector = dynamic(
+    () => import('../components/pages/live/LeagueIdSelector'),
+    { ssr: false }
+);
 
 const Live = ({t}: WithTranslation): ReactElement => {
     const user = useCurrentUser();
