@@ -14,7 +14,7 @@ const CurrentCategory = ({ t, seasons, currentBetSeason }: CategoryProps): React
 				<Typography.Text strong>{t('bet-season-current-season')}</Typography.Text>
 				<br />
 				<Select
-					defaultValue={currentBetSeason}
+					value={currentBetSeason}
 					style={{ width: '200px' }}
 					onChange={async (betSeasonId) => {
 						await dispatch(updateCurrentUser({ betSeasonId }));
