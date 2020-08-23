@@ -8,6 +8,7 @@ import {
   PieChartOutlined,
   DotChartOutlined,
   ClockCircleOutlined,
+  UserAddOutlined,
 } from '@ant-design/icons';
 import { WithTranslation } from "next-i18next";
 import i18nInstance from "../i18n";
@@ -79,6 +80,14 @@ const Navigation = ({t}: WithTranslation): ReactElement => {
                     {item.icon}
                     {t(item.name)}
                 </Menu.Item>)}
+            </Menu.ItemGroup>
+            <div className={'spacer'} />
+
+            <Menu.ItemGroup title={t('subHeader-support')}>
+                <Menu.Item key={'nav-support-support'}>
+                    <UserAddOutlined />
+                    <a href={'https://discord.gg/Xg5jD6V'} target={'_blank'}>{t('support')}</a>
+                </Menu.Item>
             </Menu.ItemGroup>
         </Menu>
 
