@@ -18,11 +18,6 @@ if (process.env.SENTRY_DSN && process.env.SENTRY_DSN.length > 0) {
 }
 
 class MyApp extends App<AppInitialProps & { store: Store<State> }> {
-	static async getInitialProps({ Component, ctx }) {
-		const pageProps = Component.getInitialProps ? await Component.getInitialProps(ctx) : {};
-		return { pageProps };
-	}
-
 	render() {
 		const { Component, pageProps } = this.props;
 		return <Component {...pageProps} />;
