@@ -12,8 +12,8 @@ import { WithTranslation } from 'next-i18next';
 import i18nInstance from '../../../../i18n';
 
 const Tab = ({t}: WithTranslation): ReactElement => {
-	const user = useCurrentUser();
 	const dispatch = useDispatch();
+	const user = useCurrentUser();
 	const seasons = useBetSeasons();
 	const onToggleBets = useCallback(
 		async () => {

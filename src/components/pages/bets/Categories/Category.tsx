@@ -12,7 +12,6 @@ import i18nInstance from '../../../../i18n';
 
 export interface CategoryProps extends WithTranslation {
 	seasons: BetSeason[];
-	reload?: () => void;
 	currentBetSeason?: number;
 }
 
@@ -40,10 +39,9 @@ const Category = ({ user, t }: { user: User } & WithTranslation): ReactElement =
 
 			<Row gutter={[ 50, 50 ]}>
 				<Col span={12}>
-					<CurrentCategory seasons={seasons} reload={() => undefined} currentBetSeason={user.betSeasonId} />
+					<CurrentCategory seasons={seasons} currentBetSeason={user.betSeasonId} />
 					<CategoryList
 						seasons={seasons}
-						reload={() => undefined}
 						currentBetSeason={user.betSeasonId}
 						canManage={canManage}
 					/>
