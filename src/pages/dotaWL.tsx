@@ -4,6 +4,7 @@ import dynamic from "next/dynamic";
 import PageHeader from "../components/PageHeader";
 import { WithTranslation } from "next-i18next";
 import i18nInstance from "../i18n";
+import { wrapper } from "../modules/Store";
 
 const DotaWLTabs = dynamic(
     () => import('../components/pages/dotaOverlay/DotaWLTabs'),
@@ -27,4 +28,4 @@ DotaOverlay.getInitialProps = async () => ({
     namespacesRequired: ['dotaWL', 'bot', 'nav'],
 });
 
-export default i18nInstance.withTranslation('dotaWL')(DotaOverlay);
+export default wrapper.withRedux(i18nInstance.withTranslation('dotaWL')(DotaOverlay));
