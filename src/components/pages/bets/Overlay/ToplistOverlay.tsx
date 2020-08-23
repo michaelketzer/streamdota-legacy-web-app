@@ -1,6 +1,7 @@
 import { ReactElement, Fragment } from "react";
 import { BetOverlay } from "@streamdota/shared-types";
 import classNames from "classnames";
+import { getVariant } from "../../dotaOverlay/Overlay/FontVariantSelection";
 
 interface Props {
     list: Array<{name: string; won: number; total: number}>;
@@ -13,7 +14,7 @@ function getAccuracy(win, total): string {
 }
 
 export default function ToplistOverlay({list, overlay}: Props): ReactElement {
-    return <div className={classNames('toplist', {rank: overlay.toplistShowRank})}>
+    return <div className={classNames('toplist', {rank: overlay.toplistShowRank})} style={{...getVariant(overlay.fontVariant)}}>
         {list.map((user, idx) => <Fragment key={user.name}>
             {Boolean(overlay.toplistShowRank) && <div>{idx + 1}.</div>}
             <div className={'name'}>{user.name}</div>

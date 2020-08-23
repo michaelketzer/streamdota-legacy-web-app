@@ -1,6 +1,7 @@
 import { ReactElement } from "react";
 import { BetOverlay } from "@streamdota/shared-types";
 import GoogleFontLoader from "react-google-font-loader";
+import { getVariant } from "../../dotaOverlay/Overlay/FontVariantSelection";
 
 interface Props {
     overlay: BetOverlay;
@@ -10,7 +11,7 @@ export default function TimerCounter({overlay}: Props): ReactElement {
     return <div className={'wrapper'}>
         {overlay.fontFamily && <GoogleFontLoader fonts={[{font: overlay.fontFamily, weights: [overlay.fontVariant]}]} />}
 
-        <div className={'counter'}>1:20</div>
+        <div className={'counter'} style={{...getVariant(overlay.fontVariant)}}>1:20</div>
 
         <style jsx>{`
             .wrapper {
