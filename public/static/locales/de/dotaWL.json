@@ -10,6 +10,10 @@
     "settings-session": "Session - Der Stand ist “0 - 0” sobald der Stream startet",
     "settings-day": "Tag - Es werden alle Stats des aktuellen Tages gezählt",
 
+    "settings-visible-title": "Lege fest, wann das Overlay innerhalb von Dota sichtbar ist",
+    "settings-visible-menu": "Versteckt im Hauptmenü, das gilt nur dann, wenn man das Spiel verlassen hat",
+    "settings-visible-picking": "Versteckt während der Pickphase",
+
     "overlay-title": "Overlay Konfiguration",
     "overlay-font-info": "Wähle eine Schriftart, um einen generellen Überblick über alle Schriften zu erhalten kannst du bei Google Fonts nachsehen:",
     "overlay-font-label": "Schrift",

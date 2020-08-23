@@ -1191,10 +1191,10 @@
     "@sentry/types" "5.21.3"
     tslib "^1.9.3"
 
-"@streamdota/shared-types@1.2.0":
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/@streamdota/shared-types/-/shared-types-1.2.0.tgz#bd4213b33895e1e22f60d2397ad85cf14ef52826"
-  integrity sha512-YQipjNOku4GLByofX0fWoF/WDsYq5US1SxvvMze2QHJjmvGTd0n0zSA/GZ9LQuaR8RGFB+cHUlwbYpjhxH0rVQ==
+"@streamdota/shared-types@1.2.1":
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/@streamdota/shared-types/-/shared-types-1.2.1.tgz#9a1c6466555a6ec7862024687d9a3c4ada3cc194"
+  integrity sha512-ba4KQ5WG8bYPtThmpodxuVzeMXpYq2BK+rPN3x10G+oL2CWlv6XR+MUq2KRX97rHs1xi/LUqMfWCuqak1DSXCQ==
 
 "@types/body-parser@*":
   version "1.19.0"
@@ -2629,9 +2629,9 @@ duplexify@^3.4.2, duplexify@^3.6.0:
     stream-shift "^1.0.0"
 
 electron-to-chromium@^1.3.488, electron-to-chromium@^1.3.523:
-  version "1.3.543"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.3.543.tgz#71296bce656b21b56be78a5a973ebd82dbb61a03"
-  integrity sha512-PFbVI7G3e2fXSCFa+tgYAlyWNnUJZo4JtpJHYJ/DuB32opR6lzNJoH2LuR392Zr+nmw9jK5LZd+kvdcJDoj/fA==
+  version "1.3.544"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.3.544.tgz#ac1f7d319f6060f3d6d122261d542ec77eb1427e"
+  integrity sha512-jx6H7M1db76Q/dI3MadZC4qwNTvpiq8tdYEJswxexrIm5bH+LKRdg+VAteMF1tJJbBLrcuogE9N3nxT3Dp1gag==
 
 elliptic@^6.5.3:
   version "6.5.3"

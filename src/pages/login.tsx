@@ -1,7 +1,8 @@
 import Router from 'next/router';
 import Loader from '../components/Loader';
+import { wrapper } from '../modules/Store';
 
-export default function Login() {
+const Login = () => {
     if(process.browser) {
         if(localStorage.getItem('jwt')) {
             Router.push('/dashboard');
@@ -11,3 +12,5 @@ export default function Login() {
     }
     return <Loader />;
 }
+
+export default wrapper.withRedux(Login);
