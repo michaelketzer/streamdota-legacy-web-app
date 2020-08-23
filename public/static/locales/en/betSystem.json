@@ -54,8 +54,10 @@
     "bet-season-invites-label": "Invites for ",
     "bet-season-invite-new": "New invite",
 
-    "bet-season-first-time-setup": "Hey, it looks like you are the first time here.",
-    "bet-season-first-time-setup-1": "Just start with creating a new category:",
+
+    "bet-season-first-time-setup": "it looks like you are the first time here.",
+    "bet-season-first-time-setup-1": "Categories are groups of bet rounds for a single toplist. You could name them also seasons.",
+    "bet-season-first-time-setup-2": "To start, you should create your first category:",
 
     "bet-season-invite-key": "Key",
     "bet-season-invite-created": "Created",
