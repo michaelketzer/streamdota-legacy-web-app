@@ -4,6 +4,7 @@ import PageHeader from "../components/PageHeader";
 import dynamic from "next/dynamic";
 import i18nInstance from "../i18n";
 import { WithTranslation } from "next-i18next";
+import { wrapper } from "../modules/Store";
 
 const BetTabs = dynamic(
     () => import('../components/pages/bets/BetTabs'),
@@ -23,4 +24,4 @@ Bets.getInitialProps = async () => ({
     namespacesRequired: ['betSystem', 'doatWL', 'bot', 'nav'],
 });
 
-export default i18nInstance.withTranslation('betSystem')(Bets);
+export default wrapper.withRedux(i18nInstance.withTranslation('betSystem')(Bets));
