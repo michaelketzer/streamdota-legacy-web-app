@@ -1,6 +1,6 @@
 {
-    "name": "",
-    "short_name": "",
+    "name": "StreamDota - Your toolbox for streaming Dota",
+    "short_name": "StreamDota",
     "icons": [
         {
             "src": "/android-chrome-192x192.png",
