@@ -18,6 +18,7 @@ import {
 	DELETE_BET_SEASON_FAILURE,
 } from './Actions';
 import { loadCurrentUser } from './Ui';
+import { currentUserSelector } from '../selector/Ui';
 
 export interface BetSeasonState {
 	[x: number]: BetSeason;
@@ -107,7 +108,8 @@ export function patchBetSeason(seasonId: number, data: Partial<BetSeason>): Acti
 }
 
 export function deleteBetSeason(seasonId: number): ActionDispatcher<Promise<void>> {
-	return async (dispatch) => {
+	return async (dispatch, getState) => {
+		const currentUser = currentUserSelector(getState());
 		await dispatch<Promise<Response | NetworkError>>({
 			[CALL_API]: {
 				endpoint: `${process.env.API_URL}/betSeason/:seasonId`,
@@ -126,5 +128,9 @@ export function deleteBetSeason(seasonId: number): ActionDispatcher<Promise<void
 		});
 
 		await dispatch(loadBetSeasons());
+
+		if(currentUser && currentUser.betSeasonId === seasonId) {
+			await dispatch(loadCurrentUser());
+		}
 	};
 }
