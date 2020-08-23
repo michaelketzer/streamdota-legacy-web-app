@@ -106,5 +106,9 @@
     "bet-season-overlay-settings": "Settings",
     "bet-season-overlay-showRank": "Show ranks (1. 2. 3.)",
     "bet-season-overlay-showTotal": "Show total bets (/10)",
-    "bet-season-overlay-quota": "Show correct quota in percent"
+    "bet-season-overlay-quota": "Show correct quota in percent",
+
+    "commands-vars": "Variables",
+    "commands-vars-sub": "You can use the following variables as placeholder for your responses:",
+    "commands-title": "Commands"
 }

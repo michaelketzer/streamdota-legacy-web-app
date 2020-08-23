@@ -22,6 +22,7 @@
     "commands-list-delete": "Should the command be deleted?",
     "commands-list-delete-yes": "Yes",
     "commands-list-delete-no": "No",
+    "commands-list-access": "Access",
 
     "timer-active": "Active",
     "timer-interval": "Interval",
