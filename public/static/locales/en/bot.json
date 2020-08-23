@@ -22,6 +22,7 @@
     "commands-list-delete": "Should the command be deleted?",
     "commands-list-delete-yes": "Yes",
     "commands-list-delete-no": "No",
+    "commands-list-access": "Access",
 
     "timer-active": "Active",
     "timer-interval": "Interval",
@@ -30,6 +31,15 @@
     "timer-create": "Create",
     "timer-delete": "Should this time be deleted?",
     "timer-delete-yes": "Yes",
-    "timer-delete-no": "No"
+    "timer-delete-no": "No",
+
+    "access-select": "Choose access",
+    "access-user": "User",
+    "access-tier1": "Tier1",
+    "access-tier2": "Tier2",
+    "access-tier3": "Tier3",
+    "access-vip": "VIP",
+    "access-mod": "Mod",
+    "access-streamer": "Broadcaster"
 
 }
