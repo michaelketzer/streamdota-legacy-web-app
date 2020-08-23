@@ -10,6 +10,7 @@ import { createCommand, updateCommand, deleteCommand } from "../../../modules/re
 import { Command } from "@streamdota/shared-types";
 import { WithTranslation } from "next-i18next";
 import i18nInstance from "../../../i18n";
+import CommandAccess from "./CommandAccess";
 
 const replace = {
     UPTIME: '4 Stunden und 20 Minuten',
@@ -63,10 +64,11 @@ const CommandList = ({t, commandType = 'default', replaceVars = {}, canCreate=tr
             <div className={'label'}>{t('commands-list-active')}</div>
             <div className={'label'}>{t('commands-list-command')}</div>
             <div className={'label'}>{t('commands-list-response')}</div>
+            <div className={'label'}>{t('commands-list-access')}</div>
             <div className={'label'}></div>
             <div className={'label'}>{t('commands-list-preview')}</div>
 
-            {commands.map(({active, id, command, message, noResponse, deleteAble}) => <React.Fragment key={id}>
+            {commands.map(({active, id, command, message, noResponse, deleteAble, ...props}) => <React.Fragment key={id}>
                 <div className={'activeBox'}>
                     <Checkbox defaultChecked={active} onChange={async (e) => {
                         await dispatch(updateCommand(id, {active: e.target.checked}));
@@ -80,6 +82,11 @@ const CommandList = ({t, commandType = 'default', replaceVars = {}, canCreate=tr
                 <TextArea defaultValue={message} disabled={noResponse} rows={noResponse ? 1 : 2} onBlur={async (e) => {
                     await dispatch(updateCommand(id, { message: e.target.value }));
                 }} />
+                <div>
+                    <CommandAccess command={props} onChange={async (data: Partial<Command>) => {
+                        await dispatch(updateCommand(id, data));
+                    }}/>
+                </div>
                 <div>
     
                     <Popconfirm disabled={!deleteAble} title={t('commands-list-delete')} onConfirm={async () => {
@@ -100,7 +107,8 @@ const CommandList = ({t, commandType = 'default', replaceVars = {}, canCreate=tr
                 </div>
                 <TextArea value={msg} onChange={(e) => setMsg(e.target.value)} placeholder={t('commands-list-response')} />
                 <div></div>
-                    <div>{createPreview(msg, replaceVars)}</div>
+                <div></div>
+                <div>{createPreview(msg, replaceVars)}</div>
                 <div />
                 <div />
                 <div className={'createButton'}>
@@ -123,7 +131,7 @@ const CommandList = ({t, commandType = 'default', replaceVars = {}, canCreate=tr
 
                 .commandsGrid {
                     display: grid;
-                    grid-template-columns: max-content 170px 330px 60px 1fr;
+                    grid-template-columns: max-content 170px 330px 300px 60px 1fr;
                     grid-column-gap: 20px;
                     grid-row-gap: 15px;
                 }

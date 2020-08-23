@@ -105,5 +105,9 @@
     "bet-season-overlay-settings": "Einstellungen",
     "bet-season-overlay-showRank": "Zeige Rank (1. 2. 3.)",
     "bet-season-overlay-showTotal": "Zeige Totale Wetten (/10)",
-    "bet-season-overlay-quota": "Zeige richtige Wettquote in Prozent"
+    "bet-season-overlay-quota": "Zeige richtige Wettquote in Prozent",
+
+    "commands-vars": "Variabeln",
+    "commands-vars-sub": "Du kannst in den Antworten eines Commands folgende Variabeln benutzen:",
+    "commands-title": "Commands"
 }
