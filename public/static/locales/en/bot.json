@@ -31,6 +31,15 @@
     "timer-create": "Create",
     "timer-delete": "Should this time be deleted?",
     "timer-delete-yes": "Yes",
-    "timer-delete-no": "No"
+    "timer-delete-no": "No",
+
+    "access-select": "Choose access",
+    "access-user": "User",
+    "access-tier1": "Tier1",
+    "access-tier2": "Tier2",
+    "access-tier3": "Tier3",
+    "access-vip": "VIP",
+    "access-mod": "Mod",
+    "access-streamer": "Broadcaster"
 
 }
