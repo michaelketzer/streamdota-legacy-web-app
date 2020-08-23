@@ -10,6 +10,10 @@
     "settings-session": "Session - The count is reseted once the stream starts",
     "settings-day": "Day - All games of the day are counted",
 
+    "settings-visible-title": "Decide when the overlay is visible in dota",
+    "settings-visible-menu": "Show while in main menu",
+    "settings-visible-picking": "Show while picking",
+
     "overlay-title": "Overlay configuration",
     "overlay-font-info": "Select a font family, you can get an overview of all available fonts here:",
     "overlay-font-label": "Font family",
