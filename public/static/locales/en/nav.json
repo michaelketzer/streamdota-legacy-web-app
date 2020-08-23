@@ -7,5 +7,8 @@
     "nav-general-liveFeed": "Live Feed",
 
     "subHeader-gameplay": "Gameplay Tools",
-    "subHeader-cast": "Caster Tools"
+    "subHeader-cast": "Caster Tools",
+
+    "subHeader-support": "Support",
+    "nav-support-support": "Discord Channel"
 }
