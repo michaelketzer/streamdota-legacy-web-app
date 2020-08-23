@@ -84,9 +84,9 @@ const Navigation = ({t}: WithTranslation): ReactElement => {
             <div className={'spacer'} />
 
             <Menu.ItemGroup title={t('subHeader-support')}>
-                <Menu.Item key={'nav-support-support'}>
+                <Menu.Item key={'support'}>
                     <UserAddOutlined />
-                    <a href={'https://discord.gg/Xg5jD6V'} target={'_blank'}>{t('support')}</a>
+                    <a href={'https://discord.gg/Xg5jD6V'} target={'_blank'}>{t('nav-support-support')}</a>
                 </Menu.Item>
             </Menu.ItemGroup>
         </Menu>
