@@ -51,7 +51,7 @@ const FontVariantSelection = ({t, rawFonts, font, variant, setVariant}: Props): 
     const sorted = subSets.sort();
 
     useEffect(() => {
-        if(!subSets.includes(variant)) {
+        if(!subSets.includes(variant) && subSets[0]) {
             setVariant(subSets[0]);
         }
     }, [subSets]);
