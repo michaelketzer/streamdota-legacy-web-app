@@ -14,12 +14,13 @@ async function handleAuthRoutine(dispatch: Dispatch<any>, code: string): Promise
 const Auth = () => {
     const router = useRouter();
     const dispatch = useDispatch();
+
     useEffect(() => {
-        console.log(process.browser, router.query);
+        console.log(router.query);
         if(process.browser && router.query.code) {
             handleAuthRoutine(dispatch, router.query.code);
         }
-    }, [router.query]);
+    }, [router]);
     
     return <Loader />;
 }
