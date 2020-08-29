@@ -12,6 +12,7 @@ async function handleAuthRoutine(dispatch: Dispatch<any>, code: string): Promise
 
 const Auth = ({code}: {code: string}) => {
     const dispatch = useDispatch();
+    console.log(process.browser, code);
     if(process.browser && code) {
         handleAuthRoutine(dispatch, code);
     }
