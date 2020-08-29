@@ -18,7 +18,7 @@ const Auth = () => {
     useEffect(() => {
         console.log(router.query);
         if(process.browser && router.query.code) {
-            handleAuthRoutine(dispatch, router.query.code);
+            handleAuthRoutine(dispatch, router.query.code as unknown as string);
         }
     }, [router]);
     
