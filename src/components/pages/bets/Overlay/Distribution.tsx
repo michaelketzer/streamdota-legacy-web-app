@@ -3,7 +3,7 @@ import { useBetOverlay } from "../../../../modules/selector/BetOverlay";
 import { useDispatch } from "react-redux";
 import { BetOverlay } from "@streamdota/shared-types";
 import { patchBetOverlay } from "../../../../modules/reducer/BetOverlay";
-import { Typography } from "antd";
+import { Typography, Alert, InputNumber } from "antd";
 import Color from "../../dotaOverlay/Overlay/Color";
 import FontSize from "../../dotaOverlay/Overlay/FontSize";
 import DistributionSlider from "./DistributionSlider";
@@ -11,6 +11,7 @@ import FrameLink from "../../dotaOverlay/Overlay/FrameLink";
 import { useCurrentUser } from "../../../../hooks/currentUser";
 import { WithTranslation } from "next-i18next";
 import i18nInstance from "../../../../i18n";
+import { updateCurrentUser } from "../../../../modules/reducer/Ui";
 
 const Distribution = ({t}: WithTranslation): ReactElement => {
     const overlay = useBetOverlay();
@@ -22,6 +23,19 @@ const Distribution = ({t}: WithTranslation): ReactElement => {
     }, [dispatch]);
     
     return <div>
+
+        <div>
+            <Alert
+            message="Stream Delay"
+            description={<div>
+                If you are streaming with delay, you need to define the actual delay. Streaming with delay will cause the slider not being visible! But will still feature the rest of the overlays and commands!
+                Your stream delay in seconds: &nbsp;&nbsp;
+                <InputNumber min={0} value={user.streamDelay} onChange={(streamDelay) => dispatch(updateCurrentUser({streamDelay: +streamDelay}))} />
+            </div>}
+            type="warning"
+            showIcon
+            />
+        </div>
         <div className={'topGrid'}>
             <div>
                 <Typography.Title level={3}>{t('bet-season-overlay-color')}</Typography.Title>
@@ -47,7 +61,7 @@ const Distribution = ({t}: WithTranslation): ReactElement => {
             <Typography.Title level={3}>{t('bet-season-overlay-preview')}</Typography.Title>
             <div className={'preview'}>
                 <img className={'exampleBackground'} src={'/images/example_background.png'} />
-                <div className={'slider'}><DistributionSlider overlay={overlay} /></div>
+                <div className={'slider'}><DistributionSlider overlay={overlay} delay={user.streamDelay} /></div>
             </div>
         </div>
 
@@ -56,6 +70,7 @@ const Distribution = ({t}: WithTranslation): ReactElement => {
                 display: grid;
                 grid-template-columns: max-content max-content;
                 grid-column-gap: 100px;
+                margin-top: 40px;
             }
 
             .preview {
