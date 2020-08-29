@@ -47,11 +47,11 @@ const defaultState: OverlayConfig = {
 	winColor: '#0F0',
 	lossColor: '#F00',
 
-	winX: 35,
-	winY: 5,
+	winX: 31,
+	winY: 8,
 
-	lossX: 107,
-	lossY: 5,
+	lossX: 96,
+	lossY: 8,
 
 	showBackground: true,
 };
