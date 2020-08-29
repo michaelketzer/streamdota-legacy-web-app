@@ -13,7 +13,6 @@ const Position = ({t, cfg, patch}: {cfg: OverlayConfig; patch: (v: Partial<Overl
         <div className={'positionFrame ' + (!cfg.showBackground && 'noBg')}>
             <div className={'container'}>
                 <Draggable color={cfg.winColor} cfg={cfg} x={cfg.winX} y={cfg.winY} patch={(x, y) => patch({winX: x, winY: y})} height={'.9em'}>3</Draggable>
-                <Draggable color={cfg.dividerColor} cfg={cfg} x={cfg.dividerX} y={cfg.dividerY} patch={(x, y) => patch({dividerX: x, dividerY: y})} height={'.7em'}>:</Draggable>
                 <Draggable color={cfg.lossColor} cfg={cfg} x={cfg.lossX} y={cfg.lossY} patch={(x, y) => patch({lossX: x, lossY: y})} height={'.9em'}>1</Draggable>
             </div>
         </div>

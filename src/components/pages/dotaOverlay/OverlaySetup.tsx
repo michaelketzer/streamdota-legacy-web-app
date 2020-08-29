@@ -45,14 +45,10 @@ const defaultState: OverlayConfig = {
 	fontSize: 50,
 	variant: '400',
 	winColor: '#0F0',
-	dividerColor: '#D8D6D6',
 	lossColor: '#F00',
 
 	winX: 35,
 	winY: 5,
-
-	dividerX: 80,
-	dividerY: 1,
 
 	lossX: 107,
 	lossY: 5,
@@ -107,11 +103,6 @@ const OverlaySetup = ({t}: WithTranslation): ReactElement | null => {
 							value={cfg.lossColor}
 							setValue={(lossColor) => patch({ lossColor })}
 							label={t('overlay-color-lost')}
-						/>
-						<Color
-							value={cfg.dividerColor}
-							setValue={(dividerColor) => patch({ dividerColor })}
-							label={t('overlay-color-divider')}
 						/>
 					</div>
 
