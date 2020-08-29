@@ -10,17 +10,17 @@ async function handleAuthRoutine(dispatch: Dispatch<any>, code: string): Promise
     Router.push(success ? '/dashboard' : '/');
 }
 
-const Auth = ({code}: {code: string}) => {
+const Auth = ({query}: {query: any}) => {
     const dispatch = useDispatch();
-    console.log(process.browser, code);
-    if(process.browser && code) {
-        handleAuthRoutine(dispatch, code);
+    console.log(process.browser, query);
+    if(process.browser && query.code) {
+        handleAuthRoutine(dispatch, query.code);
     }
     return <Loader />;
 }
 
-Auth.getInitialProps = ({query: {code}}) => {
-    return {code}
+Auth.getInitialProps = ({query}) => {
+    return {query}
 }
 
 export default wrapper.withRedux(Auth);
