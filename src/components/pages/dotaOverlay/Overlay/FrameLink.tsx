@@ -31,8 +31,8 @@ const FrameLink = ({ t, access, auth, height = null, width = null, testing }: Pr
 			{height && width && <Paragraph>
 				{t('overlay-source-suggested-size')} 
 				<ul>
-					<li>{t('overlay-source-suggested-height')}: {width}px</li>
-					<li>{t('overlay-source-suggested-width')}: {height}px</li>
+					<li>{t('overlay-source-suggested-height')}: {height}px</li>
+					<li>{t('overlay-source-suggested-width')}: {width}px</li>
 				</ul>
 			</Paragraph>}
 		</React.Fragment>
