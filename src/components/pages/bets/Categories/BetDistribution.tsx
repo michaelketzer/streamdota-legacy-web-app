@@ -47,22 +47,22 @@ const BetDistribution = ({t, aBets, bBets, bets}: Props): ReactElement => {
             }
 
             .teamA {
-                color: #A8071A;
+                color: #389E0D;
             }
 
             .teamB {
-                color: #389E0D;
+                color: #A8071A;
             }
 
             .distributionSlider {
                 width: 100%;
-                background-color: #389E0D;
+                background-color: #A8071A;
                 border-radius: 8px;
                 height: 12px;
             }
 
             .teamABets {
-                background-color: #A8071A;
+                background-color: #389E0D;
                 position: relative;
                 height: 100%;
                 transition: width 120ms ease-in-out;
