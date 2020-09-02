@@ -114,5 +114,6 @@
     "commands-title": "Commands",
 
     "bet-season-stream-delay": "If you are streaming with delay, you need to define the actual delay. Streaming with delay will cause the slider not being visible! But will still feature the rest of the overlays and commands!",
-    "bet-season-stream-delay-label": "Your stream delay in seconds:" 
+    "bet-season-stream-delay-label": "Your stream delay in seconds:",
+    "bet-season-overlay-maxEntry": "Max Entries"
 }
