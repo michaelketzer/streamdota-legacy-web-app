@@ -3,7 +3,7 @@ import { useBetOverlay } from "../../../../modules/selector/BetOverlay";
 import { useDispatch } from "react-redux";
 import { BetOverlay } from "@streamdota/shared-types";
 import { patchBetOverlay } from "../../../../modules/reducer/BetOverlay";
-import { Typography, Switch } from "antd";
+import { Typography, Switch, InputNumber } from "antd";
 import Color from "../../dotaOverlay/Overlay/Color";
 import FontSize from "../../dotaOverlay/Overlay/FontSize";
 import ToplistOverlay from "./ToplistOverlay";
@@ -22,7 +22,17 @@ const toplist = [
     {name: 'hesPEdenEW', total: 14, won: 12},
     {name: 'hurSTIoNtEareAdU', total: 11, won: 11},
     {name: 'rarSeMeNthEAcyCL', total: 10, won: 10},
-    {name: 'rarSeMeTThEAcyCL', total: 10, won: 8},
+    {name: 'rarSeMeTThEAcXL', total: 10, won: 8},
+    {name: 'rmiLEXXCI', total: 10, won: 7},
+    {name: 'rarSeMYthFFcyCL', total: 10, won: 7},
+    {name: 'UrasrIblect', total: 10, won: 7},
+    {name: 'DaRNDDRIo', total: 14, won: 6},
+    {name: 'IXYCV', total: 5, won: 5},
+    {name: 'thYSmaDDDahAnd', total: 5, won: 5},
+    {name: 'hesPEAASnEW', total: 8, won: 5},
+    {name: 'hurSTIDASareAdU', total: 8, won: 5},
+    {name: 'rarSeMeFDcyCL', total: 9, won: 5},
+    {name: 'rarSeMeTThEAXYCL', total: 12, won: 5},
 ]
 
 const Toplist = ({t}: WithTranslation): ReactElement => {
@@ -49,9 +59,8 @@ const Toplist = ({t}: WithTranslation): ReactElement => {
                 <br />
                 <br />
 
-                <FrameLink access={'betting/toplist'} auth={user?.frameApiKey || ''} height={600} width={300} />
+                <FrameLink access={'betting/toplist'} auth={user?.frameApiKey || ''} height={600} width={300} testing={true} />
             </div>
-
 
             <div>
                 <Typography.Title level={3}>{t('bet-season-overlay-settings')}</Typography.Title>
@@ -63,6 +72,12 @@ const Toplist = ({t}: WithTranslation): ReactElement => {
                     <Switch checked={overlay.toplistShowAccuracy} onChange={(toplistShowAccuracy) => patch({toplistShowAccuracy})} />
                     <div className={'label'} onClick={() => patch({toplistShowAccuracy: !overlay.toplistShowAccuracy})}>{t('bet-season-overlay-quota')}</div>
                 </div>
+                    
+                <br />
+
+                <div><b>{t('bet-season-overlay-maxEntry')}</b></div>
+                <InputNumber min={0} max={20} value={overlay.toplistMaxEntry} onChange={(toplistMaxEntry) => patch({toplistMaxEntry: +toplistMaxEntry})} />
+
             </div>
         </div>
 
@@ -73,7 +88,7 @@ const Toplist = ({t}: WithTranslation): ReactElement => {
                 <img className={'exampleBackground'} src={'/images/example_background_vertical.png'} />
 
                 <div className={'toplist'}>
-                    <ToplistOverlay overlay={overlay} list={toplist} />
+                    <ToplistOverlay overlay={overlay} list={toplist.slice(0, overlay.toplistMaxEntry)} />
                 </div>
             </div>
         </div>

@@ -113,5 +113,6 @@
     "commands-title": "Commands",
 
     "bet-season-stream-delay": "Wenn du mit delay streamst, muss das hier angegeben werden. Mit delay zu streamen wird den Slider verstecken, der Rest funktioniert trotzdem genauso wie vorher.",
-    "bet-season-stream-delay-label": "Dein Streamdelay in Sekunden:" 
+    "bet-season-stream-delay-label": "Dein Streamdelay in Sekunden:",
+    "bet-season-overlay-maxEntry": "Maximale Einträge"
 }
