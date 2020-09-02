@@ -25,9 +25,9 @@ export default function DistributionSlider({overlay, delay, distribution = 50, a
                     <div className={'progress'} style={{width: distribution + '%'}}/>
                 </div>
 
-                {overlay.distributionNumbers && <div className={'numberWrapper'}>
+                {Boolean(overlay.distributionNumbers) && <div className={'numberWrapper'}>
                     <div className={'numbers'} style={{...getVariant(overlay.fontVariant)}}>
-                        <div>{aBets}</div><div className={'divider'}>|</div><div>{bBets}</div>
+                        <div className={'num'} style={{...getVariant(overlay.fontVariant)}}>{aBets}</div><div className={'divider'}>|</div><div className={'num'}  style={{...getVariant(overlay.fontVariant)}}>{bBets}</div>
                     </div>
                 </div>}
             </div>
@@ -88,7 +88,12 @@ export default function DistributionSlider({overlay, delay, distribution = 50, a
             }
 
             .divider {
-                margin: -4px 10px 0 10px;
+                margin: -5px 10px 0 10px;
+            }
+
+            .num {
+                line-height: 1em;
+                font-family: ${overlay.fontFamily};
             }
 
             .delay {
