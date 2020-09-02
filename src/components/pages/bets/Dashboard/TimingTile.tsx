@@ -44,10 +44,12 @@ const TimingTile = ({t, status, created}: {status: 'betting' | 'running' | 'fini
     const time = useMemo(() => {
         if(status === 'finished') {
             return t('bet-dashboard-timing-waiting');
-        } else if(status === 'betting') {
+        } else if(status === 'betting' && remaining > 0) {
             const min = Math.floor(remaining / 60);
             const sec = Math.floor(remaining % 60);
             return (min < 10 ? `0${min}` : min) + ':' + (sec < 10 ? `0${sec}` : sec);
+        } else if(status === 'betting' && remaining <= 0) {
+            return '0:00';
         }
 
         return t('bet-dashboard-timing-expired');
