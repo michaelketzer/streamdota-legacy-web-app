@@ -8,9 +8,11 @@ interface Props {
     overlay: BetOverlay;
     distribution?: number;
     delay: number;
+    aBets: number;
+    bBets: number;
 }
 
-export default function DistributionSlider({overlay, delay, distribution = 50}: Props): ReactElement {
+export default function DistributionSlider({overlay, delay, distribution = 50, aBets = 0, bBets = 0}: Props): ReactElement {
     return <>
         {overlay.fontFamily && <GoogleFontLoader fonts={[{font: overlay.fontFamily, weights: [overlay.fontVariant]}]} />}
 
@@ -18,8 +20,16 @@ export default function DistributionSlider({overlay, delay, distribution = 50}: 
             <div className={'vote votaA'} style={{...getVariant(overlay.fontVariant)}}>
                 !bet a
             </div>
-            <div className={classNames('slider', {delay: delay > 0})}>
-                <div className={'progress'} style={{width: distribution + '%'}}/>
+            <div className={classNames('distributionWrapper', {delay: delay > 0})}>
+                <div className={'slider'}>
+                    <div className={'progress'} style={{width: distribution + '%'}}/>
+                </div>
+
+                {overlay.distributionNumbers && <div className={'numberWrapper'}>
+                    <div className={'numbers'} style={{...getVariant(overlay.fontVariant)}}>
+                        <div>{aBets}</div><div className={'divider'}>|</div><div>{bBets}</div>
+                    </div>
+                </div>}
             </div>
             <div className={'vote votaB'} style={{...getVariant(overlay.fontVariant)}}>
                 !bet b
@@ -29,7 +39,7 @@ export default function DistributionSlider({overlay, delay, distribution = 50}: 
         <style jsx>{`
             .distributionSlider {
                 display: flex;
-                align-items: center;
+                align-items: flex-start;
             }
 
             .vote {
@@ -40,15 +50,45 @@ export default function DistributionSlider({overlay, delay, distribution = 50}: 
                 flex-shrink: 0;
                 line-height: 1em;
                 font-family: ${overlay.fontFamily};
+                text-transform: uppercase;
             }
 
             .slider {
-                flex-grow: 1;
                 width: 100%;
-                margin: 0 20px;
                 border-radius: 8px;
                 height: 12px;
                 background-color: ${overlay.distributionColorRight};
+            }
+
+            .distributionWrapper {
+                padding-top: 1.3em;
+                display: flex;
+                flex-direction: column;
+                align-items: stretch;
+                width: 100%;
+                flex-grow: 1;
+                margin: 0 20px;
+            }
+
+            .numberWrapper {
+                margin: 0 auto;
+            }
+
+            .numbers {
+                align-items: center;
+                justify-content: space-around;
+                background-color: ${overlay.distributionBackground};
+                color: ${overlay.distributionFont};
+                padding: .5em .75em;
+                font-size: ${overlay.distributionFontSize}px;
+                line-height: 1em;
+                text-transform: uppercase;
+                margin-top: 10px;
+                display: inline-flex;
+            }
+
+            .divider {
+                margin: -4px 10px 0 10px;
             }
 
             .delay {

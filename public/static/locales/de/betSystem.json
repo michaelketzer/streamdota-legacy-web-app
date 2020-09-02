@@ -87,6 +87,7 @@
     "bet-season-toplist-bets": "Teilnahmen",
     "bet-season-toplist-correct": "Richtige",
     "bet-season-toplist-rate": "Rate",
+    "bet-season-toplist-show-numbers": "Zeige Wetten unterhalb des Sliders",
 
     "bet-season-commands-streamer": "Streamer Commands",
     "bet-season-commands-user": "Benutzer Commands",
@@ -109,5 +110,8 @@
 
     "commands-vars": "Variabeln",
     "commands-vars-sub": "Du kannst in den Antworten eines Commands folgende Variabeln benutzen:",
-    "commands-title": "Commands"
+    "commands-title": "Commands",
+
+    "bet-season-stream-delay": "Wenn du mit delay streamst, muss das hier angegeben werden. Mit delay zu streamen wird den Slider verstecken, der Rest funktioniert trotzdem genauso wie vorher.",
+    "bet-season-stream-delay-label": "Dein Streamdelay in Sekunden:" 
 }

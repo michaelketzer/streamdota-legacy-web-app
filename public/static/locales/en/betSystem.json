@@ -88,6 +88,7 @@
     "bet-season-toplist-bets": "Participations",
     "bet-season-toplist-correct": "Correct",
     "bet-season-toplist-rate": "Rate",
+    "bet-season-toplist-show-numbers": "Show bets below slider",
 
     "bet-season-commands-streamer": "Streamer Commands",
     "bet-season-commands-user": "User Commands",
@@ -110,5 +111,8 @@
 
     "commands-vars": "Variables",
     "commands-vars-sub": "You can use the following variables as placeholder for your responses:",
-    "commands-title": "Commands"
+    "commands-title": "Commands",
+
+    "bet-season-stream-delay": "If you are streaming with delay, you need to define the actual delay. Streaming with delay will cause the slider not being visible! But will still feature the rest of the overlays and commands!",
+    "bet-season-stream-delay-label": "Your stream delay in seconds:" 
 }
