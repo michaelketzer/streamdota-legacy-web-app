@@ -12,7 +12,7 @@ interface Props extends WithTranslation {
 const LeagueIdSelector = ({t, leagueId, setLeagueId}: Props): ReactElement => {
 
     useEffect(() => {
-        setLeagueId(+localStorage.getItem('leagueId'));
+        setLeagueId(+(localStorage.getItem('leagueId') || 11850));
     }, []);
 
     return <>
