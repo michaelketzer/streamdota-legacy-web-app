@@ -1,9 +1,15 @@
 import { ReactNode, ReactElement } from "react";
+import classNames from "classnames";
 
+interface Props {
+    children: ReactNode;
+    label: string;
+    valueColor?: 'green' | 'red';
+}
 
-export default function StatsCount({children, label}: {children: ReactNode; label: string}): ReactElement {
+export default function StatsCount({children, label, valueColor}: Props): ReactElement {
     return <div className={'count'}>
-        <div className={'value'}>{children}</div>
+        <div className={classNames('value', valueColor)}>{children}</div>
         <div className={'label'}>{label}</div>
 
         <style jsx>{`
@@ -22,9 +28,17 @@ export default function StatsCount({children, label}: {children: ReactNode; labe
             }
 
             .label {
-                font-size: 14px;
+                font-size: 20px;
                 text-transform: uppercase;
                 color: #999;
+            }
+
+            .green {
+                color: #2dbb19;
+            }
+
+            .red {
+                color: #e81615;
             }
         `}</style>
     </div>

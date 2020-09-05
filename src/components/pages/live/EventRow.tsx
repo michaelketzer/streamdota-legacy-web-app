@@ -4,6 +4,7 @@ import { getDefaultHeader } from "../../../modules/middleware/Network";
 import fetch from 'isomorphic-unfetch';
 import HeroAvatar from "./HeroAvatar";
 import StatsCount from "./StatsCount";
+import classNames from "classnames";
 
 interface Props {
     id: number;
@@ -163,12 +164,13 @@ export default function EventRow({leagueId, heroClass, id, team, type}: Props): 
     const [stats] = useAbortFetch(fetchHeroStats, leagueId, id);
 
     const games = stats?.matchCount || 0;
+    const wins = stats?.matchWins || 0;
     const totalGamesCount = stats?.totalGamesCount || 0;
-    const winRate = games > 0 ? Math.floor(((stats?.matchWins || 0) * 100) / games) : 0;
+    const winRate = games > 0 ? Math.floor(((wins) * 100) / games) : 0;
     const banRate = totalGamesCount > 0 ? Math.floor(((stats?.banCount || 0) * 100) / totalGamesCount) : 0;
     const pickRate = totalGamesCount > 0 ? Math.floor((games * 100) / totalGamesCount) : 0;
 
-    return <div className={'eventRow'}>
+    return <div className={classNames('eventRow', type)}>
         <div className={'heroInfo'}>
             <div className={'avatar'}>
                 <HeroAvatar heroClass={heroClass}/>
@@ -176,16 +178,14 @@ export default function EventRow({leagueId, heroClass, id, team, type}: Props): 
             <div>
                 <div className={'heroName'}>{heroNames[heroClass]}</div>
                 <div className={'team'}>{team}</div>
-                <div className={'type'}>{type}</div>
             </div>
         </div>
 
         <div className={'stats'}>
             {stats && <>
-                <StatsCount label={'Games'}>{games}</StatsCount>
-                <StatsCount label={'Pick rate'}>{pickRate}%</StatsCount>
-                <StatsCount label={'Ban rate'}>{banRate}%</StatsCount>
-                <StatsCount label={'Win rate'}>{winRate}%</StatsCount>
+                <StatsCount label={'Winrate'}><>{wins}/{games} ({winRate}%)</></StatsCount>
+                <StatsCount label={'Picks'} valueColor={'green'}>{pickRate}%</StatsCount>
+                <StatsCount label={'Bans'} valueColor={'red'}>{banRate}%</StatsCount>
             </>}
 
             {!stats && <div className={'errorLoading'}>Unable to load stats.</div>}
@@ -200,6 +200,16 @@ export default function EventRow({leagueId, heroClass, id, team, type}: Props): 
                 height: 120px;
                 padding: 10px 15px;
                 margin-bottom: 30px;
+            }
+
+            .pick {
+                background-color: rgba(64, 201, 89, 0.2);
+                box-shadow: 2px 2px 20px 0 rgba(64, 201, 89,.2);
+            }
+
+            .ban {
+                background-color: rgba(201, 64, 64, 0.22);
+                box-shadow: 2px 2px 20px 0 rgba(201, 64, 64,.2);
             }
 
             .heroInfo {
