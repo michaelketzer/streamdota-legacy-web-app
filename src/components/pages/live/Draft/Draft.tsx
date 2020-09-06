@@ -1,9 +1,11 @@
 import { ReactElement, useState, useEffect } from "react";
 import DraftState from "./DraftState";
 import { useMessageListener } from "../../../context/websocket/MessageHandler";
-import { isDraftMessage, isDraft2Message } from "../../../context/websocket/state";
+import { isDraft2Message } from "../../../context/websocket/state";
 
 interface TeamDraftState {
+    pick0_id: number;
+    pick0_class: string;
     pick1_id: number;
     pick1_class: string;
     pick2_id: number;
@@ -12,8 +14,8 @@ interface TeamDraftState {
     pick3_class: string;
     pick4_id: number;
     pick4_class: string;
-    pick5_id: number;
-    pick5_class: string;
+    ban0_id: number;
+    ban0_class: string;
     ban1_id: number;
     ban1_class: string;
     ban2_id: number;
