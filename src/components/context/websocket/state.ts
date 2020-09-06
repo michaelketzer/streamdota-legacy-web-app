@@ -1,5 +1,6 @@
 import dayjs from 'dayjs';
 import { BetRoundStats } from '@streamdota/shared-types';
+import { Draft2State } from '../../pages/live/Draft/Draft';
 
 enum ACTIONS {
     NEW_MESSAGE = 'NEW_MESSAGE',
@@ -13,6 +14,7 @@ export enum MessageType {
     betting = 'betting',
     roshan = 'roshan',
     draft = 'draft',
+    draft2 = 'draft2',
 }
 
 export interface BaseMessage {
@@ -64,13 +66,22 @@ export interface DraftMessage extends BaseMessage {
     };
 }
 
-export type Message =  GameStateMessage | WinnerMessage | ChatMessage | BettingMessage | ConnectedMessage | RoshanMessage | DraftMessage;
+export interface Draft2Message extends BaseMessage {
+    type: MessageType.draft2;
+    value: Draft2State;
+}
+
+export type Message =  GameStateMessage | WinnerMessage | ChatMessage | BettingMessage | ConnectedMessage | RoshanMessage | DraftMessage | Draft2Message;
 
 export function isRoshanMessage(msg: Message): msg is RoshanMessage {
     return msg.type === MessageType.roshan;
 }
 export function isDraftMessage(msg: Message): msg is DraftMessage {
     return msg.type === MessageType.draft;
+}
+
+export function isDraft2Message(msg: Message): msg is Draft2Message {
+    return msg.type === MessageType.draft2;
 }
 
 interface NewMessageAction {
