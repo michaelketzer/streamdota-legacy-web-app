@@ -24,8 +24,8 @@
 
     "bet-dashboard-distribution": "Wettverteilung",
 
-    "bet-dashboard-count": "Wettverteilung",
-    "bet-dashboard-participation": "Wettverteilung",
+    "bet-dashboard-count": "Teilnahmen",
+    "bet-dashboard-participation": "Chatteilnahmen",
 
     "bet-season-info": "Kategorien ist gleichzusetzen mit einer “Season”. Wettrunden werden immer für eine aktuell ausgewählte Kategorie gestartet. Du kannst hier alle Kategorien verwalten.",
     
@@ -114,5 +114,11 @@
 
     "bet-season-stream-delay": "Wenn du mit delay streamst, muss das hier angegeben werden. Mit delay zu streamen wird den Slider verstecken, der Rest funktioniert trotzdem genauso wie vorher.",
     "bet-season-stream-delay-label": "Dein Streamdelay in Sekunden:",
-    "bet-season-overlay-maxEntry": "Maximale Einträge"
+    "bet-season-overlay-maxEntry": "Maximale Einträge",
+
+    "bet-toplist-random-winner": "Zufälliger Gewinner",
+    "bet-toplist-random-winner-title-1": "Ermittel einen zufälligen Gewinner",
+    "bet-toplist-random-winner-title-2": "Einträge",
+    "bet-toplist-random-winner-action-button": "Ermittel Gewinner",
+    "bet-toplist-random-winner-action-cancel": "Abbrechen"
 }

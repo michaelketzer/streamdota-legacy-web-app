@@ -115,5 +115,12 @@
 
     "bet-season-stream-delay": "If you are streaming with delay, you need to define the actual delay. Streaming with delay will cause the slider not being visible! But will still feature the rest of the overlays and commands!",
     "bet-season-stream-delay-label": "Your stream delay in seconds:",
-    "bet-season-overlay-maxEntry": "Max Entries"
+    "bet-season-overlay-maxEntry": "Max Entries",
+
+
+    "bet-toplist-random-winner": "Random winner",
+    "bet-toplist-random-winner-title-1": "Draw a random winner",
+    "bet-toplist-random-winner-title-2": "Entries",
+    "bet-toplist-random-winner-action-button": "Draw winner",
+    "bet-toplist-random-winner-action-cancel": "Cancel"
 }
