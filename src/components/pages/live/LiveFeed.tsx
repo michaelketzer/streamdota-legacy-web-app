@@ -1,8 +1,7 @@
 import { ReactElement, useState, useEffect } from "react";
 import { useMessageListener } from "../../context/websocket/MessageHandler";
 import { isDraftMessage } from "../../context/websocket/state";
-import { motion } from "framer-motion";
-import EventRow from "./EventRow";
+import Draft from "./Draft/Draft";
 
 
 interface Props {
@@ -26,9 +25,7 @@ const container = {
         staggerChildren: 0.2
         }
     }
-}
-
-  
+} 
 
 const item = {
     hidden: { y: -20, opacity: 0 },
@@ -58,10 +55,16 @@ export default function LiveFeed({leagueId}: Props): ReactElement {
         }
     }, [message])
 
+    return <>
+        <Draft />
+
+    </>;
+    /*
     return <motion.div initial={'hidden'} animate={'show'} variants={container}>
         {events.map(({id, class: heroClass, team, type, matchId}) => <motion.div key={id + ':' + team + ':' + type + ':' + matchId} variants={item}>
             <EventRow id={id} heroClass={heroClass} team={team} type={type} leagueId={leagueId} />
         </motion.div>)}
     </motion.div>;
+    */
 
 }
