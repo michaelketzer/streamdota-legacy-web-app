@@ -25,33 +25,15 @@ const Live = ({t}: WithTranslation): ReactElement => {
     
     return <PageFrame title={'Live Feed'}>
         <PageHeader 
+            additional={<div>
+                <LeagueIdSelector leagueId={leagueId} setLeagueId={setLeagueId} />
+            </div>}
             title={t('liveFeed-title')} 
             description={t('liveFeed-title-sub')} />
-
-        <Alert message={
-            <>
-                {t('league-info-start')} <span className={'highlight'}>https://stratz.com/leagues</span>{t('league-info-end')} https://stratz.com/leagues/<span className={'highlight'}>11629</span>
-            </>
-        } type="info" />
-
-        <div className={'leagueId'}>
-            <LeagueIdSelector leagueId={leagueId} setLeagueId={setLeagueId} />
-        </div>
 
         {user && <ContextProvider initialState={initialState} reducer={reducer} url={getWebsocketUrl() + '/dota-gsi/live/' + user.frameApiKey}>
             <LiveFeed apiKey={user.frameApiKey} leagueId={leagueId} />
         </ContextProvider>}
-
-        <style jsx>{`
-            .highlight {
-                color: #1890FF;
-            }
-
-            .leagueId {
-                margin: 30px 0;
-                display: inline-block;
-            }
-        `}</style>
     </PageFrame>
 }
 
