@@ -1,7 +1,7 @@
 import { ReactElement } from "react";
 import { getImageUrl } from "../../Picture";
 
-export default function HeroAvatar({heroClass, prefix='v'}: {heroClass: string; prefix?: 'v' | 'h'}): ReactElement {
+export default function HeroAvatar({heroClass, prefix='v'}: {heroClass: string; prefix?: 'v' | 'h' | 'i'}): ReactElement {
     return <picture>
         <source type="image/webp" srcSet={getImageUrl(`/static/heroes/${prefix}_${heroClass}.webp`)}/>
         <source type="image/jp2" srcSet={getImageUrl(`/static/heroes/${prefix}_${heroClass}.jp2`)}/>
