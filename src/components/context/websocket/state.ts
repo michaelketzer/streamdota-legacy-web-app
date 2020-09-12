@@ -1,6 +1,6 @@
 import dayjs from 'dayjs';
 import { BetRoundStats } from '@streamdota/shared-types';
-import { Draft2State } from '../../pages/live/Draft/Draft';
+import { DraftState } from '../../pages/live/Draft/Draft';
 
 enum ACTIONS {
     NEW_MESSAGE = 'NEW_MESSAGE',
@@ -15,6 +15,8 @@ export enum MessageType {
     roshan = 'roshan',
     draft = 'draft',
     draft2 = 'draft2',
+    gsi_draft = 'gsi_draft',
+    gsi_gamedata = 'gsi_gamedata'
 }
 
 export interface BaseMessage {
@@ -57,31 +59,52 @@ export interface RoshanMessage extends BaseMessage {
 }
 
 export interface DraftMessage extends BaseMessage {
-    type: MessageType.draft;
+    type: MessageType.gsi_draft;
+    value: DraftState;
+}
+
+export enum GameState {
+    playersLoading = 'DOTA_GAMERULES_STATE_WAIT_FOR_PLAYERS_TO_LOAD',
+    heroSelection = 'DOTA_GAMERULES_STATE_HERO_SELECTION',
+    strategyTime = 'DOTA_GAMERULES_STATE_STRATEGY_TIME',
+    teamShowcase = 'DOTA_GAMERULES_STATE_TEAM_SHOWCASE',
+    mapLoading = 'DOTA_GAMERULES_STATE_WAIT_FOR_MAP_TO_LOAD',
+    preGame = 'DOTA_GAMERULES_STATE_PRE_GAME',
+    running = 'DOTA_GAMERULES_STATE_GAME_IN_PROGRESS',
+    postGame = 'DOTA_GAMERULES_STATE_POST_GAME'
+}
+export interface GameDetailsMessage extends BaseMessage {
+    type: MessageType.gsi_gamedata;
     value: {
         matchId: number;
-        change: Array<{id: number; class: string}>;
-        team: 'dire' | 'radiant';
-        type: 'pick' | 'ban';
+        type: 'playing' | 'observing';
+        gameState: GameState;
+        paused: boolean;
+        winner: string;
+        radiantWinChance: number;
+        radiant?: {
+            name: string;
+            logo: string;
+        };
+        dire?: {
+            name: string;
+            logo: string;
+        };
     };
 }
 
-export interface Draft2Message extends BaseMessage {
-    type: MessageType.draft2;
-    value: Draft2State;
-}
-
-export type Message =  GameStateMessage | WinnerMessage | ChatMessage | BettingMessage | ConnectedMessage | RoshanMessage | DraftMessage | Draft2Message;
+export type Message =  GameStateMessage | WinnerMessage | ChatMessage | BettingMessage | ConnectedMessage | RoshanMessage | DraftMessage | GameDetailsMessage;
 
 export function isRoshanMessage(msg: Message): msg is RoshanMessage {
     return msg.type === MessageType.roshan;
 }
+
 export function isDraftMessage(msg: Message): msg is DraftMessage {
-    return msg.type === MessageType.draft;
+    return msg.type === MessageType.gsi_draft;
 }
 
-export function isDraft2Message(msg: Message): msg is Draft2Message {
-    return msg.type === MessageType.draft2;
+export function isGameDetailsMessage(msg: Message): msg is GameDetailsMessage {
+    return msg.type === MessageType.gsi_gamedata;
 }
 
 interface NewMessageAction {

@@ -32,39 +32,8 @@ const item = {
     show: { y: 0, opacity: 1 }
 }
 
-export default function LiveFeed({leagueId}: Props): ReactElement {
-    const [events, setEvents] = useState<Event[]>([]);
-    const message = useMessageListener();
-
-    useEffect(() => {
-        if(message && isDraftMessage(message)) {
-            message.value.change.forEach(({id, class: heroClass}) => {
-                if(!events.find(({matchId, id: heroId}) => matchId === message.value.matchId && id === heroId)) {
-                    setEvents([
-                        {
-                            id,
-                            class: heroClass, 
-                            matchId: message.value.matchId,
-                            team: message.value.team, 
-                            type: message.value.type
-                        }, 
-                        ...events
-                    ]);
-                }
-            })
-        }
-    }, [message])
-
+export default function LiveFeed(_props: Props): ReactElement {
     return <>
         <Draft />
-
     </>;
-    /*
-    return <motion.div initial={'hidden'} animate={'show'} variants={container}>
-        {events.map(({id, class: heroClass, team, type, matchId}) => <motion.div key={id + ':' + team + ':' + type + ':' + matchId} variants={item}>
-            <EventRow id={id} heroClass={heroClass} team={team} type={type} leagueId={leagueId} />
-        </motion.div>)}
-    </motion.div>;
-    */
-
 }

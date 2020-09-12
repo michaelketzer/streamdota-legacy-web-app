@@ -4,7 +4,6 @@ import ContextProvider from "../components/context/websocket/context";
 import { initialState, reducer } from "../components/context/websocket/state";
 import { useCurrentUser } from "../hooks/currentUser";
 import PageHeader from "../components/PageHeader";
-import { Alert } from "antd";
 import getWebsocketUrl from "../modules/Router";
 import LiveFeed from "../components/pages/live/LiveFeed";
 import { WithTranslation } from "next-i18next";

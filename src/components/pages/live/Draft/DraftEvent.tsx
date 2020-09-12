@@ -2,6 +2,7 @@ import { ReactElement } from "react";
 import classNames from "classnames";
 import { EyeFilled } from "@ant-design/icons";
 import HeroAvatar from "../HeroAvatar";
+import {motion} from 'framer-motion';
 
 interface Props {
     team: 'radiant' | 'dire';
@@ -11,15 +12,22 @@ interface Props {
     heroClass?: string;
 }
 
+const animations = {
+    hidden: {scale: 0},
+    visible: {scale: 1},
+};
+
 export default function DraftEvent({event, heroClass, heroId, team}: Props): ReactElement {
 
     return <div className={classNames('draftEvent', team, event)}>
         <div className={'activeOverlay'}>
             <EyeFilled style={{color: heroId ? '#444' : '#EEE'}}/>
         </div>
-        {heroClass && <div className={'hero'}>
-            <HeroAvatar heroClass={heroClass} prefix={'i'}/>
-        </div>}
+        {heroClass && <motion.div initial={'hidden'} animate={'visible'} variants={animations}>
+            <div className={'hero'}>
+                <HeroAvatar heroClass={heroClass} prefix={'i'}/>
+            </div>
+        </motion.div>}
         
 
         <style jsx>{`
@@ -67,8 +75,8 @@ export default function DraftEvent({event, heroClass, heroId, team}: Props): Rea
             }
 
             .ban .hero {
-                filter: grayscale(.5);
-                opacity: .8;
+                filter: grayscale(.8);
+                opacity: .5;
             }
 
             .radiant .hero {
