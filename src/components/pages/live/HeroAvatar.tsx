@@ -9,7 +9,7 @@ export default function HeroAvatar({heroClass, prefix='v'}: {heroClass: string; 
 
         <style jsx>{`
             .image {
-                object-fit: cover;
+                object-fit: contain;
                 width: 100%;
                 height: 100%;
             }    

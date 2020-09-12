@@ -1,36 +1,35 @@
 import { ReactElement } from "react";
 import DraftEvent from "./DraftEvent";
-import { Draft2State } from "./Draft";
+import { DraftState as DraftData } from "./Draft";
 
 interface Props {
-    state: Draft2State;
+    state: DraftData;
 }
 
-export default function DraftState({state}: Props): ReactElement {
-
+export default function Draftstate({state}: Props): ReactElement {
     return <div className={'gridTimeline'}>
-        <DraftEvent team={'radiant'} event={'ban'} heroId={state.radiant.ban0_id} heroClass={state.radiant.ban0_class} />
-        <DraftEvent team={'dire'} event={'ban'} heroId={state.dire.ban0_id} heroClass={state.dire.ban0_class}/>
-        <DraftEvent team={'radiant'} event={'ban'} heroId={state.radiant.ban1_id} heroClass={state.radiant.ban1_class}/>
-        <DraftEvent team={'dire'} event={'ban'} heroId={state.dire.ban1_id} heroClass={state.dire.ban1_class}/>
-        <DraftEvent team={'radiant'} event={'pick'} heroId={state.radiant.pick0_id} heroClass={state.radiant.pick0_class}/>
-        <DraftEvent team={'dire'} event={'pick'} heroId={state.dire.pick0_id} heroClass={state.dire.pick0_class}/>
-        <DraftEvent team={'radiant'} event={'pick'} heroId={state.radiant.pick1_id} heroClass={state.radiant.pick1_class}/>
-        <DraftEvent team={'dire'} event={'pick'} heroId={state.dire.pick1_id} heroClass={state.dire.pick1_class}/>
-        <DraftEvent team={'radiant'} event={'ban'} heroId={state.radiant.ban2_id} heroClass={state.radiant.ban2_class}/>
-        <DraftEvent team={'dire'} event={'ban'} heroId={state.dire.ban2_id} heroClass={state.dire.ban2_class}/>
-        <DraftEvent team={'radiant'} event={'ban'} heroId={state.radiant.ban3_id} heroClass={state.radiant.ban3_class}/>
-        <DraftEvent team={'dire'} event={'ban'} heroId={state.dire.ban3_id} heroClass={state.dire.ban3_class}/>
-        <DraftEvent team={'radiant'} event={'ban'} heroId={state.radiant.ban4_id} heroClass={state.radiant.ban4_class}/>
-        <DraftEvent team={'dire'} event={'ban'} heroId={state.dire.ban4_id} heroClass={state.dire.ban4_class}/>
-        <DraftEvent team={'radiant'} event={'pick'} heroId={state.radiant.pick3_id} heroClass={state.radiant.pick3_class}/>
-        <DraftEvent team={'dire'} event={'pick'} heroId={state.dire.pick3_id} heroClass={state.dire.pick3_class}/>
-        <DraftEvent team={'radiant'} event={'pick'} heroId={state.radiant.pick4_id} heroClass={state.radiant.pick4_class}/>
-        <DraftEvent team={'dire'} event={'pick'} heroId={state.dire.pick4_id} heroClass={state.dire.pick4_class}/>
-        <DraftEvent team={'radiant'} event={'ban'} heroId={state.radiant.ban5_id} heroClass={state.radiant.ban5_class}/>
-        <DraftEvent team={'dire'} event={'ban'} heroId={state.dire.ban5_id} heroClass={state.dire.ban5_class}/>
-        <DraftEvent team={'radiant'} event={'pick'} heroId={state.radiant.pick4_id} heroClass={state.radiant.pick4_class}/>
-        <DraftEvent team={'dire'} event={'pick'} heroId={state.dire.pick4_id} heroClass={state.dire.pick4_class}/>
+        <DraftEvent team={'dire'} event={'ban'} heroId={state?.team3?.ban0_id} heroClass={state?.team3?.ban0_class} />
+        <DraftEvent team={'radiant'} event={'ban'} heroId={state?.team2?.ban0_id} heroClass={state?.team2?.ban0_class}/>
+        <DraftEvent team={'dire'} event={'ban'} heroId={state?.team3?.ban1_id} heroClass={state?.team3?.ban1_class}/>
+        <DraftEvent team={'radiant'} event={'ban'} heroId={state?.team2?.ban1_id} heroClass={state?.team2?.ban1_class}/>
+        <DraftEvent team={'dire'} event={'pick'} heroId={state?.team3?.pick0_id} heroClass={state?.team3?.pick0_class}/>
+        <DraftEvent team={'radiant'} event={'pick'} heroId={state?.team2?.pick0_id} heroClass={state?.team2?.pick0_class}/>
+        <DraftEvent team={'dire'} event={'pick'} heroId={state?.team3?.pick1_id} heroClass={state?.team3?.pick1_class}/>
+        <DraftEvent team={'radiant'} event={'pick'} heroId={state?.team2?.pick1_id} heroClass={state?.team2?.pick1_class}/>
+        <DraftEvent team={'dire'} event={'ban'} heroId={state?.team3?.ban2_id} heroClass={state?.team3?.ban2_class}/>
+        <DraftEvent team={'radiant'} event={'ban'} heroId={state?.team2?.ban2_id} heroClass={state?.team2?.ban2_class}/>
+        <DraftEvent team={'dire'} event={'ban'} heroId={state?.team3?.ban3_id} heroClass={state?.team3?.ban3_class}/>
+        <DraftEvent team={'radiant'} event={'ban'} heroId={state?.team2?.ban3_id} heroClass={state?.team2?.ban3_class}/>
+        <DraftEvent team={'dire'} event={'ban'} heroId={state?.team3?.ban4_id} heroClass={state?.team3?.ban4_class}/>
+        <DraftEvent team={'radiant'} event={'ban'} heroId={state?.team2?.ban4_id} heroClass={state?.team2?.ban4_class}/>
+        <DraftEvent team={'radiant'} event={'pick'} heroId={state?.team2?.pick2_id} heroClass={state?.team2?.pick2_class}/>
+        <DraftEvent team={'dire'} event={'pick'} heroId={state?.team3?.pick2_id} heroClass={state?.team3?.pick2_class}/>
+        <DraftEvent team={'radiant'} event={'pick'} heroId={state?.team2?.pick3_id} heroClass={state?.team2?.pick3_class}/>
+        <DraftEvent team={'dire'} event={'pick'} heroId={state?.team3?.pick3_id} heroClass={state?.team3?.pick3_class}/>
+        <DraftEvent team={'dire'} event={'ban'} heroId={state?.team3?.ban5_id} heroClass={state?.team3?.ban5_class}/>
+        <DraftEvent team={'radiant'} event={'ban'} heroId={state?.team2?.ban5_id} heroClass={state?.team2?.ban5_class}/>
+        <DraftEvent team={'dire'} event={'pick'} heroId={state?.team3?.pick4_id} heroClass={state?.team3?.pick4_class}/>
+        <DraftEvent team={'radiant'} event={'pick'} heroId={state?.team2?.pick4_id} heroClass={state?.team2?.pick4_class}/>
 
         <style jsx>{`
             .gridTimeline {
