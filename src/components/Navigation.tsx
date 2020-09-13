@@ -30,7 +30,7 @@ const items: MenuItem[] = [{
 }, {
     icon: <PieChartOutlined />,
     name: 'nav-general-betsystem',
-    path: '/bets',
+    path: '/vote',
 }];
 
 const gamingItems: MenuItem[] = [{
@@ -47,11 +47,7 @@ const castingItems: MenuItem[] = [{
     icon: <DotChartOutlined />,
     name: 'nav-general-liveFeed',
     path: '/live',
-}/*, {
-    icon: <EuroOutlined />,
-    name: 'Sponsor Overlay',
-    path: '/bets',
-}*/];
+}];
 
 
 const Navigation = ({t}: WithTranslation): ReactElement => {

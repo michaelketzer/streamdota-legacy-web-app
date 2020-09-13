@@ -6,14 +6,16 @@ import { createBetRound, updateBetRound } from "../../../../modules/reducer/BetR
 import { useCurrentBetRound } from "../../../../modules/selector/BetRound";
 import { WithTranslation } from "next-i18next";
 import i18nInstance from "../../../../i18n";
+import { useCurrentUser } from "../../../../hooks/currentUser";
 
 const StatusTile = ({t, status}: {status: 'betting' | 'running' | 'finished'} & WithTranslation): ReactElement => {
     const dispatch = useDispatch();
     const currentBetRound = useCurrentBetRound();
+    const user = useCurrentUser();
 
     return <div className={classNames('statusTileWrapper', status)} onClick={async () => {
         if(status === 'finished') {
-            await dispatch(createBetRound());
+            dispatch(createBetRound());
         }
     }}>
         {status === 'finished' && <>
@@ -30,9 +32,9 @@ const StatusTile = ({t, status}: {status: 'betting' | 'running' | 'finished'} & 
         {status === 'running' && <>
             <div className={'value finished'}>{t('bet-dashboard-status-finished')}</div>
             <div className={'winnerSelect'}>
-                <span className={'winnerA'} onClick={async() => await dispatch(updateBetRound(currentBetRound.id, {result: 'a', status: 'finished'}))}>A</span>
+                <span className={'winnerA'} onClick={async() => dispatch(updateBetRound(currentBetRound.id, {result: user.teamAName, status: 'finished'}))}>{user.teamAName}</span>
                 <span className={'winnerOr'}>{t('bet-dashboard-status-finished-or')}</span>
-                <span className={'winnerB'} onClick={async() => await dispatch(updateBetRound(currentBetRound.id, {result: 'b', status: 'finished', }))}>B</span>
+                <span className={'winnerB'} onClick={async() => dispatch(updateBetRound(currentBetRound.id, {result: user.teamBName, status: 'finished', }))}>{user.teamBName}</span>
             </div>
             <div className={'label'}>{t('bet-dashboard-status-finished-label')}</div>
         </>}

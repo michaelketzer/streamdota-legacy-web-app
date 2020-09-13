@@ -5,12 +5,21 @@ import CommandList from '../bot/CommandList';
 import { useCommandByIdentifier } from '../../../modules/selector/Command';
 import { WithTranslation } from 'next-i18next';
 import i18nInstance from '../../../i18n';
+import TeamNames from './TeamNames';
+import { useCurrentUser } from '../../../hooks/currentUser';
 
 const BotCommands = ({t}: WithTranslation): ReactElement => {
 	const betCommand = useCommandByIdentifier('bet');
+	const user = useCurrentUser();
 
 	return (
 		<Fragment>
+			<div>
+				<Typography.Text strong>{'Team Names'}</Typography.Text>
+			</div>
+			<TeamNames />
+
+			<br /><br />
 			<div>
 				<Typography.Text strong>{t('commands-vars')}</Typography.Text>
 			</div>
@@ -19,7 +28,7 @@ const BotCommands = ({t}: WithTranslation): ReactElement => {
 					{t('commands-vars-sub')}
 				</Typography.Text>
 			</div>
-
+ 
 			<Tags
 				tags={[
 					'bet_command',
@@ -29,6 +38,8 @@ const BotCommands = ({t}: WithTranslation): ReactElement => {
 					'user_bets_wrong',
 					'user_bets_total',
 					'user_bets_accuracy',
+					'team_a',
+					'team_b'
 				]}
 			/>
 
@@ -37,7 +48,7 @@ const BotCommands = ({t}: WithTranslation): ReactElement => {
 			</div>
 			<CommandList
 				commandType={'betting_streamer'}
-				replaceVars={{ BET_COMMAND: betCommand && betCommand.command }}
+				replaceVars={{ BET_COMMAND: betCommand && betCommand.command, TEAM_A: user.teamAName, TEAM_B: user.teamBName }}
 				canCreate={false}
 			/>
 

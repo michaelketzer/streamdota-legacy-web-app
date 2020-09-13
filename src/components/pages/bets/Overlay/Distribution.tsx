@@ -69,7 +69,7 @@ const Distribution = ({t}: WithTranslation): ReactElement => {
             <Typography.Title level={3}>{t('bet-season-overlay-preview')}</Typography.Title>
             <div className={'preview'}>
                 <img className={'exampleBackground'} src={'/images/example_background.png'} />
-                <div className={'slider'}><DistributionSlider overlay={overlay} delay={user.streamDelay} aBets={5} bBets={5}/></div>
+                <div className={'slider'}><DistributionSlider overlay={overlay} delay={user.streamDelay} aBets={5} bBets={5} teamA={user.teamAName} teamB={user.teamBName}/></div>
             </div>
         </div>
 

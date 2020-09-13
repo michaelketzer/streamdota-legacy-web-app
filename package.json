@@ -38,7 +38,7 @@
     "reselect": "^4.0.0"
   },
   "devDependencies": {
-    "@streamdota/shared-types": "1.2.5",
+    "@streamdota/shared-types": "1.2.6",
     "@types/classnames": "^2.2.10",
     "@types/dotenv": "^8.2.0",
     "@types/next-redux-wrapper": "^3.0.0",
