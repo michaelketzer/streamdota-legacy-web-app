@@ -53,7 +53,7 @@ export async function get(
 export async function post(
 	endPointUrl: string,
 	options: RequestOptions,
-	headers: { [key: string]: string } | Headers
+	headers: { [key: string]: string } | Headers | HeadersInit
 ): Promise<Response | object | string> {
 	const body = getBody(options.data, headers);
 	return fetch(injectUrlParams(endPointUrl, options), { method: 'POST', headers, ...options, body }).then(

@@ -1,8 +1,10 @@
-import { ReactElement } from "react";
+import { ReactElement, useCallback } from "react";
 import classNames from "classnames";
 import { EyeFilled } from "@ant-design/icons";
 import HeroAvatar from "../HeroAvatar";
 import {motion} from 'framer-motion';
+import { fetchHeroStats } from "./TeamDraft/HeroStats";
+import { getDefaultHeader, post } from "../../../../modules/middleware/Network";
 
 interface Props {
     team: 'radiant' | 'dire';
@@ -18,9 +20,15 @@ const animations = {
 };
 
 export default function DraftEvent({event, heroClass, heroId, team}: Props): ReactElement {
+    const showHeroStats = useCallback(async () => {
+        const abort = new AbortController();
+        const data = await fetchHeroStats(abort, +localStorage.getItem('leagueId'), heroId);
+        await post(process.env.API_URL + '/casting/overlay', {data: {heroId, heroClass, ...data}}, getDefaultHeader());
+
+    }, [heroId]);
 
     return <div className={classNames('draftEvent', team, event)}>
-        <div className={'activeOverlay'}>
+        <div className={'activeOverlay'} onClick={showHeroStats}>
             <EyeFilled style={{color: heroId ? '#444' : '#EEE'}}/>
         </div>
         {heroClass && <motion.div initial={'hidden'} animate={'visible'} variants={animations}>
