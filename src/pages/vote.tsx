@@ -11,7 +11,7 @@ const BetTabs = dynamic(
     { ssr: false }
 );
 
-const Bets = ({t}: WithTranslation): ReactElement => {
+const Vote = ({t}: WithTranslation): ReactElement => {
     return <PageFrame title={t('bet-title')}>
         <PageHeader title={t('bet-title')} 
                     description={t('bet-title-sub')} />
@@ -20,8 +20,8 @@ const Bets = ({t}: WithTranslation): ReactElement => {
     </PageFrame>
 }
 
-Bets.getInitialProps = async () => ({
+Vote.getInitialProps = async () => ({
     namespacesRequired: ['betSystem', 'doatWL', 'bot', 'nav'],
 });
 
-export default wrapper.withRedux(i18nInstance.withTranslation('betSystem')(Bets));
+export default wrapper.withRedux(i18nInstance.withTranslation('betSystem')(Vote));

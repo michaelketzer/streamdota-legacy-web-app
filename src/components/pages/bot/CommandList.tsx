@@ -71,26 +71,26 @@ const CommandList = ({t, commandType = 'default', replaceVars = {}, canCreate=tr
             {commands.map(({active, id, command, message, noResponse, deleteAble, ...props}) => <React.Fragment key={id}>
                 <div className={'activeBox'}>
                     <Checkbox defaultChecked={active} onChange={async (e) => {
-                        await dispatch(updateCommand(id, {active: e.target.checked}));
+                        dispatch(updateCommand(id, {active: e.target.checked}));
                     }}/>
                 </div>
                 <div>
                     <Input defaultValue={command} onBlur={async (e) => {
-                        await dispatch(updateCommand(id, { command: e.target.value }));
+                        dispatch(updateCommand(id, { command: e.target.value }));
                     }} />
                 </div>
                 <TextArea defaultValue={message} disabled={noResponse} rows={noResponse ? 1 : 2} onBlur={async (e) => {
-                    await dispatch(updateCommand(id, { message: e.target.value }));
+                    dispatch(updateCommand(id, { message: e.target.value }));
                 }} />
                 <div>
                     <CommandAccess command={props} onChange={async (data: Partial<Command>) => {
-                        await dispatch(updateCommand(id, data));
+                        dispatch(updateCommand(id, data));
                     }}/>
                 </div>
                 <div>
     
                     <Popconfirm disabled={!deleteAble} title={t('commands-list-delete')} onConfirm={async () => {
-                        await dispatch(deleteCommand(id));
+                        dispatch(deleteCommand(id));
                     }} okText={t('commands-list-delete-yes')} cancelText={t('commands-list-delete-no')}>
                         <Button danger disabled={!deleteAble} type={'primary'} icon={<DeleteOutlined />} />
                     </Popconfirm>

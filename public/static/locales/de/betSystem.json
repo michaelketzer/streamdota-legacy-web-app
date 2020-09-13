@@ -1,6 +1,6 @@
 {
-    "bet-title": "Wettsystem",
-    "bet-title-sub": "Das Wettsystem erlaubt deinen Zuschauern auf ein Team oder dich bzw. gegen dich zu setzen wenn ein Spiel beginnt.",
+    "bet-title": "Votesystem",
+    "bet-title-sub": "Das Votesystem erlaubt deinen Zuschauern auf ein Team oder dich bzw. gegen dich zu setzen wenn ein Spiel beginnt.",
 
     "tab-dashboard": "Dashboard",
     "tab-seasons": "Kategorien",
@@ -9,11 +9,11 @@
     "tab-bot": "StreamDota Bot Commands",
     "tab-overlay": "Overlay Einstellungen",
 
-    "bet-dashboard-active": "Wettsystem aktivieren",
+    "bet-dashboard-active": "Votesystem aktivieren",
 
-    "bet-dashboard-status-start": "Wette starten",
+    "bet-dashboard-status-start": "Vote starten",
     "bet-dashboard-status-label": "STATUS",
-    "bet-dashboard-status-running": "Wetten laufen",
+    "bet-dashboard-status-running": "Votes laufen",
     "bet-dashboard-status-finished": "Spiel fertig",
     "bet-dashboard-status-finished-or": "oder",
     "bet-dashboard-status-finished-label": "WÄHLE DEN GEWINNER",
@@ -22,19 +22,19 @@
     "bet-dashboard-timing-label": "Zeit",
     "bet-dashboard-timing-expired": "Abgelaufen",
 
-    "bet-dashboard-distribution": "Wettverteilung",
+    "bet-dashboard-distribution": "Voteverteilung",
 
     "bet-dashboard-count": "Teilnahmen",
     "bet-dashboard-participation": "Chatteilnahmen",
 
-    "bet-season-info": "Kategorien ist gleichzusetzen mit einer “Season”. Wettrunden werden immer für eine aktuell ausgewählte Kategorie gestartet. Du kannst hier alle Kategorien verwalten.",
+    "bet-season-info": "Kategorien ist gleichzusetzen mit einer “Season”. Voterunden werden immer für eine aktuell ausgewählte Kategorie gestartet. Du kannst hier alle Kategorien verwalten.",
     
     "bet-season-current-season": "Aktuelle Kategorie",
     "bet-season-new-season": "Neue Kategorie",
     "bet-season-accept-invite": "Einladung annehmen",
 
     "bet-season-first-time-setup": "es sieht so aus, als wenn du das erste mal hier bist.",
-    "bet-season-first-time-setup-1": "Kategorien sind Gruppierungen von Wettrunden für eine Topliste. Man könnte es auch Seasons nennen.",
+    "bet-season-first-time-setup-1": "Kategorien sind Gruppierungen von Voterunden für eine Topliste. Man könnte es auch Seasons nennen.",
     "bet-season-first-time-setup-2": "Zum starten, solltest du erst einmal eine Kategorie erstellen:",
 
     "bet-season-create": "Neue Kategorie",
@@ -87,13 +87,13 @@
     "bet-season-toplist-bets": "Teilnahmen",
     "bet-season-toplist-correct": "Richtige",
     "bet-season-toplist-rate": "Rate",
-    "bet-season-toplist-show-numbers": "Zeige Wetten unterhalb des Sliders",
+    "bet-season-toplist-show-numbers": "Zeige Votes unterhalb des Sliders",
 
     "bet-season-commands-streamer": "Streamer Commands",
     "bet-season-commands-user": "Benutzer Commands",
 
     "bet-season-overlay-font": "Schrift",
-    "bet-season-overlay-tab-distribution": "Wettverteilung",
+    "bet-season-overlay-tab-distribution": "Voteverteilung",
     "bet-season-overlay-tab-timer": "Timer",
     "bet-season-overlay-tab-toplist": "Toplist",
 
@@ -105,8 +105,8 @@
 
     "bet-season-overlay-settings": "Einstellungen",
     "bet-season-overlay-showRank": "Zeige Rank (1. 2. 3.)",
-    "bet-season-overlay-showTotal": "Zeige Totale Wetten (/10)",
-    "bet-season-overlay-quota": "Zeige richtige Wettquote in Prozent",
+    "bet-season-overlay-showTotal": "Zeige Totale Votes (/10)",
+    "bet-season-overlay-quota": "Zeige richtige Votequote in Prozent",
 
     "commands-vars": "Variabeln",
     "commands-vars-sub": "Du kannst in den Antworten eines Commands folgende Variabeln benutzen:",
