@@ -3,6 +3,7 @@ import { BetOverlay } from "@streamdota/shared-types";
 import GoogleFontLoader from "react-google-font-loader";
 import { getVariant } from "../../dotaOverlay/Overlay/FontVariantSelection";
 import classNames from "classnames";
+import { useUserCommands } from "../../../../modules/selector/Command";
 
 interface Props {
     overlay: BetOverlay;
@@ -15,12 +16,15 @@ interface Props {
 }
 
 export default function DistributionSlider({overlay, delay, distribution = 50, aBets = 0, bBets = 0, teamA = 'a', teamB = 'b'}: Props): ReactElement {
+    const commands = useUserCommands('betting_user');
+    const betCommand = commands.find(({identifier}) => identifier === 'bet');
+
     return <>
         {overlay.fontFamily && <GoogleFontLoader fonts={[{font: overlay.fontFamily, weights: [overlay.fontVariant]}]} />}
 
         <div className={'distributionSlider'}>
             <div className={'vote votaA'} style={{...getVariant(overlay.fontVariant)}}>
-                !bet {teamA}
+                {betCommand.command} {teamA}
             </div>
             <div className={classNames('distributionWrapper', {delay: delay > 0})}>
                 <div className={'slider'}>
@@ -34,7 +38,7 @@ export default function DistributionSlider({overlay, delay, distribution = 50, a
                 </div>}
             </div>
             <div className={'vote votaB'} style={{...getVariant(overlay.fontVariant)}}>
-                !bet {teamB}
+                {betCommand.command} {teamB}
             </div>
         </div>
 
