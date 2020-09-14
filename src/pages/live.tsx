@@ -10,6 +10,7 @@ import { WithTranslation } from "next-i18next";
 import i18nInstance from "../i18n";
 import dynamic from "next/dynamic";
 import { wrapper } from "../modules/Store";
+import FrameLink from "../components/pages/dotaOverlay/Overlay/FrameLink";
 
 
 
@@ -33,6 +34,13 @@ const Live = ({t}: WithTranslation): ReactElement => {
         {user && <ContextProvider initialState={initialState} reducer={reducer} url={getWebsocketUrl() + '/dota-gsi/live/' + user.frameApiKey}>
             <LiveFeed apiKey={user.frameApiKey} leagueId={leagueId} />
         </ContextProvider>}
+
+        <br />
+        <br />
+        <br />
+        {user && <>
+            <FrameLink auth={user.frameApiKey} testing access={'casting/draftStats'} height={70} width={500} />
+        </>}
     </PageFrame>
 }
 
