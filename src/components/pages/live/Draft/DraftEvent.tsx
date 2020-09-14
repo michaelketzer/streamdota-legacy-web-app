@@ -27,7 +27,7 @@ export default function DraftEvent({event, heroClass, heroId, team}: Props): Rea
             const abort = new AbortController();
             const data = await fetchHeroStats(abort, +localStorage.getItem('leagueId'), heroId);
             await post(process.env.API_URL + '/casting/overlay', {data: {heroId, heroClass, ...data}}, getDefaultHeader());
-            setTimeout(() => setDisabled(false), 5000)
+            setTimeout(() => setDisabled(false), 10000)
         }
     }, [heroId, disabled]);
 
