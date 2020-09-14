@@ -120,5 +120,7 @@
     "bet-toplist-random-winner-title-1": "Ermittel einen zufälligen Gewinner",
     "bet-toplist-random-winner-title-2": "Einträge",
     "bet-toplist-random-winner-action-button": "Ermittel Gewinner",
-    "bet-toplist-random-winner-action-cancel": "Abbrechen"
+    "bet-toplist-random-winner-action-cancel": "Abbrechen",
+
+    "bet-season-timer-duration": "Votezeit"
 }

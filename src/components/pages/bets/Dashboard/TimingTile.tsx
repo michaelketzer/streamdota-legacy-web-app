@@ -3,6 +3,7 @@ import SimpleValueTile from "./SimpleValueTile";
 import dayjs from "dayjs";
 import i18nInstance from "../../../../i18n";
 import { WithTranslation } from "next-i18next";
+import { useBetOverlay } from "../../../../modules/selector/BetOverlay";
 
 export function useInterval(callback) {
     const savedCallback = useRef();
@@ -22,16 +23,17 @@ export function useInterval(callback) {
     }, []);
 }
 
-function getTimeRemaining(created: number): number {
-    return created + 90 - dayjs().unix();
+function getTimeRemaining(created: number, duration: number = 90): number {
+    return created + duration - dayjs().unix();
 }
 
 const TimingTile = ({t, status, created}: {status: 'betting' | 'running' | 'finished'; created: number} & WithTranslation): ReactElement => {
-    const [remaining, setRemaining] = useState<null | number>(status === 'betting' ? getTimeRemaining(created) : null);
+    const overlay = useBetOverlay();
+    const [remaining, setRemaining] = useState<null | number>(status === 'betting' ? getTimeRemaining(created, overlay?.timerDuration) : null);
 
     useEffect(() => {
         if(status === 'betting') {
-            setRemaining(getTimeRemaining(created));
+            setRemaining(getTimeRemaining(created, overlay?.timerDuration));
         }
     }, [status, created]);
 

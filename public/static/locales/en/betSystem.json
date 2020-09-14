@@ -122,5 +122,7 @@
     "bet-toplist-random-winner-title-1": "Draw a random winner",
     "bet-toplist-random-winner-title-2": "Entries",
     "bet-toplist-random-winner-action-button": "Draw winner",
-    "bet-toplist-random-winner-action-cancel": "Cancel"
+    "bet-toplist-random-winner-action-cancel": "Cancel",
+
+    "bet-season-timer-duration": "Voteduration"
 }
