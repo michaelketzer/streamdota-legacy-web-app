@@ -45,6 +45,9 @@ const Distribution = ({t}: WithTranslation): ReactElement => {
                 <Color label={t('bet-season-overlay-teamB')} value={overlay.distributionColorRight} setValue={(distributionColorRight) => patch({distributionColorRight})}/>
 
 
+                <br />
+                <br />
+                
                 <Typography.Title level={3}>{t('bet-season-overlay-settings')}</Typography.Title>
 
                 <div className={'settingsGrid'}>

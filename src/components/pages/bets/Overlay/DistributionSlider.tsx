@@ -24,7 +24,7 @@ export default function DistributionSlider({overlay, delay, distribution = 50, a
 
         <div className={'distributionSlider'}>
             <div className={'vote votaA'} style={{...getVariant(overlay.fontVariant)}}>
-                {betCommand.command} {teamA}
+                {betCommand && betCommand.command} {teamA}
             </div>
             <div className={classNames('distributionWrapper', {delay: delay > 0})}>
                 <div className={'slider'}>
@@ -38,7 +38,7 @@ export default function DistributionSlider({overlay, delay, distribution = 50, a
                 </div>}
             </div>
             <div className={'vote votaB'} style={{...getVariant(overlay.fontVariant)}}>
-                {betCommand.command} {teamB}
+                {betCommand && betCommand.command} {teamB}
             </div>
         </div>
 

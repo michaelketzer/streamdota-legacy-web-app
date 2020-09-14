@@ -3,7 +3,7 @@ import { useBetOverlay } from "../../../../modules/selector/BetOverlay";
 import { useDispatch } from "react-redux";
 import { BetOverlay } from "@streamdota/shared-types";
 import { patchBetOverlay } from "../../../../modules/reducer/BetOverlay";
-import { Typography } from "antd";
+import { InputNumber, Typography } from "antd";
 import Color from "../../dotaOverlay/Overlay/Color";
 import FontSize from "../../dotaOverlay/Overlay/FontSize";
 import TimerCounter from "./TimerCounter";
@@ -27,6 +27,14 @@ const Timer = ({t}: WithTranslation): ReactElement => {
                 <Typography.Title level={3}>{t('bet-season-overlay-color')}</Typography.Title>
                 <Color label={t('bet-season-overlay-background')} disableAlpha={false} value={overlay.timerBackground} setValue={(timerBackground) => patch({timerBackground})}/>
                 <Color label={t('bet-season-overlay-font')} value={overlay.timerFont} setValue={(timerFont) => patch({timerFont})}/>
+
+                <br />
+                <br />
+                
+                <Typography.Title level={3}>{t('bet-season-overlay-settings')}</Typography.Title>
+
+                <div><b>{t('bet-season-timer-duration')}</b></div>
+                <InputNumber min={0} max={600} value={overlay.timerDuration} onChange={(timerDuration) => patch({timerDuration: +timerDuration})} />
             </div>
 
             <div>
