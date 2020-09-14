@@ -1,4 +1,4 @@
-import { ReactElement, useCallback } from "react";
+import { ReactElement, useCallback, useState } from "react";
 import classNames from "classnames";
 import { EyeFilled } from "@ant-design/icons";
 import HeroAvatar from "../HeroAvatar";
@@ -20,16 +20,20 @@ const animations = {
 };
 
 export default function DraftEvent({event, heroClass, heroId, team}: Props): ReactElement {
+    const [disabled, setDisabled] = useState(false);
     const showHeroStats = useCallback(async () => {
-        const abort = new AbortController();
-        const data = await fetchHeroStats(abort, +localStorage.getItem('leagueId'), heroId);
-        await post(process.env.API_URL + '/casting/overlay', {data: {heroId, heroClass, ...data}}, getDefaultHeader());
-
-    }, [heroId]);
+        if(!disabled && heroId) {
+            setDisabled(true);
+            const abort = new AbortController();
+            const data = await fetchHeroStats(abort, +localStorage.getItem('leagueId'), heroId);
+            await post(process.env.API_URL + '/casting/overlay', {data: {heroId, heroClass, ...data}}, getDefaultHeader());
+            setTimeout(() => setDisabled(false), 5000)
+        }
+    }, [heroId, disabled]);
 
     return <div className={classNames('draftEvent', team, event)}>
         <div className={'activeOverlay'} onClick={showHeroStats}>
-            <EyeFilled style={{color: heroId ? '#444' : '#EEE'}}/>
+            <EyeFilled style={{color: (heroId && !disabled) ? '#444' : '#EEE'}}/>
         </div>
         {heroClass && <motion.div initial={'hidden'} animate={'visible'} variants={animations}>
             <div className={'hero'}>
