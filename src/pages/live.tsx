@@ -9,7 +9,6 @@ import LiveFeed from "../components/pages/live/LiveFeed";
 import { WithTranslation } from "next-i18next";
 import i18nInstance from "../i18n";
 import dynamic from "next/dynamic";
-import { wrapper } from "../modules/Store";
 import FrameLink from "../components/pages/dotaOverlay/Overlay/FrameLink";
 
 
@@ -49,4 +48,4 @@ Live.getInitialProps = async () => ({
     namespacesRequired: ['liveFeed', 'nav'],
 });
 
-export default wrapper.withRedux(i18nInstance.withTranslation('liveFeed')(Live));
+export default i18nInstance.withTranslation('liveFeed')(Live);

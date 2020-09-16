@@ -1,6 +1,7 @@
 {
     "nav-general-settings": "Allgemeine Einstellungen",
     "nav-general-bot": "StreamDota Bot",
+    "nav-general-overlayBranding": "Overlay & Branding",
     "nav-general-betsystem": "Votesystem",
     "nav-general-dotaWL": "Dota W/L",
     "nav-general-roshTimer": "Roshan Countdown",

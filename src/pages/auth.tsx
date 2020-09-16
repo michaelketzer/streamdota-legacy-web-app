@@ -3,7 +3,6 @@ import Loader from '../components/Loader';
 import { useDispatch } from 'react-redux';
 import { Dispatch, useEffect } from 'react';
 import { authUser } from '../modules/reducer/User';
-import { wrapper } from '../modules/Store';
 import { useRouter } from "next/router";
 
 async function handleAuthRoutine(dispatch: Dispatch<any>, code: string): Promise<void> {
@@ -24,4 +23,4 @@ const Auth = () => {
     return <Loader />;
 }
 
-export default wrapper.withRedux(Auth);
+export default Auth;

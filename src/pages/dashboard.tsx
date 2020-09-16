@@ -7,7 +7,6 @@ import SetupGsi from "../components/pages/dashboard/SetupGsi";
 import { Typography } from "antd";
 import getWebsocketUrl from "../modules/Router";
 import i18nInstance, { TransFN } from "../i18n";
-import { wrapper } from "../modules/Store";
 
 const Dashboard = ({t}: {t: TransFN}): ReactElement => {
     const user = useCurrentUser();
@@ -39,4 +38,4 @@ Dashboard.getInitialProps = async () => ({
     namespacesRequired: ['dashboard', 'nav'],
 });
 
-export default wrapper.withRedux(i18nInstance.withTranslation('dashboard')(Dashboard));
+export default i18nInstance.withTranslation('dashboard')(Dashboard);

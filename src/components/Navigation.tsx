@@ -9,6 +9,7 @@ import {
   DotChartOutlined,
   ClockCircleOutlined,
   UserAddOutlined,
+  GatewayOutlined
 } from '@ant-design/icons';
 import { WithTranslation } from "next-i18next";
 import i18nInstance from "../i18n";
@@ -40,6 +41,10 @@ const gamingItems: MenuItem[] = [{
 }];
 
 const castingItems: MenuItem[] = [{
+    icon: <GatewayOutlined />,
+    name: 'nav-general-overlayBranding',
+    path: '/overlay',
+},{
     icon: <ClockCircleOutlined />,
     name: 'nav-general-roshTimer',
     path: '/roshTimer',
