@@ -2,6 +2,7 @@ import * as Sentry from '@sentry/browser';
 import { AppProps } from 'next/app';
 import 'antd/dist/antd.min.css';
 import 'react-typist/dist/Typist.css';
+import { wrapper } from '../modules/Store';
 import i18n from '../i18n'
 import { Integrations } from '@sentry/apm';
 import { FC } from 'react';
@@ -20,4 +21,4 @@ const WrappedApp: FC<AppProps> = ({Component, pageProps}) => (
     <Component {...pageProps} />
 );
 
-export default i18n.appWithTranslation(WrappedApp);
+export default wrapper.withRedux(i18n.appWithTranslation(WrappedApp));

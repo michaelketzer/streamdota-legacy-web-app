@@ -1,6 +1,5 @@
 import Router from 'next/router';
 import Loader from '../components/Loader';
-import { wrapper } from '../modules/Store';
 
 const Login = () => {
     if(process.browser) {
@@ -13,4 +12,4 @@ const Login = () => {
     return <Loader />;
 }
 
-export default wrapper.withRedux(Login);
+export default Login;

@@ -19,11 +19,13 @@ import { BetRoundState, betRoundReducer } from './reducer/BetRound';
 import { SteamConnectionState, steamConnectionReducer } from './reducer/SteamConnection';
 import { BetOverlayState, betOverlayReducer } from './reducer/BetOverlay';
 import { RoshOverlayState, roshOverlayReducer } from './reducer/RoshOverlay';
+import { CasterOverlayState, castingOverlayReducer } from './reducer/CasterOverlay';
 
 export interface State {
 	entities: {
 		betRound: BetRoundState;
 		betOverlay: BetOverlayState;
+		castingOverlay: CasterOverlayState;
 		roshOverlay: RoshOverlayState;
 		betSeason: BetSeasonState;
 		betSeasonInvite: BetSeasonInviteState;
@@ -45,6 +47,7 @@ const initial: State = {
 		betSeasonInvite: undefined,
 		betSeasonUser: undefined,
 		betSeasonToplist: undefined,
+		castingOverlay: undefined,
 		command: undefined,
 		dotaOverlay: undefined,
 		googleFont: undefined,
@@ -73,6 +76,7 @@ export const storeReducer = combineReducers<State>({
 		betSeasonInvite: entitiesReducer(betSeasonInviteReducer, 'betSeasonInvite'),
 		betSeasonUser: entitiesReducer(betSeasonUserReducer, 'betSeasonUser'),
 		betSeasonToplist: entitiesReducer(betSeasonToplistReducer, 'betSeasonToplist'),
+		castingOverlay: entitiesReducer(castingOverlayReducer, 'castingOverlay'),
 		command: entitiesReducer(commandReducer, 'command'),
 		dotaOverlay: entitiesReducer(dotaOverlayReducer, 'dotaOverlay'),
 		roshOverlay: entitiesReducer(roshOverlayReducer, 'roshOverlay'),

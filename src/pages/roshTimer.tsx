@@ -4,7 +4,6 @@ import PageHeader from "../components/PageHeader";
 import OverlaySetup from "../components/pages/roshTimer/OverlaySetup";
 import i18nInstance from "../i18n";
 import { WithTranslation } from "next-i18next";
-import { wrapper } from "../modules/Store";
 
 const RoshanTimer = ({t}: WithTranslation): ReactElement => {
     
@@ -21,4 +20,4 @@ RoshanTimer.getInitialProps = async () => ({
     namespacesRequired: ['roshTimer', 'dotaWL', 'nav'],
 });
 
-export default wrapper.withRedux(i18nInstance.withTranslation('roshTimer')(RoshanTimer));
+export default i18nInstance.withTranslation('roshTimer')(RoshanTimer);

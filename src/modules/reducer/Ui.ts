@@ -21,6 +21,7 @@ import {
 	LOAD_BET_OVERLAY_SUCCESS,
 	UPDATE_BET_OVERLAY_SUCCESS,
 	LOAD_ROSH_OVERLAY_SUCCESS,
+	LOAD_CASTER_OVERLAY_SUCCESS
 } from './Actions';
 import { DeepPartial } from 'redux';
 import { ApiActionResponse } from '../middleware/Network';
@@ -41,6 +42,7 @@ export interface Ui {
 		betSeasonInvites: number[];
 		betSeasonUsers: number[];
 		betSeasonToplists: number[];
+		castingOverlay: boolean;
 		commands: boolean;
 		googleFonts: boolean;
 		roshOverlay: boolean;
@@ -60,6 +62,7 @@ export const initialUiState: Ui = {
 		betSeasonInvites: [],
 		betSeasonUsers: [],
 		betSeasonToplists: [],
+		castingOverlay: false,
 		commands: false,
 		googleFonts: false,
 		roshOverlay: false,
@@ -117,6 +120,7 @@ addReducer<CurrentUserSuccess>(LOAD_CURRENT_USER_SUCCESS, (state, { response: cu
 const flatLoadedEntities = [
 	['commands', LOAD_COMMANDS_SUCCESS, true],
 	['betOverlay', LOAD_BET_OVERLAY_SUCCESS, true],
+	['castingOverlay', LOAD_CASTER_OVERLAY_SUCCESS, true],
 	['roshOverlay', LOAD_ROSH_OVERLAY_SUCCESS, true],
 	['betOverlay', UPDATE_BET_OVERLAY_SUCCESS, false],
 	['timers', LOAD_TIMERS_SUCCESS, true],

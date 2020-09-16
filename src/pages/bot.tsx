@@ -6,7 +6,6 @@ import PageHeader from "../components/PageHeader";
 import Basic from '../components/pages/bot/basic';
 import i18nInstance from "../i18n";
 import { WithTranslation } from "next-i18next";
-import { wrapper } from "../modules/Store";
 
 const Commands = dynamic(
     () => import('../components/pages/bot/commands'),
@@ -41,4 +40,4 @@ Bot.getInitialProps = async () => ({
     namespacesRequired: ['bot', 'nav'],
 });
 
-export default wrapper.withRedux(i18nInstance.withTranslation('bot')(Bot));
+export default i18nInstance.withTranslation('bot')(Bot);
