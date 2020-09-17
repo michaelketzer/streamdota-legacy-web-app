@@ -7,6 +7,10 @@ import { updateCurrentUser } from '../../../modules/reducer/Ui';
 import { User } from '@streamdota/shared-types';
 import i18nInstance from '../../../i18n';
 import { WithTranslation } from 'next-i18next';
+import ContextProvider from '../../context/websocket/context';
+import { initialState, reducer } from '../../context/websocket/state';
+import getWebsocketUrl from '../../../modules/Router';
+import DotaGamesTable from './DotaGamesTable';
 
 const radioStyle = {
 	display: 'block',
@@ -19,7 +23,7 @@ const Stats = ({t}: WithTranslation): ReactElement => {
 	const dispatch = useDispatch();
 
 	const patch = useCallback(async (data: Partial<User>) => {
-		await dispatch(updateCurrentUser(data));
+		dispatch(updateCurrentUser(data));
 	}, []);
 
 	if (user) {
@@ -60,6 +64,17 @@ const Stats = ({t}: WithTranslation): ReactElement => {
 					/>
 					<div className={'label'} onClick={() => patch({dotaStatsPickHidden: !Boolean(user.dotaStatsPickHidden)})}>{t('settings-visible-picking')}</div>
 				</div>
+
+				<br />
+				<br />
+				<br />
+
+				<div className={'stats'}>
+					<Typography.Title level={4}>{'Aktuelle Stream Stats'}</Typography.Title>
+					<ContextProvider initialState={initialState} reducer={reducer} url={getWebsocketUrl() + '/dota-gsi/live/' + user.frameApiKey}>
+						<DotaGamesTable/>
+					</ContextProvider>
+				</div>
 				
 				<style jsx>{`
 					.row {
@@ -70,6 +85,10 @@ const Stats = ({t}: WithTranslation): ReactElement => {
 					.label {
 						margin-left: 8px;
 						cursor: pointer;
+					}
+
+					.stats {
+						max-width: 600px;
 					}
 				`}</style>
 			</React.Fragment>

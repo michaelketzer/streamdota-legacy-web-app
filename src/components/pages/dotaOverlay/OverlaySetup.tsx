@@ -114,16 +114,16 @@ const OverlaySetup = ({t}: WithTranslation): ReactElement | null => {
 				</div>
 
 				<style>{`
-                .setup {
-                    margin: 20px -20px -20px -20px;
-                    display: flex;
-                }
+					.setup {
+						margin: 20px -20px -20px -20px;
+						display: flex;
+					}
 
-                .col {
-                    padding: 20px;
-                    width: 50%;
-                }
-            `}</style>
+					.col {
+						padding: 20px;
+						width: 50%;
+					}
+				`}</style>
 			</Fragment>
 		);
 	}

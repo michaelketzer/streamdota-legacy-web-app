@@ -20,6 +20,7 @@ import { SteamConnectionState, steamConnectionReducer } from './reducer/SteamCon
 import { BetOverlayState, betOverlayReducer } from './reducer/BetOverlay';
 import { RoshOverlayState, roshOverlayReducer } from './reducer/RoshOverlay';
 import { CasterOverlayState, castingOverlayReducer } from './reducer/CasterOverlay';
+import { dotaStatsReducer, DotaStatsState } from './reducer/DotaStats';
 
 export interface State {
 	entities: {
@@ -33,6 +34,7 @@ export interface State {
 		betSeasonToplist: BetSeasonToplistState;
 		command: CommandState;
 		dotaOverlay: DotaOverlayState;
+		dotaStats: DotaStatsState;
 		googleFont: FontState;
 		steamConnection: SteamConnectionState;
 		timer: TimerState;
@@ -50,6 +52,7 @@ const initial: State = {
 		castingOverlay: undefined,
 		command: undefined,
 		dotaOverlay: undefined,
+		dotaStats: undefined,
 		googleFont: undefined,
 		roshOverlay: null,
 		steamConnection: undefined,
@@ -79,6 +82,7 @@ export const storeReducer = combineReducers<State>({
 		castingOverlay: entitiesReducer(castingOverlayReducer, 'castingOverlay'),
 		command: entitiesReducer(commandReducer, 'command'),
 		dotaOverlay: entitiesReducer(dotaOverlayReducer, 'dotaOverlay'),
+		dotaStats: entitiesReducer(dotaStatsReducer, 'dotaStats'),
 		roshOverlay: entitiesReducer(roshOverlayReducer, 'roshOverlay'),
 		googleFont: entitiesReducer(googleFontReducer, 'googleFont'),
 		steamConnection: entitiesReducer(steamConnectionReducer, 'steamConnection'),
@@ -89,7 +93,7 @@ export const storeReducer = combineReducers<State>({
 
 //@ts-ignore
 const makeStore: MakeStore<State> = () => {
-	if(false && process.env.NODE_ENV === 'development') {
+	if(process.env.NODE_ENV === 'development') {
 		const composeEnhancers = composeWithDevTools({
 			hostname: 'localhost',
 			realtime: true,

@@ -7,7 +7,7 @@ export const loadedCommandsSelector = (state: State): boolean => state.ui.loaded
 export const loadedTimersSelector = (state: State): boolean => state.ui.loadedEntities.timers;
 export const loadedGoogleFontsSelector = (state: State): boolean => state.ui.loadedEntities.googleFonts;
 export const loadedSteamConnectionSelector = (state: State): boolean => state.ui.loadedEntities.steamConnections;
-
+export const loadedDotaStatsSelector = (state: State): boolean => state.ui.loadedEntities.dotaStats;
 export const loadedBeatSeasonInvitesSelector = (state: State): number[] => state.ui.loadedEntities.betSeasonInvites;
 export const loadedBeatSeasonUsersSelector = (state: State): number[] => state.ui.loadedEntities.betSeasonUsers;
 export const loadedBeatSeasonToplistSelector = (state: State): number[] => state.ui.loadedEntities.betSeasonToplists;

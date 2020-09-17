@@ -16,7 +16,8 @@ export enum MessageType {
     draft = 'draft',
     draft2 = 'draft2',
     gsi_draft = 'gsi_draft',
-    gsi_gamedata = 'gsi_gamedata'
+    gsi_gamedata = 'gsi_gamedata',
+    gsi_game_winner = 'gsi_game_winner',
 }
 
 export interface BaseMessage {
@@ -93,7 +94,15 @@ export interface GameDetailsMessage extends BaseMessage {
     };
 }
 
-export type Message =  GameStateMessage | WinnerMessage | ChatMessage | BettingMessage | ConnectedMessage | RoshanMessage | DraftMessage | GameDetailsMessage;
+export interface GsiWinnerMessage extends BaseMessage {
+    type: MessageType.gsi_game_winner;
+    value: {
+        isPlayingWin: boolean;
+        winnerTeam: 'none' | 'radiant' | 'dire';
+    };
+}
+
+export type Message =  GameStateMessage | GsiWinnerMessage | WinnerMessage | ChatMessage | BettingMessage | ConnectedMessage | RoshanMessage | DraftMessage | GameDetailsMessage;
 
 export function isRoshanMessage(msg: Message): msg is RoshanMessage {
     return msg.type === MessageType.roshan;
@@ -105,6 +114,10 @@ export function isDraftMessage(msg: Message): msg is DraftMessage {
 
 export function isGameDetailsMessage(msg: Message): msg is GameDetailsMessage {
     return msg.type === MessageType.gsi_gamedata;
+}
+
+export function isGsiWinnerMessage(msg: Message): msg is GsiWinnerMessage {
+    return msg.type === MessageType.gsi_game_winner;
 }
 
 interface NewMessageAction {
