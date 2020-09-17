@@ -124,5 +124,6 @@
     "bet-toplist-random-winner-action-button": "Draw winner",
     "bet-toplist-random-winner-action-cancel": "Cancel",
 
-    "bet-season-timer-duration": "Voteduration"
+    "bet-season-timer-duration": "Voteduration",
+    "bet-season-round-date": "Date"
 }
