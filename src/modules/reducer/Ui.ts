@@ -44,6 +44,7 @@ export interface Ui {
 		betSeasonToplists: number[];
 		castingOverlay: boolean;
 		commands: boolean;
+		dotaStats: boolean;
 		googleFonts: boolean;
 		roshOverlay: boolean;
 		steamConnections: boolean;
@@ -64,6 +65,7 @@ export const initialUiState: Ui = {
 		betSeasonToplists: [],
 		castingOverlay: false,
 		commands: false,
+		dotaStats: false,
 		googleFonts: false,
 		roshOverlay: false,
 		steamConnections: false,
@@ -87,11 +89,6 @@ interface LoadedBetSeasonAsset<T> {
 			seasonId: number;
 		};
 	};
-}
-
-interface LoadedDotaStats {
-	type: typeof LOAD_DOTA_STATS_SUCCESS;
-	response: DotaStats[];
 }
 
 interface LoadedCurrentBetRound {
@@ -123,6 +120,7 @@ const flatLoadedEntities = [
 	['castingOverlay', LOAD_CASTER_OVERLAY_SUCCESS, true],
 	['roshOverlay', LOAD_ROSH_OVERLAY_SUCCESS, true],
 	['betOverlay', UPDATE_BET_OVERLAY_SUCCESS, false],
+	['dotaStats', LOAD_DOTA_STATS_SUCCESS, true],
 	['timers', LOAD_TIMERS_SUCCESS, true],
 	['googleFonts', LOAD_GOOGLE_FONTS_SUCCESS, true],
 	['betSeasons', LOAD_BET_SEASONS_SUCCESS, true],
@@ -161,13 +159,6 @@ for(const [key, listener] of betSeasonAssetsLoaded) {
 		};
 	});
 }
-
-addReducer<LoadedDotaStats>(LOAD_DOTA_STATS_SUCCESS, (state, {response}) => {
-	return {
-		...state,
-		dotaStats: response,
-	};
-});
 
 addReducer<LoadedCurrentBetRound>(LOAD_CURRENT_BET_ROUND_SUCCESS, (state, {response}) => {
 	return {

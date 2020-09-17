@@ -68,26 +68,6 @@ export function updateDotaOverlay(data: Partial<OverlayConfig>): ActionDispatche
 	};
 }
 
-export function loadDotaStats(apiKey: string): ActionDispatcher<Promise<void>> {
-	return async (dispatch) => {
-		await dispatch<Promise<Response | NetworkError>>({
-			[CALL_API]: {
-				endpoint: `${process.env.API_URL}/user/dotaStats/:apiKey`,
-				types: {
-					requestType: LOAD_DOTA_STATS_REQUEST,
-					successType: LOAD_DOTA_STATS_SUCCESS,
-					failureType: LOAD_DOTA_STATS_FAILURE,
-				},
-				options: {
-					urlParams: {
-						apiKey
-					}
-				},
-			},
-		});
-	};
-}
-
 export function resetGsi(): ActionDispatcher<Promise<void>> {
 	return async (dispatch) => {
 		await dispatch<Promise<Response | NetworkError>>({
