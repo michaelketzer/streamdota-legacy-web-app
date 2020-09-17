@@ -8,6 +8,7 @@ import i18nInstance from "../../../../i18n";
 import { WithTranslation } from "next-i18next";
 import { useCurrentUser } from "../../../../hooks/currentUser";
 import { User } from "@streamdota/shared-types";
+import dayjs from "dayjs";
 
 const columns = (t: WithTranslation['t'], dispatch: Dispatch<any>,user: User) => [
     {
@@ -19,6 +20,11 @@ const columns = (t: WithTranslation['t'], dispatch: Dispatch<any>,user: User) =>
       title: t('bet-season-round-channel'),
       dataIndex: 'displayName',
       key: 'username',
+    },
+    {
+      title: t('bet-season-round-date'),
+      key: 'date',
+      render: ({created}) => dayjs.unix(created).format('DD.MM.YYYY HH:mm'),
     },
     {
       title: t('bet-season-round-bets'),
