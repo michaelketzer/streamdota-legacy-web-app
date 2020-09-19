@@ -1,4 +1,4 @@
-import { User, DotaStats, BetRound, BetRoundStats } from '@streamdota/shared-types';
+import { User, DotaStats } from '@streamdota/shared-types';
 import {
 	SET_UI,
 	LOAD_CURRENT_USER_SUCCESS,
@@ -92,11 +92,6 @@ interface LoadedBetSeasonAsset<T> {
 	};
 }
 
-interface LoadedCurrentBetRound {
-	type: typeof LOAD_CURRENT_BET_ROUND_SUCCESS;
-	response: BetRoundStats;
-}
-
 interface CurrentUserSuccess extends ApiActionResponse<User> {
 	type: typeof LOAD_CURRENT_USER_SUCCESS;
 }
@@ -160,13 +155,6 @@ for(const [key, listener] of betSeasonAssetsLoaded) {
 		};
 	});
 }
-
-addReducer<LoadedCurrentBetRound>(LOAD_CURRENT_BET_ROUND_SUCCESS, (state, {response}) => {
-	return {
-		...state,
-		currentBetRound: response,
-	};
-});
 
 export const uiReducer = combinedReducer;
 
