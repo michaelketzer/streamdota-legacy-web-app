@@ -17,7 +17,7 @@ const Tab = ({t}: WithTranslation): ReactElement => {
 	const seasons = useBetSeasons();
 	const onToggleBets = useCallback(
 		async () => {
-			await dispatch(updateCurrentUser({ useBets: !user.useBets }));
+			dispatch(updateCurrentUser({ useBets: !user.useBets }));
 		},
 		[ user ]
 	);

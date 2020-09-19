@@ -4,18 +4,16 @@ import { WithTranslation } from "next-i18next";
 import i18nInstance from "../../../../i18n";
 import { BetRoundData } from "../../../context/websocket/state";
 import Tile from "./Tile/TileWrapper";
-import StreamDelayInfo from "./StatusTile/StreamDelayInfo";
-import Voting from "./StatusTile/Voting";
-import GameRunning from "./StatusTile/GameRunning";
+import Value from "./Tile/Value";
+import Label from "./Tile/Label";
 
-const StatusTile = ({t, betRound}: {betRound: BetRoundData} & WithTranslation): ReactElement => {
+const ParticipationTile = ({t, betRound}: {betRound: BetRoundData} & WithTranslation): ReactElement => {
 
     return <Tile>
         <div className={classNames('statusTileWrapper', betRound.status)}>
             <div className={'inner'}>
-                {betRound.status === "stream_delay" && <StreamDelayInfo betRound={betRound} />}
-                {betRound.status === "betting" && <Voting betRound={betRound} />}
-                {betRound.status === "game_running" && <GameRunning betRound={betRound} />}
+                <Value color={undefined}>{betRound.totalVotesCount}</Value>
+                <Label>Teilnehmer</Label>
             </div>
         </div>
         <style jsx>{`
@@ -37,4 +35,4 @@ const StatusTile = ({t, betRound}: {betRound: BetRoundData} & WithTranslation): 
     </Tile>;
 }
 
-export default i18nInstance.withTranslation('betSystem')(StatusTile);
+export default i18nInstance.withTranslation('betSystem')(ParticipationTile);

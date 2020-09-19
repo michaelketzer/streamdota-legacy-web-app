@@ -1,6 +1,7 @@
 import { ReactElement, useMemo } from "react";
 import { WithTranslation } from "next-i18next";
 import i18nInstance from "../../../../i18n";
+import { useBetOverlay } from "../../../../modules/selector/BetOverlay";
 
 interface Props extends WithTranslation {
     aBets: number;
@@ -9,6 +10,7 @@ interface Props extends WithTranslation {
 }
 
 const BetDistribution = ({t, aBets, bBets, bets}: Props): ReactElement => {
+    const overlay = useBetOverlay();
     const percentage = useMemo(() => {
         if((bets) > 0) {
             return (aBets * 100) / bets;
@@ -32,6 +34,7 @@ const BetDistribution = ({t, aBets, bBets, bets}: Props): ReactElement => {
             .header {
                 color: #8C8C8C;
                 font-size: 16px;
+                text-align: center;
             }
 
             .distributionNumbers {
@@ -47,22 +50,22 @@ const BetDistribution = ({t, aBets, bBets, bets}: Props): ReactElement => {
             }
 
             .teamA {
-                color: #389E0D;
+                color: ${overlay.distributionColorLeft || '#389E0D'};
             }
 
             .teamB {
-                color: #A8071A;
+                color: ${overlay.distributionColorRight || '#A8071A'};
             }
 
             .distributionSlider {
                 width: 100%;
-                background-color: #A8071A;
+                background-color: ${overlay.distributionColorRight || '#A8071A'};
                 border-radius: 8px;
                 height: 12px;
             }
 
             .teamABets {
-                background-color: #389E0D;
+                background-color: ${overlay.distributionColorLeft || '#389E0D'};
                 position: relative;
                 height: 100%;
                 transition: width 120ms ease-in-out;

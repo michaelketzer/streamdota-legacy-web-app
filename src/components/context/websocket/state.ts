@@ -18,6 +18,7 @@ export enum MessageType {
     gsi_draft = 'gsi_draft',
     gsi_gamedata = 'gsi_gamedata',
     gsi_game_winner = 'gsi_game_winner',
+    betting_v2 = 'betting_v2'
 }
 
 export interface BaseMessage {
@@ -102,7 +103,35 @@ export interface GsiWinnerMessage extends BaseMessage {
     };
 }
 
-export type Message =  GameStateMessage | GsiWinnerMessage | WinnerMessage | ChatMessage | BettingMessage | ConnectedMessage | RoshanMessage | DraftMessage | GameDetailsMessage;
+export interface BetRoundData {
+    status: 'stream_delay' | 'betting' | 'game_running' | 'finished';
+    overlayVisibleUntil: number;
+    overlayVisible: boolean;
+    streamDelay: number;
+    votingStartingAt: number;
+    votingTimeRemaining: number;
+    votingPossibleUntil: number;
+    voteCreated: number;
+    totalVotesCount: number;
+    chatterCounts: number;
+    teamACount: number;
+    teamAVoters: string[];
+    teamBCount: number;
+    teamBVoters: string[];
+    allVoters: string[];
+    winner: null | string;
+    winnerAnnouncement: null | number;
+    announcedStart: boolean;
+    announcedVoteEnd: boolean;
+    announcedWinner: boolean;
+}
+
+export interface BettingV2Message extends BaseMessage {
+    type: MessageType.betting_v2;
+    value: BetRoundData;
+}
+
+export type Message = BettingV2Message | GameStateMessage | GsiWinnerMessage | WinnerMessage | ChatMessage | BettingMessage | ConnectedMessage | RoshanMessage | DraftMessage | GameDetailsMessage;
 
 export function isRoshanMessage(msg: Message): msg is RoshanMessage {
     return msg.type === MessageType.roshan;
@@ -118,6 +147,10 @@ export function isGameDetailsMessage(msg: Message): msg is GameDetailsMessage {
 
 export function isGsiWinnerMessage(msg: Message): msg is GsiWinnerMessage {
     return msg.type === MessageType.gsi_game_winner;
+}
+
+export function isBettingV2Message(msg: Message): msg is BettingV2Message {
+    return msg.type === MessageType.betting_v2;
 }
 
 interface NewMessageAction {
