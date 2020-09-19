@@ -35,8 +35,12 @@ export default function AwaitingVote(): ReactElement | null {
                 </div>
             </div>}
 
+            {activeSeason.type !== 'ladder' && <div className={'ladderInfo'}>
+                Warte auf Voting...
+            </div>}
+
             <div className={'start'}>
-                <Button onClick={startbet} size={'large'} type={activeSeason.type === 'ladder' ? 'dashed' : 'primary'}>Voting {activeSeason.type === 'ladder' && <>&nbsp;manuell&nbsp;</>} starten</Button>
+                <Button onClick={startbet} size={'large'} type={activeSeason.type === 'ladder' ? 'dashed' : 'primary'}>Voting {activeSeason.type === 'ladder' && <>&nbsp;manuell</>}&nbsp;starten</Button>
             </div>
 
             <style jsx>{`
