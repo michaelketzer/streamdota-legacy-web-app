@@ -93,7 +93,7 @@ export const storeReducer = combineReducers<State>({
 
 //@ts-ignore
 const makeStore: MakeStore<State> = () => {
-	if(process.env.NODE_ENV === 'development') {
+	if(false && process.env.NODE_ENV === 'development') {
 		const composeEnhancers = composeWithDevTools({
 			hostname: 'localhost',
 			realtime: true,

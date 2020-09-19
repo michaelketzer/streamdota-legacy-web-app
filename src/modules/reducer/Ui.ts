@@ -30,9 +30,10 @@ import { mergeStates } from './util/MergeStates';
 import { ActionDispatcher, CALL_API } from '../middleware/NetworkMiddlewareTypes';
 import NetworkError from '../middleware/NetworkError';
 import { currentUserSelector } from '../selector/Ui';
+import { BetRoundData } from '../../components/context/websocket/state';
 
 export interface Ui {
-	currentBetRound: BetRoundStats | null;
+	currentBetRound: BetRoundData | null;
 	currentUser: User | null;
 	dotaStats: DotaStats[] | null;
 	loadedEntities: {
@@ -212,7 +213,7 @@ export function updateCurrentUser(data: Partial<User>): ActionDispatcher<Promise
 	};
 }
 
-export function updateCurrentBetTound(betRound: BetRound): ActionDispatcher<void> {
+export function updateCurrentBetTound(betRound: BetRoundData): ActionDispatcher<void> {
 	return (dispatch) => dispatch({
 		type: LOAD_CURRENT_BET_ROUND_SUCCESS,
 		response: betRound,
