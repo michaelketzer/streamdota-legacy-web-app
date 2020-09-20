@@ -95,6 +95,10 @@ interface LoadedBetSeasonAsset<T> {
 interface CurrentUserSuccess extends ApiActionResponse<User> {
 	type: typeof LOAD_CURRENT_USER_SUCCESS;
 }
+interface BetRoundUpdateSuccess {
+	type: typeof LOAD_CURRENT_BET_ROUND_SUCCESS;
+	response: BetRoundData;
+}
 
 const { addReducer, combinedReducer } = createReducer<Ui>(initialUiState);
 
@@ -107,6 +111,12 @@ addReducer<CurrentUserSuccess>(LOAD_CURRENT_USER_SUCCESS, (state, { response: cu
 			gsiConnected: Boolean(currentUser.gsiConnected),
 			useBets: Boolean(currentUser.useBets),
 		},
+	};
+});
+addReducer<BetRoundUpdateSuccess>(LOAD_CURRENT_BET_ROUND_SUCCESS, (state, { response: betRound }) => {
+	return {
+		...state,
+		currentBetRound: betRound,
 	};
 });
 
