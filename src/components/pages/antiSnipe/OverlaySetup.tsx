@@ -44,7 +44,7 @@ const OverlaySetup = ({t}: WithTranslation): ReactElement | null => {
 					</div>
 
                     <div className={'col'}>
-						<FrameLink auth={userData?.frameApiKey || ''} access={'antiSnipe'} testing width={1920} height={1080} />
+						<FrameLink auth={userData?.frameApiKey || ''} access={'antiSnipe'} testing width={280} height={286} />
 
                     </div>
 				</div>
