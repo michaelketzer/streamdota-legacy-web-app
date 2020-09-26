@@ -21,9 +21,11 @@ import { BetOverlayState, betOverlayReducer } from './reducer/BetOverlay';
 import { RoshOverlayState, roshOverlayReducer } from './reducer/RoshOverlay';
 import { CasterOverlayState, castingOverlayReducer } from './reducer/CasterOverlay';
 import { dotaStatsReducer, DotaStatsState } from './reducer/DotaStats';
+import { antiSnipeOverlayReducer, AntiSnipeOverlayState } from './reducer/AntiSnipeOverlay';
 
 export interface State {
 	entities: {
+		antiSnipeOverlay: AntiSnipeOverlayState;
 		betRound: BetRoundState;
 		betOverlay: BetOverlayState;
 		castingOverlay: CasterOverlayState;
@@ -43,6 +45,7 @@ export interface State {
 }
 const initial: State = {
 	entities: {
+		antiSnipeOverlay: undefined,
 		betRound: undefined,
 		betOverlay: null,
 		betSeason: undefined,
@@ -73,6 +76,7 @@ export const storeReducer = combineReducers<State>({
 	...stateReducer,
 	//@ts-ignore
 	entities: combiner({
+		antiSnipeOverlay: entitiesReducer(antiSnipeOverlayReducer, 'antiSnipeOverlay'),
 		betRound: entitiesReducer(betRoundReducer, 'betRound'),
 		betOverlay: entitiesReducer(betOverlayReducer, 'betOverlay'),
 		betSeason: entitiesReducer(betSeasonReducer, 'betSeason'),

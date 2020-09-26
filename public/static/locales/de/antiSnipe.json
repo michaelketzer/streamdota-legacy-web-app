@@ -1,0 +1,10 @@
+{
+    "antiSnipe-title": "Anti-Snipe Overlay",
+    "antiSnipe-title-sub": "Overlay um die Dota 2 Minimap zu covern und sniping von Wards/Runen und Positionen zu verhindern.",
+
+    "antiSnipe-type-title": "Anzeige",
+    "overlay-type-normal": "Komplett",
+    "overlay-type-rounded": "Abgerundet",
+    "antiSnipe-opacity": "Deckkraft",
+    "antiSnipe-preview": "Vorschau"
+}
