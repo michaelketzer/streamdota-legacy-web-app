@@ -9,7 +9,7 @@ import {
   DotChartOutlined,
   ClockCircleOutlined,
   UserAddOutlined,
-  GatewayOutlined
+  GatewayOutlined, AimOutlined
 } from '@ant-design/icons';
 import { WithTranslation } from "next-i18next";
 import i18nInstance from "../i18n";
@@ -38,6 +38,10 @@ const gamingItems: MenuItem[] = [{
     icon: <LineChartOutlined />,    
     name: 'nav-general-dotaWL',
     path: '/dotaWL'
+}, {
+    icon: <AimOutlined />,
+    name: 'nav-general-antiSnipe',
+    path: '/antiSnipe'
 }];
 
 const castingItems: MenuItem[] = [{

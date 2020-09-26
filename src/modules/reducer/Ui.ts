@@ -21,7 +21,7 @@ import {
 	LOAD_BET_OVERLAY_SUCCESS,
 	UPDATE_BET_OVERLAY_SUCCESS,
 	LOAD_ROSH_OVERLAY_SUCCESS,
-	LOAD_CASTER_OVERLAY_SUCCESS
+	LOAD_CASTER_OVERLAY_SUCCESS, LOAD_ANTI_SNIPE_OVERLAY_SUCCESS
 } from './Actions';
 import { DeepPartial } from 'redux';
 import { ApiActionResponse } from '../middleware/Network';
@@ -37,6 +37,7 @@ export interface Ui {
 	currentUser: User | null;
 	dotaStats: DotaStats[] | null;
 	loadedEntities: {
+		antiSnipeOverlay: boolean;
 		betRounds: number[];
 		betOverlay: boolean;
 		betSeasons: boolean;
@@ -58,6 +59,7 @@ export const initialUiState: Ui = {
 	currentUser: null,
 	dotaStats: null,
 	loadedEntities: {
+		antiSnipeOverlay: false,
 		betRounds: [],
 		betOverlay: false,
 		betSeasons: false,
@@ -125,6 +127,7 @@ const flatLoadedEntities = [
 	['betOverlay', LOAD_BET_OVERLAY_SUCCESS, true],
 	['castingOverlay', LOAD_CASTER_OVERLAY_SUCCESS, true],
 	['roshOverlay', LOAD_ROSH_OVERLAY_SUCCESS, true],
+	['antiSnipeOverlay', LOAD_ANTI_SNIPE_OVERLAY_SUCCESS, true],
 	['betOverlay', UPDATE_BET_OVERLAY_SUCCESS, false],
 	['dotaStats', LOAD_DOTA_STATS_SUCCESS, true],
 	['timers', LOAD_TIMERS_SUCCESS, true],

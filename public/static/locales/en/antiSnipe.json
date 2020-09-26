@@ -1,0 +1,10 @@
+{
+    "antiSnipe-title": "Anti Snipe Overlay",
+    "antiSnipe-title-sub": "Overlay for streamers to cover the Dota 2 Minimap to avoid being sniped.",
+
+    "antiSnipe-type-title": "Display",
+    "overlay-type-normal": "Full",
+    "overlay-type-rounded": "Rounded",
+    "antiSnipe-opacity": "Opacity",
+    "antiSnipe-preview": "Preview"
+}
