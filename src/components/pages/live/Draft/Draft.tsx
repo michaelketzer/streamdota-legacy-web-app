@@ -3,6 +3,7 @@ import DraftState from "./DraftState";
 import { useMessageListener } from "../../../context/websocket/MessageHandler";
 import { isDraftMessage } from "../../../context/websocket/state";
 import DraftDetails from "./DraftDetails";
+import { Spin } from "antd";
 
 export interface TeamDraftState {
     pick0_id?: number;
@@ -58,5 +59,27 @@ export default function Draft(): ReactElement | null {
         </>;
     }
 
-    return null;
+    return <div className={'waitingContainer'}>
+        <Spin size="large" />
+
+        <div className={'waitingContainerInfo'}>
+            Warte auf Spiel...
+        </div>
+
+        <style jsx>{`
+            .waitingContainer {
+                padding: 50px;
+                display: flex;
+                align-items: center;
+                flex-direction: column;
+            }    
+
+            .waitingContainerInfo {
+                margin-top: 20px;
+                color: #888;
+                text-align: center;
+                font-size: 16px;
+            }    
+        `}</style>
+    </div>;
 }

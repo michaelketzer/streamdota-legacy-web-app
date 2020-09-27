@@ -21,7 +21,7 @@ const Dashboard = ({t}: {t: TransFN}): ReactElement => {
                     
             <br />
             <p className={'important'}>{t('gsi-notice')}</p>
-            {user && user.frameApiKey && <ContextProvider initialState={initialState} reducer={reducer} url={getWebsocketUrl() + '/dota-gsi/logs/' + user.frameApiKey}>
+            {user && user.frameApiKey && <ContextProvider initialState={initialState} reducer={reducer} url={getWebsocketUrl() + '/dota-gsi/live/' + user.frameApiKey}>
                 <SetupGsi gsiAuth={user.gsiAuth} gsiConnected={user.gsiConnected} />
             </ContextProvider>}
         </div>

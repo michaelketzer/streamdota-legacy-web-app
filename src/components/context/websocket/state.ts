@@ -1,6 +1,7 @@
 import dayjs from 'dayjs';
 import { BetRoundStats } from '@streamdota/shared-types';
 import { DraftState } from '../../pages/live/Draft/Draft';
+import { PlayerState } from '../../pages/live/Game/Game';
 
 enum ACTIONS {
     NEW_MESSAGE = 'NEW_MESSAGE',
@@ -18,7 +19,9 @@ export enum MessageType {
     gsi_draft = 'gsi_draft',
     gsi_gamedata = 'gsi_gamedata',
     gsi_game_winner = 'gsi_game_winner',
-    betting_v2 = 'betting_v2'
+    gsi_game_state = 'gsi_game_state',
+    betting_v2 = 'betting_v2',
+    gsi_player_state = 'gsi_player_state',
 }
 
 export interface BaseMessage {
@@ -130,8 +133,16 @@ export interface BettingV2Message extends BaseMessage {
     type: MessageType.betting_v2;
     value: BetRoundData;
 }
+export interface GsiGameStateMessage extends BaseMessage {
+    type: MessageType.gsi_game_state;
+    value: GameState;
+}
+export interface GsiPlayerStateMessage extends BaseMessage {
+    type: MessageType.gsi_player_state;
+    value: PlayerState[];
+}
 
-export type Message = BettingV2Message | GameStateMessage | GsiWinnerMessage | WinnerMessage | ChatMessage | BettingMessage | ConnectedMessage | RoshanMessage | DraftMessage | GameDetailsMessage;
+export type Message = GsiPlayerStateMessage | GsiGameStateMessage | BettingV2Message | GameStateMessage | GsiWinnerMessage | WinnerMessage | ChatMessage | BettingMessage | ConnectedMessage | RoshanMessage | DraftMessage | GameDetailsMessage;
 
 export function isRoshanMessage(msg: Message): msg is RoshanMessage {
     return msg.type === MessageType.roshan;
@@ -151,6 +162,14 @@ export function isGsiWinnerMessage(msg: Message): msg is GsiWinnerMessage {
 
 export function isBettingV2Message(msg: Message): msg is BettingV2Message {
     return msg.type === MessageType.betting_v2;
+}
+
+export function isGsiGameStateMessage(msg: Message): msg is GsiGameStateMessage {
+    return msg.type === MessageType.gsi_game_state;
+}
+
+export function isGsiPlayerStateMessage(msg: Message): msg is GsiPlayerStateMessage {
+    return msg.type === MessageType.gsi_player_state;
 }
 
 interface NewMessageAction {
