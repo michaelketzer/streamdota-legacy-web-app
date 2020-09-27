@@ -42,7 +42,7 @@ export default function Players({state, dire = false}: Props): ReactElement {
             }
 
             .heroIcon {
-                width: 120px;
+                width: 100px;
                 height: 40px;
                 transform: skew(-10deg);
                 margin-left: -15px;

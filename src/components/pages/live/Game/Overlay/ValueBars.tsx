@@ -21,7 +21,7 @@ export default function ValueBars({playerState, accessKey = 'net_worth'}: {playe
                 position: absolute;
                 height: 150px;
                 width: 13px;
-                bottom: 76px;   
+                top: 140px;   
             }
 
             .absoluteValue {
@@ -32,7 +32,6 @@ export default function ValueBars({playerState, accessKey = 'net_worth'}: {playe
                 margin-left: -23px;
                 width: 60px;
                 position: absolute;
-
             }
 
             .bar-0 {
