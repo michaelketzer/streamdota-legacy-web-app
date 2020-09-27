@@ -77,6 +77,8 @@ export default function PageFrame({children, title}): ReactElement {
                 width: 240px;
                 flex-shrink: 0;
                 border-right: 1px solid #D4D4D5;
+                height: 100vh;
+                overflow-x: auto;
             }
 
             .main {
