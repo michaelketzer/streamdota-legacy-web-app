@@ -31,6 +31,7 @@ import { ActionDispatcher, CALL_API } from '../middleware/NetworkMiddlewareTypes
 import NetworkError from '../middleware/NetworkError';
 import { currentUserSelector } from '../selector/Ui';
 import { BetRoundData } from '../../components/context/websocket/state';
+import { loadUserCommands } from './Command';
 
 export interface Ui {
 	currentBetRound: BetRoundData | null;
@@ -210,6 +211,10 @@ export function updateCurrentUser(data: Partial<User>): ActionDispatcher<Promise
 			});
 
 			await dispatch(loadCurrentUser());
+
+			if(data.hasOwnProperty('useBets')) {
+				await dispatch(loadUserCommands());
+			}
 		}
 	};
 }
