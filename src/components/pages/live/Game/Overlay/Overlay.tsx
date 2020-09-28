@@ -1,5 +1,6 @@
 import { ReactElement, useState } from "react";
 import { PlayerState } from "../Game";
+import SwitchButtons from "./SwitchButtons";
 import ValueBars from "./ValueBars";
 
 export default function Overlay({playerState}: {playerState: PlayerState[]}): ReactElement {
@@ -9,10 +10,11 @@ export default function Overlay({playerState}: {playerState: PlayerState[]}): Re
         <div className={'overlay'}>
             <div className={'previewContainer'}>
                 <img src={'/images/game_stats.png'} className={'liveFeedImage'} />
+                <ValueBars playerState={playerState} accessKey={view}/>
             </div>
         </div>
 
-        <ValueBars playerState={playerState} accessKey={view}/>
+        <SwitchButtons />
 
         <div className={'view'}>
             <select value={view} onChange={(e) => setView(e.target.value as keyof PlayerState)}>
@@ -30,12 +32,13 @@ export default function Overlay({playerState}: {playerState: PlayerState[]}): Re
 
         <style jsx>{`
             .overlay {
-                position: absolute;
-                top: 80px;
                 pointer-events: none;
+                height: 240px;
+                overflow: hidden;
             }
             .previewContainer {
                 pointer-events: none;
+                position: relative;
             }
             .liveFeedImage {
                 object-fit: cover;
