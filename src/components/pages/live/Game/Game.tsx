@@ -181,7 +181,6 @@ export default function Game(): ReactElement {
         <style jsx>{`
             .liveGameContainer {
                 min-height: 50vh;
-                position: relative;
             }    
         `}</style>
     </div>;

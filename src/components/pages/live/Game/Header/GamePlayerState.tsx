@@ -28,10 +28,6 @@ export default function GamePlayerState({state}: Props): ReactElement {
 
         <style jsx>{`
             .heroContainer {
-                position: absolute;
-                top: 0;
-                left: 0;
-                right: 0;
                 display: flex;
                 justify-content: center;
                 align-items: center;

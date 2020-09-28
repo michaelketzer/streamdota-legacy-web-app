@@ -1,5 +1,10 @@
 import { ReactElement, useMemo } from "react";
 import { PlayerState } from "../Game";
+import accounting from 'accounting';
+
+const typeNameMap = {
+    'net_worth': 'Net worth',
+}
 
 export default function ValueBars({playerState, accessKey = 'net_worth'}: {playerState: PlayerState[]; accessKey?: keyof PlayerState}): ReactElement {
     const values = useMemo(() => {
@@ -10,18 +15,21 @@ export default function ValueBars({playerState, accessKey = 'net_worth'}: {playe
         const max = Math.max(...data);
         return data.map((val) => ({absolute: val, percentage: Math.round(val * 100 / max)}));
     }, [playerState, accessKey]);
+
     return <>
         {values.map(({absolute, percentage}, key) => <div className={'bar bar-' + key} key={key}>
             <div className={'progress'} style={{height: percentage + '%'}}/>
-            <div className={'absoluteValue'}>{absolute}</div>
+            <div className={'absoluteValue'}>{accounting.formatNumber(absolute, 0, ' ')}</div>
         </div>)}
+
+        <div className={'nameValue'}>{typeNameMap[accessKey]}</div>
 
         <style jsx>{`
             .bar {
                 position: absolute;
                 height: 150px;
                 width: 13px;
-                top: 140px;   
+                top: 60px;
             }
 
             .absoluteValue {
@@ -32,6 +40,15 @@ export default function ValueBars({playerState, accessKey = 'net_worth'}: {playe
                 margin-left: -23px;
                 width: 60px;
                 position: absolute;
+            }
+
+            .nameValue {
+                height: 30px;
+                width: 200px;
+                background-color: rgba(0,0,0,.4);
+                position: absolute; top: 60px;
+                left: 50%;
+                transform: translateX(-50%);
             }
 
             .bar-0 {
