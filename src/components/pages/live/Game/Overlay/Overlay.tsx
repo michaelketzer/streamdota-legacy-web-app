@@ -12,10 +12,10 @@ export default function Overlay({playerState}: {playerState: PlayerState[]}): Re
     const showStats = useCallback(async () => {
         if(!loading) {
             setLoading(true);
-            await post(process.env.API_URL + '/casting/overlay', {data: {type: 'playerCompareGraph', data: values}}, getDefaultHeader());
+            await post(process.env.API_URL + '/casting/overlay', {data: {type: 'playerCompareGraph', data: values, dataType: view}}, getDefaultHeader());
             setTimeout(() => setLoading(false), 10000);
         }
-    }, [loading]);
+    }, [loading, values, view]);
 
     return <>
         <div className={'overlay'}>
