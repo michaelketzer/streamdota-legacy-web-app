@@ -2,12 +2,18 @@ import { ReactElement, useMemo } from "react";
 import { PlayerState } from "../Game";
 import accounting from 'accounting';
 
-const typeNameMap = {
+export const typeNameMap = {
     'net_worth': 'Net worth',
+    'gpm': 'GPM',
+    'xpm': 'XPM',
+    'hero_damage': 'Hero Damage',
+    'runes_activated': 'Rune Pickups',
+    'camps_stacked': 'Camps Stacked',
+    'support_gold_spent': 'Support Gold Spent'
 }
 
-export default function ValueBars({playerState, accessKey = 'net_worth'}: {playerState: PlayerState[]; accessKey?: keyof PlayerState}): ReactElement {
-    const values = useMemo(() => {
+export function useBarValues(accessKey: keyof PlayerState, playerState: PlayerState[]): Array<{absolute: number; percentage: number}> {
+    return useMemo(() => {
         const data = playerState.reduce((acc, player) => {
             acc.push(player[accessKey]);
             return acc;
@@ -15,7 +21,11 @@ export default function ValueBars({playerState, accessKey = 'net_worth'}: {playe
         const max = Math.max(...data);
         return data.map((val) => ({absolute: val, percentage: Math.round(val * 100 / max)}));
     }, [playerState, accessKey]);
+}
 
+export default function ValueBars({playerState, accessKey = 'net_worth'}: {playerState: PlayerState[]; accessKey?: keyof PlayerState}): ReactElement {
+    const values = useBarValues(accessKey, playerState);
+    
     return <>
         {values.map(({absolute, percentage}, key) => <div className={'bar bar-' + key} key={key}>
             <div className={'progress'} style={{height: percentage + '%'}}/>
@@ -44,11 +54,16 @@ export default function ValueBars({playerState, accessKey = 'net_worth'}: {playe
 
             .nameValue {
                 height: 30px;
-                width: 200px;
-                background-color: rgba(0,0,0,.4);
-                position: absolute; top: 60px;
+                width: 220px;
+                position: absolute; 
+                top: 180px;
                 left: 50%;
                 transform: translateX(-50%);
+                text-align: center;
+                font-size: 18px;
+                text-transform: uppercase;
+                color: #FFF;
+                font-weight: bold;
             }
 
             .bar-0 {
