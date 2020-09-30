@@ -3,13 +3,20 @@ import { PlayerState } from "../Game";
 import accounting from 'accounting';
 
 export const typeNameMap = {
-    'net_worth': 'Net worth',
     'gpm': 'GPM',
     'xpm': 'XPM',
     'hero_damage': 'Hero Damage',
     'runes_activated': 'Rune Pickups',
     'camps_stacked': 'Camps Stacked',
     'support_gold_spent': 'Support Gold Spent'
+}
+export const iconNameMap = {
+    'gpm': 'GPM.svg',
+    'xpm': 'XPM.svg',
+    'hero_damage': 'hero_dmg.svg',
+    'runes_activated': 'runes.svg',
+    'camps_stacked': 'camps.svg',
+    'support_gold_spent': 'support_gold.svg'
 }
 
 export function useBarValues(accessKey: keyof PlayerState, playerState: PlayerState[]): Array<{absolute: number; percentage: number}> {
@@ -32,6 +39,7 @@ export default function ValueBars({playerState, accessKey = 'net_worth'}: {playe
             <div className={'absoluteValue'}>{accounting.formatNumber(absolute, 0, ' ')}</div>
         </div>)}
 
+        <div className={'typeContainer'}><img src={'/images/icons/' + iconNameMap[accessKey]} alt={accessKey} /></div>
         <div className={'nameValue'}>{typeNameMap[accessKey]}</div>
 
         <style jsx>{`
@@ -64,6 +72,23 @@ export default function ValueBars({playerState, accessKey = 'net_worth'}: {playe
                 text-transform: uppercase;
                 color: #FFF;
                 font-weight: bold;
+            }
+
+            .typeContainer {
+                position: absolute; 
+                top: 10px;
+                left: 50%;
+                height: 180px;
+                width: 200px;
+                transform: translateX(-50%);
+                padding: 40px 0;
+                display: flex;
+                justify-content: center;
+            }
+
+            .typeContainer img {
+                height: 100%;
+                object-fit: cover;
             }
 
             .bar-0 {

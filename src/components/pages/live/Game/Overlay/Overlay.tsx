@@ -5,7 +5,7 @@ import { PlayerState } from "../Game";
 import ValueBars, { typeNameMap, useBarValues } from "./ValueBars";
 
 export default function Overlay({playerState}: {playerState: PlayerState[]}): ReactElement {
-    const [view, setView] = useState<keyof PlayerState>('net_worth');
+    const [view, setView] = useState<keyof PlayerState>('gpm');
     const [loading, setLoading] = useState(false);
     const values = useBarValues(view, playerState);
 
@@ -27,7 +27,6 @@ export default function Overlay({playerState}: {playerState: PlayerState[]}): Re
 
         <div className={'view'}>
             <Radio.Group value={view} onChange={(e) => setView(e.target.value as keyof PlayerState)}>
-                <Radio.Button value={'net_worth'}>{typeNameMap['net_worth']}</Radio.Button>
                 <Radio.Button value={'gpm'}>{typeNameMap['gpm']}</Radio.Button>
                 <Radio.Button value={'xpm'}>{typeNameMap['xpm']}</Radio.Button>
                 <Radio.Button value={'hero_damage'}>{typeNameMap['hero_damage']}</Radio.Button>
