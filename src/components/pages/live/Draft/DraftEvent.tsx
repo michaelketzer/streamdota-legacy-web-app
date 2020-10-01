@@ -25,7 +25,7 @@ export default function DraftEvent({event, heroClass, heroId, team}: Props): Rea
         if(!disabled && heroId) {
             setDisabled(true);
             const abort = new AbortController();
-            const data = await fetchHeroStats(abort, +localStorage.getItem('leagueId'), heroId);
+            const data = await fetchHeroStats(abort, localStorage.getItem('leagueId'), heroId);
             await post(process.env.API_URL + '/casting/overlay', {data: {type: 'heroStats', heroId, heroClass, ...data}}, getDefaultHeader());
             setTimeout(() => setDisabled(false), 10000)
         }

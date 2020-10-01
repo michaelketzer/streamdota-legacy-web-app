@@ -11,7 +11,7 @@ import Overlay from "./Overlay/Overlay";
 
 interface Props extends WithTranslation {
     apiKey: string;
-    leagueId: number;
+    leagueId: string;
 }
 
 type Tabs = 'draft' | 'game' | 'overlay';
