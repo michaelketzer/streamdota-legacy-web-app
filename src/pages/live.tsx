@@ -33,13 +33,6 @@ const Live = ({t}: WithTranslation): ReactElement => {
         {user && <ContextProvider initialState={initialState} reducer={reducer} url={getWebsocketUrl() + '/dota-gsi/live/' + user.frameApiKey}>
             <LiveFeed apiKey={user.frameApiKey} leagueId={leagueId} />
         </ContextProvider>}
-
-        <br />
-        <br />
-        <br />
-        {user && <>
-            <FrameLink auth={user.frameApiKey} testing access={'casting/draftStats'} height={70} width={500} />
-        </>}
     </PageFrame>
 }
 
