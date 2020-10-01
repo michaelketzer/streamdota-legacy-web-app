@@ -6,14 +6,14 @@ import { InfoCircleOutlined } from "@ant-design/icons";
 
 
 interface Props extends WithTranslation {
-    leagueId: number;
-    setLeagueId: (leagueId: number) => void;
+    leagueId: string;
+    setLeagueId: (leagueId: string) => void;
 }
 
 const LeagueIdSelector = ({t, leagueId, setLeagueId}: Props): ReactElement => {
 
     useEffect(() => {
-        setLeagueId(+(localStorage.getItem('leagueId') || 11850));
+        setLeagueId(localStorage.getItem('leagueId'));
     }, []);
 
     return <>
@@ -27,7 +27,7 @@ const LeagueIdSelector = ({t, leagueId, setLeagueId}: Props): ReactElement => {
         </div>
         <Input value={leagueId} onChange={(e) => {
             localStorage.setItem('leagueId', e.target.value)
-            setLeagueId(+e.target.value);
+            setLeagueId(e.target.value);
         }} />
 
         <style jsx>{`

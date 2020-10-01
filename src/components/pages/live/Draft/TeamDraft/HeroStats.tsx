@@ -17,7 +17,7 @@ interface HeroOverview {
     totalGamesCount: number;
 }
 
-export async function fetchHeroStats(abortController: AbortController, leagueId: number, heroId: number): Promise<HeroOverview | null> {
+export async function fetchHeroStats(abortController: AbortController, leagueId: string, heroId: number): Promise<HeroOverview | null> {
     const response = await fetch(process.env.API_URL + `/casting/heroStats/${leagueId}/${heroId}`, {headers: getDefaultHeader(), signal: abortController.signal});
     if(response.ok) {
         return await response.json();

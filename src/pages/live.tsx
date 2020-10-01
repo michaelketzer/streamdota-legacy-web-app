@@ -20,7 +20,7 @@ const LeagueIdSelector = dynamic(
 
 const Live = ({t}: WithTranslation): ReactElement => {
     const user = useCurrentUser();
-    const [leagueId, setLeagueId] = useState(11850);
+    const [leagueId, setLeagueId] = useState('12413');
     
     return <PageFrame title={'Live Feed'}>
         <PageHeader 
