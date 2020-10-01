@@ -10,6 +10,8 @@
     "@ant-design/icons": "^4.0.5",
     "@sentry/apm": "^5.24.2",
     "@sentry/browser": "^5.24.2",
+    "@types/accounting": "^0.4.1",
+    "accounting": "^0.4.1",
     "antd": "^4.6.5",
     "asmcrypto-lite": "^1.1.0",
     "classnames": "^2.2.6",

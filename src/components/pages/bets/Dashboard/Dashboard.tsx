@@ -8,8 +8,6 @@ import ActiveBet from "./ActiveBet";
 
 const Dashboard = ({t}: WithTranslation): ReactElement =>  {
     const betRound = useSelector(currentBetRoundSelector);
-    
-    console.log(betRound);
 
     return <div>
         {betRound === null && <AwaitingVote />}
