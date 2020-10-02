@@ -19,8 +19,24 @@ export const iconNameMap = {
     'support_gold_spent': 'support_gold.svg'
 }
 
+const fakeData = [
+    {absolute: 9201, percentage: 30},
+    {absolute: 9201, percentage: 30},
+    {absolute: 9201, percentage: 30},
+    {absolute: 9201, percentage: 30},
+    {absolute: 9201, percentage: 30},
+    {absolute: 9201, percentage: 30},
+    {absolute: 9201, percentage: 30},
+    {absolute: 9201, percentage: 30},
+    {absolute: 9201, percentage: 30},
+    {absolute: 9201, percentage: 30},
+]
+
 export function useBarValues(accessKey: keyof PlayerState, playerState: PlayerState[]): Array<{absolute: number; percentage: number}> {
     return useMemo(() => {
+        if(!playerState.length) {
+            return fakeData;
+        }
         const data = playerState.reduce((acc, player) => {
             acc.push(player[accessKey]);
             return acc;
@@ -45,18 +61,19 @@ export default function ValueBars({playerState, accessKey = 'net_worth'}: {playe
         <style jsx>{`
             .bar {
                 position: absolute;
-                height: 150px;
-                width: 13px;
-                top: 60px;
+                height: 97px;
+                width: 10px;
+                top: 90px;
             }
 
             .absoluteValue {
                 color: #FFF;
                 font-weight: bold;
-                top: -36px;
+                margin-left: -19px;
+                top: -24px;
+                width: 48px;
+                font-size: 12px;
                 text-align: center;
-                margin-left: -23px;
-                width: 60px;
                 position: absolute;
             }
 
@@ -64,11 +81,11 @@ export default function ValueBars({playerState, accessKey = 'net_worth'}: {playe
                 height: 30px;
                 width: 220px;
                 position: absolute; 
-                top: 180px;
+                top: 160px;
                 left: 50%;
                 transform: translateX(-50%);
                 text-align: center;
-                font-size: 18px;
+                font-size: 14px;
                 text-transform: uppercase;
                 color: #FFF;
                 font-weight: bold;
@@ -76,9 +93,9 @@ export default function ValueBars({playerState, accessKey = 'net_worth'}: {playe
 
             .typeContainer {
                 position: absolute; 
-                top: 10px;
+                top: 40px;
                 left: 50%;
-                height: 180px;
+                height: 150px;
                 width: 200px;
                 transform: translateX(-50%);
                 padding: 40px 0;
@@ -92,48 +109,43 @@ export default function ValueBars({playerState, accessKey = 'net_worth'}: {playe
             }
 
             .bar-0 {
-                left: 181px;
+                left: 353px;
             }
 
             .bar-1 {
-                left: 262px;
+                left: 406px;
             }
 
             .bar-2 {
-                left: 342px;
+                left: 458px;
             }
 
             .bar-3 {
-                left: 423px;
+                left: 510px;
             }
 
             .bar-4 {
-                left: 499px;
+                left: 559px;
             }
 
             .bar-5 {
-                right: 501px;
-                width: 14px;
+                right: 564px;
             }
 
             .bar-6 {
-                right: 420px;
-                width: 14px;
+                right: 511px;
             }
 
             .bar-7 {
-                right: 340px;
-                width: 14px;
+                right: 460px;
             }
 
             .bar-8 {
-                right: 259px;
-                width: 14px;
+                right: 407px;
             }
 
             .bar-9 {
-                right: 183px;
-                width: 14px;
+                right: 358px;
             }
 
             .progress {
