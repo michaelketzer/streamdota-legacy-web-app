@@ -44,22 +44,22 @@ export default function Overlay({playerState}: {playerState: PlayerState[]}): Re
 
         <style jsx>{`
             .overlay {
-                pointer-events: none;
                 height: 240px;
                 overflow: hidden;
             }
+            
             .previewContainer {
-                pointer-events: none;
                 position: relative;
+                justify-content: center;
+                display: flex;
             }
+
             .liveFeedImage {
-                object-fit: cover;
-                width: 100%;
-                transform: scale(1.8);
-                padding-top: 160px;
-                z-index: 0;
-                position: relative;
-                pointer-events: none;
+                object-fit: contain;
+                width: 700px;
+                margin: 0 auto;
+                padding-top: 20px;
+                height: 240px;
             }   
 
             .view {

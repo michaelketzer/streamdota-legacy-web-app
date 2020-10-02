@@ -4,8 +4,9 @@
 
     "league-info-start": "Source league id should be the id of the league where the data is gathered from. The stratz API is used to gain these details. You can search for the revelant league here",
     "league-info-end": ". By clicking on the league you will find the id in the url, like here:",
+    "league-info-patch": "You can now also define a specific patch. All pro games with captains draft are counted into these stats.",
     
-    "league-id-label": "League id",
+    "league-id-label": "League id/Patch",
 
     "livefeed-tab-draft": "Draft",
     "livefeed-tab-game": "Game",

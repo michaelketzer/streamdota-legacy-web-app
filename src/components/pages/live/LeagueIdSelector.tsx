@@ -21,6 +21,9 @@ const LeagueIdSelector = ({t, leagueId, setLeagueId}: Props): ReactElement => {
             <b>{t('league-id-label')}</b>&nbsp;
             <Popover title={t('league-id-label')} trigger="click" content={<div className={'popupContent'}>
                 {t('league-info-start')} <a className={'highlight'} href={'https://stratz.com/leagues'} target={'_blank'}>https://stratz.com/leagues</a>{t('league-info-end')} https://stratz.com/leagues/<span className={'highlight'}>11629</span>
+                <br />
+                <br />
+                {t('league-info-patch')}
             </div>}>
             <InfoCircleOutlined />
             </Popover>
