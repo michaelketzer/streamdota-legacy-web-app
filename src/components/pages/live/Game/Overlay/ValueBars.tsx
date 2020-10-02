@@ -19,24 +19,8 @@ export const iconNameMap = {
     'support_gold_spent': 'support_gold.svg'
 }
 
-const fakeData = [
-    {absolute: 9201, percentage: 30},
-    {absolute: 9201, percentage: 30},
-    {absolute: 9201, percentage: 30},
-    {absolute: 9201, percentage: 30},
-    {absolute: 9201, percentage: 30},
-    {absolute: 9201, percentage: 30},
-    {absolute: 9201, percentage: 30},
-    {absolute: 9201, percentage: 30},
-    {absolute: 9201, percentage: 30},
-    {absolute: 9201, percentage: 30},
-]
-
 export function useBarValues(accessKey: keyof PlayerState, playerState: PlayerState[]): Array<{absolute: number; percentage: number}> {
     return useMemo(() => {
-        if(!playerState.length) {
-            return fakeData;
-        }
         const data = playerState.reduce((acc, player) => {
             acc.push(player[accessKey]);
             return acc;
