@@ -67,4 +67,4 @@ const LiveFeed = ({t}: Props): ReactElement => {
     </Tabs>;
 }
 
-export default i18nInstance.withTranslation('livefeed')(LiveFeed);
+export default i18nInstance.withTranslation('liveFeed')(LiveFeed);
