@@ -55,6 +55,7 @@ const Timers = ({t}: WithTranslation): ReactElement => {
 						<TextArea
 							defaultValue={message}
 							onBlur={async (e) => await dispatch(updateTimer(id, { message: e.target.value }))}
+							maxLength={500}
 						/>
 						<div>
 							<Popconfirm
