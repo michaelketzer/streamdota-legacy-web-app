@@ -24,7 +24,7 @@
     "next-redux-wrapper": "^6.0.0",
     "normalizr": "^3.6.0",
     "react": "^16.13.1",
-    "react-color": "^2.18.0",
+    "react-color": "^2.19.3",
     "react-dom": "^16.13.1",
     "react-draggable": "^4.4.3",
     "react-google-font-loader": "^1.1.0",
