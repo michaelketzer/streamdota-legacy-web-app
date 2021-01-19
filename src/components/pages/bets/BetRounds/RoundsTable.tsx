@@ -42,17 +42,28 @@ const columns = (t: WithTranslation['t'], dispatch: Dispatch<any>,user: User) =>
       key: 'result',
     },
     {
+      title: t('bet-season-round-status'),
+      dataIndex: 'status',
+      key: 'status',
+    },
+    {
       title: t('bet-season-round-actions'),
       key: 'actions',
-      render: ({id, result}) => <>
-        <a onClick={async () => {
-          dispatch(updateBetRound(id, {result: result.toLowerCase() === user.teamAName.toLowerCase() ? user.teamBName.toLowerCase() : user.teamAName.toLowerCase()}));
-        }}>{t('bet-season-round-actions-changeWinner')}</a><br />
-        <Popconfirm title={t('bet-season-round-delete-info')} onConfirm={async () => {
-          dispatch(deleteBetRound(id));
-        }} okText={t('bet-season-round-delete-yes')} cancelText={t('bet-season-round-delete-no')}>
-          <a>{t('bet-season-round-actions-delete')}</a>
-        </Popconfirm>
+      render: ({id, status, betSeason, result}) => <>
+      {status !== 'running' && <>
+          <a onClick={async () => {
+            dispatch(updateBetRound(id, {result: result.toLowerCase() === user.teamAName.toLowerCase() ? user.teamBName.toLowerCase() : user.teamAName.toLowerCase()}, betSeason));
+          }}>{t('bet-season-round-actions-changeWinner')}</a><br />
+          <Popconfirm title={t('bet-season-round-delete-info')} onConfirm={async () => {
+            dispatch(deleteBetRound(id));
+          }} okText={t('bet-season-round-delete-yes')} cancelText={t('bet-season-round-delete-no')}>
+            <a>{t('bet-season-round-actions-delete')}</a>
+          </Popconfirm>
+        </>}
+        {status === 'running' && <>
+          <a onClick={async () => {dispatch(updateBetRound(id, {result: user.teamAName.toLowerCase(), status: 'finished'}, betSeason))}}>Set Winner to {user.teamAName}</a><br />
+          <a onClick={async () => {dispatch(updateBetRound(id, {result: user.teamBName.toLowerCase(), status: 'finished'}, betSeason))}}>Set Winner to {user.teamBName}</a><br />
+        </>}
       </>
     },
 ];

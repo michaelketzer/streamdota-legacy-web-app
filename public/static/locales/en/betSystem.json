@@ -125,5 +125,6 @@
     "bet-toplist-random-winner-action-cancel": "Cancel",
 
     "bet-season-timer-duration": "Voteduration",
-    "bet-season-round-date": "Date"
+    "bet-season-round-date": "Date",
+    "bet-season-round-status": "Status"
 }

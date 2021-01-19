@@ -83,7 +83,7 @@ export function createBetRound(): ActionDispatcher<Promise<void>> {
 	};
 }
 
-export function updateBetRound(betRoundId: number, data: Partial<BetRound>): ActionDispatcher<Promise<void>> {
+export function updateBetRound(betRoundId: number, data: Partial<BetRound>, seasonId?: number): ActionDispatcher<Promise<void>> {
 	return async (dispatch) => {
 		await dispatch<Promise<Response | NetworkError>>({
 			[CALL_API]: {
@@ -102,6 +102,8 @@ export function updateBetRound(betRoundId: number, data: Partial<BetRound>): Act
 				},
 			},
 		});
+
+		seasonId && await dispatch(loadBetRounds(seasonId));
 	};
 }
 
