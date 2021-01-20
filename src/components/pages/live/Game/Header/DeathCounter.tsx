@@ -5,7 +5,7 @@ interface Props {
     players: PlayerState[];
 }
 export default function DeathCounter({players}: Props): ReactElement {
-    const deahts = useMemo(() => players.reduce((acc, player) => acc + player.deaths, 0), [players]);
+    const deahts = useMemo(() => players && players.reduce((acc, player) => acc + player.deaths, 0) || 0, [players]);
 
     return <div className={'count'}>
         {deahts}
