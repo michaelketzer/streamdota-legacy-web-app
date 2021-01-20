@@ -9,7 +9,6 @@ import LiveFeed from "../components/pages/live/LiveFeed";
 import { WithTranslation } from "next-i18next";
 import i18nInstance from "../i18n";
 import dynamic from "next/dynamic";
-import FrameLink from "../components/pages/dotaOverlay/Overlay/FrameLink";
 
 
 
@@ -30,7 +29,7 @@ const Live = ({t}: WithTranslation): ReactElement => {
             title={t('liveFeed-title')} 
             description={t('liveFeed-title-sub')} />
 
-        {user && <ContextProvider initialState={initialState} reducer={reducer} url={getWebsocketUrl() + '/dota-gsi/live/' + user.frameApiKey}>
+        {user && <ContextProvider initialState={initialState} reducer={reducer} url={'wss://api.streamdota.com/dota-gsi/live/81f8c9aa-ed7b-47be-8f17-9ad01cb472dd'}>
             <LiveFeed apiKey={user.frameApiKey} leagueId={leagueId} />
         </ContextProvider>}
     </PageFrame>

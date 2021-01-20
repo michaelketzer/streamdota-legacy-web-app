@@ -21,7 +21,7 @@ export enum MessageType {
     gsi_game_winner = 'gsi_game_winner',
     gsi_game_state = 'gsi_game_state',
     betting_v2 = 'betting_v2',
-    gsi_player_state = 'gsi_player_state',
+    gsi_players_state = 'gsi_players_state',
 }
 
 export interface BaseMessage {
@@ -138,7 +138,7 @@ export interface GsiGameStateMessage extends BaseMessage {
     value: GameState;
 }
 export interface GsiPlayerStateMessage extends BaseMessage {
-    type: MessageType.gsi_player_state;
+    type: MessageType.gsi_players_state;
     value: PlayerState[];
 }
 
@@ -169,7 +169,7 @@ export function isGsiGameStateMessage(msg: Message): msg is GsiGameStateMessage 
 }
 
 export function isGsiPlayerStateMessage(msg: Message): msg is GsiPlayerStateMessage {
-    return msg.type === MessageType.gsi_player_state;
+    return msg.type === MessageType.gsi_players_state;
 }
 
 interface NewMessageAction {

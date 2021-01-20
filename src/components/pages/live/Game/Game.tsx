@@ -163,7 +163,7 @@ export const heroIdMap = {
     '129': 'mars'
 };
 
-export default function Game(): ReactElement {
+export default function Game(): ReactElement | null {
     const [playerState, setPlayerState] = useState([]);
     const message = useMessageListener();
 
@@ -173,15 +173,19 @@ export default function Game(): ReactElement {
         }
     }, [message]);
 
-    return <div className={'liveGameContainer'}>
-        <GamePlayerState state={playerState || []} />
+    if(playerState.length > 0) {
+        return <div className={'liveGameContainer'}>
+            <GamePlayerState state={playerState || []} />
 
-        <Overlay playerState={playerState}/>
+            <Overlay playerState={playerState}/>
 
-        <style jsx>{`
-            .liveGameContainer {
-                min-height: 50vh;
-            }    
-        `}</style>
-    </div>;
+            <style jsx>{`
+                .liveGameContainer {
+                    min-height: 50vh;
+                }    
+            `}</style>
+        </div>;
+    }
+
+    return null;
 }
