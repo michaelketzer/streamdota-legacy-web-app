@@ -13,7 +13,7 @@ export default function DeathCounter({players}: Props): ReactElement {
         <style jsx>{`
             .count {
                 font-size: 2em;
-                margin: 0 25px;
+                margin: 0 10px;
                 color: #999;
                 font-weight: bold;
                 margin-top: -8px;

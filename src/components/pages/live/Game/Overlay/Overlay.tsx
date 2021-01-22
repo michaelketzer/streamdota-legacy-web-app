@@ -44,7 +44,6 @@ export default function Overlay({playerState}: {playerState: PlayerState[]}): Re
 
         <style jsx>{`
             .overlay {
-                height: 240px;
                 overflow: hidden;
             }
             
@@ -56,10 +55,10 @@ export default function Overlay({playerState}: {playerState: PlayerState[]}): Re
 
             .liveFeedImage {
                 object-fit: contain;
-                width: 700px;
+                width: 100%;
+                height: 100%;
                 margin: 0 auto;
                 padding-top: 20px;
-                height: 240px;
             }   
 
             .view {

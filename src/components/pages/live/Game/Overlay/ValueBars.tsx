@@ -45,16 +45,16 @@ export default function ValueBars({playerState, accessKey = 'net_worth'}: {playe
         <style jsx>{`
             .bar {
                 position: absolute;
-                height: 97px;
-                width: 10px;
-                top: 90px;
+                height: 55%;
+                width: 1.3%;
+                bottom: 11%;
             }
 
             .absoluteValue {
                 color: #FFF;
                 font-weight: bold;
                 margin-left: -19px;
-                top: -24px;
+                top: -27%;
                 width: 48px;
                 font-size: 12px;
                 text-align: center;
@@ -62,14 +62,12 @@ export default function ValueBars({playerState, accessKey = 'net_worth'}: {playe
             }
 
             .nameValue {
-                height: 30px;
-                width: 220px;
                 position: absolute; 
-                top: 160px;
+                bottom: 10%;
                 left: 50%;
                 transform: translateX(-50%);
                 text-align: center;
-                font-size: 14px;
+                font-size: 10px;
                 text-transform: uppercase;
                 color: #FFF;
                 font-weight: bold;
@@ -77,12 +75,11 @@ export default function ValueBars({playerState, accessKey = 'net_worth'}: {playe
 
             .typeContainer {
                 position: absolute; 
-                top: 40px;
+                top: 0;
                 left: 50%;
-                height: 150px;
-                width: 200px;
+                height: 100%;
                 transform: translateX(-50%);
-                padding: 40px 0;
+                padding: 7% 0;
                 display: flex;
                 justify-content: center;
             }
@@ -93,43 +90,43 @@ export default function ValueBars({playerState, accessKey = 'net_worth'}: {playe
             }
 
             .bar-0 {
-                left: 353px;
+                left: 4%;
             }
 
             .bar-1 {
-                left: 406px;
+                left: 11.5%;
             }
 
             .bar-2 {
-                left: 458px;
+                left: 18.8%;
             }
 
             .bar-3 {
-                left: 510px;
+                left: 26.3%;
             }
 
             .bar-4 {
-                left: 559px;
+                left: 33.3%;
             }
 
             .bar-5 {
-                right: 564px;
+                right: 34%;
             }
 
             .bar-6 {
-                right: 511px;
+                right: 26.5%;
             }
 
             .bar-7 {
-                right: 460px;
+                right: 19.1%;
             }
 
             .bar-8 {
-                right: 407px;
+                right: 11.6%;
             }
 
             .bar-9 {
-                right: 358px;
+                right: 4.6%;
             }
 
             .progress {

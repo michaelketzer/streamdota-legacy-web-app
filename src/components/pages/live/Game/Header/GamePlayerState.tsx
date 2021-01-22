@@ -14,22 +14,12 @@ export default function GamePlayerState({state}: Props): ReactElement {
     return <div className={'heroContainer'}>
         <Players state={radiantTeam} />
 
-        <DeathCounter players={direTeam} />
-
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        &nbsp;&nbsp;
-
-        <DeathCounter players={radiantTeam} />
-
         <Players state={direTeam} dire />
 
         <style jsx>{`
             .heroContainer {
                 display: flex;
-                justify-content: center;
+                justify-content: space-between;
                 align-items: center;
             }
         `}</style>

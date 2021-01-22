@@ -13,7 +13,7 @@ interface Props {
 
 
 export default function Players({state, dire = false}: Props): ReactElement {
-    return <>
+    return <div className={'playerTeam'}>
         {state.map(({alive, canBuyBack, steamId, heroId, health_percent, mana_percent, respawn_seconds}, idx) => <div className={classNames('hero', {dire})} key={steamId}>
             <PlayerColor idx={idx + (dire ? 5 : 0)} />
             <div className={classNames('heroIcon', {alive, canBuyBack})}>
@@ -29,12 +29,23 @@ export default function Players({state, dire = false}: Props): ReactElement {
         </div>)}
 
         <style jsx>{`
+            .playerTeam {
+                display: flex;
+            }
+
             .hero {
                 transform: skew(10deg);
-                width: 78px;
+                width: 4vw;
                 overflow: hidden;
                 margin-right: 2px;
                 align-self: flex-start;
+            }
+
+
+            @media only screen and (min-width: 1100px) {
+                .hero {
+                    width: 4.7vw;
+                }
             }
 
             .hero.dire {
@@ -42,8 +53,9 @@ export default function Players({state, dire = false}: Props): ReactElement {
             }
 
             .heroIcon {
-                width: 100px;
-                height: 40px;
+                width: 150%;
+                transform-origin: center center;
+                height: 3vw;
                 transform: skew(-10deg);
                 margin-left: -15px;
             }  
@@ -76,5 +88,5 @@ export default function Players({state, dire = false}: Props): ReactElement {
                 transform: skew(10deg);
             }
         `}</style>
-    </>;
+    </div>;
 }
