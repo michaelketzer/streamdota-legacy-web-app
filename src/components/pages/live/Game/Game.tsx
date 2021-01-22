@@ -171,7 +171,7 @@ export default function Game(): ReactElement | null {
 
     useEffect(() => {
         if(message && isGsiPlayerStateMessage(message)) {
-            //setPlayerState(message.value);
+            setPlayerState(message.value);
         }
     }, [message]);
 
