@@ -1,6 +1,6 @@
 import React, { ReactElement, useCallback } from 'react';
 import Loader from '../../Loader';
-import { Radio, Typography, Switch } from 'antd';
+import { Radio, Typography, Switch, Button, Popconfirm } from 'antd';
 import { useCurrentUser } from '../../../hooks/currentUser';
 import { useDispatch } from 'react-redux';
 import { updateCurrentUser } from '../../../modules/reducer/Ui';
@@ -11,6 +11,8 @@ import ContextProvider from '../../context/websocket/context';
 import { initialState, reducer } from '../../context/websocket/state';
 import getWebsocketUrl from '../../../modules/Router';
 import DotaGamesTable from './DotaGamesTable';
+import { DeleteOutlined } from '@ant-design/icons';
+import { removeAllGames } from '../../../modules/reducer/DotaStats';
 
 const radioStyle = {
 	display: 'block',
@@ -37,6 +39,9 @@ const Stats = ({t}: WithTranslation): ReactElement => {
 					</Radio>
 					<Radio style={radioStyle} value={'day'}>
 						{t('settings-day')}
+					</Radio>
+					<Radio style={radioStyle} value={'manual'}>
+						{t('settings-manual')}
 					</Radio>
 				</Radio.Group>
 
@@ -70,10 +75,23 @@ const Stats = ({t}: WithTranslation): ReactElement => {
 				<br />
 
 				<div className={'stats'}>
-					<Typography.Title level={4}>{'Aktuelle Stream Stats'}</Typography.Title>
+					<Typography.Title level={4}>{t('stats-table-header')}</Typography.Title>
 					<ContextProvider initialState={initialState} reducer={reducer} url={getWebsocketUrl() + '/dota-gsi/live/' + user.frameApiKey}>
 						<DotaGamesTable/>
 					</ContextProvider>
+
+					{user.dotaStatsFrom === 'manual' && <>
+						<br />
+						<Popconfirm title={t('stats-reset-all-games')} onConfirm={async () => dispatch(removeAllGames())} okText={t('stats-reset')} cancelText={t('stats-cancel')}>
+							<Button
+								type={'primary'}
+								danger
+								icon={<DeleteOutlined />}
+							>
+								{t('stats-reset')}
+							</Button>
+						</Popconfirm>
+					</>}
 				</div>
 				
 				<style jsx>{`

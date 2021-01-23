@@ -9,10 +9,22 @@
     "settings-title": "Decide when the timer does reset",
     "settings-session": "Session - The count is reseted once the stream starts",
     "settings-day": "Day - All games of the day are counted",
+    "settings-manual": "Manual - You need to reset the stats yourself",
 
     "settings-visible-title": "Decide when the overlay is visible in dota",
     "settings-visible-menu": "Hide while in main menu",
     "settings-visible-picking": "Hide while picking",
+
+    "stats-table-header": "Current stats",
+    "stats-table-date": "Date",
+    "stats-table-won": "Won",
+    "stats-table-delete-game": "Delete game",
+    "stats-table-delete": "Delete",
+    "stats-table-cancel": "Cancel",    
+
+    "stats-reset-all-games": "Delete all games",
+    "stats-reset": "Delete",
+    "stats-cancel": "Cancel",
 
     "overlay-title": "Overlay configuration",
     "overlay-font-info": "Select a font family, you can get an overview of all available fonts here:",

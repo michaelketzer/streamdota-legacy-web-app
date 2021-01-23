@@ -9,10 +9,22 @@
     "settings-title": "Lege fest, ab wann die Stats gezählt werden sollen",
     "settings-session": "Session - Der Stand ist “0 - 0” sobald der Stream startet",
     "settings-day": "Tag - Es werden alle Stats des aktuellen Tages gezählt",
+    "settings-manual": "Manuell - Du setzt den Counter selber zurück",
 
     "settings-visible-title": "Lege fest, wann das Overlay innerhalb von Dota sichtbar ist",
     "settings-visible-menu": "Versteckt im Hauptmenü, das gilt nur dann, wenn man das Spiel verlassen hat",
     "settings-visible-picking": "Versteckt während der Pickphase",
+
+    "stats-table-header": "Aktuelle Stats",
+    "stats-table-date": "Datum",
+    "stats-table-won": "Gewonnen",
+    "stats-table-delete-game": "Spiel löschen",
+    "stats-table-delete": "Löschen",
+    "stats-table-cancel": "Abbrechen",    
+
+    "stats-reset-all-games": "Alle Spiele löschen",
+    "stats-reset": "Löschen",
+    "stats-cancel": "Abbrechen",
 
     "overlay-title": "Overlay Konfiguration",
     "overlay-font-info": "Wähle eine Schriftart, um einen generellen Überblick über alle Schriften zu erhalten kannst du bei Google Fonts nachsehen:",
