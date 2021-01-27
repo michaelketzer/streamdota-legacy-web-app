@@ -85,7 +85,11 @@ export default function DataPolicy() {
             <p>If you have restricted the processing of your personal data, these data – with the exception of their archiving – may be processed only subject to your consent or to claim, exercise or defend legal entitlements or to protect the rights of other natural persons or legal entities or for important public interest reasons cited by the European Union or a member state of the EU.</p>
             <h3>Rejection of unsolicited e-mails</h3>
             <p>We herewith object to the use of contact information published in conjunction with the mandatory information to be provided in section “Information Required by Law” to send us promotional and information material that we have not expressly requested. The operators of this website and its pages reserve the express right to take legal action in the event of the unsolicited sending of promotional information, for instance via SPAM messages.</p>
+            
+            <div id="cookiefirst-policy-page"></div>
+            <div>Diese Cookie-Richtlinie wurde erstellt und aktualisiert von der Firma <a href="https://cookiefirst.com">CookieFirst.com</a>.</div>
         </Frame>
         <Footer />
+        <script src="https://consent.cookiefirst.com/banner.js" data-cookiefirst-key="fbe27f4d-71e3-41b4-b721-2707ccb4aead"></script>
     </>;
 }
